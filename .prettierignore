@@ -1,0 +1,16 @@
+.DS_Store
+.env*.local
+.eslintrc.json
+.prettierrc.json
+next-env.d.ts
+package.json
+pnpm-debug.log*
+pnpm-lock.yaml
+
+.vscode/*
+!.vscode/extensions.json
+
+/build/
+/.next/
+/.swc/
+/.vercel/
