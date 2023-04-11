@@ -1,3 +1,8 @@
 {
-  "recommendations": ["bradlc.vscode-tailwindcss", "dbaeumer.vscode-eslint", "mgmcdermott.vscode-language-babel"]
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
+    "mgmcdermott.vscode-language-babel",
+  ]
 }
