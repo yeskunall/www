@@ -23,7 +23,9 @@
     "editor.wordWrap": "wordWrapColumn",
     "editor.wordWrapColumn": 80
   },
-  "prettier.documentSelectors": ["**/*.astro"],
+  "prettier.documentSelectors": [
+    "**/*.astro"
+  ],
   "eslint.validate": [
     "astro",
     "javascript",
