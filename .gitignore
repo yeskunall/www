@@ -1,0 +1,9 @@
+.astro
+node_modules/
+.vercel/
+
+pnpm-debug.log*
+
+.env
+.env.local
+.env.production
