@@ -1,0 +1,123 @@
+---
+title: "Recreating Motion One’s nav bar using Tailwind CSS"
+publishDate: "30 June 2023"
+description: ""
+tags: ["css", "engineering"]
+---
+
+import Callout from "../../components/blog/Callout.astro";
+
+Ever since I came across [Motion One](https://motion.dev/)’s nav bar
+blur-effect, I have been fascinated by how it looks. If you don’t know what I’m
+talking about, take a look [here](https://motion.dev/guides/quick-start). Make
+sure to scroll down a bit to _un_-hide the nav bar.
+
+Okay, now let’s get to it:
+
+```html /bg-gradient-radial-repeat-dot/
+<div
+  class="bg-gradient-radial-repeat-dot pointer-events-none fixed left-0 right-0 top-0 z-[9999] h-[75px] select-none overflow-hidden border-b-[1px] border-t-[3px] border-b-black/10 border-t-[#fff208] bg-[size:4px_4px] backdrop-blur-[3px] backdrop-brightness-[100%]"
+  aria-hidden="true"
+></div>
+```
+
+While Tailwind CSS does not have support for radial gradients (_yet_), we can
+`extend` our `tailwind.config.(c)js/ts{:ts}` to create the intended effect, like
+so:
+
+```ts /bg-gradient-radial-repeat-dot/
+...
+    extend: {
+      backgroundImage: {
+        "gradient-radial-repeat-dot":
+          "radial-gradient(rgba(0,0,0,0) 1px, var(--background) 1px)",
+      },
+    }
+...
+```
+
+Oh you want to see it working _step-by-step_? Okay, here goes nothing. First,
+we’ll get rid of the boring stuff out of the way:
+
+```html
+<div class="pointer-events-none z-[9999] select-none overflow-hidden"></div>
+```
+
+Next up, we want to make sure the `<div />{:html}` stays `fixed` in place, at
+the very top of the viewport:
+
+```html /fixed/ /left-0/ /right-0/ /top-0/
+<div
+  class="pointer-events-none fixed left-0 right-0 top-0 z-[9999] select-none"
+></div>
+```
+
+At this stage, you still won’t see a thing. That’s because the `<div />{:html}`
+contains nothing—and it won’t ever—so we need to explicitly set its `height`.
+Here’s where you get to customize this to your liking:
+
+```html /[h-75px]/
+<div
+  class="pointer-events-none fixed left-0 right-0 top-0 z-[9999] select-none"
+></div>
+```
+
+I went with `75px`. At this point, you should still see nothing, but if you
+inspect the `<div />{:html}`, you should see it takes up the height that you
+just set in the previous bit. Next, let’s get that border at the top:
+
+```html /border-t-[3px]/ /border-t-[#fff208]/
+<div
+  class="pointer-events-none fixed left-0 right-0 top-0 z-[9999] h-[75px] select-none overflow-hidden border-t-[3px] border-t-[#fff208]"
+></div>
+```
+
+Finally, we have something to show for. But we’re far from done. Let’s also add
+that border at the bottom:
+
+```html /border-b-[1px]/ /border-b-black/10/
+<div
+  class="pointer-events-none fixed left-0 right-0 top-0 z-[9999] h-[75px] select-none overflow-hidden border-b-[1px] border-t-[3px] border-b-black/10 border-t-[#fff208]"
+></div>
+```
+
+Now for the background effect (those _sexy_ polka dots), we’re going to first
+`extend` our Tailwind CSS config as mentioned previously. Once that is done, we
+can go ahead and use it:
+
+<Callout type="tip" title="Reload your config">
+  If you are not using a framework that automatically reloads when you make
+  changes to your Tailwind CSS config, then you might want to restart your
+  server before continuing
+</Callout>
+
+```html /bg-gradient-radial-repeat-dot/ /bg-[size:4px_4px]/
+<div
+  class="bg-gradient-radial-repeat-dot pointer-events-none fixed left-0 right-0 top-0 z-[9999] h-[75px] select-none overflow-hidden border-b-[1px] border-t-[3px] border-b-black/10 border-t-[#fff208] bg-[size:4px_4px]"
+></div>
+```
+
+We’re almost there. Let’s add the _blur_ effect that will tie this all together:
+
+```html /backdrop-blur-[3px]/ /backdrop-brightness-[100%]/
+<div
+  class="bg-gradient-radial-repeat-dot pointer-events-none fixed left-0 right-0 top-0 z-[9999] h-[75px] select-none overflow-hidden border-b-[1px] border-t-[3px] border-b-black/10 border-t-[#fff208] bg-[size:4px_4px] backdrop-blur-[3px] backdrop-brightness-[100%]"
+></div>
+```
+
+At this point, you should have replicated the _blur_ effect as seen on Motion
+One’s [website](https://motion.dev/guides/quick-start). Before we wrap things
+up, let’s go ahead and also add the `aria-hidden{:html}` label to the
+`<div />{:html}` to indicate that the element is not exposed to the
+accessibility API.
+
+```html /aria-hidden="true"/
+<div
+  class="bg-gradient-radial-repeat-dot pointer-events-none fixed left-0 right-0 top-0 z-[9999] h-[75px] select-none overflow-hidden border-b-[1px] border-t-[3px] border-b-black/10 border-t-[#fff208] bg-[size:4px_4px] backdrop-blur-[3px] backdrop-brightness-[100%]"
+  aria-hidden="true"
+></div>
+```
+
+This was a little experiment to try and see what all I can do with Tailwind CSS
+before I would have to use _raw_ CSS. I know it can do way more, and this was a
+very basic example.
