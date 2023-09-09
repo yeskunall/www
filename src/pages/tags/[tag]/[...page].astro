@@ -1,0 +1,87 @@
+---
+import { getCollection } from "astro:content";
+
+import PageLayout from "@/layouts/Base";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import Pagination from "@/components/Paginator.astro";
+import { getUniqueTags, sortByDate } from "@/utils";
+
+import type { Page, GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = await getCollection("post");
+  const allPostsByDate = sortByDate(allPosts);
+  const uniqueTags = getUniqueTags(allPostsByDate);
+
+  return uniqueTags.flatMap(tag => {
+    const filterPosts = allPostsByDate.filter(post =>
+      post.data.tags?.includes(tag),
+    );
+    return paginate(filterPosts, {
+      params: { tag },
+      pageSize: 10,
+    });
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page<CollectionEntry<"post">>;
+}
+
+const { page } = Astro.props;
+const { tag } = Astro.params;
+
+const meta = {
+  title: `Tag: ${tag}`,
+  description: `View all posts with the tag - ${tag}`,
+};
+
+const paginationProps = {
+  ...(page.url.prev && {
+    prevUrl: {
+      url: page.url.prev,
+      text: `← Previous Tags`,
+    },
+  }),
+  ...(page.url.next && {
+    nextUrl: {
+      url: page.url.next,
+      text: `Next Tags →`,
+    },
+  }),
+};
+---
+
+<PageLayout meta={meta}>
+  <h1 class="title mb-6 flex items-center">
+    <a href="/tags/" class="sm:hover:underline">Tags</a>
+    <span class="me-3 ms-2">→</span>
+    <span class="text-xl">#{tag}</span>
+  </h1>
+  <section aria-label="Blog post list">
+    <ul class="space-y-2">
+      {
+        page.data.map(p => (
+          <li class="flex flex-col flex-wrap gap-2 sm:flex-row [&_q]:basis-full">
+            <PostPreview post={p} as="h2" />
+          </li>
+        ))
+      }
+    </ul>
+    <Pagination {...paginationProps} />
+  </section>
+</PageLayout>
+
+<style>
+  @media (hover: hover) {
+    ul:hover li {
+      opacity: 0.3;
+    }
+
+    ul:hover li:hover {
+      opacity: 1;
+      transition: color 0.1s ease-out;
+    }
+  }
+</style>

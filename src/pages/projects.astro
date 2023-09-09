@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+
+import PageLayout from "@/layouts/Base";
+
+const meta = {
+  title: "Projects",
+  description:
+    "Projects I’m working on currently, or have worked on it the past",
+};
+---
+
+<PageLayout meta={meta}>
+  <div class="mb-16">
+    <div class="flex flex-col gap-1">
+      <button class="flex items-center rounded-xl p-3 outline-none">
+        <span
+          class="inline-block w-2/5 select-none text-left font-serif text-base"
+        >
+          Nu
+        </span>
+        <p class="hidden w-11/12 sm:block">
+          A micro-CMS for managing &amp; publishing your life updates
+        </p>
+        <div class="w-2/5 border border-t border-emerald-950/30"></div>
+        <span class="ml-3">2023</span>
+      </button>
+      <a
+        class="flex items-center rounded-xl p-3 outline-none"
+        href="https://marketplace.visualstudio.com/items?itemName=yeskunall.deep-rainforest"
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        <span
+          class="inline-block w-2/5 select-none text-left font-serif text-base"
+        >
+          Deep Rainforest
+        </span>
+        <p class="hidden w-3/5 sm:block">
+          A VS Code theme with lush green hues &amp; serene blue undertones
+        </p>
+        <div class="w-2/5 border border-t border-emerald-950/30"></div>
+        <span class="ml-3">2023</span>
+      </a>
+      <a
+        class="flex items-center rounded-xl p-3 outline-none"
+        href="https://green.kimchiii.space"
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        <span
+          class="inline-block w-2/5 select-none text-left font-serif text-base"
+        >
+          Green web hosts
+        </span>
+        <p class="hidden w-4/5 sm:block">
+          Find green web hosts around the world
+        </p>
+        <div class="w-2/5 border border-t border-emerald-950/30"></div>
+        <span class="ml-3">2023</span>
+      </a>
+      <button class="flex items-center rounded-xl p-3 outline-none">
+        <span
+          class="inline-block w-2/5 select-none text-left font-serif text-base"
+        >
+          HackerNews Digest
+        </span>
+        <p class="hidden w-4/5 sm:inline-block">
+          Weekly digest of top stories from HN
+        </p>
+        <div class="w-2/5 border border-t border-emerald-950/30"></div>
+        <span class="ml-3">2023</span>
+      </button>
+    </div>
+  </div>
+</PageLayout>

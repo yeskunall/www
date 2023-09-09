@@ -1,0 +1,97 @@
+---
+import { blurhashToCssGradientString } from "@unpic/placeholder";
+import { encode } from "blurhash";
+import { getPixels } from "@unpic/pixels";
+import { Image } from "@unpic/astro";
+
+import LiteralClubIcon from "@/components/icons/LiteralClubIcon.astro";
+import PageLayout from "@/layouts/Base";
+
+import { client, myBooksQuery } from "@/lib/literal-club";
+
+import type { ReadingState } from "@/data/shared";
+
+// NOTE(yeskunall): is this really the _Astro_ way to do things?
+const books = await client(import.meta.env.PUBLIC_LITERAL_CLUB_ACCESS_TOKEN)
+  .query(myBooksQuery, {})
+  .toPromise()
+  .then(result => {
+    const { myReadingStates } = result.data;
+
+    return (myReadingStates as Array<ReadingState>)
+      .filter(state => state.status === "IS_READING")
+      .map(state => state.book);
+  });
+
+const meta = {
+  title: "Now",
+  description: "What I’m up to these days",
+};
+---
+
+<PageLayout meta={meta}>
+  <h2 class="title mb-4 select-none text-xl">Now</h2>
+  <p class="mb-2.5 break-normal text-base">
+    <em>Funemployed</em> &amp; trying to find my <em>ikigai</em>. Moved into a
+    new house in India, somewhere in the hills, <em class="font-semibold"
+      >like I’ve always wanted</em
+    >. Reading <em>all the books</em> I’ve been meaning to this whole time. Spending
+    an inordinate amount of time with my loved ones, because none of us are getting
+    any younger.
+  </p>
+  <p class="mb-10 select-none font-sans text-sky-50/50">
+    Last updated <span class="font-serif font-semibold"
+      >21<sup>st</sup> July, 2023</span
+    >
+  </p>
+  <section
+    id="currently-reading"
+    class="mt-6 text-sm leading-5"
+    data-animate
+    style="--stagger:10"
+  >
+    <div class="flex flex-col space-y-5">
+      <div class="flex select-none items-center">
+        <LiteralClubIcon />
+        <h2 class="title ml-3 text-base">Book shelf</h2>
+      </div>
+      <div
+        class="flex snap-x snap-mandatory scroll-mx-5 scroll-px-4 overflow-x-scroll"
+      >
+        {
+          books.map(async book => {
+            const imageData = await getPixels(book.cover);
+            const { data, height, width } = imageData;
+            const blurhash = encode(
+              Uint8ClampedArray.from(data),
+              width,
+              height,
+              4,
+              4,
+            );
+
+            return (
+              <div class="mx-3 h-[420px] flex-none snap-center snap-always text-center sm:h-52">
+                <a
+                  class="cursor-ew-resize select-none"
+                  href={`https://literal.club/book/${book.slug}`}
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                >
+                  <Image
+                    alt={book.title}
+                    background={blurhashToCssGradientString(blurhash)}
+                    class="h-full w-full rounded-md object-cover"
+                    aspectRatio={16 / 9}
+                    layout="fullWidth"
+                    src={book.cover}
+                  />
+                </a>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+</PageLayout>

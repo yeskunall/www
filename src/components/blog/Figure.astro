@@ -1,0 +1,21 @@
+---
+import { Image } from "@unpic/astro";
+
+export interface Props {
+  alt: string;
+  src: string;
+}
+
+const { alt, src } = Astro.props as Props;
+---
+
+<figure>
+  <Image
+    alt={alt}
+    class="rounded-md"
+    aspectRatio={16 / 9}
+    layout="fullWidth"
+    src={src}
+  />
+  <figcaption class="text-center font-sans text-sky-50/50">{alt}</figcaption>
+</figure>
