@@ -1,0 +1,702 @@
+---
+title: "Architecture from Code with Klotho"
+publishDate: "30 January 2023"
+description:
+  "Deploying to the cloud shouldn't require a PhD in DevOps. That being said,
+  Klotho made me feel good about working with AWS."
+tags: ["engineering"]
+---
+
+import Callout from "../../components/blog/Callout.astro";
+
+Cloud services are remarkably useful for two use-cases: the first is when your
+application is simple, and has low traffic such that you save on complexity and,
+thus time, by leveraging with fully-managed services. The second is when your
+server load is unpredictable, or when you have no idea whether you need ten
+servers or a hundred.
+
+However, I think we can all agree that working with the cloud can quickly become
+incredibly complex, and the top 3 cloud providers require huge investments (both
+cost and time) to understand how to configure, learn, assemble, and scale them
+properly.
+
+To try and remedy this problem, there’s a lot of existing solutions out there.
+Some approaches include introducing cloud-native programming languages like
+[Dark](https://darklang.com/), [Wasp](https://wasp-lang.dev/) and
+[Wing](https://www.winglang.io/), [Ampt](https://getampt.com/) (spun off from
+[Serverless Inc.](https://www.serverless.com/cloud)),
+[Modal](https://modal.com/) and [Nitric](https://nitric.io/) are tackling it by
+introducing their own SDKs that you can use directly in your existing code,
+others like [Encore](https://encore.dev/) and [Shuttle](https://www.shuttle.rs/)
+are building frameworks to reduce inefficiency, and to strip away the monotony
+and repetition involved in deploying cloud services. This paradigm shift is
+being labelled
+[Infrastructure _from_ Code](https://www.infrastructurefromcode.com/) (IfC).
+
+Then there’s Klotho: it lets you write larger applications while taking care of
+the cloud integrations, smaller pieces, and technologies using pure in-code
+_annotations_. Its job is to understand your application’s architecture, not to
+define it. It does this by:
+
+- Ensuring your code is **debuggable**, **recognizable**, and **patchable**—even
+  in production
+- _Integrating_ with your existing ecosystem instead of trying to replace it
+- Keeping _existing_ tools and programming languages usable
+- Maintaining benefits from _existing_ architectures
+
+All of this is explained in great detail in
+[this](https://klo.dev/the-cloud-architecture-of-the-next-10-years-part2/) post.
+
+## Adaptive Architecture
+
+![Adaptive Architecture diagram](https://blog.kimchiii.space/content/images/2023/01/shapes.svg)
+
+The diagram above is essentially a replica what you can find
+[here](https://adaptive-architectures.tech/).
+
+Adaptive architecture is a system that alters its behavior, resources, or
+structure on-demand, usually focusing on non-functional characteristics rather
+than functional ones. That’s a very generic definition. (in fact, I just
+reworded what you can find on _Wikipedia_)
+
+I think where this can be useful is where applications have to scale quickly due
+to sudden spikes in demand, or ones that require frequent updates. They can also
+be easily updated or scaled up and down to meet the needs of the business.
+
+Since the white-paper for this isn’t available yet, I don’t want to talk make
+any baseless assumptions. That being said, I’m looking forward to dig deeper
+into ‘**adaptive architecture**.’
+
+## Write code for you, not the cloud
+
+Ever written a piece of code that works perfectly well locally, but then you go
+to deploy it to the cloud and
+[it](https://github.com/Azure/azure-functions-java-worker/issues/140)
+[just](https://www.itwriting.com/blog/4621-hands-on-debugging-an-azure-application-what-to-do-when-it-works-locally-but-not-in-the-cloud.html)
+[doesn’t](https://serverfault.com/questions/1070510/application-works-locally-but-fails-with-502-in-cloud-run-upstream-connect-e)
+[work](https://www.reddit.com/r/Firebase/comments/ib5yaz/function_works_locally_but_not_deployed/)?
+It’s such a common problem that Render has a dedicated
+[blog post](https://render.com/blog/it-works-fine-locally) to ensure you don’t
+end up saying “**but it works locally**.”
+
+When something breaks, you don’t know whether it’s on your side or if it’s in
+the magic box under someone else’s management. Aaron Torres puts it perfectly:
+
+> Like hiring a clockmaker, you can see what’s inside, but you will never know
+> the inner workings. Although you can take it apart, you won’t know how to put
+> it back together without a professional —
+> [Aaron Torres, klo.dev](https://klo.dev/the-cloud-architecture-of-the-next-10-years-part2)
+
+Write code for you, not the cloud, and let Klotho handle the rest.
+
+As of now, the only
+[_libraries_](https://klo.dev/docs/api/nodejs/expose/#supported-libraries)
+supported are Express, NestJS, and a
+[custom](https://nextjs.org/docs/advanced-features/custom-server) Next.js
+server. It looks like support for additional libraries depends on how quickly
+the team can adapt the compiler to transform code for
+[each](https://github.com/klothoplatform/klotho/blob/main/pkg/lang/javascript/nodejs.go)
+[library](https://github.com/klothoplatform/klotho/blob/main/pkg/lang/javascript/nestjs.go).
+
+I’m going to try to build a simple REST API using Express, then try to deploy it
+as a serverless function to AWS Lambda.
+
+Even though AWS Lambda supports ES modules and top-level `await{:ts}`, _Klotho_
+currently doesn’t.
+
+<Callout type="caution" title="Warning">
+  This also means that your Lambda functions cannot make use of [Provisioned
+  Concurrency](https://aws.amazon.com/blogs/compute/using-node-js-es-modules-and-top-level-await-in-aws-lambda/).
+  I hope they can add support for this soon
+</Callout>
+
+Now for the Express app:
+
+```ts
+const express = require("express");
+
+const app = express();
+
+const PORT = 3000;
+
+function setupExpressApp() {
+  const app = express();
+  const router = express.Router();
+
+  router.use(cors());
+  router.use(express.json());
+
+  return { app, router };
+}
+
+const { app, router } = setupExpressApp();
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
+exports.app = app;
+```
+
+For now, it doesn’t do anything but spin up a server on port `3000{:ts}`. I’m
+curious to see how the compiler handles this instance.
+
+## In comes Klotho
+
+Let’s **Klotho-_ify_** this Lambda by adding a
+[capability](https://klo.dev/docs/concepts/capabilities/). The syntax for that
+looks something like this:
+
+```ts
+/** @klotho::capability {
+ * }
+ */
+```
+
+These [annotations](https://klo.dev/docs/concepts/capabilities/#annotation) are
+used to control the behaviour of the compiler, and are usually specified as
+comments above the code to be transformed. If you want to expose your Lambda,
+then you need to add the `expose` capability to your code.
+
+```ts
+/**
+ * @klotho::expose {
+ *  id = "api-gateway"
+ *  target = "public"
+ * }
+ */
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+```
+
+> The term capability is starting to make sense now...
+
+As of now, you must pass the `target` _directive_
+([set](https://klo.dev/docs/api/nodejs/expose/#directives) to `public`) in order
+to expose your Lambda function to the Internet.
+
+<Callout type="note" title="Directives in Klotho">
+  A [directive](https://klo.dev/docs/concepts/capabilities/#directives) helps
+  provide your capability with any missing information that the _Klotho_
+  compiler can’t figure out what code transformations are necessary simply by
+  inspecting your code
+</Callout>
+
+The compiler generates transformations for particular cloud services, which
+_Klotho_ calls [_providers_](https://klo.dev/docs/api/nodejs/expose#providers).
+When you use the `expose` capability, it uses
+[API Gateway](https://aws.amazon.com/api-gateway/) as the provider.
+
+Let’s use the CLI to generate the compiled (transformed) code:
+
+```sh
+klotho . --app klotho-afc-example --provider aws
+██╗  ██╗██╗      ██████╗ ████████╗██╗  ██╗ ██████╗
+██║ ██╔╝██║     ██╔═══██╗╚══██╔══╝██║  ██║██╔═══██╗
+█████╔╝ ██║     ██║   ██║   ██║   ███████║██║   ██║
+██╔═██╗ ██║     ██║   ██║   ██║   ██╔══██║██║   ██║
+██║  ██╗███████╗╚██████╔╝   ██║   ██║  ██║╚██████╔╝
+╚═╝  ╚═╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝ ╚═════╝
+
+Adding resource input_file_dependencies:
+Adding resource exec_unit:main
+No resource was generated for the annotation.
+| @klotho::expose {
+|      id = 'api-gateway'
+|      target = 'public'
+| }
+| in index.js
+| 27| app.listen(PORT, () => {
+| 28|   console.log(`Server running on port ${PORT}`);
+| 29| });
+
+Adding resource topology:klotho-afc-example
+Adding resource aws_template_data:klotho-afc-example
+Adding resource infra_as_code:Pulumi (AWS)
+Pulumi.klotho-afc-example.yaml: Make sure to run `pulumi config set aws:region YOUR_REGION --cwd 'compiled/' -s 'klotho-afc-example'` to configure the target AWS region.
+```
+
+The warning makes sense. Because the Lambda does _nothing_ at this point, it
+makes sense to allocate no resources to it.
+
+The compiler also generates a topology each time there is a change in your
+architecture or code. Here’s what my topology diagram looks like right now:
+
+![Initial topology diagaram](https://blog.kimchiii.space/content/images/2023/01/ts-serverless-klotho.png)
+
+I know, it’s not much of a topology (_yet_). But let’s break it down regardless.
+The `main` Lambda function serves the Express app defined in
+`klotho-afc-example` using a Lambda-compatible interface. _Klotho_ refers to the
+`main` Lambda function as an `execution_unit`.
+
+An application is composed of one or more
+[_execution units_](https://klo.dev/docs/tutorials/your_first_klotho_app#execution-unit),
+with each execution unit being responsible for executing a discrete portion of
+the application's code.
+
+The compiler defines the main `execution_unit` by looking into the `main` field
+in `package.json{:ts}`. Because I did not define a `main` entrypoint, nor define
+an `execution_unit` myself, it deterministically figured out the execution unit
+using the existing `expose` capability. _Smart!_
+
+In this case, it was able to generate the `compiled` directory because of the
+presence of a `package.json{:ts}` in the root directory, which they call a
+[_project file_](https://klo.dev/docs/concepts/capabilities/execution_unit/project_file).
+
+<Callout type="note" title="Good to know">
+  _Klotho_ always associates a `Dockerfile` with each execution unit within an
+  application. If you do not provide one, it will autogenerate one for you
+</Callout>
+
+This means that _Klotho_ uses container-based Lambda functions, which have their
+own pros and cons. However, as long as the compiler
+[optimizes](https://aws.amazon.com/blogs/compute/optimizing-lambda-functions-packaged-as-container-images/)
+the Lambda function packaged as container images, we should be mostly good.
+
+You should see a `compiled` directory at the root-level of your project. This is
+what it looks like on my end:
+
+```sh
+compiled
+├── iac
+├── main
+├── Pulumi.klotho-afc-example.yaml
+├── Pulumi.yaml
+├── deploylib.ts
+├── index.ts
+├── klotho-afc-example.json
+├── klotho-afc-example.png
+├── klotho.yaml
+├── package.json
+├── resources.json
+└── tsconfig.json
+```
+
+I’m going to skip the `iac` directory and instead focus on the `main` directory
+right now. These are its contents:
+
+```sh
+compiled/main
+├── klotho_runtime
+├── Dockerfile
+├── index.js
+└── package.json
+```
+
+Along with a bunch of generated files, here you’ll find the `Dockerfile`
+associated with the execution unit. Let’s examine that:
+
+```dockerfile
+FROM public.ecr.aws/lambda/nodejs:16
+
+COPY package.json ./
+RUN npm install
+COPY . ./
+
+CMD [ "klotho_runtime/dispatcher.handler" ]
+```
+
+> Okay, now I’m confused. If the Docker image uses Node 16, then why can’t I use
+> ES6 imports?
+
+<Callout type="note" title="About Node LTS">
+  At the time of writing this, Node 18 is LTS, but _Klotho_ seems to be using a
+  previous release
+</Callout>
+
+Moving on, if you look inside `dispatcher.js{:ts}`, you’ll see that the
+`handler` at this point throws if you were to make a request to the Lambda:
+
+```ts
+async function webserverResponse(event, context) {
+  throw new Error(
+    "execution unit not configured to receive webserver payloads",
+  );
+}
+```
+
+That’s pretty cool. It essentially tries its best to mimic the local setup,
+i.e., if you were to run this app locally right now, you’d get an error:
+
+```sh
+curl "http://localhost:3000"
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /</pre>
+</body>
+</html>
+```
+
+What if I added an empty router configuration to the Express app?
+
+```ts
+...
+
+const { app, router } = setupExpressApp();
+
+app.use(router);
+
+/**
+ * @klotho::expose {
+ *  id = "api-gateway"
+ *  target = "public"
+ * }
+ */
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+...
+```
+
+Running _Klotho_ this time yields:
+
+```sh
+██╗  ██╗██╗      ██████╗ ████████╗██╗  ██╗ ██████╗
+██║ ██╔╝██║     ██╔═══██╗╚══██╔══╝██║  ██║██╔═══██╗
+█████╔╝ ██║     ██║   ██║   ██║   ███████║██║   ██║
+██╔═██╗ ██║     ██║   ██║   ██║   ██╔══██║██║   ██║
+██║  ██╗███████╗╚██████╔╝   ██║   ██║  ██║╚██████╔╝
+╚═╝  ╚═╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝ ╚═════╝
+
+Adding resource input_file_dependencies:
+Adding resource exec_unit:main
+No routes found for middleware 'router'                                                             unit: main
+Adding resource gateway:api-gateway
+Adding catchall route for gateway {FilePath:index.js AppVarName:app gatewayId:api-gateway} with no detected routes
+                                                                                                     unit: main
+Adding resource topology:klotho-afc-example
+Adding resource aws_template_data:klotho-afc-example
+Adding resource infra_as_code:Pulumi (AWS)
+```
+
+_Interesting_. The above code change made no difference to how the app runs
+locally, but the compiler seems to have added a “catch-all” route.
+
+This time, I’m going to add a very basic API route to add and get pugs (🐶),
+while explicitly stating its a separate execution unit:
+
+```ts
+/**
+ * @klotho::execution_unit {
+ *  id = "pugs"
+ * }
+ */
+
+ ...
+
+ /**
+ * @klotho::persist {
+ *  id = "dog-ddb"
+ * }
+ */
+const store = new Map();
+
+async function addPug(request, response) {
+  ..
+}
+
+async function getPug(request, response) {
+  ...
+}
+```
+
+If I did everything correctly, the compiler should add a resource for the `pugs`
+execution unit. I also used another _Klotho_ capability
+[`persist`](https://klo.dev/docs/api/nodejs/persist) on a key-value `store`. The
+compiler should also pick this up and generate code to create a
+[DynamoDB](https://aws.amazon.com/dynamodb/) resource. Let’s try it:
+
+```sh
+██╗  ██╗██╗      ██████╗ ████████╗██╗  ██╗ ██████╗
+██║ ██╔╝██║     ██╔═══██╗╚══██╔══╝██║  ██║██╔═══██╗
+█████╔╝ ██║     ██║   ██║   ██║   ███████║██║   ██║
+██╔═██╗ ██║     ██║   ██║   ██║   ██╔══██║██║   ██║
+██║  ██╗███████╗╚██████╔╝   ██║   ██║  ██║╚██████╔╝
+╚═╝  ╚═╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝ ╚═════╝
+
+Adding resource input_file_dependencies:
+Adding resource exec_unit:pugs
+No routes found for middleware 'router'                                                             unit: pugs
+Found 2 route(s) for middleware 'pugs'                                                              unit: pugs
+Adding resource gateway:api-gateway
+Adding resource persist_kv:dog-ddb
+Adding resource topology:klotho-afc-example
+Adding resource aws_template_data:klotho-afc-example
+Adding resource infra_as_code:Pulumi (AWS)
+```
+
+_Nice!_ The topology diagram should also have been affected. Let’s see:
+
+![Updated topology diagram](https://blog.kimchiii.space/content/images/2023/01/klotho-afc-example-1.png)
+
+You can add and get pugs (🐶), but what if you wanted to adopt a pug? Time to
+add another execution unit, but instead of using DynamoDB as the provider, I’m
+going to use [Elasticache](https://aws.amazon.com/elasticache/):
+
+```ts
+/**
+ * @klotho::execution_unit {
+ *  id = "adopt"
+ * }
+ */
+
+...
+
+/**
+ * @klotho::persist {
+ *  id = "cache"
+ * }
+ */
+const client = createClient();
+
+...
+
+await client.connect({ url: process.env.ELASTICACHE_URL });
+
+...
+
+async function adoptionStatus(request, response) {
+  ...
+}
+
+async function approveAdoption(request, response) {
+  ...
+}
+
+async function refuseAdoption(request, response) {
+  ...
+}
+
+async function requestAdoption(request, response) {
+  ...
+}
+```
+
+Running _Klotho_ again:
+
+```sh
+██╗  ██╗██╗      ██████╗ ████████╗██╗  ██╗ ██████╗
+██║ ██╔╝██║     ██╔═══██╗╚══██╔══╝██║  ██║██╔═══██╗
+█████╔╝ ██║     ██║   ██║   ██║   ███████║██║   ██║
+██╔═██╗ ██║     ██║   ██║   ██║   ██╔══██║██║   ██║
+██║  ██╗███████╗╚██████╔╝   ██║   ██║  ██║╚██████╔╝
+╚═╝  ╚═╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝ ╚═════╝
+
+Adding resource input_file_dependencies:
+Adding resource exec_unit:pugs
+Adding resource exec_unit:adopt
+No routes found for middleware 'router'                                                             unit: pugs
+Found 2 route(s) for middleware 'pugs'                                                              unit: pugs
+Adding resource gateway:api-gateway
+No routes found for middleware 'router'                                                            unit: adopt
+Found 4 route(s) for middleware 'adopt'                                                            unit: adopt
+Adding resource persist_kv:dogs
+Adding resource persist_redis_node:cache
+Adding resource topology:klotho-afc-example
+Adding resource aws_template_data:klotho-afc-example
+Adding resource infra_as_code:Pulumi (AWS)
+```
+
+The topology diagram was updated to reflect the new resource:
+
+![Updated topology diagram](https://blog.kimchiii.space/content/images/2023/01/klotho-afc-example-2.png)
+
+What would the topology look like if I didn’t specify multiple execution points?
+Well, the compiler _should_ refer to the project file and use `main` as the
+execution unit. Let’s try that, too:
+
+```sh
+██╗  ██╗██╗      ██████╗ ████████╗██╗  ██╗ ██████╗
+██║ ██╔╝██║     ██╔═══██╗╚══██╔══╝██║  ██║██╔═══██╗
+█████╔╝ ██║     ██║   ██║   ██║   ███████║██║   ██║
+██╔═██╗ ██║     ██║   ██║   ██║   ██╔══██║██║   ██║
+██║  ██╗███████╗╚██████╔╝   ██║   ██║  ██║╚██████╔╝
+╚═╝  ╚═╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝ ╚═════╝
+
+Adding resource input_file_dependencies:
+Adding resource exec_unit:main
+No routes found for middleware 'router'                                                             unit: main
+Found 4 route(s) for middleware 'adopt'                                                             unit: main
+Found 2 route(s) for middleware 'pugs'                                                              unit: main
+Adding resource gateway:api-gateway
+Adding resource persist_kv:dogs
+Adding resource persist_redis_node:cache
+Adding resource topology:klotho-afc-example
+Adding resource aws_template_data:klotho-afc-example
+Adding resource infra_as_code:Pulumi (AWS)
+```
+
+Here’s what the topology diagram looks like now:
+
+![Updated topology diagram](https://blog.kimchiii.space/content/images/2023/01/klotho-afc-example-3.png)
+
+In both instances, the `api-gateway` resource is used to expose the API route
+defined in the `main` Lambda function.
+
+Next, I want to go over `klotho.yaml{:yaml}`, which is what Klotho uses to
+create the resources for your compiled application. Here’s mine:
+
+```yaml
+app: klotho-afc-example
+provider: aws
+path: .
+out_dir: compiled
+defaults:
+  execution_unit:
+    type: lambda
+    pulumi_params_by_type:
+      eks:
+        nodeType: fargate
+        replicas: 2
+      fargate:
+        cpu: 256
+        memory: 512
+      lambda:
+        memorySize: 512
+        timeout: 180
+  static_unit:
+    type: s3
+    pulumi_params_by_type:
+      s3:
+        cloudFrontEnabled: true
+  expose:
+    type: apigateway
+  persist:
+    kv:
+      type: dynamodb
+    fs:
+      type: s3
+    secret:
+      type: s3
+    orm:
+      type: rds_postgres
+      pulumi_params_by_type:
+        cockroachdb_serverless: {}
+        rds_postgres:
+          allocatedStorage: 20
+          engineVersion: "13.7"
+          instanceClass: db.t4g.micro
+          skipFinalSnapshot: true
+    redis_node:
+      type: elasticache
+      pulumi_params_by_type:
+        elasticache:
+          nodeType: cache.t3.micro
+          numCacheNodes: 1
+    redis_cluster:
+      type: memorydb
+      pulumi_params_by_type:
+        memorydb:
+          nodeType: db.t4g.small
+          numReplicasPerShard: "1"
+          numShards: "2"
+  pubsub:
+    type: sns
+execution_units:
+  main:
+    type: lambda
+    pulumi_params:
+      memorySize: 512
+      timeout: 180
+exposed:
+  api-gateway:
+    type: apigateway
+persisted:
+  cache:
+    type: elasticache
+    pulumi_params:
+      nodeType: cache.t3.micro
+      numCacheNodes: 1
+  dogs:
+    type: dynamodb
+```
+
+Under `defaults`, you can see all the available capabilities, and their default
+providers.
+
+<Callout type="tip" title="Overriding defaults">
+  You can override the default values by passing your own [configuration
+  file](https://klo.dev/docs/concepts/configuration/) to the CLI. The compiler
+  will end up merging your passed-in config into the existing `klotho.yaml`
+</Callout>
+
+This configuration file sorta reminds me of how you define resources in a
+[SAM template](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html).
+
+Under the `iac` directory, you’ll see a bunch of generated code that uses the
+_Pulumi_ SDK by default. The output is a lot, but I reckon that’s because it has
+to generate code for each of its capability, and each provider that it supports.
+
+<Callout type="note" title="On deploying">
+  The output of `iac` does not get deployed to the cloud, but I wonder if in the
+  future the compiler can only emit code for the resources that are necessary
+</Callout>
+
+It smoothly integrated with existing industry-standard solutions instead of
+trying to replace it. I think **this is a huge plus-point** for _Klotho_.
+
+<Callout type="caution" title="Klotho analytics">
+  Klotho automatically creates a `.klotho/analytics.json `in your `$HOME`
+  directory
+</Callout>
+
+I was bummed out to see that there was no way to turn analytics off. At least
+not yet. I also don’t like how it pollutes my `$HOME` directory, even though I
+have setup my machine to follow the
+[XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
+base directory specification. The change to support this is fairly simple, but
+it [mostly](https://github.com/denoland/deployctl/issues/134)
+[gets](https://github.com/planetscale/cli/issues/429)
+[ignored](https://github.com/railwayapp/cli/issues/206).
+
+## Deploying
+
+This is an area that _Klotho_ differentiates itself from the rest of the _IfC_
+solutions. It will not attempt to deploy anything for you. That’s explicitly
+**_not_** its job. It is responsible for generating Pulumi code and you’re
+supposed to [use Pulumi directly](https://klo.dev/docs/tutorials/deploying) to
+get the app deployed to the cloud.
+
+While I understand the sentiment of maintaining benefits from _existing_
+architectures, other _IfC_ solutions like Nitric and Serverless Cloud (not to be
+confused with Ampt) deploy the required infrastructure (resources) from your
+code to your chosen cloud provider. This _may_ hurt _Klotho_ in the long run,
+but if I’m right, its _annotation_-based approach (architecture-from-code) will
+give it an edge over its competitors.
+
+## Wrapping up
+
+I tried using most of the capabilities _Klotho_ provides, but there’s still a
+lot out there to explore. Like I mentioned in the beginning, this post is
+written to get an idea of the product. But after testing it out, I think that:
+
+- **Adoption will initially be slow:** this is still a new concept (IfC), and
+  even though Klotho builds upon existing infrastructure, I think some (_or
+  most?_) developers will be hesitant to try it
+- **The cloud will still be your bottleneck:** even though you are using _IfC_
+  to reduce the complexity, and therefore the time it takes to deploy to the
+  cloud, you are still limited by cold (warm) starts, failures/outages, retries,
+  and service limits
+- **This is extremely new (bleeding-edge) tech:** while I’m genuinely impressed
+  with _Klotho_’s capability (_get it?_), the team still has a long way to go
+  before it can be adopted by teams
+
+Overall, given that _Klotho_ is currently in closed beta, it has some some
+missing features: mainly its lack of support for **_most_** frameworks and
+libraries, it only supports 3 languages as of now, and because it builds upon
+existing technologies, you **have** to use Pulumi to ultimately deploy your
+code. For a product that made its debut only last year, it already stands out
+due to its adaptive architecture, and annotation-based approach. With the advent
+of _IfC_ solutions, it is sure to be a major disruptor in the serverless realm.
+
+_I would like to thank **Ala Shiban** for reaching out to me directly. I learned
+a lot from this little experiment, and my overall experience with Klotho was
+delightful._
