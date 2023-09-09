@@ -1,0 +1,232 @@
+@import "./rehype-pretty-code.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "MartianMono";
+  src: url("/fonts/MartianMonoVF.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("/fonts/newsreader-subset-0.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sohne";
+  src: url("/fonts/sohne-subset-0.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --background: var(--black);
+    --black: rgba(0, 0, 0, 0.1);
+    --font-display: "Sohne";
+    --font-serif: "Newsreader";
+    --leading: 24px;
+    --theme-text: rgba(237, 247, 248, 0.9);
+    --text: 16px;
+    --type-heading: 500 var(--text) / var(--leading) var(--font-display);
+    --type-italic: 400 italic calc(1em + 1px) / normal var(--font-serif);
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    font: var(--type-heading);
+  }
+
+  :where(em, i) {
+    font: var(--type-italic);
+  }
+
+  html {
+    @apply h-full scroll-smooth;
+  }
+
+  html body {
+    @apply h-full touch-manipulation hyphens-auto bg-[#000e14] px-8 pt-16 font-sans text-sm font-normal text-stone-200 antialiased selection:bg-sky-50/95 selection:text-stone-950/80;
+    text-rendering: optimizeLegibility;
+  }
+
+  blockquote p {
+    @apply text-sky-50/70;
+  }
+
+  .prose a.anchor {
+    @apply cursor-pointer no-underline;
+  }
+
+  .prose a.anchor::before {
+    @apply mr-1.5 inline-flex items-center justify-center rounded-md bg-stone-50/90 px-1.5 py-0.5 text-base font-bold text-black/95;
+    content: "#";
+  }
+
+  .prose a[rel="nofollow noopener noreferrer"] {
+    @apply cursor-alias;
+  }
+
+  .prose a[data-footnote-ref] {
+    @apply text-stone-500;
+  }
+
+  .prose a[data-footnote-backref] {
+    @apply no-underline;
+  }
+
+  .prose mark {
+    @apply bg-amber-300/95;
+  }
+
+  .prose section[data-footnotes] {
+    @apply mt-12 text-xs sm:text-sm;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns:
+      1fr
+      min(65ch, 100%)
+      1fr;
+  }
+
+  .wrapper > * {
+    grid-column: 2;
+  }
+
+  .full-bleed {
+    width: 100%;
+    grid-column: -1 / 1;
+  }
+
+  [craft-tabs-wrapper] {
+    --ct-height: 32px;
+    --ct-active-bg: #012000;
+  }
+
+  [craft-tab] {
+    appearance: none;
+    border: 0;
+    outline: none;
+    border-radius: var(--ct-height);
+    cursor: pointer;
+    height: var(--ct-height);
+    line-height: var(--ct-height);
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+
+  [craft-tabs-hidden] {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    background: var(--ct-active-bg);
+    clip-path: inset(0 100% 0 0);
+    will-change: clip-path;
+  }
+
+  div[craft-tabs-hidden]:has(button[data-state="active"]:nth-child(1)) {
+    clip-path: inset(0px calc(100% - 72px) calc(100% - 32px) 0px round 30px);
+  }
+
+  div[craft-tabs-hidden]:has(button[data-state="active"]:nth-child(2)) {
+    clip-path: inset(0px calc(100% - 156px) calc(100% - 32px) 70px round 30px);
+  }
+
+  div[craft-tabs-hidden]:has(button[data-state="active"]:nth-child(3)) {
+    clip-path: inset(0px calc(100% - 215px) calc(100% - 32px) 153px round 30px);
+  }
+
+  div[craft-tabs-hidden]:has(button[data-state="active"]:nth-child(4)) {
+    clip-path: inset(0px calc(100% - 270px) calc(100% - 32px) 219px round 30px);
+  }
+
+  .rotating-text-word {
+    margin-top: 84px;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    top: 0;
+  }
+
+  @media (min-width: 640px) {
+    .rotating-text-word {
+      margin-top: 120px;
+    }
+  }
+
+  .rotating-text-word:nth-of-type(1) {
+    animation-name: rotate;
+    animation-duration: 1.5s;
+    animation-delay: 0.5s;
+  }
+
+  .rotating-text-word:nth-of-type(2) {
+    animation-name: rotate;
+    animation-duration: 1.5s;
+    animation-delay: 1.75s;
+  }
+
+  .rotating-text-word:nth-of-type(3) {
+    animation-name: rotate;
+    animation-duration: 1.5s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+  }
+
+  .rotating-text-word:nth-of-type(4) {
+    animation-name: rotate;
+    animation-duration: 1.5s;
+    animation-delay: 4.25s;
+    animation-fill-mode: forwards;
+  }
+
+  .rotating-text-word:nth-of-type(5) {
+    animation-name: rotate-last;
+    animation-duration: 1.5s;
+    animation-delay: 5.5s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes rotate {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 50px, 0);
+    }
+
+    20%,
+    80% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate3d(0, -25px, 0);
+    }
+  }
+
+  @keyframes rotate-last {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 50px, 0);
+    }
+
+    50%,
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}

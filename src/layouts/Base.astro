@@ -1,0 +1,40 @@
+---
+import { ViewTransitions } from "astro:transitions";
+
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/layout/Header.astro";
+import Footer from "@/components/layout/Footer.astro";
+import SkipLink from "@/components/SkipLink.astro";
+
+import { siteConfig } from "@/site-config";
+
+import type { SiteMeta } from "@/data/site-meta";
+
+interface Props {
+  meta: SiteMeta;
+}
+
+const {
+  meta: { title, description = siteConfig.description, ogImage, articleDate },
+} = Astro.props;
+---
+
+<html lang={siteConfig.lang}>
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      articleDate={articleDate}
+    />
+    <ViewTransitions />
+  </head>
+  <body>
+    <SkipLink />
+    <main class="wrapper">
+      <Header />
+      <slot />
+      <Footer />
+    </main>
+  </body>
+</html>

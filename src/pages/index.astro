@@ -1,0 +1,313 @@
+---
+import {
+  AppWindowIcon,
+  CoinsIcon,
+  FigmaIcon,
+  LayoutTemplateIcon,
+  MessageCircleIcon,
+  PlusIcon,
+  RotateCw,
+  SparklesIcon,
+  SplineIcon,
+} from "lucide-react";
+
+import { Badge } from "@/components/ui/badge";
+import PageLayout from "@/layouts/Base";
+
+import AstroIcon from "@/components/icons/AstroIcon.astro";
+import NextJSIcon from "@/components/icons/NextJSIcon.astro";
+import SanityIcon from "@/components/icons/SanityIcon.astro";
+import VercelIcon from "@/components/icons/VercelIcon.astro";
+---
+
+<PageLayout meta={{ title: "Home" }}>
+  <section
+    id="main"
+    class="my-3 break-normal text-base leading-7 tracking-[0.020em] text-sky-50/90"
+    data-animate
+    style="--stagger:3"
+  >
+    <h1 class="mb-5 font-sans text-3xl font-medium sm:text-5xl">
+      Hey, I’m Kunall.<br /><span class="text-2xl sm:text-4xl"
+        >I’m a <em>digital craftsman</em><br /></span
+      ><span class="text-xl sm:text-3xl"
+        >based in <span class="select-none"
+          ><span
+            class="rotating-text-word left-[84px] font-serif font-medium sm:left-[125px]"
+            >Ottawa</span
+          ><span
+            class="rotating-text-word left-[84px] font-serif font-medium sm:left-[125px]"
+            >Toronto</span
+          >
+          <span
+            class="rotating-text-word left-[84px] font-serif font-medium sm:left-[125px]"
+            >Vancouver</span
+          ><span
+            class="rotating-text-word left-[84px] font-serif font-medium sm:left-[125px]"
+            >Mumbai</span
+          ><span
+            class="rotating-text-word left-[84px] font-serif font-medium sm:left-[129px]"
+            >🌏</span
+          ></span
+        ></span
+      >
+    </h1>
+    <div class="my-2.5">
+      <div class="flex flex-col items-start justify-center space-y-4">
+        <Badge
+          className="bg-[#012000] text-emerald-300/60 select-none px-2.5 py-1.5"
+        >
+          📍 Mumbai, India
+        </Badge>
+      </div>
+    </div>
+    <h2 class="title mt-8 select-none text-lg font-semibold sm:text-xl">
+      Intro
+    </h2>
+    <p class="my-3">
+      <em>Obsessed</em> with details. Craft
+      <strong class="font-medium">delightful</strong>
+      <em> experiences</em> &amp; <em>interfaces</em>. <em>Minimalist</em>, in
+      all aspects of life. <em>Outspoken</em>, yet I’m mindful of the effect it
+      has on others.
+    </p>
+    <p class="my-3">
+      Previously as a <a
+        class="cursor-alias underline decoration-slate-300/50 underline-offset-[2.5px]"
+        href="https://read.cv/yeskunall"
+        rel="nofollow noopener noreferrer"
+        target="_blank">Solutions Engineer</a
+      >, I built bespoke solutions for brands like <em>CareSource</em>, <em
+        >Corning Inc.</em
+      >, <em>Electronic Arts</em>, <em>GSK plc</em>, <em>Haleon plc</em>, <em
+        >Nationwide Mutual Insurance Company</em
+      >, among several others. Outside of work, I mostly collaborate with SMBs,
+      or individuals who need help with building an online presence.
+    </p>
+    <p class="my-3">
+      Born in Calcutta, India, raised in 7 different cities, and attended 13
+      different schools. Lived a large part of the last decade in Ottawa. If I’m
+      not travelling, I split my time living in East-coast Canada and East-coast
+      India.
+    </p>
+  </section>
+  <section
+    id="ethos"
+    class="my-3 break-normal text-base leading-6 tracking-[0.020em] text-sky-50/90"
+    data-animate
+    style="--stagger:5"
+  >
+    <h2 class="title mb-4 select-none text-lg font-semibold sm:text-xl">
+      Ethos
+    </h2>
+    <p class="my-3">
+      <em>Engineering</em> is largely about <em>ethics</em>. In the modern
+      world, <em>ingenuity</em> &amp; <em>novelty</em> rarely make an engineer. Everything
+      today is an iteration of yesterday.
+    </p>
+    <p class="my-3">
+      In design, where function does not change, form does not change. With that
+      in mind, I tend to create designs that are both a mix of <em
+        >brutalistic</em
+      > &amp; <em>minimalistic</em>.
+    </p>
+  </section>
+  <section
+    id="services"
+    class="my-3 select-none break-normal text-base leading-6 tracking-[0.020em] text-sky-50/80"
+    data-animate
+    style="--stagger:8"
+  >
+    <h2 class="title mb-4 text-lg font-semibold sm:text-xl">Services</h2>
+    <div
+      class="grid grid-cols-1 rounded-xl bg-[#012000]/30 font-sans font-medium tracking-[-0.020em]"
+    >
+      <div class="grid grid-cols-1 gap-y-[18px] p-6 sm:grid-cols-2">
+        <div class="inline-flex items-center">
+          <SparklesIcon className="h-5 w-5 mr-2.5" strokeWidth={2.5} /><span
+            >Branding</span
+          >
+        </div>
+        <div class="inline-flex items-center">
+          <MessageCircleIcon
+            className="h-5 w-5 mr-2.5"
+            strokeWidth={2.5}
+          /><span>Consulting</span>
+        </div>
+        <div class="inline-flex items-center">
+          <SplineIcon className="h-5 w-5 mr-2.5" strokeWidth={2.5} /><span
+            >UX / Wireframing</span
+          >
+        </div>
+        <div class="inline-flex items-center">
+          <AppWindowIcon className="h-5 w-5 mr-2.5" strokeWidth={2.5} /><span
+            >Landing pages <span class="text-sky-50/40"
+              >(<em>design + code</em>)</span
+            ></span
+          >
+        </div>
+        <div class="inline-flex items-center">
+          <LayoutTemplateIcon
+            className="h-5 w-5 mr-2.5"
+            strokeWidth={2.5}
+          /><span
+            >Web apps <span class="text-sky-50/40">(<em>code</em>)</span></span
+          >
+        </div>
+        <div class="inline-flex items-center text-sky-50/40">
+          <PlusIcon className="h-5 w-5 mr-2.5" strokeWidth={2.5} /><span
+            >and more</span
+          >
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-1 gap-6 rounded-b-xl bg-[#012000]/50 p-6 sm:grid-cols-2 sm:gap-3"
+      >
+        <div>
+          <h2 class="title mb-4 font-serif text-3xl font-semibold sm:text-4xl">
+            Get a quote
+          </h2>
+          <p>
+            Branding, apps, entire websites et al for a custom fee, delivered in
+            milestones
+          </p>
+          <span class="relative mt-3 inline-flex">
+            <a
+              class="inline-flex items-center rounded-lg bg-[#012000] px-4 py-2 text-sm font-medium leading-6 text-emerald-300/60 shadow ring-1 ring-[#012000]/30 transition duration-300 ease-in-out hover:text-emerald-300/90"
+              href="mailto:hey@kimchiii.space"
+            >
+              Available for work
+            </a>
+            <span class="absolute right-0 top-0 -mr-0.5 -mt-1 flex h-3 w-3">
+              <span
+                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-900 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex h-3 w-3 rounded-full bg-emerald-700"
+              ></span>
+            </span>
+          </span>
+        </div>
+        <div class="flex flex-col space-y-3">
+          <div class="inline-flex items-center">
+            <SparklesIcon className="h-5 w-5 mr-2.5" strokeWidth={2.5} /><span
+              >Tailored for you</span
+            >
+          </div>
+          <div class="inline-flex items-center">
+            <RotateCw className="h-5 w-5 mr-2.5" strokeWidth={2.5} /><span
+              >3 revisions</span
+            >
+          </div>
+          <div class="inline-flex items-center">
+            <CoinsIcon className="h-5 w-5 mr-2.5" strokeWidth={2.5} /><span
+              >50% upfront</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    id="tools"
+    class="mb-12 mt-3 select-none break-normal text-base leading-6 tracking-[0.020em] text-sky-50/90"
+    data-animate
+    style="--stagger:12"
+  >
+    <h2
+      class="title mb-4 text-center font-serif text-base text-sky-50/50 sm:text-lg"
+    >
+      Preferred tools
+    </h2>
+    <div class="my-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div
+        class="flex scale-90 cursor-pointer flex-col rounded-md bg-[#012000]/20 p-2.5 transition-colors transition-transform hover:translate-y-[-1.5px] hover:scale-95 hover:bg-[#012000]/30"
+      >
+        <span class="inline-flex items-center gap-x-2"
+          ><FigmaIcon className="h-5 w-5" /> Figma</span
+        >
+        <p class="mt-1.5 font-serif font-medium text-sky-50/50">For design</p>
+      </div>
+      <div
+        class="flex scale-90 cursor-pointer flex-col rounded-md bg-[#012000]/20 p-2.5 transition-colors transition-transform hover:translate-y-[-1.5px] hover:scale-95 hover:bg-[#012000]/30"
+      >
+        <span class="inline-flex items-center gap-x-2"
+          ><AstroIcon className="h-5 w-5" /> Astro</span
+        >
+        <p class="mt-1.5 font-serif font-medium text-sky-50/50">
+          For static websites
+        </p>
+      </div>
+      <div
+        class="flex scale-90 cursor-pointer flex-col rounded-md bg-[#012000]/20 p-2.5 transition-colors transition-transform hover:translate-y-[-1.5px] hover:scale-95 hover:bg-[#012000]/30"
+      >
+        <span class="inline-flex items-center gap-x-2"
+          ><SanityIcon /> Sanity</span
+        >
+        <p class="mt-1.5 font-serif font-medium text-sky-50/50">
+          For managing content
+        </p>
+      </div>
+      <div
+        class="flex scale-90 cursor-pointer flex-col rounded-md bg-[#012000]/20 p-2.5 transition-colors transition-transform hover:translate-y-[-1.5px] hover:scale-95 hover:bg-[#012000]/30"
+      >
+        <span class="inline-flex items-center gap-x-2"
+          ><NextJSIcon /> Next.js</span
+        >
+        <p class="mt-1.5 font-serif font-medium text-sky-50/50">
+          For building web apps
+        </p>
+      </div>
+      <div
+        class="flex scale-90 cursor-pointer flex-col rounded-md bg-[#012000]/20 p-2.5 transition-colors transition-transform hover:translate-y-[-1.5px] hover:scale-95 hover:bg-[#012000]/30"
+      >
+        <span class="inline-flex items-center gap-x-2"
+          ><VercelIcon class="h-5 w-5" /> Vercel</span
+        >
+        <p class="mt-1.5 font-serif font-medium text-sky-50/50">
+          For deployments
+        </p>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  @media (hover: hover) {
+    ul:hover li {
+      opacity: 0.7;
+      will-change: transform;
+    }
+
+    ul:hover li:hover a:hover {
+      opacity: 1;
+      transition: color 50ms cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+  }
+
+  @keyframes enter {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  [data-animate] {
+    --delay: 120ms;
+    --stagger: 0;
+    --start: 0ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      animation: enter 0.6s both;
+      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+    }
+  }
+</style>
