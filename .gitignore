@@ -1,5 +1,5 @@
 .astro
-**/node_modules/**
+/node_modules/
 .vercel/
 
 pnpm-debug.log*
@@ -7,3 +7,7 @@ pnpm-debug.log*
 .env
 .env.local
 .env.production
+
+/playwright/.cache/
+/playwright-report/
+/test-results/
