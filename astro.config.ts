@@ -129,6 +129,10 @@ export default defineConfig({
     syntaxHighlight: false,
   },
   output: "static",
+  // These headers are duped in `vercel.json`, from where they are _actually_
+  // applied in production.
+  // NOTE(yeskunall): if I ever switch hosting providers (Cloudflare Pages),
+  // I will (most likely) have to do this all over again
   server: {
     headers: {
       // Prefer Brotli compression
