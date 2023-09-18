@@ -1,7 +1,6 @@
 ---
-import { Button } from "@/components/ui/button.tsx";
-import GitHubIcon from "@/components/icons/github-icon.astro";
 import Navigation from "@/components/navigation.tsx";
+import SignIn from "@/components/sign-in";
 ---
 
 <div
@@ -10,13 +9,7 @@ import Navigation from "@/components/navigation.tsx";
 >
 </div>
 <div class="full-bleed my-4 flex items-center justify-end">
-  <Button
-    id="sign-with-github"
-    className="px-3 text-xs self-end sm:flex sm:items-center sm:justify-between sm:gap-x-1.5"
-    variant="outline"
-  >
-    <GitHubIcon /><span class="hidden sm:inline-block">Login using GitHub</span>
-  </Button>
+  <SignIn client:load />
 </div>
 <header class="mb-16 mt-2 flex items-center justify-center gap-x-10">
   <Navigation
@@ -25,13 +18,3 @@ import Navigation from "@/components/navigation.tsx";
     transition:persist
   />
 </header>
-
-<script>
-  const signInButton = document.querySelector(
-    "#sign-with-github",
-  ) as HTMLButtonElement;
-
-  signInButton.addEventListener("click", event => {
-    console.log({ event });
-  });
-</script>

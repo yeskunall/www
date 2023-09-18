@@ -17,6 +17,8 @@ export const getStaticPaths = (async ({ paginate }) => {
   return paginate(allPostsByDate, { props: { uniqueTags }, pageSize: 10 });
 }) satisfies GetStaticPaths;
 
+export const prerender = true;
+
 interface Props {
   page: Page<CollectionEntry<"post">>;
   uniqueTags: string[];
@@ -60,7 +62,8 @@ const paginationProps = {
         </ul>
         <Pagination {...paginationProps} />
       </section>
-      <!-- {
+      {
+        /*
         uniqueTags.length && (
           <aside>
             <h2 class="mb-4 flex items-center text-lg font-semibold">
@@ -102,7 +105,8 @@ const paginationProps = {
             </span>
           </aside>
         )
-      } -->
+      } */
+      }
     </div>
   </div>
 </PageLayout>

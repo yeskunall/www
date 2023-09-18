@@ -10,7 +10,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/static";
+import vercel from "@astrojs/vercel/serverless";
 import { rehypePrettyCodeOptions } from "./src/lib/rehype-plugins";
 
 // Although setting `default-src` would cover some of the following CSP headers,
@@ -28,6 +28,11 @@ const contentSecurityPolicy = `
   manifest-src 'self';
   media-src 'self';
   object-src 'none';
+  ${
+    /* TODO(yeskunall): look into this warning
+      An iframe which has both allow-scripts and allow-same-origin for its
+      sandbox attribute can escape its sandboxing. */ ""
+  }
   sandbox allow-popups allow-same-origin allow-scripts;
   script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com;
   script-src-elem 'self' 'unsafe-eval' 'unsafe-inline';
@@ -128,7 +133,7 @@ export default defineConfig({
     ],
     syntaxHighlight: false,
   },
-  output: "static",
+  output: "server",
   server: {
     headers: {
       // Prefer Brotli compression
