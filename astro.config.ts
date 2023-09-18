@@ -80,8 +80,8 @@ const permissionPolicy = `
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel({
-    analytics: true,
     imageService: true,
+    webAnalytics: { enabled: true },
   }),
   integrations: [
     mdx(),
