@@ -1,40 +1,36 @@
 ---
-import { SOCIAL_LINKS } from "@/data/constants";
-
 const year = new Date().getFullYear();
 ---
 
 <footer class="mb-8 mt-4 p-6">
-  <div class="mx-auto my-12 text-lg sm:my-16 sm:max-w-md sm:text-lg">
-    <p class="font-serif">
+  <div class="mx-auto mb-4 mt-12 text-lg sm:mb-6 sm:max-w-md">
+    <p class="font-serif text-green-100/90">
       Keep up with me via <a
-        class="underline decoration-slate-300/50 !underline-offset-[2.5px]"
+        class="underline decoration-green-300/30 !underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
         href="/rss.xml"><em class="font-semibold">RSS</em></a
-      >. Have a <em class="font-semibold">personal</em> blog? <a
-        class="underline decoration-slate-300/50 !underline-offset-[2.5px]"
-        href="/writing/ill-read-it">I’ll read it</a
       >. Want to <em class="font-semibold">talk</em> to me directly? I’d love to
       <a
-        class="underline decoration-slate-300/50 !underline-offset-[2.5px]"
+        class="underline decoration-green-300/30 !underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
         href="mailto:hey@kimchiii.space"><em class="font-semibold">hear</em></a
       > from you.
     </p>
   </div>
-  <!-- <h3 class="text-sky-50/50 mb-4 font-serif text-lg">Connect</h3>
-  <div class="flex items-center space-x-16 mx-auto sm:items-start">
-    {
-      SOCIAL_LINKS.map(link => (
-        <a
-          class="text-emerald-300/60 transition-colors hover:text-emerald-300/90"
-          href={link.path}
-          target="_blank"
-        >
-          {link.title}
-        </a>
-      ))
-    }
-  </div> -->
-  <!-- <div class="mx-auto my-3 sm:my-0">
-    Copyright &copy; 2014-{year} Kunall Banerjee
-  </div> -->
+  <div
+    class="mx-auto mb-12 mt-4 font-sans text-sm leading-snug tracking-[0.020em] text-green-100/90 sm:mb-16 sm:max-w-md"
+  >
+    &copy; Kunall Banerjee 2014-{year}. Content is licensed <a
+      class="underline decoration-green-300/30 !underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
+      href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a
+    >, a Free Culture License. The <a
+      class="underline decoration-green-300/30 !underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
+      href="https://github.com/yeskunall/www">source code</a
+    > is available under the <a
+      class="underline decoration-green-300/30 !underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
+      href="https://github.com/yeskunall/www?tab=MIT-1-ov-file#readme">MIT</a
+    >
+    license. This site collects (anonymous) visitor <a
+      class="underline decoration-green-300/30 !underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
+      href="https://vercel.com/docs/analytics">analytics</a
+    >.
+  </div>
 </footer>
