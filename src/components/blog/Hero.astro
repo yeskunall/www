@@ -1,4 +1,5 @@
 ---
+import { Balancer } from "react-wrap-balancer";
 import { blurhashToCssGradientString } from "@unpic/placeholder";
 import { encode } from "blurhash";
 import { getPixels } from "@unpic/pixels";
@@ -43,16 +44,22 @@ if (heroImage) {
     </figure>
   )
 }
-<h1 class="mt-8 font-serif text-3xl font-semibold sm:mb-1">
-  {content.data.title}
-</h1>
-<span class="mt-3 inline-block"
-  ><p class="inline">Posted on&nbsp;</p><time
-    class="font-serif text-sky-50/70"
-    datetime={datetime}
-    title={datetime}>{postDate}</time
-  ></span
->
-<p class="prose-equinox prose prose-base mt-8 font-serif text-base font-light">
-  {content.data.description}
-</p>
+<div class="mt-8 flex flex-col text-green-100/90">
+  <Balancer>
+    <h1 class="font-serif text-3xl font-medium tracking-tight sm:mb-1">
+      {content.data.title}
+    </h1>
+  </Balancer>
+  <span class="mt-3 inline-block"
+    ><p class="inline font-sans">Posted on&nbsp;</p><time
+      class="font-serif text-green-100/70"
+      datetime={datetime}
+      title={datetime}>{postDate}</time
+    ></span
+  >
+  <p
+    class="prose prose-base prose-equinox mt-8 font-serif text-base font-light"
+  >
+    {content.data.description}
+  </p>
+</div>

@@ -52,8 +52,13 @@
     text-rendering: optimizeLegibility;
   }
 
+  blockquote {
+    @apply !border-l-green-100/30;
+  }
+
   blockquote p {
-    @apply text-sky-50/70;
+    @apply font-serif text-lg tracking-[-0.01em] !text-green-100/40;
+  }
   }
 
   .prose a.anchor {
@@ -81,8 +86,20 @@
     @apply bg-amber-300/95;
   }
 
+  .prose p {
+    @apply text-green-100/70;
+  }
+
   .prose section[data-footnotes] {
     @apply mt-12 text-xs sm:text-sm;
+  }
+
+  .prose section[data-callout] p {
+    @apply text-emerald-950/75;
+  }
+
+  .prose section[data-callout] p a {
+    @apply text-emerald-950/75;
   }
 
   .wrapper {

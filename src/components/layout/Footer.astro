@@ -2,13 +2,15 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="mb-8 mt-4 p-6">
-  <div class="mx-auto mb-4 mt-12 text-lg sm:mb-6 sm:max-w-md">
+<footer class="group mb-8 mt-4 select-none p-6">
+  <div
+    class="mx-auto mb-4 mt-12 text-lg opacity-50 transition-opacity group-hover:opacity-80 sm:mb-6 sm:max-w-md"
+  >
     <p class="font-serif text-green-100/90">
       Keep up with me via <a
         class="underline decoration-green-300/30 !underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
         href="/rss.xml"><em class="font-semibold">RSS</em></a
-      >. Want to <em class="font-semibold">talk</em> to me directly? I’d love to
+      >. Want to <em class="font-medium">talk</em> to me directly? I’d love to
       <a
         class="underline decoration-green-300/30 !underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
         href="mailto:hey@kimchiii.space"><em class="font-semibold">hear</em></a
@@ -16,12 +18,12 @@ const year = new Date().getFullYear();
     </p>
   </div>
   <div
-    class="mx-auto mb-12 mt-4 font-sans text-sm leading-snug tracking-[0.020em] text-green-100/90 sm:mb-16 sm:max-w-md"
+    class="mx-auto mb-12 mt-4 font-sans text-sm leading-snug tracking-[0.020em] text-green-100/90 opacity-40 transition-opacity group-hover:opacity-70 sm:mb-16 sm:max-w-md"
   >
     &copy; Kunall Banerjee 2014-{year}. Content is licensed <a
       class="underline decoration-green-300/30 !underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
       href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a
-    >, a Free Culture License. The <a
+    >. The <a
       class="underline decoration-green-300/30 !underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
       href="https://github.com/yeskunall/www">source code</a
     > is available under the <a

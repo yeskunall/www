@@ -14,7 +14,7 @@ const { prevUrl, nextUrl } = Astro.props;
     <nav class="flex items-center gap-x-4">
       {prevUrl && (
         <a
-          class="me-auto !cursor-pointer py-2 font-serif"
+          class="me-auto !cursor-pointer py-2 font-serif text-green-100/90"
           href={prevUrl.url}
           rel="prefetch"
         >
@@ -24,7 +24,7 @@ const { prevUrl, nextUrl } = Astro.props;
       )}
       {nextUrl && (
         <a
-          class="ms-auto !cursor-pointer py-2 font-serif"
+          class="ms-auto !cursor-pointer py-2 font-serif text-green-100/90"
           href={nextUrl.url}
           rel="prefetch"
         >
