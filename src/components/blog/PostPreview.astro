@@ -21,11 +21,11 @@ const postDate = getFormattedDate(date, {
 
 <time
   datetime={datetime}
-  class="mb-1.5 min-w-[120px] self-start font-serif text-sky-50/50 sm:mb-3 sm:text-right sm:text-sm"
+  class="mb-1.5 min-w-[120px] self-start font-serif text-green-100/50 sm:mb-3 sm:text-right sm:text-sm"
 >
   {postDate}
 </time>
-<Element class="-mt-0.5 break-words">
+<Element class="-mt-0.5 break-words text-green-100/80">
   <a href={`/writing/${post.slug}/`} class="text-base" rel="prefetch">
     {post.data.title}
   </a>

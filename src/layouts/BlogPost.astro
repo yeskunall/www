@@ -43,26 +43,11 @@ const { headings } = await post.render();
       <BlogHero content={post} />
     </div>
     <div
-      class="prose prose-base prose-equinox mt-12 prose-headings:font-semibold prose-headings:before:absolute prose-headings:before:-ms-4 prose-a:text-slate-100 prose-a:underline prose-a:underline-offset-2 prose-code:text-[12.5px] prose-code:leading-[18px] prose-th:before:content-none"
+      class="prose prose-base prose-equinox mt-12 prose-headings:font-medium prose-a:text-green-100/90 prose-a:underline prose-a:underline-offset-2 prose-code:text-[12.5px] prose-code:leading-[18px] prose-th:before:content-none"
     >
       <slot />
     </div>
   </article>
-  <!-- <div class="mx-auto my-12 text-lg sm:my-16 sm:max-w-md sm:text-lg">
-    <p class="font-serif">
-      Keep up with me via <a
-        class="underline decoration-slate-300/50 !underline-offset-[2.5px]"
-        href="/rss.xml"><em class="font-semibold">RSS</em></a
-      >. Have a <em class="font-semibold">personal</em> blog? <a
-        class="underline decoration-slate-300/50 !underline-offset-[2.5px]"
-        href="/writing/ill-read-it">I’ll read it</a
-      >. Want to <em class="font-semibold">talk</em> to me directly? I’d love to
-      <a
-        class="underline decoration-slate-300/50 !underline-offset-[2.5px]"
-        href="mailto:hey@kimchiii.space"><em class="font-semibold">hear</em></a
-      > from you.
-    </p>
-  </div> -->
   <button
     id="to-top-btn"
     class="z-90 fixed bottom-8 end-4 flex h-10 w-10 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-sky-50 text-3xl opacity-0 transition-all duration-300 hover:border-sky-100 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12"
