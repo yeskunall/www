@@ -1,20 +1,21 @@
 import { supabase } from "@/lib/supabase";
 
-import type { APIRoute } from "astro";
+import type { APIContext, APIRoute } from "astro";
+import { AuthApiError } from "@supabase/supabase-js";
 
-export const GET: APIRoute = async ({ redirect }) => {
+export const GET: APIRoute = async ({ cookies, redirect }: APIContext) => {
   try {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase(cookies).auth.signInWithOAuth({
       provider: "github",
     });
 
-    if (error) {
+    if (error instanceof AuthApiError) {
       throw error;
     }
 
     const { url } = data;
 
-    return redirect(url);
+    return redirect(url ?? "/");
   } catch (error) {
     return new Response("Internal server error", { status: 500 });
   }
