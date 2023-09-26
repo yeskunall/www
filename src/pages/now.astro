@@ -28,20 +28,27 @@ const meta = {
 {/* eslint-disable max-len */}
 
 <PageLayout meta={meta}>
-  <h2 class="title mb-4 select-none text-xl text-green-100/80">Now</h2>
-  <p class="mb-2.5 break-normal text-base text-green-100/80">
-    <em>Funemployed</em> &amp; trying to find my <em>ikigai</em>. Moved into a
-    new house in India, somewhere in the hills, <em class="font-semibold"
-      >like I’ve always wanted</em
-    >. Reading <em>all the books</em> I’ve been meaning to this whole time. Spending
-    an inordinate amount of time with my loved ones, because none of us are getting
-    any younger.
-  </p>
-  <p class="mb-10 select-none font-sans text-green-100/80">
-    Last updated <span class="font-serif font-semibold"
-      >21<sup>st</sup> July, 2023</span
-    >
-  </p>
+  <section
+    id="now"
+    class="text-sm leading-5 text-green-100/80"
+    data-animate
+    style="--stagger:3"
+  >
+    <h2 class="title mb-4 select-none text-xl text-green-100/80">Now</h2>
+    <p class="mb-2.5 break-normal text-base text-green-100/80">
+      <em>Funemployed</em> &amp; trying to find my <em>ikigai</em>. Moved into a
+      new house in India, somewhere in the hills, <em class="font-semibold"
+        >like I’ve always wanted</em
+      >. Reading <em>all the books</em> I’ve been meaning to this whole time. Spending
+      an inordinate amount of time with my loved ones, because none of us are getting
+      any younger.
+    </p>
+    <p class="mb-10 select-none font-sans text-green-100/80">
+      Last updated <span class="font-serif font-semibold"
+        >21<sup>st</sup> July, 2023</span
+      >
+    </p>
+  </section>
   <section
     id="currently-reading"
     class="mt-6 text-sm leading-5 text-green-100/80"
@@ -83,3 +90,30 @@ const meta = {
     </div>
   </section>
 </PageLayout>
+
+<style>
+  @keyframes enter {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  [data-animate] {
+    --delay: 120ms;
+    --stagger: 0;
+    --start: 0ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      animation: enter 0.6s both;
+      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+    }
+  }
+</style>

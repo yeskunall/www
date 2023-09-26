@@ -6,10 +6,11 @@ import type { IElement } from "@/data/shared";
 
 interface Props extends IElement {
   post: CollectionEntry<"post">;
+  style: string;
   withDesc?: boolean;
 }
 
-const { post, as: Element = "div", withDesc = false } = Astro.props;
+const { post, as: Element = "div", style, withDesc = false } = Astro.props;
 const date = new Date(post.data.publishDate);
 const datetime = date.toISOString();
 const postDate = getFormattedDate(date, {
@@ -19,19 +20,52 @@ const postDate = getFormattedDate(date, {
 });
 ---
 
-<time
-  datetime={datetime}
-  class="mb-1.5 min-w-[120px] self-start font-serif text-green-100/50 sm:mb-3 sm:text-right sm:text-sm"
->
-  {postDate}
-</time>
-<Element class="-mt-0.5 break-words text-green-100/80">
+{/* eslint-disable max-len */}
+
+<div class="group my-1.5" data-animate style={style}>
   <a href={`/writing/${post.slug}/`} class="text-base" rel="prefetch">
-    {post.data.title}
+    <time
+      datetime={datetime}
+      class="mb-1.5 min-w-[120px] select-none self-start font-serif text-green-100/40 transition-colors sm:mb-3 sm:text-right sm:text-sm sm:group-hover:text-green-100/50"
+    >
+      {postDate}
+    </time>
+    <Element
+      class="-mt-0.5 break-words text-green-100/80 transition-colors sm:text-green-100/50 sm:group-hover:text-green-100/80"
+    >
+      {post.data.title}
+    </Element>
+    {
+      withDesc && (
+        <span class="line-clamp-3 block italic">{post.data.description}</span>
+      )
+    }
   </a>
-</Element>
-{
-  withDesc && (
-    <span class="line-clamp-3 block italic">{post.data.description}</span>
-  )
-}
+</div>
+
+<style>
+  @keyframes enter {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  [data-animate] {
+    --delay: 120ms;
+    --stagger: 0;
+    --start: 0ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      animation: enter 0.6s both;
+      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+    }
+  }
+</style>
