@@ -83,6 +83,9 @@ export default defineConfig({
     imageService: true,
     webAnalytics: { enabled: true },
   }),
+  image: {
+    remotePatterns: [{ protocol: "https" }],
+  },
   integrations: [
     mdx(),
     prefetch(),
