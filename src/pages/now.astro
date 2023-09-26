@@ -1,8 +1,5 @@
 ---
-import { blurhashToCssGradientString } from "@unpic/placeholder";
-import { encode } from "blurhash";
-import { getPixels } from "@unpic/pixels";
-import { Image } from "@unpic/astro";
+import { Image } from "astro:assets";
 
 import LiteralClubIcon from "@/components/icons/LiteralClubIcon.astro";
 import PageLayout from "@/layouts/Base";
@@ -11,8 +8,7 @@ import { client, myBooksQuery } from "@/lib/literal-club";
 
 import type { ReadingState } from "@/data/shared";
 
-// NOTE(yeskunall): is this really the _Astro_ way to do things?
-const books = await client(import.meta.env.PUBLIC_LITERAL_CLUB_ACCESS_TOKEN)
+const books = await client
   .query(myBooksQuery, {})
   .toPromise()
   .then(result => {
@@ -28,6 +24,8 @@ const meta = {
   description: "What I’m up to these days",
 };
 ---
+
+{/* eslint-disable max-len */}
 
 <PageLayout meta={meta}>
   <h2 class="title mb-4 select-none text-xl text-green-100/80">Now</h2>
@@ -59,17 +57,7 @@ const meta = {
         class="flex snap-x snap-mandatory scroll-mx-5 scroll-px-4 overflow-x-scroll"
       >
         {
-          books.map(async book => {
-            const imageData = await getPixels(book.cover);
-            const { data, height, width } = imageData;
-            const blurhash = encode(
-              Uint8ClampedArray.from(data),
-              width,
-              height,
-              4,
-              4,
-            );
-
+          books.map(book => {
             return (
               <div class="mx-3 h-[420px] flex-none snap-center snap-always text-center sm:h-52">
                 <a
@@ -78,13 +66,13 @@ const meta = {
                   rel="nofollow noopener noreferrer"
                   target="_blank"
                 >
+                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                  {/* @ts-ignore: height is not required for remote images, but width is */}
                   <Image
                     alt={book.title}
-                    background={blurhashToCssGradientString(blurhash)}
                     class="h-full w-full rounded-md object-cover"
-                    aspectRatio={16 / 9}
-                    layout="fullWidth"
                     src={book.cover}
+                    width={325}
                   />
                 </a>
               </div>

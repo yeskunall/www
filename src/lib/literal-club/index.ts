@@ -1,15 +1,14 @@
 import { cacheExchange, Client, fetchExchange, gql } from "@urql/core";
 
-export const client = (token: string) =>
-  new Client({
-    exchanges: [cacheExchange, fetchExchange],
-    fetchOptions: {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+export const client = new Client({
+  exchanges: [cacheExchange, fetchExchange],
+  fetchOptions: {
+    headers: {
+      Authorization: `Bearer ${import.meta.env.LITERAL_CLUB_ACCESS_TOKEN}`,
     },
-    url: "https://literal.club/graphql/",
-  });
+  },
+  url: "https://literal.club/graphql/",
+});
 
 const BookParts = gql`
   fragment BookParts on Book {
