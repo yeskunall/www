@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.2.0",
-    "@astrojs/mdx": "1.0.3",
+    "@astrojs/mdx": "1.1.0",
     "@astrojs/sitemap": "3.0.0",
     "@astrojs/tailwind": "5.0.0",
     "@resvg/resvg-js": "2.4.1",
