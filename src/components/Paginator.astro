@@ -11,10 +11,20 @@ const { prevUrl, nextUrl } = Astro.props;
 
 {
   (prevUrl || nextUrl) && (
-    <nav class="flex items-center gap-x-4">
+  // NOTE(yeskunall): I could over-engineer this and pass the `pageSize` as a
+  // prop to then stagger using the variable, or I could go grugbrain.dev and
+  // just set it to 20 since `pageSize` is 10. There is a trade-off, that is,
+  // if I ever _do_ change the `pageSize`, I’ll have to come and change the
+  // `stagger` amount here too. But right now, the GRUG BRAIN DEVELOPER IN ME
+  // LIKES THIS.
+    <nav
+      class="mt-8 flex items-center gap-x-4"
+      data-animate
+      style="--stagger:24"
+    >
       {prevUrl && (
         <a
-          class="me-auto !cursor-pointer py-2 font-serif"
+          class="me-auto !cursor-pointer py-2 font-serif text-green-100/90"
           href={prevUrl.url}
           rel="prefetch"
         >
@@ -24,7 +34,7 @@ const { prevUrl, nextUrl } = Astro.props;
       )}
       {nextUrl && (
         <a
-          class="ms-auto !cursor-pointer py-2 font-serif"
+          class="ms-auto !cursor-pointer py-2 font-serif text-green-100/90"
           href={nextUrl.url}
           rel="prefetch"
         >
@@ -35,3 +45,30 @@ const { prevUrl, nextUrl } = Astro.props;
     </nav>
   )
 }
+
+<style>
+  @keyframes enter {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  [data-animate] {
+    --delay: 120ms;
+    --stagger: 0;
+    --start: 0ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      animation: enter 0.6s both;
+      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+    }
+  }
+</style>
