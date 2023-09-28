@@ -119,55 +119,6 @@
   grid-column: -1 / 1;
 }
 
-[craft-tabs-wrapper] {
-  --ct-height: 32px;
-  --ct-active-bg: #012000;
-}
-
-[craft-tab] {
-  appearance: none;
-  border: 0;
-  outline: none;
-  border-radius: var(--ct-height);
-  cursor: pointer;
-  height: var(--ct-height);
-  line-height: var(--ct-height);
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-}
-
-[craft-tabs-hidden] {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  left: 0;
-  top: 0;
-  position: absolute;
-  pointer-events: none;
-  z-index: 1;
-  background: var(--ct-active-bg);
-  clip-path: inset(0 100% 0 0);
-  will-change: clip-path;
-}
-
-div[craft-tabs-hidden]:has(button[data-state="active"]:nth-child(1)) {
-  clip-path: inset(0px calc(100% - 72px) calc(100% - 32px) 0px round 30px);
-}
-
-div[craft-tabs-hidden]:has(button[data-state="active"]:nth-child(2)) {
-  clip-path: inset(0px calc(100% - 156px) calc(100% - 32px) 70px round 30px);
-}
-
-div[craft-tabs-hidden]:has(button[data-state="active"]:nth-child(3)) {
-  clip-path: inset(0px calc(100% - 215px) calc(100% - 32px) 153px round 30px);
-}
-
-div[craft-tabs-hidden]:has(button[data-state="active"]:nth-child(4)) {
-  clip-path: inset(0px calc(100% - 270px) calc(100% - 32px) 219px round 30px);
-}
-
 .rotating-text-word {
   margin-top: 84px;
   opacity: 0;
