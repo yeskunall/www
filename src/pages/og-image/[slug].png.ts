@@ -25,13 +25,13 @@ const ogOptions: SatoriOptions = {
   fonts: [
     {
       name: "Roboto Mono",
-      data: RobotoMonoRegular,
+      data: Buffer.from(RobotoMonoRegular),
       weight: 400,
       style: "normal",
     },
     {
       name: "Roboto Mono",
-      data: RobotoMonoBold,
+      data: Buffer.from(RobotoMonoBold),
       weight: 700,
       style: "normal",
     },
@@ -74,12 +74,16 @@ export async function GET({ params: { slug } }: APIContext) {
     weekday: "long",
     month: "long",
   });
+  // @ts-expect-error: look into this later
   const svg = await satori(markup(title, postDate), ogOptions);
   const png = new Resvg(svg).render().asPng();
-  return {
-    body: png,
-    encoding: "binary",
-  };
+
+  return new Response(png, {
+    headers: {
+      "Content-Type": "image/png",
+      "Cache-Control": "public, max-age=31536000, immutable",
+    },
+  });
 }
 
 export const getStaticPaths = (async () => {

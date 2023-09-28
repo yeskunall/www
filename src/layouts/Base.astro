@@ -4,6 +4,7 @@ import { ViewTransitions } from "astro:transitions";
 import BaseHead from "@/components/BaseHead.astro";
 import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
+import Navigation from "@/components/navigation";
 import SkipLink from "@/components/SkipLink.astro";
 
 import { siteConfig } from "@/site-config";
@@ -17,6 +18,8 @@ interface Props {
 const {
   meta: { title, description = siteConfig.description, ogImage, articleDate },
 } = Astro.props;
+
+const pathname = Astro.url.pathname;
 ---
 
 <html lang={siteConfig.lang}>
@@ -27,7 +30,7 @@ const {
       ogImage={ogImage}
       articleDate={articleDate}
     />
-    <ViewTransitions />
+    <ViewTransitions fallback="animate" />
   </head>
   <body>
     <SkipLink />
@@ -35,6 +38,7 @@ const {
       <Header />
       <slot />
       <Footer />
+      <Navigation pathname={pathname} client:load transition:persist />
     </main>
   </body>
 </html>
