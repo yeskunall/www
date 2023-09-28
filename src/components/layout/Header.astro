@@ -1,16 +1,16 @@
 ---
-import Navigation from "@/components/navigation.tsx";
+import { cn } from "@/lib/utils";
 ---
 
 <div
-  class="bg-gradient-radial-repeat-dot pointer-events-none fixed left-0 right-0 top-0 z-[9999] h-[75px] select-none overflow-hidden border-b-[1px] border-b-black/10 bg-[size:4px_4px] backdrop-blur-[3px] backdrop-brightness-[100%]"
+  class={cn(
+    "bg-gradient-radial-repeat-dot",
+    "fixed left-0 right-0 top-0 z-[9999] h-[75px] overflow-hidden",
+    "select-none pointer-events-none",
+    // eslint-disable-next-line max-len
+    "border-b-[1px] border-b-black/10 bg-[size:4px_4px] backdrop-blur-[3px] backdrop-brightness-[100%]",
+  )}
   aria-hidden="true"
 >
 </div>
-<header class="my-16 flex items-center justify-center">
-  <Navigation
-    currentTab={Astro.url.pathname.replace("/", "")}
-    client:load
-    transition:persist
-  />
-</header>
+<header class="my-12 flex items-center justify-center"></header>
