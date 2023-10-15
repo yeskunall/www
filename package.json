@@ -16,6 +16,7 @@
     "@astrojs/react": "3.0.3",
     "@astrojs/rss": "3.0.0",
     "@astrojs/vercel": "5.0.2",
+    "@radix-ui/react-collapsible": "1.0.3",
     "@radix-ui/react-tabs": "1.0.4",
     "@react-spring/web": "9.7.3",
     "@unpic/astro": "0.0.26",

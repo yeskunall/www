@@ -1,5 +1,6 @@
 ---
-import PageLayout from "@/layouts/Base";
+import ExtendedBio from "@/components/extended-bio";
+import PageLayout from "@/layouts/Base.astro";
 ---
 
 {/* eslint-disable max-len */}
@@ -7,92 +8,71 @@ import PageLayout from "@/layouts/Base";
 <PageLayout meta={{ title: "Home" }}>
   <section
     id="main"
-    class="my-6 break-normal text-base leading-7 tracking-[0.020em] text-green-100/90"
+    class="my-1 text-base leading-relaxed -tracking-[0.01em] text-neutral-900/90"
     data-animate
     style="--stagger:3"
   >
-    <h1 class="mb-5 font-sans text-3xl font-medium sm:text-5xl">
-      <span class="tracking-tight">Kunall Banerjee</span><br /><span
-        class="text-2xl sm:text-4xl"
-        >is a&nbsp;<em class="text-emerald-300/90">digital craftsman</em><br
-        /></span
-      ><span class="text-xl sm:text-3xl"
-        >based in <span class="select-none"
-          ><span
-            class="rotating-text-word left-[84px] font-serif font-medium text-emerald-300/90 sm:left-[125px]"
-            >Ottawa</span
-          ><span
-            class="rotating-text-word left-[84px] font-serif font-medium text-emerald-300/90 sm:left-[125px]"
-            >Toronto</span
-          >
-          <span
-            class="rotating-text-word left-[84px] font-serif font-medium text-emerald-300/90 sm:left-[125px]"
-            >Vancouver</span
-          ><span
-            class="rotating-text-word left-[84px] font-serif font-medium text-emerald-300/90 sm:left-[125px]"
-            >Mumbai</span
-          ><span
-            class="rotating-text-word left-[84px] font-serif font-medium sm:left-[129px]"
-            >🌏</span
-          ></span
-        ></span
-      >
-    </h1>
-    <h2 class="mt-8 select-none text-lg font-semibold sm:text-xl">Intro</h2>
-    <p class="my-3">
-      <em>Obsessed</em> with details. Craft
+    <h2
+      class="mt-8 select-none font-display text-xl font-medium tracking-tighter text-neutral-950/95"
+    >
+      Kunall Banerjee
+    </h2>
+    <p class="my-3 text-neutral-900/90">
+      I’m a&nbsp;<em>digital craftsman</em> who likes to create
       <strong class="font-medium">delightful</strong>
-      <em> experiences</em> &amp; <em>interfaces</em>. <em>Minimalist</em>, in
-      all aspects of life. <em>Outspoken</em>, yet I’m mindful of the effect it
-      has on others.
+      <em> experiences</em> &amp; <em>interfaces</em>. <em>Obsessed</em> with details.
+      <em>Minimalist</em>, in all aspects of life. <em>Outspoken</em>, yet I’m
+      mindful of the effect it has on others.
     </p>
-    <p class="my-3">
-      Born in Calcutta, India, raised in 7 different cities, and attended 13
-      different schools. Lived a large part of the last decade in Ottawa. If I’m
-      not travelling, I split my time living in East-coast Canada and East-coast
-      India.
-    </p>
+    <ExtendedBio client:visible>
+      <p class="my-3">
+        Born in Calcutta on 21<sup>st</sup> April, 1996. I spent most of my childhood
+        and early teens moving from place to place. In that time, I lived in 7 different
+        cities, and attended 8 different schools. Moved to Canada once I turned 18,
+        and I have lived a large part of the last decade in Ottawa. These days, I
+        split my time living in East-coast Canada and East-coast India.
+      </p>
+      <p class="my-3">
+        Growing up, I was always surrounded by highly competitive &amp;
+        goal-oriented people, which led me to be the same. From 2009 up until
+        2021, I moved <em>fast</em>, spending almost my entire time focusing on
+        my goals. Finished high school in early 2014. Started university in
+        mid-2014. Took a year off from university in 2017 to work with small to
+        mid-size startups. Graduated in April, 2019. Started working full-time
+        in May, 2019. Became a permanent resident (PR) of Canada in 2021. To be
+        honest, I was only doing these things because that’s what was expected
+        of me.
+      </p>
+      <p class="my-3">
+        During the pandemic, I had a moment of self-introspection, and came to
+        the conclusion that my achievements only gave me a glimpse of happiness,
+        and that every time I reached a goal, I just made another goal that
+        wasn’t going to lead me to freedom. These days, my only goal is to <em
+          >slow down</em
+        >. As cliché as it sounds, I’m taking the road less travelled. Trying to
+        be <em>more present</em> in the moment. Aggresively reducing cruft in my
+        life: that includes the people I let into my life, too. I intentionally make
+        it hard for people to reach me. Those that truly care still find a way, the
+        others don’t. If we’ve ever interacted then know this: we’re not friends,
+        nor enemies; just strangers who shared some memories.
+      </p>
+    </ExtendedBio>
   </section>
   <section
-    id="currently"
-    class="my-6 break-normal text-base leading-7 tracking-[0.020em] text-green-100/90"
+    id="work"
+    class="my-6 break-normal text-base leading-relaxed -tracking-[0.01em] text-neutral-900/90"
     data-animate
     style="--stagger:5"
   >
-    <h2 class="select-none text-lg font-semibold sm:text-xl">Currently</h2>
+    <h2 class="select-none font-display text-lg font-medium text-neutral-600">
+      Work
+    </h2>
     <p class="my-3">
-      After being&nbsp;<em>funemployed</em> for 3 months, I’m finally looking for
-      my next role. At the same time, I’m working on a few projects as a freelance
-      developer <em>&amp; loving it</em>. Still trying to find my <strong
-        class="font-semibold">ikigai</strong
-      >, though. Turns out this is a&nbsp;<em>tough one</em>.
-    </p>
-    <div class="mt-3">
-      <a
-        class="underline decoration-green-300/30 underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
-        href="/now"
-        rel="prefetch">Find out more</a
-      >
-    </div>
-  </section>
-  <section
-    id="previously"
-    class="my-6 break-normal text-base leading-7 tracking-[0.020em] text-green-100/90"
-    data-animate
-    style="--stagger:5"
-  >
-    <h2 class="select-none text-lg font-semibold sm:text-xl">Previously</h2>
-    <p class="my-3">
-      I worked as a Senior Support Engineer &amp; before that as a <a
-        class="cursor-alias underline decoration-green-300/30 underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
-        href="https://read.cv/yeskunall/on-being-a-solutions-engineer"
-        rel="nofollow noopener noreferrer"
-        target="_blank">Solutions Engineer</a
-      >, where I built bespoke solutions for brands like <em>CareSource</em>, <em
-        >Corning Inc.</em
-      >, <em>Electronic Arts</em>, <em>GSK plc</em>, <em>Haleon plc</em>, <em
-        >Nationwide Mutual Insurance Company</em
-      >, among several others.
+      In my previous roles, I built bespoke solutions for brands like <em
+        >CareSource</em
+      >, <em>Corning Inc.</em>, <em>Electronic Arts</em>, <em>GSK plc</em>, <em
+        >Haleon plc</em
+      >, <em>Nationwide Mutual Insurance Company</em>, among several others.
     </p>
   </section>
 </PageLayout>
