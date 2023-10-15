@@ -16,7 +16,12 @@ interface Props {
 }
 
 const {
-  meta: { title, description = siteConfig.description, ogImage, articleDate },
+  meta: {
+    title,
+    description = siteConfig.description,
+    ogImage = "default-og.png",
+    articleDate,
+  },
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
