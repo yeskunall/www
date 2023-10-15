@@ -61,17 +61,10 @@
   }
 }
 
-.prose a.anchor {
-  @apply cursor-pointer no-underline;
-}
-
-.prose a.anchor::before {
-  @apply mr-1.5 inline-flex items-center justify-center rounded-md bg-stone-50/90 px-1.5 py-0.5 text-base font-bold text-black/95;
-  content: "#";
-}
-
-.prose a[rel="nofollow noopener noreferrer"] {
-  @apply cursor-alias;
+@layer utilities {
+  .wide-words {
+    word-spacing: 1.2px;
+  }
 }
 
 .prose a[data-footnote-ref] {
