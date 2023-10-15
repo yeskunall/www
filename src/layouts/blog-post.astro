@@ -1,6 +1,9 @@
 ---
-import BlogHero from "@/components/blog/Hero.astro";
-import BaseLayout from "./Base.astro";
+import BlogHero from "@/components/blog/hero.astro";
+import BaseLayout from "@/layouts/Base.astro";
+
+import { createOgImage } from "@/lib/og/create-og-image";
+import { getFormattedDate } from "@/utils";
 
 import type { CollectionEntry } from "astro:content";
 
@@ -10,11 +13,20 @@ interface Props {
 
 const { post } = Astro.props;
 const {
-  data: { title, description, ogImage, publishDate },
-  slug,
+  data: { title, description, publishDate },
 } = post;
-const socialImage = ogImage ?? `/og-image/${slug}.png`;
+
 const articleDate = publishDate.toISOString();
+const ogImage = createOgImage({
+  meta: [
+    getFormattedDate(articleDate, {
+      month: "long",
+    }),
+  ].join(" · "),
+  title: title,
+});
+
+console.log({ ogImage });
 ---
 
 <script>
@@ -36,13 +48,13 @@ const articleDate = publishDate.toISOString();
   observer.observe(targetHeader);
 </script>
 
-<BaseLayout meta={{ title, description, articleDate, ogImage: socialImage }}>
+<BaseLayout meta={{ title, description, articleDate, ogImage }}>
   <article class="break-words">
     <div id="blog-hero">
-      <BlogHero content={post} />
+      <BlogHero post={post} />
     </div>
     <div
-      class="prose prose-base prose-equinox mt-12 prose-headings:font-medium prose-a:text-green-100/90 prose-a:underline prose-a:underline-offset-2 prose-code:text-[12.5px] prose-code:leading-[18px] prose-th:before:content-none"
+      class="prose-base mt-12 prose-headings:font-medium prose-headings:text-neutral-950/90 prose-p:text-neutral-950/80 prose-a:text-neutral-900/90 prose-a:underline prose-a:underline-offset-2 prose-code:text-[12.5px] prose-code:leading-[18px]"
     >
       <slot />
     </div>
