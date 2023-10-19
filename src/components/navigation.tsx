@@ -15,11 +15,6 @@ const TABS = [
     href: "/",
   },
   {
-    id: "projects",
-    name: "Projects",
-    href: "/projects",
-  },
-  {
     id: "writing",
     name: "Blog",
     href: "/writing",
@@ -31,18 +26,18 @@ const TABS = [
   },
 ];
 
-export default function Navigation({ pathname }: { pathname: string }) {
+export default function Navigation() {
   const tabsRef = useRef<(HTMLElement | null)[]>([]);
   const [activeTabIndex, setActiveTabIndex] = useState<number | null>(null);
   const [activeTabWidth, setActiveTabWidth] = useState(0);
   const [tabOffset, setTabOffset] = useState(0);
-  // const [href, setHref] = useState("");
 
   useEffect(() => {
-    const currentTab = TABS.findIndex(({ href }) => href === `${pathname}`);
+    const currentPath = window.location.pathname.split("/")[1];
+    const currentTab = TABS.findIndex(tab => tab.href === `/${currentPath}`);
 
     setActiveTabIndex(currentTab);
-  }, [pathname]);
+  }, []);
 
   useEffect(() => {
     if (activeTabIndex === null) {
@@ -73,7 +68,7 @@ export default function Navigation({ pathname }: { pathname: string }) {
       <div
         className={cn(
           "relative mx-auto flex h-12 items-center rounded-full px-2",
-          "bg-[#012000]/60 backdrop-blur-[8px]",
+          "bg-sky-200/60 backdrop-blur-[8px]",
         )}
       >
         <span
@@ -83,7 +78,7 @@ export default function Navigation({ pathname }: { pathname: string }) {
           )}
           style={{ left: tabOffset, width: activeTabWidth }}
         >
-          <span className="h-full w-full rounded-full bg-green-300/10" />
+          <span className="h-full w-full rounded-full bg-sky-300/60" />
         </span>
         <Tabs>
           <TabsList className="flex items-center justify-around gap-x-4">
@@ -98,9 +93,9 @@ export default function Navigation({ pathname }: { pathname: string }) {
                     key={index}
                     ref={$element => (tabsRef.current[index] = $element)}
                     className={cn(
-                      isActive ? "" : "hover:text-green-200/70",
-                      "cursor-pointer select-none",
-                      "my-auto rounded-full px-4 text-center text-green-100/90",
+                      isActive ? "" : "hover:text-sky-950/70",
+                      "cursor-pointer select-none font-display font-medium",
+                      "my-auto rounded-full px-4 text-center text-sky-950/90",
                     )}
                     onClick={() => setActiveTabIndex(index)}
                   >
@@ -114,9 +109,9 @@ export default function Navigation({ pathname }: { pathname: string }) {
                   key={id}
                   value={id}
                   className={cn(
-                    isActive ? "" : "transition-colors hover:text-green-200/70",
-                    "cursor-pointer select-none",
-                    "my-auto rounded-full px-4 text-center text-white",
+                    isActive ? "" : "transition-colors hover:text-sky-950/80",
+                    "cursor-pointer select-none font-display font-medium",
+                    "my-auto rounded-full px-4 text-center text-sky-950/90",
                   )}
                   asChild
                 >
