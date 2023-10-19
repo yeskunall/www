@@ -23,9 +23,9 @@ const {
     articleDate,
   },
 } = Astro.props;
-
-const pathname = Astro.url.pathname;
 ---
+
+{/* eslint-disable max-len */}
 
 <html lang={siteConfig.lang}>
   <head>
@@ -43,7 +43,7 @@ const pathname = Astro.url.pathname;
       <Header />
       <slot />
       <Footer />
-      <Navigation pathname={pathname} client:load transition:persist />
+      <Navigation client:load transition:persist />
     </main>
   </body>
 </html>
