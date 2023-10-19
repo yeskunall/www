@@ -29,9 +29,6 @@ dependencies:
   '@react-spring/web':
     specifier: 9.7.3
     version: 9.7.3(react-dom@18.2.0)(react@18.2.0)
-  '@unpic/astro':
-    specifier: 0.0.26
-    version: 0.0.26(astro@3.3.2)
   '@urql/core':
     specifier: 4.1.4
     version: 4.1.4
@@ -136,21 +133,12 @@ devDependencies:
   '@typescript-eslint/parser':
     specifier: 6.8.0
     version: 6.8.0(eslint@8.51.0)(typescript@5.2.2)
-  '@unpic/pixels':
-    specifier: 1.2.0
-    version: 1.2.0
-  '@unpic/placeholder':
-    specifier: 0.1.2
-    version: 0.1.2
   astro-eslint-parser:
     specifier: 0.16.0
     version: 0.16.0
   autoprefixer:
     specifier: 10.4.16
     version: 10.4.16(postcss@8.4.31)
-  blurhash:
-    specifier: 2.0.5
-    version: 2.0.5
   eslint:
     specifier: 8.51.0
     version: 8.51.0
@@ -2261,35 +2249,6 @@ packages:
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  /@unpic/astro@0.0.26(astro@3.3.2):
-    resolution: {integrity: sha512-gcOL6ZK2lKN7oyxz86z3cGidNgVPzWHzHkq3arUrFX/6vXmqg86alIntFesfsGy/I5E99dJHcdLF+kmkYyW6Nw==}
-    peerDependencies:
-      astro: ^2.0.0 || ^3.0.0
-    dependencies:
-      '@unpic/core': 0.0.31
-      astro: 3.3.2(typescript@5.2.2)
-    dev: false
-
-  /@unpic/core@0.0.31:
-    resolution: {integrity: sha512-y3LwXIZdLUGhV46KLYU+r1ZPFmGkRwpdM2JCeTvatHYFjqlYQTK+K3Cb/QEIbOVWlDQZHwu9k2/SZK2n+hki7w==}
-    dependencies:
-      unpic: 3.10.1
-    dev: false
-
-  /@unpic/pixels@1.2.0:
-    resolution: {integrity: sha512-K2jz2oIBmeVUpO1qoNO59hg4m0/x0cw5wmzlAYDKsJHN7k5Mt6gCxUr55OyPILnAYf8P3z53z3tWoKpKvZLwGQ==}
-    dependencies:
-      jpeg-js: 0.4.4
-      pngjs: 7.0.0
-      undici: 5.22.1
-    dev: true
-
-  /@unpic/placeholder@0.1.2:
-    resolution: {integrity: sha512-O++tS97biojo5sqn5TeTt+jUjl5gWOdIQuOXe8YluTJWq4L0GM6VuTkaspNpsmxHfioJw/6YBirzOpG4t87l8Q==}
-    dependencies:
-      blurhash: 2.0.5
-    dev: true
-
   /@urql/core@4.1.4:
     resolution: {integrity: sha512-wFm67yljv4uFAWNtPwcS1NMhF/n+p/68i+kZU6R1dPxhfq2nBW0142p4szeZsBDrtO7pBdOhp7YeSZROFFlXZg==}
     dependencies:
@@ -2792,10 +2751,6 @@ packages:
       inherits: 2.0.4
       readable-stream: 3.6.2
 
-  /blurhash@2.0.5:
-    resolution: {integrity: sha512-cRygWd7kGBQO3VEhPiTgq4Wc43ctsM+o46urrmPOiuAe+07fzlSB9OJVdpgDL0jPqXUVQ9ht7aq7kxOeJHRK+w==}
-    dev: true
-
   /boxen@7.1.1:
     resolution: {integrity: sha512-2hCgjEmP8YLWQ130n2FerGv7rYpfBmnmp9Uy2Le1vge6X3gZIfSmEzP5QTDElFxcvVcXlEn8Aq6MU/PZygIOog==}
     engines: {node: '>=14.16'}
@@ -2855,13 +2810,6 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       run-applescript: 5.0.0
-    dev: true
-
-  /busboy@1.6.0:
-    resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
-    engines: {node: '>=10.16.0'}
-    dependencies:
-      streamsearch: 1.1.0
     dev: true
 
   /call-bind@1.0.2:
@@ -4929,10 +4877,6 @@ packages:
   /jiti@1.19.1:
     resolution: {integrity: sha512-oVhqoRDaBXf7sjkll95LHVS6Myyyb1zaunVwk4Z0+WPSW4gjS0pl01zYKHScTuyEhQsFxV5L4DR5r+YqSyqyyg==}
 
-  /jpeg-js@0.4.4:
-    resolution: {integrity: sha512-WZzeDOEtTOBK4Mdsar0IqEU5sMr3vSV2RqkAIzUEV2BHnUfKGyswWFPFwK5EeDo93K3FohSHbLAjj0s1Wzd+dg==}
-    dev: true
-
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -6137,11 +6081,6 @@ packages:
     dependencies:
       find-up: 4.1.0
 
-  /pngjs@7.0.0:
-    resolution: {integrity: sha512-LKWqWJRhstyYo9pGvgor/ivk2w94eSjE3RGVuzLGlr3NmD8bf7RcYGze1mNdEHRP6TRP6rMuDHk5t44hnTRyow==}
-    engines: {node: '>=14.19.0'}
-    dev: true
-
   /postcss-html@1.5.0:
     resolution: {integrity: sha512-kCMRWJRHKicpA166kc2lAVUGxDZL324bkj/pVOb6RhjB0Z5Krl7mN0AsVkBhVIRZZirY0lyQXG38HCVaoKVNoA==}
     engines: {node: ^12 || >=14}
@@ -6964,11 +6903,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /streamsearch@1.1.0:
-    resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}
-    engines: {node: '>=10.0.0'}
-    dev: true
-
   /streamx@2.15.1:
     resolution: {integrity: sha512-fQMzy2O/Q47rgwErk/eGeLu/roaFWV0jVsogDmrszM9uIw8L5OA+t+V93MgYlufNptfjmYR1tOMWhei/Eh7TQA==}
     dependencies:
@@ -7404,13 +7338,6 @@ packages:
       which-boxed-primitive: 1.0.2
     dev: true
 
-  /undici@5.22.1:
-    resolution: {integrity: sha512-Ji2IJhFXZY0x/0tVBXeQwgPlLWw13GVzpsWPQ3rV50IFMMof2I55PZZxtm4P6iNq+L5znYN9nSTAq0ZyE6lSJw==}
-    engines: {node: '>=14.0'}
-    dependencies:
-      busboy: 1.6.0
-    dev: true
-
   /unherit@3.0.1:
     resolution: {integrity: sha512-akOOQ/Yln8a2sgcLj4U0Jmx0R5jpIg2IUyRrWOzmEbjBtGzBdHtSeFKgoEcoH4KYIG/Pb8GQ/BwtYm0GCq1Sqg==}
 
@@ -7530,10 +7457,6 @@ packages:
       '@types/unist': 3.0.0
       unist-util-is: 6.0.0
       unist-util-visit-parents: 6.0.1
-
-  /unpic@3.10.1:
-    resolution: {integrity: sha512-7mmLrd6RWdt2Sp015Fgf80oKBmHIEwIDXBQJIImJ/Mj/XaDrOlzX/CWmiRoXOXYj9bLNq0MryOxosMmNXrBOGA==}
-    dev: false
 
   /untildify@4.0.0:
     resolution: {integrity: sha512-KK8xQ1mkzZeg9inewmFVDNkg3l5LUhoq9kN6iWYB/CC9YMG8HA+c1Q8HwDe6dEX7kErrEVNVBO3fWsVq5iDgtw==}
