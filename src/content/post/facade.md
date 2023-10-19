@@ -3,7 +3,6 @@ title: "Façade"
 publishDate: "18 February 2019"
 description: "We all wear masks, knowingly or unknowingly"
 featured: true
-heroImage: "https://res.cloudinary.com/dwjzu6ozg/image/upload/f_auto,q_auto:eco/v1690469496/finan-akbar-HuC3cii5VA8-unsplash_aoikid.jpg"
 tags: ["thoughts"]
 ---
 
