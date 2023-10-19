@@ -7,6 +7,7 @@ export const client = new Client({
       Authorization: `Bearer ${import.meta.env.LITERAL_CLUB_ACCESS_TOKEN}`,
     },
   },
+  requestPolicy: "cache-and-network",
   url: "https://literal.club/graphql/",
 });
 
