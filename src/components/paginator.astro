@@ -13,18 +13,18 @@ const { prevUrl, nextUrl } = Astro.props;
   (prevUrl || nextUrl) && (
   // NOTE(yeskunall): I could over-engineer this and pass the `pageSize` as a
   // prop to then stagger using the variable, or I could go grugbrain.dev and
-  // just set it to 20 since `pageSize` is 10. There is a trade-off, that is,
+  // just set it to `2*pageSize` since `pageSize` is 5. There is a trade-off, that is,
   // if I ever _do_ change the `pageSize`, I’ll have to come and change the
   // `stagger` amount here too. But right now, the GRUG BRAIN DEVELOPER IN ME
   // LIKES THIS.
     <nav
       class="mt-8 flex items-center gap-x-4"
       data-animate
-      style="--stagger:24"
+      style="--stagger:14"
     >
       {prevUrl && (
         <a
-          class="me-auto !cursor-pointer py-2 font-serif text-green-100/90"
+          class="me-auto !cursor-pointer py-2 font-serif text-neutral-900/70"
           href={prevUrl.url}
           rel="prefetch"
         >
@@ -34,7 +34,7 @@ const { prevUrl, nextUrl } = Astro.props;
       )}
       {nextUrl && (
         <a
-          class="ms-auto !cursor-pointer py-2 font-serif text-green-100/90"
+          class="ms-auto !cursor-pointer py-2 font-serif text-neutral-900/70"
           href={nextUrl.url}
           rel="prefetch"
         >

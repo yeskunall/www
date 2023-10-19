@@ -1,10 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 
-import PageLayout from "@/layouts/Base";
-import PostPreview from "@/components/blog/PostPreview.astro";
-import Pagination from "@/components/Paginator.astro";
-import { getUniqueTags, sortByDate } from "@/utils";
+import PageLayout from "@/layouts/Base.astro";
+import PostPreview from "@/components/blog/post-preview.astro";
+import Pagination from "@/components/paginator.astro";
 
 import type { CollectionEntry } from "astro:content";
 import type { GetStaticPaths, Page } from "astro";
