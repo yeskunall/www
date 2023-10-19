@@ -14,8 +14,16 @@ module.exports = {
         textColor: "rgb(var(--theme-text) / <alpha-value>)",
       },
       fontFamily: {
-        mono: ["MartianMono", ...fontFamily.mono],
-        sans: ["Sohne", { fontFeatureSettings: '"kern","frac","kern","ss02"' }],
+        display: [
+          "Inter",
+          {
+            fontFeatureSettings:
+              // eslint-disable-next-line max-len
+              '"calt","case","clig","cpsp" 1,"cv01" 1,"cv02","cv03" 1,"cv04" 1,"dlig" 1,"kern","liga"',
+          },
+        ],
+        mono: ["Martian Mono", ...fontFamily.mono],
+        sans: ["Scto Grotesk A", ...fontFamily.sans],
         serif: ["Newsreader", ...fontFamily.serif],
       },
       keyframes: {
