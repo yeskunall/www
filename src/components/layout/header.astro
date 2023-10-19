@@ -1,0 +1,25 @@
+---
+import { Image } from "astro:assets";
+
+import { cn } from "@/lib/utils";
+
+import myImage from "../../assets/logo.svg";
+---
+
+<div
+  class={cn(
+    "fixed left-0 right-0 top-0 z-[9999] h-[75px] overflow-hidden",
+    "select-none pointer-events-none",
+    // eslint-disable-next-line max-len
+    "border-b-[1px] border-b-sky-50/10 bg-[size:4px_4px] backdrop-blur-[3px] backdrop-brightness-[100%]",
+  )}
+  aria-hidden="true"
+>
+</div>
+<header class="my-10 flex select-none items-center">
+  <Image
+    class="h-14 w-14 rounded-full border-4 border-neutral-300/30 transition-transform hover:rotate-12 hover:border-neutral-300/40"
+    alt="A circular photo of the site’s logo"
+    src={myImage}
+  />
+</header>

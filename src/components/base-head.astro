@@ -9,8 +9,6 @@ type Props = SiteMeta;
 
 const { title, description, ogImage, articleDate } = Astro.props;
 
-const titleSeparator = "•";
-const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(ogImage!, Astro.url).href;
 ---
@@ -52,8 +50,8 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
 <!-- Mastodon verification -->
 <link rel="me" href="https://mastodon.social/@yeskunall" />
 
-<title>{siteTitle}</title>
-<meta name="title" content={siteTitle} />
+<title>{title}</title>
+<meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content={siteConfig.author} />
 
