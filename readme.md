@@ -7,6 +7,8 @@
 ## Stack
 
 - **Framework**: [Astro](https://astro.build/)
+- **UI Components**: [React](https://react.dev/)
+- **Primitives**: [Radix UI](https://www.radix-ui.com/primitives/)
 - **Content**: [MDX](https://https://mdxjs.com/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Deployment**: [Vercel](https://vercel.com/)
