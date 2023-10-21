@@ -34,7 +34,7 @@ export default function ExtendedBio({
           />
         </span>
       </CollapsibleTrigger>
-      <CollapsibleContent className="wide-words font-display text-sm text-neutral-500 data-[state=closed]:animate-slide-up data-[state=open]:animate-slide-down">
+      <CollapsibleContent className="wide-words font-sans text-sm text-neutral-500 data-[state=closed]:animate-slide-up data-[state=open]:animate-slide-down">
         {children}
       </CollapsibleContent>
     </Collapsible>

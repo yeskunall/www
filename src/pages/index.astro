@@ -1,28 +1,64 @@
 ---
-import ExtendedBio from "@/components/extended-bio";
+import { Image } from "astro:assets";
+
+import CurrentTimeBadge from "@/components/current-time-badge.astro";
+import Deck from "@/components/deck.tsx";
+import ExtendedBio from "@/components/extended-bio.tsx";
+import LiteralClubIcon from "@/components/icons/literal-club.astro";
 import PageLayout from "@/layouts/Base.astro";
+import Trail from "@/components/trail.tsx";
+
+import { client, myBooksQuery } from "@/lib/literal-club";
+import { cn } from "@/lib/utils";
+import { PROJECTS } from "@/data/constants";
+
+import type { ReadingState } from "@/data/shared";
+
+const books = await client
+  .query(myBooksQuery, {})
+  .toPromise()
+  .then(result => {
+    const { myReadingStates } = result.data;
+
+    return (myReadingStates as Array<ReadingState>)
+      .filter(
+        state =>
+          state.status === "IS_READING" || state.status === "WANTS_TO_READ",
+      )
+      .map(state => state.book)
+      .slice(0, 10);
+  });
 ---
 
 {/* eslint-disable max-len */}
 
-<PageLayout meta={{ title: "Home" }}>
+<PageLayout meta={{ title: "About Kunall Banerjee" }}>
   <section
     id="main"
-    class="my-1 text-base leading-relaxed -tracking-[0.01em] text-neutral-900/90"
+    class="my-1 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
     data-animate
-    style="--stagger:3"
+    style="--stagger:1.5"
   >
-    <h2
-      class="mt-8 select-none font-display text-xl font-medium tracking-tighter text-neutral-950/95"
+    <h1
+      class="mb-4 select-none font-serif text-4xl font-normal leading-snug tracking-tighter text-neutral-950/95"
     >
-      Kunall Banerjee
-    </h2>
-    <p class="my-3 text-neutral-900/90">
-      I’m a&nbsp;<em>digital craftsman</em> who likes to create
-      <strong class="font-medium">delightful</strong>
-      <em> experiences</em> &amp; <em>interfaces</em>. <em>Obsessed</em> with details.
-      <em>Minimalist</em>, in all aspects of life. <em>Outspoken</em>, yet I’m
-      mindful of the effect it has on others.
+      <Trail open={true} client:only="react">
+        <span class="block">Digital craftsman</span>
+        <span class="block">building internet</span>
+        <span class="block">software.</span>
+      </Trail>
+    </h1>
+    <div class="mt-1 text-neutral-500">
+      <CurrentTimeBadge />
+    </div>
+    <p class="my-3 text-neutral-950/90">
+      Hey, I’m Kunall Banerjee, and I like to create&nbsp;<strong
+        class="font-medium">delightful</strong
+      >
+      <em> experiences</em> &amp; <em>interfaces</em>. <em>Obsessed</em> with details.&nbsp;<em
+        >Minimalist</em
+      >, in all aspects of life. <em>Outspoken</em>, yet I’m mindful of the
+      effect it has on others.
     </p>
     <ExtendedBio client:visible>
       <p class="my-3">
@@ -60,7 +96,7 @@ import PageLayout from "@/layouts/Base.astro";
   </section>
   <section
     id="work"
-    class="my-6 break-normal text-base leading-relaxed -tracking-[0.01em] text-neutral-900/90"
+    class="my-6 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
     data-animate
     style="--stagger:5"
   >
@@ -73,6 +109,106 @@ import PageLayout from "@/layouts/Base.astro";
       >, <em>Corning Inc.</em>, <em>Electronic Arts</em>, <em>GSK plc</em>, <em
         >Haleon plc</em
       >, <em>Nationwide Mutual Insurance Company</em>, among several others.
+    </p>
+  </section>
+  <section
+    id="recent"
+    class="full-bleed mx-auto my-6 max-w-2xl text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
+    data-animate
+    style="--stagger:12"
+  >
+    <div class="grid grid-cols-1 place-items-center gap-x-10 sm:grid-cols-3">
+      <div class="mb-9 flex flex-col gap-3 sm:col-span-2 sm:mb-0">
+        <h2
+          class="select-none font-display text-lg font-medium text-neutral-600"
+        >
+          Projects
+        </h2>
+        {
+          PROJECTS.map(project => (
+            <div class="flex items-center gap-3">
+              <div class="relative h-10 w-10 overflow-hidden rounded">
+                {project.logo && (
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore: TS uses the last member of the union to suggest props for JSX,
+                // and Astro types the props for local images first, so you will always get this
+                // error till they fix the types.
+                  <Image src={project.logo} alt="logo" width={40} />
+                )}
+              </div>
+              <div class="flex flex-1 flex-col">
+                <a
+                  class="flex flex-col space-y-1.5 font-display font-normal text-neutral-950/80"
+                  href={project.href}
+                >
+                  <h3 class="text-lg">{project.name}</h3>
+                  <p class="max-w-[80%] font-sans text-sm text-neutral-700/60">
+                    {project.description}
+                  </p>
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="relative h-full w-full">
+        <div
+          class="relative m-auto mt-5 flex h-72 w-48 flex-col items-center sm:col-span-1 sm:h-full sm:w-full sm:flex-none"
+        >
+          <div
+            class="absolute left-1/2 top-2/3 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300/60 blur-[90px]"
+          >
+          </div>
+          <Deck books={books} client:only="react" />
+        </div>
+        <div
+          class={cn(
+            "relative max-w-[40%] sm:max-w-[70%] mx-auto cursor-pointer z-30 mt-4 flex items-center justify-center rounded-full border-2 border-neutral-900/10 py-1.5",
+            "hover:bg-sky-50 transition-all hover:border-none hover:text-black/95 hover:scale-95 hover:-translate-y-[1px]",
+          )}
+        >
+          <a
+            class={cn(
+              "inline-flex select-none items-center font-display font-medium text-neutral-950/70 scale-90",
+            )}
+            href="https://literal.club/yeskunall"
+          >
+            <LiteralClubIcon />&nbsp; Follow me
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    id="connect"
+    class="my-10 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90 sm:mb-10 sm:mt-24"
+    data-animate
+    style="--stagger:18"
+  >
+    <h2 class="select-none font-display text-lg font-medium text-neutral-600">
+      Connect
+    </h2>
+    <p class="my-3">
+      These days I get a lot of emails from founders or startups, or from
+      strangers replying to my blog posts.
+    </p>
+    <p class="my-3 indent-6">
+      If I don’t think your product is interesting, or if you just write me a
+      one-liner, I will most likely not respond. Please don’t feel bad if I
+      don’t get back to you in time, or not at all.
+    </p>
+    <p class="my-3 indent-6">
+      But, please: don’t be a stranger. I’d love to hear from you regardless.
+      Here’s my public email address:<br />
+      <span class="my-5 inline-flex w-full items-center justify-center"
+        ><em><a href="mailto:hey@kimchiii.space">hey@kimchiii.space</a></em
+        ></span
+      >
+    </p>
+    <p class="my-3 indent-6">
+      If you somehow find me on other platforms, <strong
+        >please do not message me on those accounts</strong
+      >. You will be ignored.
     </p>
   </section>
 </PageLayout>
