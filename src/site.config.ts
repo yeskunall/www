@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
       year: "numeric",
     },
   },
-  description: "Software Engineer",
+  description: "Digital craftsman building internet software",
   lang: "en-CA",
   ogLocale: "en_CA",
   title: "Kunall Banerjee",
