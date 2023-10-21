@@ -27,7 +27,6 @@ module.exports = {
         serif: ["Newsreader", ...fontFamily.serif],
       },
       keyframes: {
-        },
         "slide-down": {
           from: {
             height: "0",
