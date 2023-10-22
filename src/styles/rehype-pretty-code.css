@@ -18,12 +18,8 @@ div[data-rehype-pretty-code-fragment] pre {
 }
 
 div[data-rehype-pretty-code-title] {
-  @apply rounded-t-md font-mono text-sm;
+  @apply rounded-t-md px-[0.75rem] py-[0.25rem] font-mono text-sm;
   background-color: rgba(3, 7, 22, 0.9);
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
   line-height: 1rem;
 }
 
@@ -33,19 +29,23 @@ div[data-rehype-pretty-code-title] + pre {
 
 span[data-highlighted-chars] {
   --tw-shadow: 0 0 #0000;
-  @apply rounded border-b-2 border-yellow-400/80 bg-[#854d0e80] p-0.5 font-semibold text-yellow-300;
+  @apply rounded-sm border-b-2 border-yellow-400/80 bg-yellow-300/95 p-1 font-semibold text-yellow-300;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 span[data-highlighted-chars] > span {
-  @apply !text-amber-300/80;
+  @apply text-amber-300/80;
 }
 
 span[data-highlighted-line] {
-  @apply border-spacing-2 border-l-2 !border-amber-300 bg-slate-900/50;
+  @apply rounded-sm border-amber-300 bg-amber-300/95;
 }
 
 span[data-line] {
   @apply overflow-x-auto whitespace-pre-wrap break-words;
+}
+
+span[data-rehype-pretty-code-fragment] code {
+  @apply overflow-x-auto rounded-sm p-1;
 }

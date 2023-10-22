@@ -9,8 +9,6 @@ type Props = SiteMeta;
 
 const { title, description, ogImage, articleDate } = Astro.props;
 
-const titleSeparator = "•";
-const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(ogImage!, Astro.url).href;
 ---
@@ -23,7 +21,6 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-<!-- <link rel="icon" href="/icon.svg" type="image/svg+xml" /> -->
 <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
 <link rel="manifest" href="/manifest.webmanifest" />
 <link rel="canonical" href={canonicalURL} />
@@ -31,19 +28,31 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
 
 <!-- Preload local fonts -->
 <link
-  href="/fonts/MartianMonoVF.woff2"
+  href="/fonts/inter-variable.woff2"
   rel="preload"
   as="font"
   crossorigin="anonymous"
 />
 <link
-  href="/fonts/newsreader-subset-0.woff2"
+  href="/fonts/martian-mono-variable.woff2"
   rel="preload"
   as="font"
   crossorigin="anonymous"
 />
 <link
-  href="/fonts/sohne-subset-0.woff2"
+  href="/fonts/newsreader-subset.woff2"
+  rel="preload"
+  as="font"
+  crossorigin="anonymous"
+/>
+<link
+  href="/fonts/scto-grotesk-a-subset.woff"
+  rel="preload"
+  as="font"
+  crossorigin="anonymous"
+/>
+<link
+  href="/fonts/sohne-subset.woff2"
   rel="preload"
   as="font"
   crossorigin="anonymous"
@@ -52,8 +61,8 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
 <!-- Mastodon verification -->
 <link rel="me" href="https://mastodon.social/@yeskunall" />
 
-<title>{siteTitle}</title>
-<meta name="title" content={siteTitle} />
+<title>{title}</title>
+<meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content={siteConfig.author} />
 

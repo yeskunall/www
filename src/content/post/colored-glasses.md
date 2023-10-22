@@ -3,7 +3,6 @@ title: "Take off your colored glasses"
 publishDate: "2023-08-03T12:24:48.294Z"
 description: "Rid yourself of all preconceived notions"
 featured: true
-heroImage: "https://res.cloudinary.com/dwjzu6ozg/image/upload/f_auto,q_auto:eco/v1692462153/neil-soni-eHhKAwgVDQ8-unsplash_i3dn5c.jpg"
 tags: ["thoughts"]
 ---
 

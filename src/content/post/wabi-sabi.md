@@ -4,7 +4,6 @@ publishDate: "15 May 2020"
 description:
   "A series of Japanese folklore that have helped me embrace the notion of
   imperfection & transience"
-heroImage: "https://res.cloudinary.com/dwjzu6ozg/image/upload/f_auto,q_auto:eco/v1690469918/motoki-tonn-naU5BXEi9p4-unsplash_htxe2h.jpg"
 tags: ["thoughts"]
 ---
 

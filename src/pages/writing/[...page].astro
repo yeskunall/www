@@ -1,10 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 
-import PageLayout from "@/layouts/Base";
-import PostPreview from "@/components/blog/PostPreview.astro";
-import Pagination from "@/components/Paginator.astro";
-import { getUniqueTags, sortByDate } from "@/utils";
+import PageLayout from "@/layouts/Base.astro";
+import PostPreview from "@/components/blog/post-preview.astro";
+import Pagination from "@/components/paginator.astro";
+
+import { sortByDate } from "@/utils";
 
 import type { CollectionEntry } from "astro:content";
 import type { GetStaticPaths, Page } from "astro";
@@ -12,24 +13,21 @@ import type { GetStaticPaths, Page } from "astro";
 export const getStaticPaths = (async ({ paginate }) => {
   const allPosts = await getCollection("post");
   const allPostsByDate = sortByDate(allPosts);
-  const pageSize = 10;
-  const uniqueTags = getUniqueTags(allPosts);
+  const pageSize = 5;
 
   return paginate(allPostsByDate, {
-    props: { uniqueTags },
     pageSize,
   });
 }) satisfies GetStaticPaths;
 
 interface Props {
   page: Page<CollectionEntry<"post">>;
-  uniqueTags: string[];
 }
 
 const { page } = Astro.props;
 
 const meta = {
-  title: "Writing",
+  title: "Read Kunall’s blog",
   description: "Everything I’ve written over the years.",
 };
 
@@ -50,15 +48,25 @@ const paginationProps = {
 ---
 
 <PageLayout meta={meta}>
-  <div class="mx-auto max-w-md space-y-6">
-    <div class="grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8">
-      <section aria-label="Blog post list">
+  <div class="mx-auto max-w-xl space-y-6">
+    <div>
+      <h3 class="text-xl font-medium leading-snug text-neutral-600">
+        Writing
+      </h3><p
+        class="mt-1.5 font-serif text-lg font-medium leading-snug text-neutral-900/60"
+      >
+        Everything I’ve written over the years. I mainly write about my life,
+        minimalism &amp; and the web.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-[3fr_1fr]">
+      <section aria-label="Paginated blog posts">
         <ul class="space-y-2 text-start">
           {
             page.data.map((post, index) => {
               return (
                 // eslint-disable-next-line
-                <li class="mb-1.5 flex flex-col gap-2 transition-colors hover:text-green-100/70 sm:mb-3 sm:flex-row">
+                <li class="mb-1.5 flex flex-col gap-2 sm:mb-3 sm:flex-row">
                   <PostPreview
                     post={post}
                     as="h2"
