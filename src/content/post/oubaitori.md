@@ -3,7 +3,6 @@ title: "桜梅桃李"
 publishDate: "30 December 2020"
 description: "Just be, as you are"
 featured: true
-heroImage: "https://res.cloudinary.com/dwjzu6ozg/image/upload/f_auto,q_auto:eco/v1690469496/library-of-congress-ztu5gt58Ya4-unsplash_qm8mts.jpg"
 tags: ["thoughts"]
 ---
 

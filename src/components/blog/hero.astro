@@ -1,0 +1,44 @@
+---
+import { Balancer } from "react-wrap-balancer";
+
+import { getFormattedDate } from "@/utils";
+
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"post">;
+}
+
+const { post } = Astro.props;
+
+const datetime = post?.data.publishDate.toISOString();
+const postDate = getFormattedDate(post?.data.publishDate as Date, {
+  month: "long",
+});
+---
+
+<div class="mt-8 flex flex-col text-neutral-900/90">
+  <Balancer>
+    <h1 class="font-serif text-3xl font-medium tracking-tight sm:mb-1">
+      {post.data.title}
+    </h1>
+  </Balancer>
+  {
+    post && (
+      <span class="mt-3 inline-block">
+        <>
+          <time
+            class="text-neutral-900/70"
+            datetime={datetime}
+            title={datetime}
+          >
+            {postDate}
+          </time>
+        </>
+      </span>
+    )
+  }
+  <p class="prose prose-base mt-8 font-serif text-base text-neutral-950/90">
+    {post?.data.description}
+  </p>
+</div>

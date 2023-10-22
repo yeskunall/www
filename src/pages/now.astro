@@ -1,26 +1,10 @@
 ---
-import { Image } from "astro:assets";
+import { format } from "date-fns";
 
-import LiteralClubIcon from "@/components/icons/LiteralClubIcon.astro";
-import PageLayout from "@/layouts/Base";
-
-import { client, myBooksQuery } from "@/lib/literal-club";
-
-import type { ReadingState } from "@/data/shared";
-
-const books = await client
-  .query(myBooksQuery, {})
-  .toPromise()
-  .then(result => {
-    const { myReadingStates } = result.data;
-
-    return (myReadingStates as Array<ReadingState>)
-      .filter(state => state.status === "IS_READING")
-      .map(state => state.book);
-  });
+import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
-  title: "Now",
+  title: "What I’m up to these days",
   description: "What I’m up to these days",
 };
 ---
@@ -28,14 +12,40 @@ const meta = {
 {/* eslint-disable max-len */}
 
 <PageLayout meta={meta}>
+  <section id="now" class="text-sm leading-5" data-animate style="--stagger:3">
+    <h2
+      class="relative mb-4 select-none font-display text-lg font-medium text-neutral-600"
+    >
+      Now
+    </h2>
+    <p class="mb-2.5 text-base text-neutral-900/90">
+      I just got back to Canada after spending 4 months in India. It’s the
+      longest I’ve been away from Canada at a stretch. But, it’s never enough
+      time spent with your loved ones.
+    </p>
+    <p class="mb-2.5 text-base text-neutral-900/90">
+      Juggling between interviews and freelance work at the same time. I had
+      forgotten how stressful interviewing for jobs can be. I’m still trying to
+      find my <em>ikigai</em>. Turns out this is a hard thing.
+    </p>
+    <p class="mb-3 select-none font-sans text-neutral-700/70">
+      Last updated <span class="font-display text-sm font-medium"
+        >{format(new Date("2023-10-21T12:25:40.042Z"), "do MMMMMM yyyy")}</span
+      >
+    </p>
+  </section>
   <section
-    id="now"
-    class="text-sm leading-5 text-green-100/80"
+    id="archive"
+    class="relative my-6 text-base leading-relaxed -tracking-[0.01em] text-neutral-900/90"
     data-animate
-    style="--stagger:3"
+    style="--stagger:12"
   >
-    <h2 class="title mb-4 select-none text-xl text-green-100/80">Now</h2>
-    <p class="mb-2.5 break-normal text-base text-green-100/80">
+    <h2
+      class="title mb-4 select-none font-display text-lg font-medium text-neutral-500"
+    >
+      Archive
+    </h2>
+    <p class="mb-2.5 text-base text-neutral-400">
       <em>Funemployed</em> &amp; trying to find my <em>ikigai</em>. Moved into a
       new house in India, somewhere in the hills, <em class="font-semibold"
         >like I’ve always wanted</em
@@ -43,51 +53,11 @@ const meta = {
       an inordinate amount of time with my loved ones, because none of us are getting
       any younger.
     </p>
-    <p class="mb-10 select-none font-sans text-green-100/80">
-      Last updated <span class="font-serif font-semibold"
-        >21<sup>st</sup> July, 2023</span
+    <p class="mb-3 select-none font-sans text-neutral-400/70">
+      <span class="font-display text-sm font-medium"
+        >{format(new Date("2023-06-21T23:19:26.974Z"), "do MMMMMM yyyy")}</span
       >
     </p>
-  </section>
-  <section
-    id="currently-reading"
-    class="mt-6 text-sm leading-5 text-green-100/80"
-    data-animate
-    style="--stagger:10"
-  >
-    <div class="flex flex-col space-y-5 text-green-100/80">
-      <div class="flex select-none items-center">
-        <LiteralClubIcon />
-        <h2 class="title ml-3 text-base">Book shelf</h2>
-      </div>
-      <div
-        class="flex snap-x snap-mandatory scroll-mx-5 scroll-px-4 overflow-x-scroll"
-      >
-        {
-          books.map(book => {
-            return (
-              <div class="mx-3 h-[420px] flex-none snap-center snap-always text-center sm:h-52">
-                <a
-                  class="cursor-ew-resize select-none"
-                  href={`https://literal.club/book/${book.slug}`}
-                  rel="nofollow noopener noreferrer"
-                  target="_blank"
-                >
-                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                  {/* @ts-ignore: height is not required for remote images, but width is */}
-                  <Image
-                    alt={book.title}
-                    class="h-full w-full rounded-md object-cover"
-                    src={book.cover}
-                    width={325}
-                  />
-                </a>
-              </div>
-            );
-          })
-        }
-      </div>
-    </div>
   </section>
 </PageLayout>
 

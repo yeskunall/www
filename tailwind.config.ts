@@ -7,25 +7,45 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "slide-down": "slide-down 210ms cubic-bezier(0.3, 0, 0.5, 1)",
+        "slide-up": "slide-up 210ms cubic-bezier(0.3, 0, 0.5, 1)",
       },
       colors: {
         textColor: "rgb(var(--theme-text) / <alpha-value>)",
       },
       fontFamily: {
-        mono: ["MartianMono", ...fontFamily.mono],
-        sans: ["Sohne", { fontFeatureSettings: '"kern","frac","kern","ss02"' }],
+        display: [
+          "Inter",
+          {
+            fontFeatureSettings:
+              // eslint-disable-next-line max-len
+              '"calt","case","clig","cpsp" 1,"cv01" 1,"cv02","cv03" 1,"cv04" 1,"dlig" 1,"kern","liga"',
+          },
+        ],
+        mono: ["Martian Mono", ...fontFamily.mono],
+        sans: ["Scto Grotesk A", ...fontFamily.sans],
         serif: ["Newsreader", ...fontFamily.serif],
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--radix-accordion-content-height)" },
+        "slide-down": {
+          from: {
+            height: "0",
+            opacity: "0",
+          },
+          to: {
+            height: "var(--radix-collapsible-content-height)",
+            opacity: "1",
+          },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
+        "slide-up": {
+          from: {
+            height: "var(--radix-collapsible-content-height)",
+            opacity: "1",
+          },
+          to: {
+            height: "0",
+            opacity: "0",
+          },
         },
       },
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

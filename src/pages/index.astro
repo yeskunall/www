@@ -1,98 +1,214 @@
 ---
-import PageLayout from "@/layouts/Base";
+import { Image } from "astro:assets";
+
+import CurrentTimeBadge from "@/components/current-time-badge.astro";
+import Deck from "@/components/deck.tsx";
+import ExtendedBio from "@/components/extended-bio.tsx";
+import LiteralClubIcon from "@/components/icons/literal-club.astro";
+import PageLayout from "@/layouts/Base.astro";
+import Trail from "@/components/trail.tsx";
+
+import { client, myBooksQuery } from "@/lib/literal-club";
+import { cn } from "@/lib/utils";
+import { PROJECTS } from "@/data/constants";
+
+import type { ReadingState } from "@/data/shared";
+
+const books = await client
+  .query(myBooksQuery, {})
+  .toPromise()
+  .then(result => {
+    const { myReadingStates } = result.data;
+
+    return (myReadingStates as Array<ReadingState>)
+      .filter(
+        state =>
+          state.status === "IS_READING" || state.status === "WANTS_TO_READ",
+      )
+      .map(state => state.book)
+      .slice(0, 10);
+  });
 ---
 
 {/* eslint-disable max-len */}
 
-<PageLayout meta={{ title: "Home" }}>
+<PageLayout meta={{ title: "About Kunall Banerjee" }}>
   <section
     id="main"
-    class="my-6 break-normal text-base leading-7 tracking-[0.020em] text-green-100/90"
+    class="my-1 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
     data-animate
-    style="--stagger:3"
+    style="--stagger:1.5"
   >
-    <h1 class="mb-5 font-sans text-3xl font-medium sm:text-5xl">
-      <span class="tracking-tight">Kunall Banerjee</span><br /><span
-        class="text-2xl sm:text-4xl"
-        >is a&nbsp;<em class="text-emerald-300/90">digital craftsman</em><br
-        /></span
-      ><span class="text-xl sm:text-3xl"
-        >based in <span class="select-none"
-          ><span
-            class="rotating-text-word left-[84px] font-serif font-medium text-emerald-300/90 sm:left-[125px]"
-            >Ottawa</span
-          ><span
-            class="rotating-text-word left-[84px] font-serif font-medium text-emerald-300/90 sm:left-[125px]"
-            >Toronto</span
-          >
-          <span
-            class="rotating-text-word left-[84px] font-serif font-medium text-emerald-300/90 sm:left-[125px]"
-            >Vancouver</span
-          ><span
-            class="rotating-text-word left-[84px] font-serif font-medium text-emerald-300/90 sm:left-[125px]"
-            >Mumbai</span
-          ><span
-            class="rotating-text-word left-[84px] font-serif font-medium sm:left-[129px]"
-            >🌏</span
-          ></span
-        ></span
-      >
+    <h1
+      class="mb-4 select-none font-serif text-4xl font-normal leading-snug tracking-tighter text-neutral-950/95"
+    >
+      <Trail open={true} client:only="react">
+        <span class="block">Digital craftsman</span>
+        <span class="block">building internet</span>
+        <span class="block">software.</span>
+      </Trail>
     </h1>
-    <h2 class="mt-8 select-none text-lg font-semibold sm:text-xl">Intro</h2>
-    <p class="my-3">
-      <em>Obsessed</em> with details. Craft
-      <strong class="font-medium">delightful</strong>
-      <em> experiences</em> &amp; <em>interfaces</em>. <em>Minimalist</em>, in
-      all aspects of life. <em>Outspoken</em>, yet I’m mindful of the effect it
-      has on others.
+    <div class="mt-1 text-neutral-500">
+      <CurrentTimeBadge />
+    </div>
+    <p class="my-3 text-neutral-950/90">
+      Hey, I’m Kunall Banerjee, and I like to create&nbsp;<strong
+        class="font-medium">delightful</strong
+      >
+      <em> experiences</em> &amp; <em>interfaces</em>. <em>Obsessed</em> with details.&nbsp;<em
+        >Minimalist</em
+      >, in all aspects of life. <em>Outspoken</em>, yet I’m mindful of the
+      effect it has on others.
     </p>
-    <p class="my-3">
-      Born in Calcutta, India, raised in 7 different cities, and attended 13
-      different schools. Lived a large part of the last decade in Ottawa. If I’m
-      not travelling, I split my time living in East-coast Canada and East-coast
-      India.
-    </p>
+    <ExtendedBio client:visible>
+      <p class="my-3">
+        Born in Calcutta on 21<sup>st</sup> April, 1996. I spent most of my childhood
+        and early teens moving from place to place. In that time, I lived in 7 different
+        cities, and attended 8 different schools. Moved to Canada once I turned 18,
+        and I have lived a large part of the last decade in Ottawa. These days, I
+        split my time living in East-coast Canada and East-coast India.
+      </p>
+      <p class="my-3">
+        Growing up, I was always surrounded by highly competitive &amp;
+        goal-oriented people, which led me to be the same. From 2009 up until
+        2021, I moved <em>fast</em>, spending almost my entire time focusing on
+        my goals. Finished high school in early 2014. Started university in
+        mid-2014. Took a year off from university in 2017 to work with small to
+        mid-size startups. Graduated in April, 2019. Started working full-time
+        in May, 2019. Became a permanent resident (PR) of Canada in 2021. To be
+        honest, I was only doing these things because that’s what was expected
+        of me.
+      </p>
+      <p class="my-3">
+        During the pandemic, I had a moment of self-introspection, and came to
+        the conclusion that my achievements only gave me a glimpse of happiness,
+        and that every time I reached a goal, I just made another goal that
+        wasn’t going to lead me to freedom. These days, my only goal is to <em
+          >slow down</em
+        >. As cliché as it sounds, I’m taking the road less travelled. Trying to
+        be <em>more present</em> in the moment. Aggresively reducing cruft in my
+        life: that includes the people I let into my life, too. I intentionally make
+        it hard for people to reach me. Those that truly care still find a way, the
+        others don’t. If we’ve ever interacted then know this: we’re not friends,
+        nor enemies; just strangers who shared some memories.
+      </p>
+    </ExtendedBio>
   </section>
   <section
-    id="currently"
-    class="my-6 break-normal text-base leading-7 tracking-[0.020em] text-green-100/90"
+    id="work"
+    class="my-6 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
     data-animate
     style="--stagger:5"
   >
-    <h2 class="select-none text-lg font-semibold sm:text-xl">Currently</h2>
+    <h2 class="select-none font-display text-lg font-medium text-neutral-600">
+      Work
+    </h2>
     <p class="my-3">
-      After being&nbsp;<em>funemployed</em> for 3 months, I’m finally looking for
-      my next role. At the same time, I’m working on a few projects as a freelance
-      developer <em>&amp; loving it</em>. Still trying to find my <strong
-        class="font-semibold">ikigai</strong
-      >, though. Turns out this is a&nbsp;<em>tough one</em>.
+      In my previous roles, I built bespoke solutions for brands like <em
+        >CareSource</em
+      >, <em>Corning Inc.</em>, <em>Electronic Arts</em>, <em>GSK plc</em>, <em
+        >Haleon plc</em
+      >, <em>Nationwide Mutual Insurance Company</em>, among several others.
     </p>
-    <div class="mt-3">
-      <a
-        class="underline decoration-green-300/30 underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
-        href="/now"
-        rel="prefetch">Find out more</a
-      >
+  </section>
+  <section
+    id="recent"
+    class="full-bleed mx-auto my-6 max-w-2xl text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
+    data-animate
+    style="--stagger:12"
+  >
+    <div class="grid grid-cols-1 place-items-center gap-x-10 sm:grid-cols-3">
+      <div class="mb-9 flex flex-col gap-3 sm:col-span-2 sm:mb-0">
+        <h2
+          class="select-none font-display text-lg font-medium text-neutral-600"
+        >
+          Projects
+        </h2>
+        {
+          PROJECTS.map(project => (
+            <div class="flex items-center gap-3">
+              <div class="relative h-10 w-10 overflow-hidden rounded">
+                {project.logo && (
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore: TS uses the last member of the union to suggest props for JSX,
+                // and Astro types the props for local images first, so you will always get this
+                // error till they fix the types.
+                  <Image src={project.logo} alt="logo" width={40} />
+                )}
+              </div>
+              <div class="flex flex-1 flex-col">
+                <a
+                  class="flex flex-col space-y-1.5 font-display font-normal text-neutral-950/80"
+                  href={project.href}
+                >
+                  <h3 class="text-lg">{project.name}</h3>
+                  <p class="max-w-[80%] font-sans text-sm text-neutral-700/60">
+                    {project.description}
+                  </p>
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="relative h-full w-full">
+        <div
+          class="relative m-auto mt-5 flex h-72 w-48 flex-col items-center sm:col-span-1 sm:h-full sm:w-full sm:flex-none"
+        >
+          <div
+            class="absolute left-1/2 top-2/3 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300/60 blur-[90px]"
+          >
+          </div>
+          <Deck books={books} client:only="react" />
+        </div>
+        <div
+          class={cn(
+            "relative max-w-[40%] sm:max-w-[70%] mx-auto cursor-pointer z-30 mt-4 flex items-center justify-center rounded-full border-2 border-neutral-900/10 py-1.5",
+            "hover:bg-sky-50 transition-all hover:border-none hover:text-black/95 hover:scale-95 hover:translate-y-[1px]",
+          )}
+        >
+          <a
+            class={cn(
+              "inline-flex select-none items-center font-display font-medium text-neutral-950/70 scale-90",
+            )}
+            href="https://literal.club/yeskunall"
+          >
+            <LiteralClubIcon />&nbsp; Reading list
+          </a>
+        </div>
+      </div>
     </div>
   </section>
   <section
-    id="previously"
-    class="my-6 break-normal text-base leading-7 tracking-[0.020em] text-green-100/90"
+    id="connect"
+    class="my-10 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90 sm:mb-10 sm:mt-24"
     data-animate
-    style="--stagger:5"
+    style="--stagger:18"
   >
-    <h2 class="select-none text-lg font-semibold sm:text-xl">Previously</h2>
+    <h2 class="select-none font-display text-lg font-medium text-neutral-600">
+      Connect
+    </h2>
     <p class="my-3">
-      I worked as a Senior Support Engineer &amp; before that as a <a
-        class="cursor-alias underline decoration-green-300/30 underline-offset-[2.5px] transition-colors hover:decoration-green-300/50"
-        href="https://read.cv/yeskunall/on-being-a-solutions-engineer"
-        rel="nofollow noopener noreferrer"
-        target="_blank">Solutions Engineer</a
-      >, where I built bespoke solutions for brands like <em>CareSource</em>, <em
-        >Corning Inc.</em
-      >, <em>Electronic Arts</em>, <em>GSK plc</em>, <em>Haleon plc</em>, <em
-        >Nationwide Mutual Insurance Company</em
-      >, among several others.
+      These days I get a lot of emails from founders or startups, or from
+      strangers replying to my blog posts.
+    </p>
+    <p class="my-3 indent-6">
+      If I don’t think your product is interesting, or if you just write me a
+      one-liner, I will most likely not respond. Please don’t feel bad if I
+      don’t get back to you in time, or not at all.
+    </p>
+    <p class="my-3 indent-6">
+      But, please: don’t be a stranger. I’d love to hear from you regardless.
+      Here’s my public email address:<br />
+      <span class="my-5 inline-flex w-full items-center justify-center"
+        ><em><a href="mailto:hey@kimchiii.space">hey@kimchiii.space</a></em
+        ></span
+      >
+    </p>
+    <p class="my-3 indent-6">
+      If you somehow find me on other platforms, <strong
+        >please do not message me on those accounts</strong
+      >. You will be ignored.
     </p>
   </section>
 </PageLayout>

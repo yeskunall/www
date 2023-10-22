@@ -1,0 +1,91 @@
+---
+import {
+  AlertTriangleIcon,
+  AlertOctagonIcon,
+  CheckCircleIcon,
+  FlagTriangleRightIcon,
+} from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
+import type { LucideIcon } from "lucide-react";
+
+export interface Props {
+  type?: "caution" | "danger" | "note" | "success" | "tip";
+  title?: string;
+}
+
+const { type = "note", title } = Astro.props as Props;
+
+const icons: Record<
+  NonNullable<Props["type"]>,
+  { className: string; icon: LucideIcon }
+> = {
+  note: {
+    icon: FlagTriangleRightIcon,
+    className: "text-purple-700/95",
+  },
+  success: {
+    icon: CheckCircleIcon,
+    className: "text-green-400/95",
+  },
+  tip: {
+    icon: CheckCircleIcon,
+    className: "text-cyan-400/95",
+  },
+  caution: {
+    icon: AlertTriangleIcon,
+    className: "text-amber-400",
+  },
+  danger: {
+    icon: AlertOctagonIcon,
+    className: "text-red-500/95",
+  },
+};
+const { className, icon: Icon } = icons[type];
+---
+
+<aside
+  class:list={{
+    caution: type === "caution",
+    danger: type === "danger",
+    note: type === "note",
+    success: type === "success",
+    tip: type === "tip",
+  }}
+  class="relative mb-16 mt-12 rounded border-l-2 border-solid px-8 py-6"
+>
+  <div
+    class="absolute left-0 top-0 rounded-[50%] bg-white p-2 [transform:translate(calc(-50%_-_1.5px),_-50%)]"
+  >
+    <Icon className={cn("h-5 w-5", className)} />
+  </div>
+  <strong class="text-display [font-size:calc(1.0625rem) mb-2 block font-bold"
+    >{title}</strong
+  >
+  <section class="overflow-y-auto sm:mt-0.5" data-callout>
+    <slot />
+  </section>
+</aside>
+
+<style>
+  .caution {
+    @apply border-amber-400 bg-yellow-100;
+  }
+
+  .danger {
+    @apply border-red-500/95 bg-red-50;
+  }
+
+  .note {
+    @apply border-purple-700/95 bg-purple-200;
+  }
+
+  .success {
+    @apply border-green-400/95 bg-green-300/75;
+  }
+
+  .tip {
+    @apply border-cyan-400/95 bg-sky-50/95;
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+import { format, utcToZonedTime } from "date-fns-tz";
+
+import { Badge } from "@/components/ui/badge";
+
+const TZ = "America/Toronto";
+const currentTime = utcToZonedTime(new Date(), TZ);
+
+const gmtOffsetHours = currentTime.getTimezoneOffset() / -60;
+const offsetSign = gmtOffsetHours >= 0 ? "+" : "-";
+---
+
+{/* eslint-disable max-len */}
+
+<Badge
+  className="relative py-1.5 border-neutral-300/50 select-none cursor-pointer"
+>
+  <span class="relative flex h-2 w-2">
+    <span
+      class="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"
+    ></span>
+    <span class="relative inline-flex h-2 w-2 rounded-full bg-sky-500"></span>
+  </span>
+  &nbsp;
+  {format(currentTime, "HH:mm", { timeZone: TZ })}&nbsp;{
+    `GMT${offsetSign}${Math.abs(gmtOffsetHours)}`
+  }
+</Badge>
