@@ -72,7 +72,7 @@ export default function Deck({ books }: { books: Record<string, unknown>[] }) {
             <animated.div
               {...bind(i)}
               // eslint-disable-next-line max-len
-              className="h-full w-full touch-none bg-contain bg-no-repeat will-change-transform"
+              className="h-full w-full touch-none rounded-lg bg-sky-50/95 bg-[auto_75%] bg-[center_center] bg-no-repeat shadow-md shadow-neutral-700/70 will-change-transform sm:bg-[auto_85%]"
               style={{
                 backgroundImage: `url(${books[i]?.cover})`,
                 transform: interpolate([rot, scale], transform),
