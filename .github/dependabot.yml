@@ -12,16 +12,14 @@ updates:
     directory: "/"
     # See https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#groups for more
     groups:
-        astro:
-          patterns:
-            - "@astrojs*"
-            - "astro"
-        development-dependencies:
-          dependency-type: "development"
-          exclude-patterns:
-            - "prettier"
-        production-dependencies:
-          dependency-type: "production"
+      astro:
+        patterns:
+          - "@astrojs*"
+          - "astro"
+      development-dependencies:
+        dependency-type: "development"
+      production-dependencies:
+        dependency-type: "production"
     # Allow a maximum of 3 PRs. See https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#open-pull-requests-limit for more
     open-pull-requests-limit: 3
     # Have me (@yeskunall) review all updates automatically
