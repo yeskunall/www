@@ -56,7 +56,8 @@ const { className, icon: Icon } = icons[type];
   class="relative mb-16 mt-12 rounded border-l-2 border-solid px-8 py-6"
 >
   <div
-    class="absolute left-0 top-0 rounded-[50%] bg-white p-2 [transform:translate(calc(-50%_-_1.5px),_-50%)]"
+    class="absolute left-0 top-0 rounded-[100%] bg-white p-2"
+    style="transform: translate(calc(-50% - 1.5px), -50%);"
   >
     <Icon className={cn("h-5 w-5", className)} />
   </div>
