@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { RssIcon } from "lucide-react";
 
 import PageLayout from "@/layouts/base.astro";
 import PostPreview from "@/components/blog/post-preview.astro";
@@ -27,7 +28,7 @@ interface Props {
 const { page } = Astro.props;
 
 const meta = {
-  title: "Read Kunall’s blog",
+  title: "Read the blog",
   description: "Everything I’ve written over the years.",
 };
 
@@ -49,17 +50,20 @@ const paginationProps = {
 
 <PageLayout meta={meta}>
   <div class="mx-auto max-w-xl space-y-6">
-    <div>
-      <h3 class="text-xl font-medium leading-snug text-neutral-600">
-        Writing
-      </h3><p
-        class="mt-1.5 font-serif text-lg font-medium leading-snug text-neutral-900/60"
+    <div class="flex select-none items-center justify-between font-sans">
+      <h2 class="text-lg text-neutral-600">Posts</h2>
+      <a
+        class="flex items-center space-x-1.5 text-neutral-300 transition-colors hover:text-neutral-400"
+        href="/rss.xml"
       >
-        Everything I’ve written over the years. I mainly write about my life,
-        minimalism &amp; and the web.
-      </p>
+        <RssIcon className="h-4 w-4" />
+        <span>Follow via RSS</span>
+      </a>
     </div>
-    <div class="grid sm:grid-cols-[3fr_1fr]">
+    <p class="font-serif text-lg font-medium leading-snug text-neutral-900/60">
+      I mainly write about my life, minimalism &amp; the web
+    </p>
+    <div class="grid">
       <section aria-label="Paginated blog posts">
         <ul class="space-y-2 text-start">
           {
