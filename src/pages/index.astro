@@ -1,14 +1,6 @@
 ---
 import { Image } from "astro:assets";
-
-import CurrentTimeBadge from "@/components/current-time-badge.astro";
-import Deck from "@/components/deck.tsx";
-import ExtendedBio from "@/components/extended-bio.tsx";
-import LiteralClubIcon from "@/components/icons/literal-club.astro";
-import PageLayout from "@/layouts/Base.astro";
-import Trail from "@/components/trail.tsx";
-
-import { client, myBooksQuery } from "@/lib/literal-club";
+import PageLayout from "@/layouts/base.astro";
 import { cn } from "@/lib/utils";
 import { PROJECTS } from "@/data/constants";
 
