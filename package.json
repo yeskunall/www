@@ -16,7 +16,10 @@
     "@astrojs/react": "3.0.4",
     "@astrojs/rss": "3.0.0",
     "@astrojs/vercel": "5.1.0",
+    "@hookform/resolvers": "3.3.2",
     "@radix-ui/react-collapsible": "1.0.3",
+    "@radix-ui/react-label": "2.0.2",
+    "@radix-ui/react-slot": "1.0.2",
     "@radix-ui/react-tabs": "1.0.4",
     "@urql/core": "4.1.4",
     "astro": "3.4.0",
@@ -27,10 +30,12 @@
     "lucide-react": "0.290.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "7.47.0",
     "react-wrap-balancer": "1.1.0",
     "sharp": "0.32.6",
     "tailwind-merge": "1.14.0",
-    "tailwindcss-animate": "1.0.7"
+    "tailwindcss-animate": "1.0.7",
+    "zod": "3.22.4"
   },
   "devDependencies": {
     "@astrojs/check": "0.2.1",
