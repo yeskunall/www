@@ -1,9 +1,5 @@
 ---
-import { Image } from "astro:assets";
-
 import { cn } from "@/lib/utils";
-
-import myImage from "../../assets/logo.svg";
 ---
 
 <div
@@ -17,9 +13,5 @@ import myImage from "../../assets/logo.svg";
 >
 </div>
 <header class="my-10 flex select-none items-center">
-  <Image
-    class="h-14 w-14 rounded-full border-4 border-neutral-300/30 transition-transform hover:rotate-12 hover:border-neutral-300/40"
-    alt="A circular photo of the site’s logo"
-    src={myImage}
-  />
+  {/* Maybe something here (again) eventually */}
 </header>
