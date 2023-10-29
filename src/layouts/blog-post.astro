@@ -2,7 +2,7 @@
 import { UndoIcon } from "lucide-react";
 
 import BlogHero from "@/components/blog/hero.astro";
-import BaseLayout from "@/layouts/Base.astro";
+import BaseLayout from "@/layouts/base.astro";
 
 import { createOgImage } from "@/lib/og/create-og-image";
 import { getFormattedDate } from "@/utils";
@@ -55,7 +55,7 @@ const ogImage = createOgImage({
         class="inline-flex items-center justify-center space-x-3 rounded-3xl bg-neutral-100/70 px-5 py-3 transition-colors hover:bg-neutral-300/30"
         href="/writing"
       >
-        <UndoIcon strokeWidth={1.5} className="h-5 w-5 mr-1" />&nbsp;Blog
+        <UndoIcon strokeWidth={1.5} className="mr-1 h-5 w-5" />&nbsp;Blog
       </a>
     </div>
     <div id="blog-hero">
