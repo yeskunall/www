@@ -1,9 +1,23 @@
 ---
-import { Image } from "astro:assets";
-
 import { cn } from "@/lib/utils";
 
-import myImage from "../../assets/logo.svg";
+const TABS = [
+  {
+    id: "index",
+    name: "Index",
+    href: "/",
+  },
+  {
+    id: "writing",
+    name: "Blog",
+    href: "/writing",
+  },
+  {
+    id: "now",
+    name: "Now",
+    href: "/now",
+  },
+];
 ---
 
 <div
@@ -16,10 +30,19 @@ import myImage from "../../assets/logo.svg";
   aria-hidden="true"
 >
 </div>
-<header class="my-10 flex select-none items-center">
-  <Image
-    class="h-14 w-14 rounded-full border-4 border-neutral-300/30 transition-transform hover:rotate-12 hover:border-neutral-300/40"
-    alt="A circular photo of the site’s logo"
-    src={myImage}
-  />
+<header class="group my-8 select-none p-3" data-animate style="--stagger:24">
+  <nav
+    class="mx-auto flex items-center justify-around opacity-50 transition-opacity group-hover:opacity-70 sm:mb-6 sm:max-w-md"
+  >
+    {
+      TABS.map(item => (
+        <a
+          class="text-neutral-950/95 transition-colors hover:text-neutral-950/75 [&:not(:hover)]:text-neutral-950/30"
+          href={item.href}
+        >
+          {item.name}
+        </a>
+      ))
+    }
+  </nav>
 </header>

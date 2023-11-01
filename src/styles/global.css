@@ -5,12 +5,6 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Inter";
-  src: url("/fonts/inter-variable.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
   font-family: "Martian Mono";
   src: url("/fonts/martian-mono-variable.woff2") format("woff2");
   font-display: swap;
@@ -28,33 +22,22 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Sohne";
-  src: url("/fonts/sohne-subset.woff2") format("woff2");
-  font-display: swap;
-}
-
 html {
-  @apply h-full scroll-smooth;
+  @apply isolate touch-manipulation scroll-smooth hyphens-auto antialiased selection:bg-lime/30 selection:text-neutral-950/80;
 }
 
 html body {
-  @apply h-full touch-manipulation hyphens-auto bg-white px-8 pt-16 font-sans text-sm font-normal antialiased selection:bg-sky-100/95 selection:text-neutral-950/80;
+  @apply h-full px-8 pt-16 font-sans text-sm font-normal sm:px-20;
   text-rendering: optimizeLegibility;
 }
 
 @layer base {
   :root {
-    --font-display: "Inter";
+    --bg-secondary: #f8f8f8;
     --font-serif: "Newsreader";
     --leading: 24px;
-    --theme-text: rgba(237, 247, 248, 0.9);
-    --type-heading: 500 16px / var(--leading) var(--font-display);
-    --type-italic: 300 italic calc(1em + 1px) / normal var(--font-serif);
-  }
-
-  :where(h1, h2, h3, h4, h5, h6) {
-    font: var(--type-heading);
+    --text-secondary: #000;
+    --type-italic: 300 italic calc(1rem + 0.3px) / normal var(--font-serif);
   }
 
   :where(em, i) {
@@ -78,18 +61,6 @@ html body {
 
 .prose :where(h1, h2, h3, h4, h5, h6) a {
   @apply font-serif no-underline;
-}
-
-.prose a[data-footnote-ref] {
-  @apply text-stone-500;
-}
-
-.prose a[data-footnote-backref] {
-  @apply no-underline;
-}
-
-.prose section[data-footnotes] {
-  @apply mt-12 text-xs sm:text-sm;
 }
 
 .prose section[data-callout] p {

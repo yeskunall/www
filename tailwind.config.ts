@@ -7,26 +7,73 @@ module.exports = {
   theme: {
     extend: {
       animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "eye-movement": "eye-movement 12s infinite ease",
+        "rotate-head": "rotate-head 12s infinite ease",
         "slide-down": "slide-down 210ms cubic-bezier(0.3, 0, 0.5, 1)",
         "slide-up": "slide-up 210ms cubic-bezier(0.3, 0, 0.5, 1)",
       },
-      colors: {
-        textColor: "rgb(var(--theme-text) / <alpha-value>)",
+      backgroundColor: {
+        lime: "rgb(179 252 3 / 0.75)",
       },
       fontFamily: {
-        display: [
-          "Inter",
-          {
-            fontFeatureSettings:
-              // eslint-disable-next-line max-len
-              '"calt","case","clig","cpsp" 1,"cv01" 1,"cv02","cv03" 1,"cv04" 1,"dlig" 1,"kern","liga"',
-          },
-        ],
         mono: ["Martian Mono", ...fontFamily.mono],
         sans: ["Scto Grotesk A", ...fontFamily.sans],
         serif: ["Newsreader", ...fontFamily.serif],
       },
       keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "eye-movement": {
+          "0%": {
+            transform: "translateX(0px) translateY(0) scaleY(1)",
+          },
+          "20%": {
+            transform: "translateX(2px) translateY(0) scaleY(1)",
+          },
+          "30%": {
+            transform: "translateX(-2px) translateY(0) scaleY(1)",
+          },
+          "55%": {
+            transform: "translateX(0px) translateY(4px) scaleY(1)",
+          },
+          "65%": {
+            transform: "translateX(0px) translateY(0px) scaleY(0.5)",
+          },
+          "70%": {
+            transform: "translateX(0px) translateY(0px) scaleY(1)",
+          },
+          "100%": {
+            transform: "translateX(0px) translateY(0px) scaleY(1)",
+          },
+        },
+        "rotate-head": {
+          "0%": {
+            "box-shadow": "inset 2px -2px 3px var(--text-secondary)",
+          },
+          "20%": {
+            "box-shadow": "inset 4px -2px 3px var(--text-secondary)",
+          },
+          "30%": {
+            "box-shadow": "inset 2px -2px 3px var(--text-secondary)",
+          },
+          "55%": {
+            "box-shadow": "inset 4px 1px 3px var(--text-secondary)",
+          },
+          "65%": {
+            "box-shadow": "inset 2px -2px 3px var(--text-secondary)",
+          },
+          "100%": {
+            "box-shadow": "inset 2px -2px 3px var(--text-secondary)",
+          },
+        },
         "slide-down": {
           from: {
             height: "0",
