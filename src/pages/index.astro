@@ -88,20 +88,24 @@ const books = await client
   </section>
   <section
     id="work"
-    class="my-6 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
+    class="my-6 text-base leading-relaxed -tracking-[0.01em] text-neutral-900/75"
     data-animate
     style="--stagger:5"
   >
-    <h2 class="select-none font-display text-lg font-medium text-neutral-600">
-      Work
-    </h2>
-    <p class="my-3">
-      In my previous roles, I built bespoke solutions for brands like <em
-        >CareSource</em
-      >, <em>Corning Inc.</em>, <em>Electronic Arts</em>, <em>GSK plc</em>, <em
-        >Haleon plc</em
-      >, <em>Nationwide Mutual Insurance Company</em>, among several others.
-    </p>
+    <h2 class="mb-3 select-none font-sans text-neutral-600">Experience</h2>
+    <Experience client:load />
+    <a
+      class="mt-2.5 flex cursor-pointer items-center gap-x-1.5 text-neutral-400 transition-colors hover:text-neutral-500"
+      href="https://read.cv/yeskunall"
+      rel="nofollow noopener noreferrer"
+    >
+      CV{" "}
+      <span
+        class="flex h-3.5 w-3.5 items-center justify-center rounded-sm bg-lime p-0.5"
+      >
+        <MoveUpRightIcon className="text-neutral-800" />
+      </span>
+    </a>
   </section>
   <section
     id="recent"
