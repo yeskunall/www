@@ -14,7 +14,7 @@ export const EXPERIENCES = [
     role: "Senior Software Engineer",
     range: "2021 - 2023",
     description:
-      "As the most senior engineer on the Support team, I mentored ~10 juniors, offering support through pair programming, and delivering constructive feedback during code, while maintaining the highest CSAT on the team & successfully keeping up with team OKRs",
+      "As the most senior engineer on the Support team, I mentored ~10 juniors, offering support through pair programming, and delivering constructive feedback during code reviews, while maintaining the highest CSAT on the team & successfully keeping up with team OKRs",
   },
   {
     company: "Case IQ",
