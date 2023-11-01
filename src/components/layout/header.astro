@@ -1,5 +1,23 @@
 ---
 import { cn } from "@/lib/utils";
+
+const TABS = [
+  {
+    id: "index",
+    name: "Index",
+    href: "/",
+  },
+  {
+    id: "writing",
+    name: "Blog",
+    href: "/writing",
+  },
+  {
+    id: "now",
+    name: "Now",
+    href: "/now",
+  },
+];
 ---
 
 <div
@@ -12,6 +30,19 @@ import { cn } from "@/lib/utils";
   aria-hidden="true"
 >
 </div>
-<header class="my-10 flex select-none items-center">
-  {/* Maybe something here (again) eventually */}
+<header class="group my-8 select-none p-3" data-animate style="--stagger:24">
+  <nav
+    class="mx-auto flex items-center justify-around opacity-50 transition-opacity group-hover:opacity-70 sm:mb-6 sm:max-w-md"
+  >
+    {
+      TABS.map(item => (
+        <a
+          class="text-neutral-950/95 transition-colors hover:text-neutral-950/75 [&:not(:hover)]:text-neutral-950/30"
+          href={item.href}
+        >
+          {item.name}
+        </a>
+      ))
+    }
+  </nav>
 </header>
