@@ -1,90 +1,70 @@
 ---
 import { Image } from "astro:assets";
+import { MoveUpRightIcon } from "lucide-react";
+
+import Experience from "@/components/experience.tsx";
+
 import PageLayout from "@/layouts/base.astro";
+
 import { cn } from "@/lib/utils";
-import { PROJECTS } from "@/data/constants";
-
-import type { ReadingState } from "@/data/shared";
-
-const books = await client
-  .query(myBooksQuery, {})
-  .toPromise()
-  .then(result => {
-    const { myReadingStates } = result.data;
-
-    return (myReadingStates as Array<ReadingState>)
-      .filter(
-        state =>
-          state.status === "IS_READING" || state.status === "WANTS_TO_READ",
-      )
-      .map(state => state.book)
-      .slice(0, 10);
-  });
+import { PROJECTS, SOCIALS } from "@/data/constants";
 ---
 
 {/* eslint-disable max-len */}
 
-<PageLayout meta={{ title: "About Kunall Banerjee" }}>
+<PageLayout meta={{ title: "Kunall Banerjee" }}>
   <section
     id="main"
-    class="my-1 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
+    class="text-base leading-relaxed -tracking-[0.01em] text-neutral-700/90"
     data-animate
     style="--stagger:1.5"
   >
-    <h1
-      class="mb-4 select-none font-serif text-4xl font-normal leading-snug tracking-tighter text-neutral-950/95"
-    >
-      <Trail open={true} client:only="react">
-        <span class="block">Digital craftsman</span>
-        <span class="block">building internet</span>
-        <span class="block">software.</span>
-      </Trail>
-    </h1>
-    <div class="mt-1 text-neutral-500">
-      <CurrentTimeBadge />
-    </div>
-    <p class="my-3 text-neutral-950/90">
-      Hey, I’m Kunall Banerjee, and I like to create&nbsp;<strong
-        class="font-medium">delightful</strong
+    <div class="relative flex items-center space-x-1.5">
+      <div
+        class={cn(
+          "before:animate-eye-movement before:content-[''] before:rounded-[100%] before:h-[3px] before:w-[3px] before:absolute before:top-[10px] before:left-[10px] before:[background:#000]",
+          "animate-rotate-head block w-6 h-6 rounded-[100%] [border:1px_solid_#000] [box-shadow:inset_2px_-2px_3px_#000] relative [background:#f8f8f8] ",
+          "after:animate-eye-movement after:content-[''] after:h-[3px] after:w-[3px] after:rounded-[100%] after:[background:#000] after:absolute after:top-[10px] after:left-[18px]",
+        )}
       >
-      <em> experiences</em> &amp; <em>interfaces</em>. <em>Obsessed</em> with details.&nbsp;<em
-        >Minimalist</em
-      >, in all aspects of life. <em>Outspoken</em>, yet I’m mindful of the
-      effect it has on others.
+      </div>
+      <h1 class="flex items-center gap-x-1.5 font-sans">Kunall Banerjee</h1>
+    </div>
+    <p class="mt-3 text-neutral-400">
+      Digital craftsman, building modest software &amp; websites on the internet
     </p>
-    <ExtendedBio client:visible>
-      <p class="my-3">
-        Born in Calcutta on 21<sup>st</sup> April, 1996. I spent most of my childhood
-        and early teens moving from place to place. In that time, I lived in 7 different
-        cities, and attended 8 different schools. Moved to Canada once I turned 18,
-        and I have lived a large part of the last decade in Ottawa. These days, I
-        split my time living in East-coast Canada and East-coast India.
+    <p class="my-3 text-neutral-900/75">
+      I like to create delightful
+      <em> experiences</em> &amp; <em>interfaces</em>. <em>Obsessed</em> with
+      details.&nbsp;<em>Minimalist</em>, in all aspects of life. <em
+        >Outspoken</em
+      >, yet I’m mindful of the effect it has on others.
+    </p>
+    <p class="my-3 text-neutral-900/75">
+      Usually based in Ottawa, Canada where I rent a studio apartment.
+      Frequently travel to Mumbai, India where I own a home next to the hills.
+    </p>
+    <div>
+      <p class="flex items-center justify-evenly">
+        {
+          SOCIALS.map(item => (
+            <>
+              <a
+                class="text-neutral-400 underline decoration-lime-300 underline-offset-2 transition-colors hover:text-neutral-500 hover:decoration-lime-400"
+                href={item.href}
+                rel="nofollow noopener noreferrer"
+              >
+                {item.title}
+              </a>
+              <span class="last:hidden">/</span>
+            </>
+          ))
+        }
       </p>
-      <p class="my-3">
-        Growing up, I was always surrounded by highly competitive &amp;
-        goal-oriented people, which led me to be the same. From 2009 up until
-        2021, I moved <em>fast</em>, spending almost my entire time focusing on
-        my goals. Finished high school in early 2014. Started university in
-        mid-2014. Took a year off from university in 2017 to work with small to
-        mid-size startups. Graduated in April, 2019. Started working full-time
-        in May, 2019. Became a permanent resident (PR) of Canada in 2021. To be
-        honest, I was only doing these things because that’s what was expected
-        of me.
-      </p>
-      <p class="my-3">
-        During the pandemic, I had a moment of self-introspection, and came to
-        the conclusion that my achievements only gave me a glimpse of happiness,
-        and that every time I reached a goal, I just made another goal that
-        wasn’t going to lead me to freedom. These days, my only goal is to <em
-          >slow down</em
-        >. As cliché as it sounds, I’m taking the road less travelled. Trying to
-        be <em>more present</em> in the moment. Aggresively reducing cruft in my
-        life: that includes the people I let into my life, too. I intentionally make
-        it hard for people to reach me. Those that truly care still find a way, the
-        others don’t. If we’ve ever interacted then know this: we’re not friends,
-        nor enemies; just strangers who shared some memories.
-      </p>
-    </ExtendedBio>
+    </div>
+    <hr
+      class="my-8 h-3 border-y-0 border-lime-300 [border-left:.75rem_solid_rgb(179_252_3_/_1)]"
+    />
   </section>
   <section
     id="work"
@@ -109,102 +89,74 @@ const books = await client
   </section>
   <section
     id="recent"
-    class="full-bleed mx-auto my-6 max-w-2xl text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
+    class="mx-auto my-6 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
     data-animate
     style="--stagger:12"
   >
-    <div class="grid grid-cols-1 place-items-center gap-x-10 sm:grid-cols-3">
-      <div class="mb-9 flex flex-col gap-3 sm:col-span-2 sm:mb-0">
-        <h2
-          class="select-none font-display text-lg font-medium text-neutral-600"
-        >
-          Projects
-        </h2>
+    <div class="grid grid-cols-1 place-items-center gap-x-10">
+      <div class="flex flex-col gap-3">
+        <h2 class="select-none font-sans text-neutral-600">Projects</h2>
         {
           PROJECTS.map(project => (
             <div class="flex items-center gap-3">
-              <div class="relative h-10 w-10 overflow-hidden rounded">
+              <div class="relative h-10 w-10 self-start overflow-hidden rounded">
                 {project.logo && (
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore: TS uses the last member of the union to suggest props for JSX,
-                // and Astro types the props for local images first, so you will always get this
-                // error till they fix the types.
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore: TS uses the last member of the union to suggest props for JSX,
+                  // and Astro types the props for local images first, so you will always get this
+                  // error till they fix the types.
                   <Image src={project.logo} alt="logo" width={40} />
                 )}
               </div>
-              <div class="flex flex-1 flex-col">
-                <a
-                  class="flex flex-col space-y-1.5 font-display font-normal text-neutral-950/80"
-                  href={project.href}
-                >
-                  <h3 class="text-lg">{project.name}</h3>
-                  <p class="max-w-[80%] font-sans text-sm text-neutral-700/60">
+              <div class="flex flex-1 flex-col font-sans">
+                <div class="flex flex-col space-y-1.5 font-normal text-neutral-950/80">
+                  <h3 class="text-neutral-700">{project.name}</h3>
+                  <p class="max-w-[80%] text-sm text-neutral-500">
                     {project.description}
                   </p>
-                </a>
+                  {project.href && (
+                    <a
+                      class="mt-1.5 flex cursor-pointer items-center gap-x-1.5 text-sm text-neutral-400 transition-colors hover:text-neutral-500"
+                      href={project.href}
+                      rel="nofollow noopener noreferrer"
+                    >
+                      View{" "}
+                      <span class="flex h-3.5 w-3.5 items-center justify-center rounded-sm bg-lime p-0.5">
+                        <MoveUpRightIcon className="text-neutral-800" />
+                      </span>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           ))
         }
       </div>
-      <div class="relative h-full w-full">
-        <div
-          class="relative m-auto mt-5 flex h-72 w-48 flex-col items-center sm:col-span-1 sm:h-full sm:w-full sm:flex-none"
-        >
-          <div
-            class="absolute left-1/2 top-2/3 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300/60 blur-[90px]"
-          >
-          </div>
-          <Deck books={books} client:only="react" />
-        </div>
-        <div
-          class={cn(
-            "relative max-w-[40%] sm:max-w-[70%] mx-auto cursor-pointer z-30 mt-4 flex items-center justify-center rounded-full border-2 border-neutral-900/10 py-1.5",
-            "hover:bg-sky-50 transition-all hover:border-none hover:text-black/95 hover:scale-95 hover:translate-y-[1px]",
-          )}
-        >
-          <a
-            class={cn(
-              "inline-flex select-none items-center font-display font-medium text-neutral-950/70 scale-90",
-            )}
-            href="https://literal.club/yeskunall"
-          >
-            <LiteralClubIcon />&nbsp; Reading list
-          </a>
-        </div>
-      </div>
     </div>
   </section>
   <section
     id="connect"
-    class="my-10 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90 sm:mb-10 sm:mt-24"
+    class="my-6 text-base leading-relaxed -tracking-[0.01em] text-neutral-900/75"
     data-animate
     style="--stagger:18"
   >
-    <h2 class="select-none font-display text-lg font-medium text-neutral-600">
-      Connect
-    </h2>
+    <h2 class="select-none font-sans text-neutral-600">Connect</h2>
     <p class="my-3">
-      These days I get a lot of emails from founders or startups, or from
-      strangers replying to my blog posts.
+      I try my best to get back to everyone, but sometimes I get too busy with
+      life. Please don’t feel bad if I don’t get back to you in time, or not at
+      all.
     </p>
-    <p class="my-3 indent-6">
-      If I don’t think your product is interesting, or if you just write me a
-      one-liner, I will most likely not respond. Please don’t feel bad if I
-      don’t get back to you in time, or not at all.
-    </p>
-    <p class="my-3 indent-6">
-      But, please: don’t be a stranger. I’d love to hear from you regardless.
-      Here’s my public email address:<br />
+    <p class="my-3">
+      Don’t be a stranger, though. I’d love to hear from you regardless. Here’s
+      my public email address:<br />
       <span class="my-5 inline-flex w-full items-center justify-center"
-        ><em><a href="mailto:hey@kimchiii.space">hey@kimchiii.space</a></em
+        ><em
+          ><a
+            class="text-neutral-400 transition-colors hover:text-neutral-500"
+            href="mailto:hey@kimchiii.space">hey@kimchiii.space</a
+          ></em
         ></span
       >
-    </p>
-    <p class="my-3 indent-6">
-      If you somehow find me on other platforms, <strong
-        >please do not message me on those accounts</strong
-      >. You will be ignored.
     </p>
   </section>
 </PageLayout>
