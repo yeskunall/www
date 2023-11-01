@@ -1,4 +1,5 @@
 ---
+import { Balancer } from "react-wrap-balancer";
 import { getFormattedDate } from "@/utils";
 
 import type { CollectionEntry } from "astro:content";
@@ -33,7 +34,7 @@ const postDate = getFormattedDate(date, {
     <Element
       class="-mt-0.5 break-words font-sans text-neutral-950/60 transition-colors group-hover:text-neutral-950/70"
     >
-      {post.data.title}
+      <Balancer>{post.data.title}</Balancer>
     </Element>
     {
       withDesc && (
