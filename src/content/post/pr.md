@@ -65,7 +65,7 @@ In the years leading up to becoming a permanent resident (_PR_), the mandatory
 expenses I’ve had to incur in Canada are:
 
 - ~**$CA129,000** in tuition fee
-- ~**$CA196,00** in living expenses (et al)
+- ~**$CA196,000** in living expenses (et al)
 - ~$**CA$1,700** in PR application fee (et al)
 
 Total: ~$**CA327,000** in 7 years.
