@@ -1,22 +1,70 @@
 ---
-const year = new Date().getFullYear();
+const TABS = [
+  {
+    id: "index",
+    name: "Index",
+    href: "/",
+  },
+  {
+    id: "writing",
+    name: "Blog",
+    href: "/writing",
+  },
+  {
+    id: "now",
+    name: "Now",
+    href: "/now",
+  },
+  {
+    id: "sitemap",
+    name: "Sitemap",
+    href: "/sitemap-index.xml",
+  },
+];
 ---
 
 {/* eslint-disable max-len */}
 
-<footer class="group relative mb-8 mt-4 select-none p-6">
-  <div
-    class="relative mx-auto mb-4 mt-12 text-lg opacity-60 transition-opacity group-hover:opacity-80 sm:mb-6 sm:max-w-md"
+<footer class="group my-8 select-none p-3">
+  <nav
+    class="mx-auto flex items-center justify-around opacity-50 transition-opacity group-hover:opacity-70 sm:mb-6 sm:max-w-md"
   >
-    <p class="font-serif text-black/95">
-      Keep up with me via <a
-        class="underline decoration-neutral-300/30 underline-offset-[2.5px] transition-colors hover:decoration-neutral-300/50"
-        href="/rss.xml"><em class="font-semibold">RSS</em></a
-      >. Want to <em class="font-medium">talk</em> to me directly? I’d love to
-      <a
-        class="underline decoration-neutral-300/30 underline-offset-[2.5px] transition-colors hover:decoration-neutral-300/50"
-        href="mailto:hey@kimchiii.space"><em class="font-semibold">hear</em></a
-      > from you.
-    </p>
-  </div>
+    {
+      TABS.map(item => (
+        <a
+          class="text-neutral-950/95 transition-colors hover:text-neutral-950/75 [&:not(:hover)]:text-neutral-950/30"
+          href={item.href}
+        >
+          {item.name}
+        </a>
+      ))
+    }
+  </nav>
 </footer>
+
+<style>
+  @keyframes enter {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  [data-animate] {
+    --delay: 120ms;
+    --stagger: 0;
+    --start: 0ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      animation: enter 0.6s both;
+      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+    }
+  }
+</style>

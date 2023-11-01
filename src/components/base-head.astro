@@ -3,9 +3,7 @@ import { siteConfig } from "@/site-config";
 
 import "../styles/global.css";
 
-import type { SiteMeta } from "@/data/site-meta";
-
-type Props = SiteMeta;
+import type { SiteMeta as Props } from "@/data/site-meta";
 
 const { title, description, ogImage, articleDate } = Astro.props;
 
@@ -26,13 +24,7 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
-<!-- Preload local fonts -->
-<link
-  href="/fonts/inter-variable.woff2"
-  rel="preload"
-  as="font"
-  crossorigin="anonymous"
-/>
+{/* Preload local fonts */}
 <link
   href="/fonts/martian-mono-variable.woff2"
   rel="preload"
@@ -51,14 +43,8 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
   as="font"
   crossorigin="anonymous"
 />
-<link
-  href="/fonts/sohne-subset.woff2"
-  rel="preload"
-  as="font"
-  crossorigin="anonymous"
-/>
 
-<!-- Mastodon verification -->
+{/* Mastodon verification */}
 <link rel="me" href="https://mastodon.social/@yeskunall" />
 
 <title>{title}</title>

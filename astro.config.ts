@@ -20,7 +20,6 @@ const contentSecurityPolicy = `
   connect-src *;
   default-src blob: data: 'self';
   font-src 'self';
-  form-action 'self';
   frame-ancestors 'none';
   frame-src 'none';
   ${/* eslint-disable-next-line */ ""}
@@ -28,7 +27,7 @@ const contentSecurityPolicy = `
   manifest-src 'self';
   media-src 'self';
   object-src 'none';
-  sandbox allow-popups allow-same-origin allow-scripts;
+  sandbox allow-forms allow-popups allow-same-origin allow-scripts;
   script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com;
   script-src-elem 'self' 'unsafe-eval' 'unsafe-inline';
   style-src 'self' 'unsafe-inline';
