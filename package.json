@@ -15,7 +15,7 @@
     "@astrojs/prefetch": "0.4.1",
     "@astrojs/react": "3.0.4",
     "@astrojs/rss": "3.0.0",
-    "@astrojs/vercel": "5.1.0",
+    "@astrojs/vercel": "5.2.0",
     "@hookform/resolvers": "3.3.2",
     "@radix-ui/react-accordion": "1.1.2",
     "@radix-ui/react-collapsible": "1.0.3",
