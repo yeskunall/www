@@ -10,14 +10,15 @@ interface PaginationLink {
 
 type ReadingState = {
   status: string;
-  __typename: "ReadingState";
   book: {
+    authors: {
+      id: string;
+      name: string;
+    }[];
     cover: string;
-    gradientColors: [string];
     slug: string;
     subtitle: string;
     title: string;
-    __typename: "Book";
   };
 };
 

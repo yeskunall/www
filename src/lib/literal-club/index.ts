@@ -13,10 +13,12 @@ export const client = new Client({
 
 const BookParts = gql`
   fragment BookParts on Book {
+    authors {
+      id
+      name
+    }
     cover
-    gradientColors
     slug
-    subtitle
     title
   }
 `;
