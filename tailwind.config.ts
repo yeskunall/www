@@ -19,7 +19,7 @@ module.exports = {
       },
       fontFamily: {
         mono: ["Martian Mono", ...fontFamily.mono],
-        sans: ["Scto Grotesk A", ...fontFamily.sans],
+        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
         serif: ["Newsreader", ...fontFamily.serif],
       },
       keyframes: {
