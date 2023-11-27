@@ -1,22 +1,22 @@
 ---
 import type { PaginationLink } from "@/data/shared";
 
-interface Props {
+type Props = {
   prevUrl?: PaginationLink;
   nextUrl?: PaginationLink;
-}
+};
 
-const { prevUrl, nextUrl } = Astro.props;
+const { nextUrl, prevUrl } = Astro.props;
 ---
 
 {
-  (prevUrl || nextUrl) && (
-  // NOTE(yeskunall): I could over-engineer this and pass the `pageSize` as a
-  // prop to then stagger using the variable, or I could go grugbrain.dev and
-  // just set it to `2*pageSize` since `pageSize` is 5. There is a trade-off, that is,
-  // if I ever _do_ change the `pageSize`, I’ll have to come and change the
-  // `stagger` amount here too. But right now, the GRUG BRAIN DEVELOPER IN ME
-  // LIKES THIS.
+  (nextUrl || prevUrl) && (
+    // NOTE(yeskunall): I could over-engineer this and pass the `pageSize` as a
+    // prop to then stagger using the variable, or I could go grugbrain.dev and
+    // just set it to `2 * pageSize` since `pageSize` is 5. There is a trade-off, that is,
+    // if I ever _do_ change the `pageSize`, I’ll have to come and change the
+    // `stagger` amount here too. But right now, the GRUG BRAIN DEVELOPER IN ME
+    // LIKES THIS.
     <nav
       class="mt-8 flex items-center gap-x-4"
       data-animate
@@ -24,7 +24,7 @@ const { prevUrl, nextUrl } = Astro.props;
     >
       {prevUrl && (
         <a
-          class="me-auto !cursor-pointer py-2 font-serif text-neutral-900/70"
+          class="me-auto !cursor-pointer py-2 font-serif text-neutral-50/70"
           href={prevUrl.url}
           rel="prefetch"
         >
@@ -34,7 +34,7 @@ const { prevUrl, nextUrl } = Astro.props;
       )}
       {nextUrl && (
         <a
-          class="ms-auto !cursor-pointer py-2 font-serif text-neutral-900/70"
+          class="ms-auto py-2 font-serif text-neutral-50/70"
           href={nextUrl.url}
           rel="prefetch"
         >

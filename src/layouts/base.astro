@@ -34,9 +34,11 @@ const {
     />
     <ViewTransitions fallback="animate" />
   </head>
-  <body>
+  <body
+    class="container mx-auto p-8 [background-size:auto,_auto,_21px_21px,_21px_21px]"
+  >
     <SkipLink />
-    <main class="wrapper">
+    <main class="md:max-w-[420px]">
       <Header />
       <slot />
       <Footer />
