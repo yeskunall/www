@@ -21,18 +21,16 @@ const postDate = getFormattedDate(date, {
 });
 ---
 
-{/* eslint-disable max-len */}
-
 <div class="group my-1.5 w-full cursor-pointer" data-animate style={style}>
   <a href={`/writing/${post.slug}/`} class="text-base" rel="prefetch">
     <time
       datetime={datetime}
-      class="mb-1.5 select-none self-start font-serif text-neutral-950 transition-colors group-hover:text-neutral-950/70 sm:mb-3 sm:text-right sm:text-sm"
+      class="mb-1.5 select-none self-start font-serif text-neutral-50/50 transition-colors group-hover:text-neutral-50/70 sm:mb-3 sm:text-right sm:text-sm"
     >
       {postDate}
     </time>
     <Element
-      class="-mt-0.5 break-words font-sans text-neutral-950/60 transition-colors group-hover:text-neutral-950/70"
+      class="-mt-0.5 break-words font-sans text-neutral-50/60 transition-colors group-hover:text-neutral-50/70"
     >
       <Balancer>{post.data.title}</Balancer>
     </Element>
