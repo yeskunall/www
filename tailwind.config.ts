@@ -14,9 +14,6 @@ module.exports = {
         "slide-down": "slide-down 210ms cubic-bezier(0.3, 0, 0.5, 1)",
         "slide-up": "slide-up 210ms cubic-bezier(0.3, 0, 0.5, 1)",
       },
-      backgroundColor: {
-        lime: "rgb(179 252 3 / 0.75)",
-      },
       fontFamily: {
         mono: ["Martian Mono", ...fontFamily.mono],
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
