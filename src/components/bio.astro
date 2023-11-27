@@ -1,0 +1,46 @@
+---
+import Gallery from "./gallery.astro";
+
+import { PICTURES } from "@/data/constants";
+---
+
+<div class="my-4 text-sm">
+  <h2 class="mb-1.5 select-none font-sans font-medium text-neutral-50/30">
+    Bio
+  </h2>
+  <p class="my-3 hyphens-none font-sans text-neutral-50/60">
+    I was born in Calcutta on 21<sup>st</sup> April, 1996. I spent most of my
+    childhood and early teens moving from place to place. In that time, I lived
+    in 7 different cities, and attended 8 different schools. After high school,
+    I initially wanted to go to art school but quickly pivoted towards
+    engineering.
+  </p>
+  <p class="my-3 hyphens-none font-sans text-neutral-50/60">
+    In 2014, I moved to Canada to pursue software engineering. Since then, I
+    have lived a large part of the last decade in Ottawa. These days, I split my
+    time living in East-coast Canada and East-coast India.
+    <br />
+    <span class="my-1.5 inline-block text-xs text-neutral-50/80"
+      ><span class="font-medium">Extras</span>: I became a permanent resident of
+      Canada in 2021</span
+    >
+  </p>
+  <p class="my-3 hyphens-none font-sans text-neutral-50/60">
+    After quitting social media, I’m now slowly reclaiming the time lost
+    doom-scrolling by picking up new habits—like baking, and reading books—at
+    times improving my cooking skills.
+  </p>
+  <p class="my-3 hyphens-none font-sans text-neutral-50/60">
+    I like to seek discomfort, do difficult things, but I also believe in taking
+    time to relax and introspect. I’m a slow thinker, and tend to procrastinate
+    till the last minute.
+  </p>
+  <div class="my-2.5">
+    <Gallery photos={PICTURES} />
+  </div>
+  <p class="my-3 hyphens-none font-sans text-neutral-50/60">
+    II end up saying <em>no</em> to most things in life. I’m not worried about
+    the <strong class="font-medium">FOMO</strong>. I add to the silence only if
+    it makes sense.
+  </p>
+</div>
