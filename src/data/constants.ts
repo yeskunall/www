@@ -1,4 +1,12 @@
-/* eslint-disable max-len */
+import { ArrowUpRight, Copy } from "@phosphor-icons/react";
+
+import type { ImageMetadata } from "astro";
+
+import gelato from "../assets/dcim/gelato-ottawa.jpg";
+import hotpot from "../assets/dcim/hotpot.jpg";
+import wagyu from "../assets/dcim/famu-wagyu.jpeg";
+
+export type Picture = { image: ImageMetadata; alt: string };
 
 export const EXPERIENCES = [
   {
@@ -22,6 +30,21 @@ export const EXPERIENCES = [
     range: "2019 - 2021",
     description:
       "As a Solutions Engineer, I built bespoke solutions for brands like CareSource, Corning Inc., Electronic Arts, GSK plc, Haleon plc, among several others. Drove significant business advancements by taking ownership of projects, aiding the team in achieving $1MM in revenue",
+  },
+];
+
+export const PICTURES: Picture[] = [
+  {
+    image: gelato,
+    alt: "Pistachio gelato I had in downtown Ottawa",
+  },
+  {
+    image: hotpot,
+    alt: "Hotpot with friends in the cold winters of Canada",
+  },
+  {
+    image: wagyu,
+    alt: "An assortment of wagyu (beef) from Japan and iberico (pork) from Portugal",
   },
 ];
 
@@ -49,18 +72,33 @@ export const PROJECTS = [
 
 export const SOCIALS = [
   {
+    name: "Email",
+    href: "mailto:hey@kimchiiii.space",
+    title: "Email",
+    icon: Copy,
+  },
+  {
     name: "GitHub",
     href: "https://github.com/yeskunall",
     title: "Code",
+    icon: ArrowUpRight,
   },
   {
     name: "Literal*",
     href: "https://literal.club/yeskunall",
     title: "Book shelf",
+    icon: ArrowUpRight,
   },
   {
     name: "Rep.ly",
     href: "https://rep.ly/yeskunall",
-    title: "Q&A",
+    title: "FAQ",
+    icon: ArrowUpRight,
+  },
+  {
+    name: "CV",
+    href: "https://read.cv/yeskunall",
+    title: "CV",
+    icon: ArrowUpRight,
   },
 ];
