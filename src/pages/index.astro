@@ -1,21 +1,31 @@
 ---
-import { Image } from "astro:assets";
-import { MoveUpRightIcon } from "lucide-react";
+import { FramerLogo, FigmaLogo } from "@phosphor-icons/react";
 
-import Experience from "@/components/experience.tsx";
-
+import Bio from "@/components/bio.astro";
+import Broadly from "@/components/broadly.astro";
+import Contact from "@/components/contact.astro";
+import Currently from "@/components/currently.astro";
 import PageLayout from "@/layouts/base.astro";
+import InfiniteScroller from "@/components/infinite-scroller.astro";
+
+import {
+  AstroLogo,
+  NextLogo,
+  NodeLogo,
+  PostgresLogo,
+  RadixLogo,
+  ReactLogo,
+  RoRLogo,
+  TailwindLogo,
+} from "@/components/icons";
 
 import { cn } from "@/lib/utils";
-import { PROJECTS, SOCIALS } from "@/data/constants";
 ---
 
-{/* eslint-disable max-len */}
-
-<PageLayout meta={{ title: "Kunall Banerjee" }}>
+<PageLayout meta={{ title: "Kunall Banerjee / @yeskunall" }}>
   <section
     id="main"
-    class="text-base leading-relaxed -tracking-[0.01em] text-neutral-700/90"
+    class="leading-relaxed -tracking-[0.01em] text-neutral-700/90"
     data-animate
     style="--stagger:1.5"
   >
@@ -28,136 +38,95 @@ import { PROJECTS, SOCIALS } from "@/data/constants";
         )}
       >
       </div>
-      <h1 class="flex items-center gap-x-1.5 font-sans">Kunall Banerjee</h1>
+      <h1
+        class="flex items-center gap-x-1.5 font-sans text-[18px] font-medium tracking-[-1px] text-lime-50/50"
+      >
+        Kunall Banerjee
+      </h1>
     </div>
-    <p class="mt-3 text-neutral-400">
+    <p
+      class="mt-3 hyphens-none font-serif text-[30px] leading-[120%] tracking-[-1px] text-neutral-50/95"
+    >
       Digital craftsman, building modest software &amp; websites on the internet
     </p>
-    <p class="my-3 text-neutral-900/75">
+    <p class="my-3 hyphens-none font-sans text-neutral-50/75">
       I like to create delightful
       <em> experiences</em> &amp; <em>interfaces</em>. <em>Obsessed</em> with
       details.&nbsp;<em>Minimalist</em>, in all aspects of life. <em
         >Outspoken</em
       >, yet I’m mindful of the effect it has on others.
     </p>
-    <p class="my-3 text-neutral-900/75">
-      Usually based in Ottawa, Canada where I rent a studio apartment.
-      Frequently travel to Mumbai, India where I own a home next to the hills.
-    </p>
-    <div>
-      <p class="flex items-center justify-evenly">
-        {
-          SOCIALS.map(item => (
-            <>
-              <a
-                class="text-neutral-400 underline decoration-lime-300 underline-offset-2 transition-colors hover:text-neutral-500 hover:decoration-lime-400"
-                href={item.href}
-                rel="nofollow noopener noreferrer"
-              >
-                {item.title}
-              </a>
-              <span class="last:hidden">/</span>
-            </>
-          ))
-        }
-      </p>
+    <div class="mt-10">
+      <Currently />
+      <Broadly />
     </div>
     <hr
       class="my-8 h-3 border-y-0 border-lime-300 [border-left:.75rem_solid_rgb(179_252_3_/_1)]"
     />
   </section>
-  <section
-    id="work"
-    class="my-6 text-base leading-relaxed -tracking-[0.01em] text-neutral-900/75"
-    data-animate
-    style="--stagger:5"
-  >
-    <h2 class="mb-3 select-none font-sans text-neutral-600">Experience</h2>
-    <Experience client:load />
-    <a
-      class="mt-2.5 flex cursor-pointer items-center gap-x-1.5 text-neutral-400 transition-colors hover:text-neutral-500"
-      href="https://read.cv/yeskunall"
-      rel="nofollow noopener noreferrer"
-    >
-      CV{" "}
-      <span
-        class="flex h-3.5 w-3.5 items-center justify-center rounded-sm bg-lime p-0.5"
-      >
-        <MoveUpRightIcon className="text-neutral-800" />
-      </span>
-    </a>
-  </section>
-  <section
-    id="recent"
-    class="mx-auto my-6 text-base leading-relaxed -tracking-[0.01em] text-neutral-950/90"
-    data-animate
-    style="--stagger:12"
-  >
-    <div class="grid grid-cols-1 place-items-center gap-x-10">
-      <div class="flex flex-col gap-3">
-        <h2 class="select-none font-sans text-neutral-600">Projects</h2>
-        {
-          PROJECTS.map(project => (
-            <div class="flex items-center gap-3">
-              <div class="relative h-10 w-10 self-start overflow-hidden rounded">
-                {project.logo && (
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore: TS uses the last member of the union to suggest props for JSX,
-                  // and Astro types the props for local images first, so you will always get this
-                  // error till they fix the types.
-                  <Image src={project.logo} alt="logo" width={40} />
-                )}
-              </div>
-              <div class="flex flex-1 flex-col font-sans">
-                <div class="flex flex-col space-y-1.5 font-normal text-neutral-950/80">
-                  <h3 class="text-neutral-700">{project.name}</h3>
-                  <p class="max-w-[80%] text-sm text-neutral-500">
-                    {project.description}
-                  </p>
-                  {project.href && (
-                    <a
-                      class="mt-1.5 flex cursor-pointer items-center gap-x-1.5 text-sm text-neutral-400 transition-colors hover:text-neutral-500"
-                      href={project.href}
-                      rel="nofollow noopener noreferrer"
-                    >
-                      View{" "}
-                      <span class="flex h-3.5 w-3.5 items-center justify-center rounded-sm bg-lime p-0.5">
-                        <MoveUpRightIcon className="text-neutral-800" />
-                      </span>
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))
-        }
-      </div>
+  <section class="text-sm" data-animate style="--stagger:3">
+    <p class="my-3 hyphens-none font-sans text-neutral-50/60">
+      I’m a designer &amp; developer inspired by the <em>minimalist movement</em
+      > and
+      <em>wabi-sabi</em>
+       philosophy, as characterized by the austerity, modesty, and simplicity of
+      my work.
+    </p>
+    <p class="my-3 hyphens-none font-sans text-neutral-50/60">
+      I’m used to working in fast-paced environments, collaborating with
+      interdisciplinary teams distributed across the world.
+    </p>
+    <p class="my-3 hyphens-none font-sans text-neutral-50/60">
+      At the end of the day, I really enjoy building for the web. From
+      copywriting, motion design, typography, motion design, performance,
+      accessibility—the sea is vast and endless, something which I’m <em
+        >itching</em
+      > to explore.
+    </p>
+    <div>
+      <InfiniteScroller>
+        <li>
+          <FigmaLogo className="h-6 w-6 text-white" weight="duotone" />
+        </li>
+        <li><AstroLogo className="h-10 w-24" /></li>
+        <li><ReactLogo className="h-8 w-8 text-white" /></li>
+        <li><NextLogo className="h-8 w-8 fill-white" /></li>
+        <li><RoRLogo className="h-10 w-10 fill-white" /></li>
+        <li><RadixLogo className="h-12 w-12 text-white" /></li>
+        <li><TailwindLogo className="h-20 w-20 text-white" /></li>
+        <li>
+          <FramerLogo className="h-6 w-6 text-white" weight="duotone" />
+        </li>
+        <li><NodeLogo className="h-12 w-12 fill-white" /></li>
+        <li><PostgresLogo className="h-6 w-6" /></li>
+        <li>
+          <FigmaLogo className="h-6 w-6 text-white" weight="duotone" />
+        </li>
+        <li><AstroLogo className="h-10 w-24" /></li>
+        <li><ReactLogo className="h-8 w-8 text-white" /></li>
+        <li><NextLogo className="h-8 w-8 fill-white" /></li>
+        <li><RoRLogo className="h-10 w-10 fill-white" /></li>
+        <li><RadixLogo className="h-12 w-12 text-white" /></li>
+        <li><TailwindLogo className="h-20 w-20 text-white" /></li>
+        <li>
+          <FramerLogo className="h-6 w-6 text-white" weight="duotone" />
+        </li>
+        <li><NodeLogo className="h-12 w-12 fill-white" /></li>
+        <li><PostgresLogo className="h-6 w-6" /></li>
+      </InfiniteScroller>
     </div>
+    <p class="mb-3 mt-1.5 hyphens-none font-sans text-neutral-50/60">
+      I’m not picky about many things, and nothing is set in stone, but these
+      days I tend to prefer <a
+        class="bg-[#b3fc03]/30 text-sky-50 underline decoration-[#b3fc03]/90 decoration-2 underline-offset-4 transition-colors hover:bg-[#b3fc03] hover:text-neutral-950/95"
+        href="https://boringtechnology.club/"
+        rel="nofollow noopener noreferrer">boring tech</a
+      >.
+    </p>
   </section>
-  <section
-    id="connect"
-    class="my-6 text-base leading-relaxed -tracking-[0.01em] text-neutral-900/75"
-    data-animate
-    style="--stagger:18"
-  >
-    <h2 class="select-none font-sans text-neutral-600">Connect</h2>
-    <p class="my-3">
-      I try my best to get back to everyone, but sometimes I get too busy with
-      life. Please don’t feel bad if I don’t get back to you in time, or not at
-      all.
-    </p>
-    <p class="my-3">
-      Don’t be a stranger, though. I’d love to hear from you regardless. Here’s
-      my public email address:<br />
-      <span class="my-5 inline-flex w-full items-center justify-center"
-        ><em
-          ><a
-            class="text-neutral-400 transition-colors hover:text-neutral-500"
-            href="mailto:hey@kimchiii.space">hey@kimchiii.space</a
-          ></em
-        ></span
-      >
-    </p>
+  <section class="text-sm" data-animate style="--stagger:5">
+    <Bio />
+    <Contact />
   </section>
 </PageLayout>
 
