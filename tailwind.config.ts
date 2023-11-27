@@ -95,24 +95,6 @@ module.exports = {
           },
         },
       },
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      // Remove above once tailwindcss exposes theme type
-      typography: theme => ({
-        equinox: {
-          css: {
-            "--tw-prose-body": theme("colors.textColor / 1"),
-            "--tw-prose-headings": theme("colors.accent-2 / 1"),
-            "--tw-prose-links": theme("colors.textColor / 1"),
-            "--tw-prose-bold": theme("colors.textColor / 1"),
-            "--tw-prose-bullets": theme("colors.textColor / 1"),
-            "--tw-prose-quotes": theme("colors.quote / 1"),
-            "--tw-prose-code": theme("colors.textColor / 1"),
-            "--tw-prose-hr": "0.5px dashed #666",
-            "--tw-prose-th-borders": "#666",
-          },
-        },
-      }),
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],

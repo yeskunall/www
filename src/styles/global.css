@@ -65,7 +65,7 @@ html body {
 }
 
 .prose blockquote p {
-  @apply font-serif text-base tracking-[-0.01em] text-neutral-950/40;
+  @apply font-serif text-base tracking-[-0.01em] text-neutral-100/50;
 }
 
 .prose :where(h1, h2, h3, h4, h5, h6) a {
