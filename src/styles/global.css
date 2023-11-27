@@ -29,11 +29,13 @@
 }
 
 html {
-  @apply isolate touch-manipulation scroll-smooth hyphens-auto antialiased selection:bg-lime/30 selection:text-neutral-950/80;
+  @apply isolate touch-manipulation scroll-smooth hyphens-auto antialiased selection:bg-[#b3fc03]/30 selection:text-[#b3fc03]/80;
 }
 
 html body {
-  @apply h-full px-8 pt-16 font-sans text-sm font-normal sm:px-20;
+  background-image: linear-gradient(90deg, #101010, rgba(0, 0, 0, 0.9)),
+    url("/noise.svg"), linear-gradient(#b3fc03 1px, transparent 0),
+    linear-gradient(90deg, #b3fc03 1px, #000 0);
   text-rendering: optimizeLegibility;
 }
 
@@ -76,21 +78,4 @@ html body {
 
 .prose section[data-callout] p a {
   @apply text-emerald-950/75;
-}
-
-.wrapper {
-  display: grid;
-  grid-template-columns:
-    1fr
-    min(50ch, 100%)
-    1fr;
-}
-
-.wrapper > * {
-  grid-column: 2;
-}
-
-.full-bleed {
-  width: 100%;
-  grid-column: -1 / 1;
 }
