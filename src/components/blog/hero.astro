@@ -17,7 +17,7 @@ const postDate = getFormattedDate(post?.data.publishDate as Date, {
 });
 ---
 
-<div class="mt-8 flex flex-col text-neutral-900/90">
+<div class="mt-8 flex flex-col text-neutral-50/90">
   <Balancer>
     <h1 class="font-serif text-3xl font-medium tracking-tight sm:mb-1">
       {post.data.title}
@@ -25,20 +25,16 @@ const postDate = getFormattedDate(post?.data.publishDate as Date, {
   </Balancer>
   {
     post && (
-      <span class="mt-3 inline-block">
+      <span class="mt-1 inline-block text-sm">
         <>
-          <time
-            class="text-neutral-900/70"
-            datetime={datetime}
-            title={datetime}
-          >
+          <time class="text-neutral-50/70" datetime={datetime} title={datetime}>
             {postDate}
           </time>
         </>
       </span>
     )
   }
-  <p class="prose prose-base mt-8 font-serif text-base text-neutral-950/90">
+  <p class="prose prose-base mt-8 font-serif text-base text-neutral-50/75">
     {post?.data.description}
   </p>
 </div>

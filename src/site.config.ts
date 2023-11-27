@@ -26,5 +26,5 @@ export const siteConfig: SiteConfig = {
     "Digital craftsman, building modest software & websites on the internet",
   lang: "en-CA",
   ogLocale: "en_CA",
-  title: "Kunall Banerjee",
+  title: "Kunall Banerjee / @yeskunall",
 };

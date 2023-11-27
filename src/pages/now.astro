@@ -14,21 +14,21 @@ const meta = {
 <PageLayout meta={meta}>
   <section id="now" class="text-sm leading-5" data-animate style="--stagger:3">
     <h1
-      class="mb-4 flex select-none items-center gap-x-1.5 font-sans text-lg text-neutral-600"
+      class="mb-4 flex select-none items-center gap-x-1.5 font-sans text-lg font-medium text-neutral-50/30"
     >
-      <span class="inline-block h-3 w-3 bg-lime"></span>Now
+      <span class="bg-lime-300 inline-block h-3 w-3"></span>Now
     </h1>
-    <p class="mb-2.5 text-base text-neutral-900/90">
+    <p class="mb-2.5 text-base text-neutral-50/80">
       I just got back to Canada after spending 4 months in India. It’s the
       longest I’ve been away from Canada at a stretch. But, it’s never enough
       time spent with your loved ones.
     </p>
-    <p class="mb-2.5 text-base text-neutral-900/90">
+    <p class="mb-2.5 text-base text-neutral-50/90">
       Juggling between interviews and freelance work at the same time. I had
       forgotten how stressful interviewing for jobs can be. I’m still trying to
       find my <em>ikigai</em>. Turns out this is a hard thing.
     </p>
-    <p class="mb-3 select-none font-sans text-neutral-700/70">
+    <p class="mb-3 select-none font-sans text-neutral-100/70">
       Last updated <span class="font-sans text-sm font-medium"
         >{format(new Date("2023-10-21T12:25:40.042Z"), "do MMMMMM yyyy")}</span
       >
@@ -43,19 +43,23 @@ const meta = {
     <h2 class="mb-4 select-none font-sans text-lg font-medium text-neutral-500">
       Archive
     </h2>
-    <p class="mb-2.5 text-base text-neutral-400">
-      <em>Funemployed</em> &amp; trying to find my <em>ikigai</em>. Moved into a
-      new house in India, somewhere in the hills, <em class="font-semibold"
-        >like I’ve always wanted</em
-      >. Reading <em>all the books</em> I’ve been meaning to this whole time.
-      Spending an inordinate amount of time with my loved ones, because none of
-      us are getting any younger.
-    </p>
-    <p class="mb-3 select-none font-sans text-neutral-400/70">
-      <span class="font-sans text-sm font-medium"
-        >{format(new Date("2023-06-21T23:19:26.974Z"), "do MMMMMM yyyy")}</span
-      >
-    </p>
+    <div>
+      <p class="mb-2.5 text-base text-neutral-400">
+        <em>Funemployed</em> &amp; trying to find my <em>ikigai</em>. Moved into
+        a new house in India, somewhere in the hills, <em class="font-semibold"
+          >like I’ve always wanted</em
+        >. Reading <em>all the books</em> I’ve been meaning to this whole time.
+        Spending an inordinate amount of time with my loved ones, because none
+        of us are getting any younger.
+      </p>
+      <p class="mb-3 select-none font-sans text-neutral-400/70">
+        <span class="font-sans text-sm font-medium"
+          >{
+            format(new Date("2023-06-21T23:19:26.974Z"), "do MMMMMM yyyy")
+          }</span
+        >
+      </p>
+    </div>
   </section>
 </PageLayout>
 

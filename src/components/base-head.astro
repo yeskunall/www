@@ -26,6 +26,12 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
 
 {/* Preload local fonts */}
 <link
+  href="/fonts/geist-sans-variable.woff2"
+  rel="preload"
+  as="font"
+  crossorigin="anonymous"
+/>
+<link
   href="/fonts/martian-mono-variable.woff2"
   rel="preload"
   as="font"
@@ -33,12 +39,6 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
 />
 <link
   href="/fonts/newsreader-subset.woff2"
-  rel="preload"
-  as="font"
-  crossorigin="anonymous"
-/>
-<link
-  href="/fonts/scto-grotesk-a-subset.woff"
   rel="preload"
   as="font"
   crossorigin="anonymous"
