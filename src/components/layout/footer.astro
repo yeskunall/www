@@ -1,45 +1,14 @@
 ---
-const TABS = [
-  {
-    id: "index",
-    name: "Index",
-    href: "/",
-  },
-  {
-    id: "writing",
-    name: "Blog",
-    href: "/writing",
-  },
-  {
-    id: "now",
-    name: "Now",
-    href: "/now",
-  },
-  {
-    id: "sitemap",
-    name: "Sitemap",
-    href: "/sitemap-index.xml",
-  },
-];
+import { format } from "date-fns";
 ---
 
-{/* eslint-disable max-len */}
-
-<footer class="group my-8 select-none p-3">
-  <nav
-    class="mx-auto flex items-center justify-around opacity-50 transition-opacity group-hover:opacity-70 sm:mb-6 sm:max-w-md"
-  >
-    {
-      TABS.map(item => (
-        <a
-          class="text-neutral-950/95 transition-colors hover:text-neutral-950/75 [&:not(:hover)]:text-neutral-950/30"
-          href={item.href}
-        >
-          {item.name}
-        </a>
-      ))
+<footer class="mb-8 mt-16 text-xs">
+  <p class="mb-3 select-none hyphens-none font-sans text-neutral-50/30">
+    This site was crafted in Ottawa, Canada and last updated on {
+      format(new Date(), "yyyy/MM/dd")
     }
-  </nav>
+  </p>
+  <samp class="text-neutral-50/50">はじめまして</samp>
 </footer>
 
 <style>
