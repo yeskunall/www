@@ -34,11 +34,11 @@ export default function ReadingCard({
                 alt={`Album art for ${title} by ${author}`}
               />
             </div>
-            <div className="text-gray-1 mb-1 mt-2">
+            <div className="mb-1 ml-0.5 mt-2 text-gray-100/80">
               <span className="block truncate font-medium leading-none">
                 {title}
               </span>
-              <span className="text-gray-10 text-sm">by {author}</span>
+              <span className="text-sm text-gray-100/75">by {author}</span>
             </div>
           </>
           <div className="flex items-center gap-x-0.5">
