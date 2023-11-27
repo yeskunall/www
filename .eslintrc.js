@@ -57,7 +57,7 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-var-requires": "warn",
     "eol-last": "warn",
-    "max-len": ["warn", { code: 80, ignoreComments: true }],
+    "max-len": ["off", { code: 80, ignoreComments: true }],
     "no-multiple-empty-lines": ["warn", { max: 1, maxEOF: 0 }],
     "prettier/prettier": ["warn", { singleQuote: false }],
   },
