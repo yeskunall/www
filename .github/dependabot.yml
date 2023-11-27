@@ -26,6 +26,7 @@ updates:
     reviewers:
       - "yeskunall"
     schedule:
-      interval: "daily"
+      day: "sunday"
+      interval: "weekly"
       time: "12:00"
     target-branch: "main"
