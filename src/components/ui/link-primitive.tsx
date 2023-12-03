@@ -40,7 +40,7 @@ export default function Link({
     <a
       className={cn(link({ variant, popOver }), className)}
       href={href}
-      rel={external ? "nofollow noopener noreferrer" : "prefetch"}
+      rel={external ? "nofollow noopener noreferrer" : ""}
       target={external ? "_blank" : undefined}
     >
       {children}

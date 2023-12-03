@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
-import prefetch from "@astrojs/prefetch";
 import react from "@astrojs/react";
 import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -20,8 +19,8 @@ const contentSecurityPolicy = `
   connect-src *;
   default-src blob: data: 'self';
   font-src 'self';
-  frame-ancestors 'none';
-  frame-src 'none';
+  frame-ancestors 'self';
+  frame-src 'self';
   ${/* eslint-disable-next-line */ ""}
   img-src blob: data: 'self' https://assets.literal.club https://blog.kimchiii.space https://res.cloudinary.com;
   manifest-src 'self';
@@ -87,7 +86,6 @@ export default defineConfig({
   },
   integrations: [
     mdx(),
-    prefetch(),
     react(),
     sitemap(),
     tailwind({
@@ -131,6 +129,7 @@ export default defineConfig({
     syntaxHighlight: false,
   },
   output: "static",
+  prefetch: true,
   // These headers are duped in `vercel.json`, from where they are _actually_
   // applied in production.
   // NOTE(yeskunall): if I ever switch hosting providers (Cloudflare Pages),
