@@ -70,6 +70,21 @@ export const PROJECTS = [
   },
 ];
 
+export const routes = [
+  {
+    name: "About",
+    href: "/about",
+  },
+  {
+    name: "Writing",
+    href: "/writing",
+  },
+  {
+    name: "Now",
+    href: "/now",
+  },
+];
+
 export const SOCIALS = [
   {
     name: "Email",

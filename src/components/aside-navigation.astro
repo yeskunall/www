@@ -1,0 +1,61 @@
+---
+import { routes } from "@/data/constants";
+---
+
+<div
+  class="fixed right-20 top-12 hidden sm:block"
+  data-animate
+  style="--stagger:12"
+>
+  <div
+    class="mt-12 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium sm:mt-0 sm:flex-col sm:items-end sm:gap-y-0"
+  >
+    {
+      routes.map(({ name, href }) => (
+        <div class="text-neutral-300/50 transition-colors duration-150 hover:text-neutral-200/80">
+          <a href={href} data-astro-prefetch>
+            {name}
+          </a>
+        </div>
+      ))
+    }
+    <div class="my-3 w-full border-t border-neutral-50/10"></div>
+    <div
+      class="text-neutral-300/50 transition-colors duration-150 hover:text-neutral-200/80"
+    >
+      <a href="/colophon" data-astro-prefetch> Colophon</a>
+    </div>
+    <div
+      class="text-neutral-300/50 transition-colors duration-150 hover:text-neutral-200/80"
+    >
+      <a href="/imprint" data-astro-prefetch> Imprint</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes enter {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  [data-animate] {
+    --delay: 120ms;
+    --stagger: 0;
+    --start: 0ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      animation: enter 0.6s both;
+      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+    }
+  }
+</style>
