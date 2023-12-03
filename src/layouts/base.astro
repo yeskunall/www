@@ -1,10 +1,11 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 
+import AsideNavigation from "@/components/aside-navigation.astro";
 import BaseHead from "@/components/base-head.astro";
 import Header from "@/components/layout/header.astro";
+import MobileNavigation from "@/components/mobile-navigation";
 import Footer from "@/components/layout/footer.astro";
-import SkipLink from "@/components/SkipLink.astro";
 
 import { siteConfig } from "@/site-config";
 
@@ -34,14 +35,15 @@ const {
     />
     <ViewTransitions fallback="animate" />
   </head>
-  <body
-    class="container mx-auto p-8 [background-size:auto,_auto,_21px_21px,_21px_21px]"
-  >
-    <SkipLink />
-    <main class="md:max-w-[420px]">
+  <body>
+    <main class="mx-auto max-w-[440px] p-8" vaul-drawer-wrapper>
       <Header />
       <slot />
       <Footer />
+      <MobileNavigation client:only="react" />
     </main>
+    <aside class="sm:max-w-[420px] sm:text-right">
+      <AsideNavigation />
+    </aside>
   </body>
 </html>

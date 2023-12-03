@@ -1,48 +1,13 @@
 ---
 import { cn } from "@/lib/utils";
-
-const TABS = [
-  {
-    id: "index",
-    name: "Index",
-    href: "/",
-  },
-  {
-    id: "writing",
-    name: "Blog",
-    href: "/writing",
-  },
-  {
-    id: "now",
-    name: "Now",
-    href: "/now",
-  },
-];
 ---
 
 <div
   class={cn(
     "fixed left-0 right-0 top-0 z-[9999] h-[75px] overflow-hidden",
     "select-none pointer-events-none",
-    // eslint-disable-next-line max-len
-    // "border-b-[1px] border-b-sky-50/10 bg-[size:4px_4px] backdrop-blur-[3px] backdrop-brightness-[100%]",
   )}
   aria-hidden="true"
 >
 </div>
-<header class="group my-8 select-none p-3" data-animate style="--stagger:24">
-  <nav
-    class="mx-auto flex items-center justify-around opacity-50 transition-opacity group-hover:opacity-70 sm:mb-6 sm:max-w-md"
-  >
-    {
-      TABS.map(item => (
-        <a
-          class="text-neutral-950/95 transition-colors hover:text-neutral-950/75 [&:not(:hover)]:text-neutral-950/30"
-          href={item.href}
-        >
-          {item.name}
-        </a>
-      ))
-    }
-  </nav>
-</header>
+<header class="group my-8 select-none p-3"></header>
