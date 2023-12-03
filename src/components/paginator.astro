@@ -26,7 +26,7 @@ const { nextUrl, prevUrl } = Astro.props;
         <a
           class="me-auto !cursor-pointer py-2 font-serif text-neutral-50/70"
           href={prevUrl.url}
-          rel="prefetch"
+          data-astro-prefetch="viewport"
         >
           {prevUrl.srLabel && <span class="sr-only">{prevUrl.srLabel}</span>}
           {prevUrl.text ? prevUrl.text : "Previous"}
@@ -36,7 +36,7 @@ const { nextUrl, prevUrl } = Astro.props;
         <a
           class="ms-auto py-2 font-serif text-neutral-50/70"
           href={nextUrl.url}
-          rel="prefetch"
+          data-astro-prefetch="viewport"
         >
           {nextUrl.srLabel && <span class="sr-only">{nextUrl.srLabel}</span>}
           {nextUrl.text ? nextUrl.text : "Next"}
