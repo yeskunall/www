@@ -1,0 +1,30 @@
+---
+import Bio from "@/components/bio.astro";
+import Ethos from "@/components/ethos.astro";
+import Gallery from "@/components/gallery.astro";
+import ImpossibleList from "@/components/impossible-list.astro";
+import PageLayout from "@/layouts/base.astro";
+
+import { PICTURES } from "@/data/constants";
+
+const meta = {
+  title: "About / @yeskunall",
+  description:
+    "About Kunall Banerjee—a digital craftsman building modest software & websites on the internet",
+};
+---
+
+<PageLayout meta={meta}>
+  <Bio />
+  <div
+    class="justify-between text-neutral-200 duration-500 animate-in fade-in md:flex"
+  >
+    <div class="flex flex-col gap-y-6 md:max-w-[450px] md:gap-y-0">
+      <div class="my-1 sm:my-4">
+        <Gallery photos={PICTURES} />
+      </div>
+      <Ethos />
+      <ImpossibleList />
+    </div>
+  </div>
+</PageLayout>
