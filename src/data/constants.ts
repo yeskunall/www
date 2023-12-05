@@ -6,7 +6,103 @@ import gelato from "../assets/dcim/gelato-ottawa.jpg";
 import hotpot from "../assets/dcim/hotpot.jpg";
 import wagyu from "../assets/dcim/famu-wagyu.jpeg";
 
+import chair from "../assets/uses/herman-miller-aeron.jpg";
+import desk from "../assets/uses/bekant.avif";
+import headphones from "../assets/uses/headphones.webp";
+import laptop from "../assets/uses/mbp-2017.jpg";
+import peeesfour from "../assets/uses/ps4pro.webp";
+import phone from "../assets/uses/op7pro.jpg";
+import switcherino from "../assets/uses/switch.avif";
+
 export type Picture = { image: ImageMetadata; alt: string };
+
+export const Status = {
+  completed: "completed",
+  none: "none",
+  progress: "progress",
+} as const;
+
+export const IMPOSSIBLE_LIST = [
+  {
+    item: "Become a global citizen",
+    status: Status.progress,
+  },
+  {
+    item: "Build the first ever truly ethical business",
+    status: Status.none,
+  },
+  {
+    item: "Visit all 7 continents (5/7)",
+    status: Status.progress,
+  },
+  {
+    item: "Visit Noma in Copenhagen in-person before the end of 2024",
+    status: Status.none,
+  },
+  {
+    item: "Dine at the Alchemist in Copenhagen",
+    status: Status.none,
+  },
+  {
+    item: "Dine in a Michelin-starred restaurant",
+    status: Status.completed,
+  },
+  {
+    item: "Visit Japan during the cherry blossoms",
+    status: Status.none,
+  },
+  {
+    item: "Visit Japan during the mid-Autumn festival",
+    status: Status.none,
+  },
+  {
+    item: "Play Free Bird by Lynyrd Skynyrd in space",
+    status: Status.none,
+  },
+  {
+    item: "Hold multiple passports",
+    status: Status.progress,
+  },
+  {
+    item: "Take a selfie with a Quokka",
+    status: Status.none,
+  },
+  {
+    item: "Attend Burning Man in Nevada",
+    status: Status.none,
+  },
+  {
+    item: "See the Northern Lights",
+    status: Status.none,
+  },
+  {
+    item: "Become fluent in Japanese",
+    status: Status.progress,
+  },
+  {
+    item: "Build a fully off-grid house",
+    status: Status.none,
+  },
+  {
+    item: "Get a tattoo (2017)",
+    status: Status.completed,
+  },
+  {
+    item: "Participate and complete an Ironman Triathlon",
+    status: Status.none,
+  },
+];
+
+export const ETHOS = [
+  "Strive for perfection in a world where it doesn’t exist",
+  "Seek discomfort",
+  "Indulge in your vices, but more importantly, do not make vices out of your virtues",
+  "Be willing to take risks",
+  "Show up on days when you have to, not only when you want to",
+  "Speak only if it improves upon the silence",
+  "Be mindful",
+  "Respect those who came before you, listen to their stories, but do not mistake it for wisdom",
+];
 
 export const EXPERIENCES = [
   {
@@ -115,5 +211,108 @@ export const SOCIALS = [
     href: "https://read.cv/yeskunall",
     title: "CV",
     icon: ArrowUpRight,
+  },
+];
+
+export const GAMING = [
+  {
+    name: "Nintendo Switch",
+    image: switcherino,
+  },
+  {
+    name: "PlayStation 4 Pro 1TB",
+    image: peeesfour,
+  },
+];
+
+export const OFFICE_TECH = [
+  {
+    name: "13” Macbook Pro (2017)",
+    image: laptop,
+  },
+  {
+    name: "Herman Miller Aeron",
+    image: chair,
+  },
+  {
+    name: "IKEA BEKANT Desk",
+    image: desk,
+  },
+  {
+    name: "Sony WH-1000XM5",
+    image: headphones,
+  },
+  {
+    name: "OnePlus 7 Pro",
+    image: phone,
+  },
+];
+
+export const SOFTWARE = [
+  {
+    name: "VSCodium",
+    url: "https://vscodium.com/",
+  },
+  {
+    name: "Brave",
+    url: "https://brave.com/",
+  },
+  {
+    name: "Raycast",
+    url: "https://www.raycast.com/",
+  },
+  {
+    name: "CleanShot X",
+    url: "https://cleanshot.com/",
+  },
+  {
+    name: "Magnet",
+    url: "https://magnet.crowdcafe.com/",
+  },
+  {
+    name: "IINA",
+    url: "https://iina.io/",
+  },
+  {
+    name: "Bartender",
+    url: "https://www.macbartender.com/",
+  },
+  {
+    name: "Hammerspoon",
+    url: "https://www.hammerspoon.org/",
+  },
+  {
+    name: "1Password",
+    url: "https://1password.com/",
+  },
+  {
+    name: "NordVPN",
+    url: "https://nordvpn.com/",
+  },
+  {
+    name: "Signal",
+    url: "https://www.signal.org/",
+  },
+  {
+    name: "Noor",
+    url: "https://noor.to/",
+  },
+  {
+    name: "Figma",
+    embed: "figma.com",
+    url: "figma.com",
+  },
+  {
+    name: "iTerm 2",
+    url: "https://iterm2.com/",
+  },
+  {
+    name: "Micro Snitch",
+    url: "https://www.obdev.at/products/microsnitch/index.html",
+  },
+  {
+    name: "CleanMyMac X",
+    embed: "macpaw.com",
+    url: "https://macpaw.com/cleanmymac",
   },
 ];
