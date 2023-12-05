@@ -1,0 +1,43 @@
+---
+import { cva } from "class-variance-authority";
+
+import { IMPOSSIBLE_LIST } from "@/data/constants";
+
+import { Status } from "@/data/constants";
+
+const bucketItem = cva(["items-center self-start"], {
+  variants: {
+    status: {
+      none: "text-neutral-50/60",
+      completed: ["line-through", "text-neutral-500/90"],
+      progress: [
+        "before:content-['']",
+        "before:w-1.5",
+        "before:h-1.5",
+        "before:bg-[#b3fc03]",
+        "before:inline-flex",
+        "before:-mt-px",
+        "before:rounded-full",
+        "before:animate-pulse",
+        "before:mr-1",
+        "flex",
+        "items-center",
+        "text-neutral-50/90",
+      ],
+    },
+  },
+});
+---
+
+<div class="my-4 text-sm">
+  <h2 class="mb-1.5 select-none font-sans font-medium text-neutral-50/30">
+    My impossible list
+  </h2>
+  <ul class="grid grid-flow-row grid-cols-2 gap-x-2 gap-y-1 hyphens-none">
+    {
+      IMPOSSIBLE_LIST.map(({ item, status }) => (
+        <li class={bucketItem({ status: Status[status] })}>{item}</li>
+      ))
+    }
+  </ul>
+</div>
