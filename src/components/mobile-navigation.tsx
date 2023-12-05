@@ -14,10 +14,10 @@ export default function MobileNavigation() {
   return (
     <nav className="fixed bottom-0 left-0 top-[unset] z-50 w-full bg-[oklch(0%_0.1_120)] sm:hidden">
       <Drawer.Root>
-        <Drawer.Trigger className="flex w-full items-center justify-between gap-2 whitespace-nowrap p-4 text-left text-black text-neutral-200/90">
+        <Drawer.Trigger className="flex w-full items-center justify-between gap-2 whitespace-nowrap p-4 text-left text-black text-neutral-200/70">
           <span>{pathname}</span>
           <span>
-            <List className="h-5 w-5 text-neutral-100" weight="duotone" />
+            <List className="h-5 w-5 text-neutral-100/80" weight="duotone" />
           </span>
         </Drawer.Trigger>
         <Drawer.Portal>
@@ -32,7 +32,7 @@ export default function MobileNavigation() {
                 </li>
               ))}
             </ul>
-            <hr className="mx-6 bg-neutral-50/10" />
+            <div className="mx-auto h-[1px] w-[90%] bg-neutral-50/20" />
             <ul className="flex flex-col gap-2 p-6">
               <li className="flex w-full flex-col gap-2">
                 <a href="/colophon" data-astro-prefetch="viewport">
@@ -40,8 +40,8 @@ export default function MobileNavigation() {
                 </a>
               </li>
               <li className="flex w-full flex-col gap-2">
-                <a href="/imprint" data-astro-prefetch="viewport">
-                  Imprint
+                <a href="/uses" data-astro-prefetch="viewport">
+                  Uses
                 </a>
               </li>
             </ul>
