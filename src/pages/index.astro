@@ -1,11 +1,12 @@
 ---
-import { FramerLogo, FigmaLogo } from "@phosphor-icons/react";
+import { ArrowRight, FramerLogo, FigmaLogo } from "@phosphor-icons/react";
 
 import Broadly from "@/components/broadly.astro";
 import Contact from "@/components/contact.astro";
 import Currently from "@/components/currently.astro";
-import PageLayout from "@/layouts/base.astro";
 import InfiniteScroller from "@/components/infinite-scroller.astro";
+import LinkPrimitive from "@/components/ui/link-primitive.tsx";
+import PageLayout from "@/layouts/base.astro";
 
 import {
   AstroLogo,
@@ -57,6 +58,16 @@ import { cn } from "@/lib/utils";
     <div class="mt-10">
       <Currently />
       <Broadly />
+      <LinkPrimitive
+        href="/about"
+        variant="route"
+        className="mt-2 inline-flex items-center"
+        client:visible
+        data-astro-prefetch="viewport"
+      >
+        Learn a bit more&nbsp;
+        <ArrowRight size={12} aria-hidden={true} />
+      </LinkPrimitive>
     </div>
     <hr
       class="my-8 h-3 border-y-0 border-lime-300 [border-left:.75rem_solid_rgb(179_252_3_/_1)]"
@@ -119,7 +130,8 @@ import { cn } from "@/lib/utils";
         class="bg-[#b3fc03]/30 text-sky-50 underline decoration-[#b3fc03]/90 decoration-2 underline-offset-4 transition-colors hover:bg-[#b3fc03] hover:text-neutral-950/95"
         href="https://boringtechnology.club/"
         rel="nofollow noopener noreferrer">boring tech</a
-      >.
+      >. I value creativity and clever thinking, embracing focus, skill, and
+      understanding over fast production and short-lived trends.
     </p>
   </section>
   <section class="text-sm" data-animate style="--stagger:5">
