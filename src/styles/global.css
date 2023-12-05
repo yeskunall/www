@@ -22,21 +22,8 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Scto Grotesk A";
-  src: url("/fonts/scto-grotesk-a-subset.woff") format("woff");
-  font-display: swap;
-}
-
 html {
-  @apply isolate touch-manipulation scroll-smooth hyphens-auto antialiased selection:bg-[#b3fc03]/30 selection:text-[#b3fc03]/80;
-}
-
-html body {
-  background-image: linear-gradient(90deg, #101010, rgba(0, 0, 0, 0.9)),
-    url("/noise.svg"), linear-gradient(#b3fc03 1px, transparent 0),
-    linear-gradient(90deg, #b3fc03 1px, #000 0);
-  text-rendering: optimizeLegibility;
+  @apply isolate touch-manipulation scroll-smooth hyphens-auto bg-[oklch(0%_0.1_10)] antialiased selection:bg-[#b3fc03]/30 selection:text-[#b3fc03]/80;
 }
 
 @layer base {
@@ -46,7 +33,7 @@ html body {
     --font-serif: "Newsreader";
     --leading: 24px;
     --text-secondary: #000;
-    --type-italic: 300 italic calc(1rem + 0.3px) / normal var(--font-serif);
+    --type-italic: 300 italic calc(1em + 2px) / normal var(--font-serif);
   }
 
   :where(em, i) {
