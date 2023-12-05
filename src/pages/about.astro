@@ -15,16 +15,57 @@ const meta = {
 ---
 
 <PageLayout meta={meta}>
-  <Bio />
-  <div
-    class="justify-between text-neutral-200 duration-500 animate-in fade-in md:flex"
-  >
-    <div class="flex flex-col gap-y-6 md:max-w-[450px] md:gap-y-0">
-      <div class="my-1 sm:my-4">
-        <Gallery photos={PICTURES} />
+  <section data-animate style="--stagger:1.5">
+    <h1
+      class="mb-4 flex select-none items-center gap-x-1.5 font-sans text-lg font-medium text-neutral-100/80"
+    >
+      <span class="inline-block h-3 w-3 bg-[#b3fc03]"></span>About
+    </h1>
+    <p class="my-3 hyphens-none font-sans text-neutral-50/60">
+      This is one big page where I can write all about myself. If you’re reading
+      this, I assume you’re somewhat curious, so I write the following with the
+      hopes that it answers some (if not all) of your burning questions.
+    </p>
+  </section>
+  <section data-animate style="--stagger:5">
+    <Bio />
+    <div
+      class="justify-between text-neutral-200 duration-500 animate-in fade-in sm:flex"
+    >
+      <div class="flex flex-col gap-y-6 md:max-w-[450px] md:gap-y-0">
+        <div class="my-1 sm:my-4" data-animate style="--stagger:8">
+          <Gallery photos={PICTURES} />
+        </div>
+        <Ethos />
+        <ImpossibleList />
       </div>
-      <Ethos />
-      <ImpossibleList />
     </div>
-  </div>
+  </section>
 </PageLayout>
+
+<style>
+  @keyframes enter {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  [data-animate] {
+    --delay: 120ms;
+    --stagger: 0;
+    --start: 0ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      animation: enter 0.6s both;
+      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+    }
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+import { ETHOS } from "@/data/constants";
+---
+
+<div class="my-4 text-sm">
+  <h2 class="mb-1.5 select-none font-sans font-medium text-neutral-50/30">
+    Ethos
+  </h2>
+  <ul class="flex flex-col gap-y-1 text-sm text-neutral-50/60">
+    {ETHOS.map(ethos => <li class="mb-1 leading-tight last:mb-0">{ethos}</li>)}
+  </ul>
+</div>
