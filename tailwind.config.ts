@@ -18,6 +18,7 @@ module.exports = {
         mono: ["Martian Mono", ...fontFamily.mono],
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
         serif: ["Newsreader", ...fontFamily.serif],
+        signature: ["Brittany Signature"],
       },
       keyframes: {
         "accordion-down": {

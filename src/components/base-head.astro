@@ -1,13 +1,14 @@
 ---
 import { siteConfig } from "@/site-config";
 
-import "../styles/global.css";
+import "@/styles/global.css";
 
 import type { SiteMeta as Props } from "@/data/site-meta";
 
 const { title, description, ogImage, articleDate } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pathname = Astro.url.pathname;
 const socialImageURL = new URL(ogImage!, Astro.url).href;
 ---
 
@@ -25,6 +26,16 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
 <link rel="sitemap" href="/sitemap-index.xml" />
 
 {/* Preload local fonts */}
+{
+  pathname.startsWith("/about") && (
+    <link
+      href="/fonts/brittany-signature.ttf"
+      rel="preload"
+      as="font"
+      crossorigin="anonymous"
+    />
+  )
+}
 <link
   href="/fonts/geist-sans-variable.woff2"
   rel="preload"
