@@ -1,5 +1,5 @@
 ---
-
+import Footnote from "@/components/footnote.astro";
 ---
 
 <div class="my-4 text-sm">
@@ -12,9 +12,11 @@
       class="bg-[#b3fc03]/30 text-sky-50 underline decoration-[#b3fc03]/90 decoration-2 underline-offset-4 transition-colors hover:bg-[#b3fc03] hover:text-neutral-950/95"
       href="mailto:hey@kimchiii.space">email</a
     >.
-    <span class="my-1.5 inline-block text-xs text-neutral-50/80"
-      ><span class="font-medium">Footnotes</span>: I get a lot of emails these
-      days, so please don’t feel bad if I don’t get back to you in time</span
-    >
+    <Footnote title="Footnotes">
+      <span class="inline-block text-xs"
+        >I get a lot of emails these days, so please don’t feel bad if I don’t
+        get back to you in time</span
+      >
+    </Footnote>
   </p>
 </div>
