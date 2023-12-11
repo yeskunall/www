@@ -10,6 +10,7 @@ import rehypeSlug from "rehype-slug";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/static";
+
 import { rehypePrettyCodeOptions } from "./src/lib/rehype-plugins";
 
 // Although setting `default-src` would cover some of the following CSP headers,
@@ -97,6 +98,8 @@ export default defineConfig({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       rehypeAccessibleEmojis,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       [
         rehypeExternalLinks,
         {
@@ -106,9 +109,9 @@ export default defineConfig({
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore: this definitely works
             const href = element.properties.href;
-            if (allowList.some(start => href.startsWith(start))) {
-              return [];
-            }
+
+            if (allowList.some(start => href.startsWith(start))) return [];
+
             return "nofollow noopener noreferrer";
           },
         },
@@ -118,12 +121,11 @@ export default defineConfig({
         rehypeAutolinkHeadings,
         {
           behavior: "wrap",
-          properties: {
-            className: ["anchor"],
-          },
         },
       ],
       [rehypePrettyCode, rehypePrettyCodeOptions],
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore: this definitely works
       rehypeSlug,
     ],
     syntaxHighlight: false,
