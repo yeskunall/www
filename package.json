@@ -22,7 +22,7 @@
     "@radix-ui/react-popover": "1.0.7",
     "@radix-ui/react-scroll-area": "1.0.5",
     "@radix-ui/react-tabs": "1.0.4",
-    "@urql/core": "4.2.0",
+    "@urql/core": "4.2.1",
     "astro": "4.0.3",
     "bad-words": "3.0.4",
     "class-variance-authority": "0.7.0",
