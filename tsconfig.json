@@ -5,12 +5,13 @@
     "paths": {
       "@/components/*": ["src/components/*"],
       "@/components/ui/*": ["src/components/ui/*"],
+      "@/data/*": ["src/data/*"],
       "@/layouts/*": ["src/layouts/*"],
       "@/lib/*": ["src/lib/*"],
-      "@/utils": ["src/utils/index.ts"],
+      "@/site-config": ["src/site.config.ts"],
       "@/stores/*": ["src/stores/*"],
-      "@/data/*": ["src/data/*"],
-      "@/site-config": ["src/site.config.ts"]
+      "@/styles/*": ["src/styles/*"],
+      "@/utils": ["src/utils/index.ts"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
