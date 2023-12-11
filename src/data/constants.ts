@@ -22,80 +22,8 @@ export const Status = {
   progress: "progress",
 } as const;
 
-export const IMPOSSIBLE_LIST = [
-  {
-    item: "Become a global citizen",
-    status: Status.progress,
-  },
-  {
-    item: "Build the first ever truly ethical business",
-    status: Status.none,
-  },
-  {
-    item: "Visit all 7 continents (5/7)",
-    status: Status.progress,
-  },
-  {
-    item: "Visit Noma in Copenhagen in-person before the end of 2024",
-    status: Status.none,
-  },
-  {
-    item: "Dine at the Alchemist in Copenhagen",
-    status: Status.none,
-  },
-  {
-    item: "Dine in a Michelin-starred restaurant",
-    status: Status.completed,
-  },
-  {
-    item: "Visit Japan during the cherry blossoms",
-    status: Status.none,
-  },
-  {
-    item: "Visit Japan during the mid-Autumn festival",
-    status: Status.none,
-  },
-  {
-    item: "Play Free Bird by Lynyrd Skynyrd in space",
-    status: Status.none,
-  },
-  {
-    item: "Hold multiple passports",
-    status: Status.progress,
-  },
-  {
-    item: "Take a selfie with a Quokka",
-    status: Status.none,
-  },
-  {
-    item: "Attend Burning Man in Nevada",
-    status: Status.none,
-  },
-  {
-    item: "See the Northern Lights",
-    status: Status.none,
-  },
-  {
-    item: "Become fluent in Japanese",
-    status: Status.progress,
-  },
-  {
-    item: "Build a fully off-grid house",
-    status: Status.none,
-  },
-  {
-    item: "Get a tattoo (2017)",
-    status: Status.completed,
-  },
-  {
-    item: "Participate and complete an Ironman Triathlon",
-    status: Status.none,
-  },
-];
-
 export const ETHOS = [
   "Strive for perfection in a world where it doesn’t exist",
-  "Seek discomfort",
   "Indulge in your vices, but more importantly, do not make vices out of your virtues",
   "Be willing to take risks",
   "Show up on days when you have to, not only when you want to",
@@ -126,6 +54,81 @@ export const EXPERIENCES = [
     range: "2019 - 2021",
     description:
       "As a Solutions Engineer, I built bespoke solutions for brands like CareSource, Corning Inc., Electronic Arts, GSK plc, Haleon plc, among several others. Drove significant business advancements by taking ownership of projects, aiding the team in achieving $1MM in revenue",
+  },
+];
+
+export const IMPOSSIBLE_LIST = [
+  {
+    item: "Become a global citizen",
+    status: Status.progress,
+  },
+  {
+    item: "Build the first ever truly ethical business",
+    status: Status.none,
+  },
+  {
+    item: "Visit all 7 continents (5/7)",
+    status: Status.progress,
+  },
+  {
+    item: "Visit and dine in at Noma in Copenhagen in-person before the end of 2024",
+    status: Status.none,
+  },
+  {
+    item: "Dine in at the Alchemist in Copenhagen",
+    status: Status.none,
+  },
+  {
+    item: "Dine in at a Michelin-starred restaurant",
+    status: Status.completed,
+  },
+  {
+    item: "Visit Japan during the cherry blossoms",
+    status: Status.none,
+  },
+  {
+    item: "Visit Japan during the mid-Autumn festival",
+    status: Status.none,
+  },
+  {
+    item: "Play Free Bird by Lynyrd Skynyrd in space",
+    status: Status.none,
+  },
+  {
+    item: "Hold multiple passports",
+    status: Status.progress,
+  },
+  {
+    item: "Take a selfie with a Quokka",
+    status: Status.none,
+  },
+  {
+    item: "Attend Burning Man in Nevada",
+    status: Status.none,
+  },
+  {
+    item: "Experience the Northern Lights",
+    status: Status.none,
+  },
+  {
+    item: "Become fluent in Japanese",
+    status: Status.progress,
+  },
+  {
+    item: "Build a fully off-grid house",
+    status: Status.none,
+  },
+  {
+    item: "Get a tattoo (2017)",
+    status: Status.completed,
+  },
+  {
+    item: "Participate and complete an Ironman Triathlon",
+    status: Status.none,
+  },
+  {
+    item: "Host an art exhibition (2007)",
+    status: Status.completed,
   },
 ];
 
