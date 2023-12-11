@@ -1,6 +1,7 @@
 ---
 import Bio from "@/components/bio.astro";
 import Ethos from "@/components/ethos.astro";
+import Footnote from "@/components/footnote.astro";
 import Gallery from "@/components/gallery.astro";
 import ImpossibleList from "@/components/impossible-list.astro";
 import PageLayout from "@/layouts/base.astro";
@@ -10,7 +11,7 @@ import { PICTURES } from "@/data/constants";
 import "@/styles/about.css";
 
 const meta = {
-  title: "About / @yeskunall",
+  title: "About / Kunall Banerjee",
   description:
     "About Kunall Banerjee—a digital craftsman building modest software & websites on the internet",
 };
@@ -24,41 +25,50 @@ const meta = {
       <span class="inline-block h-3 w-3 bg-[#b3fc03]"></span>About
     </h1>
     <p
-      class="my-3 hyphens-none font-sans text-[15.6px] leading-5 text-neutral-50/60"
+      class="my-3 hyphens-none font-sans text-[15.6px] leading-5 text-neutral-50/80"
     >
-      Hey, Kunall here—an Indian, based in Canada. I’m a nomadic with strong
-      family ties. Instead of working hard to become wealthy, I am satisfied
-      with what I have. I have extreme disdain for small talk. I prefer talking
-      online over in-person. I’m constantly chasing the <em>hyggeligt</em>
-       feeling&mdash;some of my best moments are spent in low-light
-      environments, enjoying deep conversations and good food. Eating hot, soul
-      food when it’s raining outside brings me utmost joy. Life is too short to
-      spend time engaging in “if only” or “what if?” thoughts about the past and
-      present. I like to challenge myself, and spend an inordinate amount of
-      time honing my craft. Favorite scent is petrichor. I also like trying new
-      cuisines, admiring (past &amp; modern) architecture, exploring minimalism
-      in design and life, and sitting in complete silence.
+      This is a space for me to be self-indulgent, where I can express myself
+      freely. Feel free to <a
+        class="bg-[#b3fc03]/30 text-sky-50 underline decoration-[#b3fc03]/90 decoration-2 underline-offset-4 transition-colors hover:bg-[#b3fc03] hover:text-neutral-950/95"
+        href="mailto:hey@kimchiii.space">email</a
+      >
+       me if you want to discuss something, or if you want to get to know me
+      better.
     </p>
     <p
-      class="mb-0 mt-6 hyphens-none font-sans text-[15.6px] leading-5 text-neutral-50/60"
+      class="mb-0 mt-6 hyphens-none font-sans text-[15.6px] leading-5 text-neutral-50/80"
     >
       Thanks for reading,
     </p>
     <p
-      class="mb-10 mt-3 select-none font-signature text-xl text-neutral-50/90 sm:text-2xl"
+      class="mb-10 mt-3 select-none font-signature text-xl text-neutral-50/60 sm:text-2xl"
     >
       Kunall Banerjee
     </p>
   </section>
   <section data-animate style="--stagger:5">
     <Bio />
-    <div
-      class="justify-between text-neutral-200 duration-500 animate-in fade-in sm:flex"
-    >
-      <div class="flex flex-col gap-y-6 md:max-w-[450px] md:gap-y-0">
+    <div class="text-neutral-200 duration-500 animate-in fade-in">
+      <div class="flex flex-col gap-y-3 md:max-w-[450px]">
         <div class="my-1 sm:my-4" data-animate style="--stagger:8">
           <Gallery photos={PICTURES} />
         </div>
+        <p class="my-3 hyphens-none font-sans text-sm text-neutral-50/60">
+          I love trying new cuisines, admiring (past &amp; modern) architecture,
+          exploring minimalism in design and life, and sitting in complete
+          silence.
+        </p>
+        <Footnote title="Interesting fact">
+          <span class="inline-block text-xs text-neutral-50/80"
+            >My favorite scent is petrichor</span
+          >
+        </Footnote>
+        <p class="-mt-1 hyphens-none font-sans text-sm text-neutral-50/60">
+          I value my time extremely, and like to spend most of my time alone.
+          It’ll probably cost me in the long-run, but as of now, I’m heavily
+          invested in working on myself, so I don’t have time to socialize with
+          others. I say no to most things.
+        </p>
         <Ethos />
         <ImpossibleList />
       </div>
