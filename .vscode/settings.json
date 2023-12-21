@@ -1,6 +1,6 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "always"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
@@ -10,6 +10,13 @@
   "emmet.includeLanguages": {
     "astro": "html"
   },
+  "eslint.validate": [
+    "astro",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "files.associations": {
     "*.css": "tailwindcss",
     "*.mdx": "markdown"
@@ -21,21 +28,14 @@
     "editor.wordWrap": "wordWrapColumn",
     "editor.wordWrapColumn": 80
   },
-  "[mdx]": {
+  "[markdown][mdx]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll.markdownlint": true
+      "source.fixAll.markdownlint": "always"
     },
     "editor.wordWrap": "wordWrapColumn",
     "editor.wordWrapColumn": 80
   },
   "prettier.documentSelectors": ["**/*.astro"],
-  "eslint.validate": [
-    "astro",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "node_modules/.pnpm/typescript@5.3.3/node_modules/typescript/lib"
 }
