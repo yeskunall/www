@@ -1,17 +1,20 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
+import { readFileSync } from "node:fs";
 import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
+import remarkUnwrapImages from "remark-unwrap-images";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/static";
 
 import { rehypePrettyCodeOptions } from "./src/lib/rehype-plugins";
+import { remarkReadingTime } from "./src/lib/remark-plugins";
 
 // Although setting `default-src` would cover some of the following CSP headers,
 // I’ve set them explicitly _because I can_. Bite me.
@@ -76,6 +79,24 @@ const permissionPolicy = `
   web-share=(),
   xr-spatial-tracking=()
 `;
+
+function rawFonts(ext: Array<string>) {
+  return {
+    name: "vite-plugin-raw-fonts",
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    transform(_, id) {
+      if (ext.some(e => id.endsWith(e))) {
+        const buffer = readFileSync(id);
+        return {
+          code: `export default ${JSON.stringify(buffer)}`,
+          map: null,
+        };
+      }
+    },
+  };
+}
+
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel({
@@ -128,6 +149,8 @@ export default defineConfig({
       // @ts-ignore: this definitely works
       rehypeSlug,
     ],
+    remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
+    remarkRehype: { footnoteLabelProperties: { className: [""] } },
     syntaxHighlight: false,
   },
   output: "static",
@@ -156,8 +179,6 @@ export default defineConfig({
   },
   site: "https://kimchiii.space/",
   vite: {
-    optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
-    },
+    plugins: [rawFonts([".ttf"])],
   },
 });
