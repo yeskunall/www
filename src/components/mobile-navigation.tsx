@@ -2,9 +2,15 @@ import { Drawer } from "vaul";
 import { List } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 
+import { cn } from "@/lib/utils";
+
 import { routes } from "@/data/constants";
 
-export default function MobileNavigation() {
+type Props = {
+  freshPost?: boolean;
+};
+
+export default function MobileNavigation({ freshPost }: Props) {
   const [pathname, setPathname] = useState("/");
 
   useEffect(() => {
@@ -27,7 +33,16 @@ export default function MobileNavigation() {
               {routes.map(({ name, href }) => (
                 <li key={name} className="flex w-full flex-col gap-2">
                   <a href={href} data-astro-prefetch="viewport">
-                    {name}
+                    <span
+                      className={cn(
+                        "relative",
+                        freshPost && href === "/writing"
+                          ? "after:absolute after:-right-2 after:bottom-2.5 after:h-1.5 after:w-1.5 after:animate-pulse after:rounded-[100%] after:bg-[#b3fc03] after:content-['']"
+                          : "",
+                      )}
+                    >
+                      {name}
+                    </span>
                   </a>
                 </li>
               ))}
