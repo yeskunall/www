@@ -1,4 +1,6 @@
 ---
+import { Toaster } from "sonner";
+
 import BaseLayout from "@/layouts/base.astro";
 import BlogHero from "@/components/blog/hero.astro";
 
@@ -57,25 +59,5 @@ const ogImage = createOgImage({
       <slot />
     </div>
   </article>
-  <button
-    id="to-top-btn"
-    class="z-90 fixed bottom-8 end-4 flex h-10 w-10 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-neutral-100/70 text-3xl text-neutral-500/75 opacity-0 transition-all duration-300 hover:border-neutral-100/50 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12"
-    aria-label="Back to Top"
-    data-show="false"
-    ><svg
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="2"
-      stroke="black"
-      class="h-6 w-6"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M4.5 15.75l7.5-7.5 7.5 7.5"></path>
-    </svg>
-  </button>
+  <Toaster client:only="react" />
 </BaseLayout>
