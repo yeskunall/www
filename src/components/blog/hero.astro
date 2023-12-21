@@ -1,7 +1,10 @@
 ---
 import { Balancer } from "react-wrap-balancer";
 
+import CopyToClipboard from "@/components/blog/copy-to-clipboard.tsx";
+
 import { getFormattedDate } from "@/utils";
+import { siteConfig } from "@/site-config";
 
 import type { CollectionEntry } from "astro:content";
 
@@ -15,26 +18,38 @@ const datetime = post?.data.publishDate.toISOString();
 const postDate = getFormattedDate(post?.data.publishDate as Date, {
   month: "long",
 });
+const { remarkPluginFrontmatter } = await post.render();
 ---
 
 <div class="mt-8 flex flex-col text-neutral-50/90">
+  <div
+    class="mb-1 flex items-center justify-between text-xs text-neutral-50/50"
+  >
+    <span>
+      <time datetime={datetime} title={datetime}>
+        {postDate}
+      </time>
+    </span>
+    <span>{remarkPluginFrontmatter.readingTime}</span>
+  </div>
   <Balancer>
-    <h1 class="font-serif text-3xl font-medium tracking-tight sm:mb-1">
+    <h1 class="font-serif text-xl font-medium tracking-tight sm:mb-1">
       {post.data.title}
     </h1>
   </Balancer>
+  <div
+    class="mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs text-neutral-50/50"
+  >
+    <div class="space-x-3">
+      <span>{remarkPluginFrontmatter.words} words</span> by {siteConfig.author}
+    </div>
+    <div>
+      <CopyToClipboard client:only="react" />
+    </div>
+  </div>
   {
-    post && (
-      <span class="mt-1 inline-block text-sm">
-        <>
-          <time class="text-neutral-50/70" datetime={datetime} title={datetime}>
-            {postDate}
-          </time>
-        </>
-      </span>
+    post.data.description && (
+      <p class="mt-3 font-serif text-neutral-50/75">{post.data.description}</p>
     )
   }
-  <p class="prose prose-base mt-8 font-serif text-base text-neutral-50/75">
-    {post?.data.description}
-  </p>
 </div>
