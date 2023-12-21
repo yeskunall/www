@@ -1,6 +1,7 @@
 import { Check } from "@phosphor-icons/react";
 import clipboard from "clipboardy";
 import React, { useState } from "react";
+import { toast } from "sonner";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import UseKey from "react-use/lib/component/UseKey";
 
@@ -17,6 +18,7 @@ export default function CopyToClipboard() {
     event?.preventDefault();
 
     await clipboard.write(window.location.href);
+    toast.success("Copied URL to clipboard");
     setClicked(true);
 
     // Clear timeout?
@@ -29,20 +31,17 @@ export default function CopyToClipboard() {
     <Tooltip.Provider delayDuration={200} skipDelayDuration={50}>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
-          <>
-            <button
-              className="inline-flex h-6 w-6 items-center justify-center rounded-[100%] bg-neutral-700/70 outline-none sm:h-7 sm:w-7"
-              onClick={handleCopy}
-            >
-              {!clicked && (
-                <Copy className="h-3 w-3 text-lime-300 sm:h-4 sm:w-4" />
-              )}
-              {!!clicked && (
-                <Check className="h-3 w-3 text-lime-300 sm:h-4 sm:w-4" />
-              )}
-            </button>
-            <UseKey filter="c" fn={handleCopy} />
-          </>
+          <button
+            className="inline-flex h-6 w-6 items-center justify-center rounded-[100%] bg-neutral-700/70 outline-none sm:h-7 sm:w-7"
+            onClick={handleCopy}
+          >
+            {!clicked && (
+              <Copy className="h-3 w-3 text-lime-300 sm:h-4 sm:w-4" />
+            )}
+            {!!clicked && (
+              <Check className="h-3 w-3 text-lime-300 sm:h-4 sm:w-4" />
+            )}
+          </button>
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
@@ -61,6 +60,7 @@ export default function CopyToClipboard() {
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>
+      <UseKey filter="c" fn={handleCopy} />
     </Tooltip.Provider>
   );
 }
