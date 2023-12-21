@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+import { isToday } from "date-fns";
 import { ViewTransitions } from "astro:transitions";
 
 import AsideNavigation from "@/components/aside-navigation.astro";
@@ -8,12 +10,18 @@ import MobileNavigation from "@/components/mobile-navigation";
 import Footer from "@/components/layout/footer.astro";
 
 import { siteConfig } from "@/site-config";
+import { sortByDate } from "@/utils";
 
 import type { SiteMeta } from "@/data/site-meta";
 
-interface Props {
+type Props = {
   meta: SiteMeta;
-}
+};
+
+const allPosts = await getCollection("post");
+const allPostsByDate = sortByDate(allPosts);
+const [firstPost, ..._] = allPostsByDate;
+const freshPost = isToday(firstPost.data.publishDate);
 
 const {
   meta: {
@@ -40,10 +48,10 @@ const {
       <Header />
       <slot />
       <Footer />
-      <MobileNavigation client:only="react" />
+      <MobileNavigation freshPost={freshPost} client:only="react" />
     </main>
     <aside class="sm:max-w-[420px] sm:text-right">
-      <AsideNavigation />
+      <AsideNavigation freshPost={freshPost} />
     </aside>
   </body>
 </html>

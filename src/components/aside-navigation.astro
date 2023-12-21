@@ -1,5 +1,13 @@
 ---
+import { cn } from "@/lib/utils";
+
 import { routes } from "@/data/constants";
+
+type Props = {
+  freshPost?: boolean;
+};
+
+const { freshPost } = Astro.props;
 ---
 
 <div
@@ -12,7 +20,14 @@ import { routes } from "@/data/constants";
   >
     {
       routes.map(({ name, href }) => (
-        <div class="text-neutral-300/50 transition-colors duration-150 hover:text-neutral-200/80">
+        <div
+          class={cn(
+            "relative text-neutral-300/50 transition-all duration-150 hover:text-neutral-200/80",
+            freshPost && href === "/writing"
+              ? "after:absolute after:-right-2 after:bottom-2.5 after:h-1.5 after:w-1.5 after:animate-pulse after:rounded-[100%] after:bg-[#b3fc03] after:content-['']"
+              : "",
+          )}
+        >
           <a href={href} data-astro-prefetch>
             {name}
           </a>
