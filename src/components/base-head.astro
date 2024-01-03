@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+
 import { siteConfig } from "@/site-config";
 
 import "@/styles/global.css";
@@ -93,3 +95,5 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
   title={siteConfig.title}
   href="/rss.xml"
 />
+
+<ViewTransitions fallback="animate" />

@@ -1,9 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { isToday } from "date-fns";
-import { ViewTransitions } from "astro:transitions";
 
-import AsideNavigation from "@/components/aside-navigation.astro";
 import BaseHead from "@/components/base-head.astro";
 import Header from "@/components/layout/header.astro";
 import MobileNavigation from "@/components/mobile-navigation";
@@ -41,7 +39,6 @@ const {
       ogImage={ogImage}
       articleDate={articleDate}
     />
-    <ViewTransitions fallback="animate" />
   </head>
   <body>
     <main class="mx-auto max-w-[480px] p-8" vaul-drawer-wrapper>
