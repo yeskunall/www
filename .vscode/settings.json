@@ -7,6 +7,8 @@
   "editor.quickSuggestions": {
     "strings": true
   },
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 80,
   "emmet.includeLanguages": {
     "astro": "html"
   },
@@ -21,21 +23,19 @@
     "*.css": "tailwindcss",
     "*.mdx": "markdown"
   },
-  "[markdown]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.markdownlint": true
-    },
-    "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 80
-  },
   "[markdown][mdx]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.markdownlint": "always"
-    },
-    "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 80
+    }
   },
   "prettier.documentSelectors": ["**/*.astro"],
+  "tailwindCSS.experimental.classRegex": [
+    // Enable Tailwind CSS intellisense for the following functions
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.tsdk": "node_modules/.pnpm/typescript@5.3.3/node_modules/typescript/lib"
 }
