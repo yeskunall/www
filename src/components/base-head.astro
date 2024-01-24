@@ -5,7 +5,7 @@ import { siteConfig } from "@/site-config";
 
 import "@/styles/global.css";
 
-import type { SiteMeta as Props } from "@/data/site-meta";
+import type { SiteMeta as Props } from "@/site-config";
 
 const { title, description, ogImage, articleDate } = Astro.props;
 
@@ -23,7 +23,6 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
 
 <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
-<link rel="manifest" href="/manifest.webmanifest" />
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 

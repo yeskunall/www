@@ -1,4 +1,4 @@
-interface SiteConfig {
+type SiteConfig = {
   author: string;
   title: string;
   description: string;
@@ -10,7 +10,14 @@ interface SiteConfig {
     locale: string | string[] | undefined;
     options: Intl.DateTimeFormatOptions;
   };
-}
+};
+
+export type SiteMeta = {
+  articleDate?: string | undefined;
+  description?: string;
+  ogImage?: string | undefined;
+  title: string;
+};
 
 export const siteConfig: SiteConfig = {
   author: "Kunall Banerjee",
