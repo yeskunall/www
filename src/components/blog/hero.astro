@@ -1,9 +1,8 @@
 ---
-import { Balancer } from "react-wrap-balancer";
+import { format, getTime } from "date-fns";
+import prettyMs from "pretty-ms";
 
-import CopyToClipboard from "@/components/blog/copy-to-clipboard.tsx";
-
-import { getFormattedDate } from "@/utils";
+import { cn } from "@/lib/utils";
 import { siteConfig } from "@/site-config";
 
 import type { CollectionEntry } from "astro:content";
@@ -14,42 +13,34 @@ interface Props {
 
 const { post } = Astro.props;
 
-const datetime = post?.data.publishDate.toISOString();
-const postDate = getFormattedDate(post?.data.publishDate as Date, {
-  month: "long",
-});
+const datetime = post.data.publishDate.toISOString();
+const postDate = format(post.data.publishDate, "do MMMM',' yyyy");
 const { remarkPluginFrontmatter } = await post.render();
 ---
 
-<div class="mt-8 flex flex-col text-neutral-50/90">
+<div class="text-gray-12 mt-8 flex flex-col">
   <div
-    class="mb-1 flex items-center justify-between text-xs text-neutral-50/50"
+    class="text-gray-11 mb-1 flex select-none items-center justify-between font-sans text-xs font-medium"
   >
-    <span>
-      <time datetime={datetime} title={datetime}>
-        {postDate}
-      </time>
-    </span>
+    <time datetime={datetime} title={datetime}>
+      {postDate}&nbsp; ({
+        prettyMs(getTime(new Date()) - getTime(post.data.publishDate), {
+          compact: true,
+        })
+      } ago)
+    </time>
     <span>{remarkPluginFrontmatter.readingTime}</span>
   </div>
-  <Balancer>
-    <h1 class="font-serif text-xl font-medium tracking-tight sm:mb-1">
-      {post.data.title}
-    </h1>
-  </Balancer>
-  <div
-    class="mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs text-neutral-50/50"
+  <h1
+    class="!sm:text-4xl not-prose !mt-2.5 !text-3xl font-medium tracking-tighter [font:var(--type-heading)] sm:mb-1"
   >
-    <div class="space-x-3">
+    {post.data.title}
+  </h1>
+  <address
+    class="text-gray-11 mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs"
+  >
+    <div class="space-x-3 font-sans font-medium">
       <span>{remarkPluginFrontmatter.words} words</span> by {siteConfig.author}
     </div>
-    <div>
-      <CopyToClipboard client:only="react" />
-    </div>
-  </div>
-  {
-    post.data.description && (
-      <p class="mt-3 font-serif text-neutral-50/75">{post.data.description}</p>
-    )
-  }
+  </address>
 </div>
