@@ -1,44 +1,39 @@
 ---
-import { Balancer } from "react-wrap-balancer";
-import { getFormattedDate } from "@/utils";
+import { format } from "date-fns";
 
 import type { CollectionEntry } from "astro:content";
-import type { IElement } from "@/data/shared";
 
-interface Props extends IElement {
+type Props = {
   post: CollectionEntry<"post">;
-  style: string;
-  withDesc?: boolean;
-}
+  style?: string;
+};
 
-const { post, as: Element = "div", style, withDesc = false } = Astro.props;
-const date = new Date(post.data.publishDate);
-const datetime = date.toISOString();
-const postDate = getFormattedDate(date, {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-});
+const { post, style } = Astro.props;
+const datetime = post.data.publishDate.toISOString();
+const postDate = format(post.data.publishDate, "do MMM',' yyyy");
 ---
 
-<div class="group my-1.5 w-full cursor-pointer" data-animate style={style}>
-  <a href={`/writing/${post.slug}/`} class="text-base" data-astro-prefetch>
+<div
+  class="hover:border-ruby-3 hover:bg-ruby-2 group cursor-pointer border-b py-1.5 transition-colors"
+  data-animate
+  style={style}
+>
+  <a
+    class="group-hover:text-ruby-11 flex items-center justify-between transition-colors"
+    href={`/writing/${post.slug}/`}
+    data-astro-prefetch
+  >
+    <h3
+      class="!sm:text-lg text-balance !text-base !font-medium [font:var(--type-ui)] group-hover:!font-[520]"
+    >
+      {post.data.title}
+    </h3>
     <time
+      class="tabular-nums select-none font-mono text-xs tracking-tighter [font-variant-numeric:tabular-nums]"
       datetime={datetime}
-      class="mb-1.5 select-none self-start font-serif text-neutral-50/50 transition-colors group-hover:text-neutral-50/70 sm:mb-3 sm:text-right sm:text-sm"
     >
       {postDate}
     </time>
-    <Element
-      class="-mt-0.5 break-words font-sans text-neutral-50/60 transition-colors group-hover:text-neutral-50/70"
-    >
-      <Balancer>{post.data.title}</Balancer>
-    </Element>
-    {
-      withDesc && (
-        <span class="line-clamp-3 block italic">{post.data.description}</span>
-      )
-    }
   </a>
 </div>
 
