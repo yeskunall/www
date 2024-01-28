@@ -1,7 +1,6 @@
 ---
 import BaseHead from "@/components/base-head.astro";
 import Header from "@/components/layout/header.astro";
-import MobileNavigation from "@/components/mobile-navigation";
 import Footer from "@/components/layout/footer.astro";
 
 import { siteConfig } from "@/site-config";
@@ -36,7 +35,6 @@ const {
       <Header />
       <slot />
       <Footer />
-      <MobileNavigation client:only="react" />
     </main>
   </body>
 </html>
