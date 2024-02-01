@@ -1,11 +1,21 @@
 ---
 import { getCollection } from "astro:content";
 
-import PostLayout from "@/layouts/blog-post.astro";
+import BaseLayout from "@/layouts/base.astro";
+import Hero from "@/components/blog/hero.astro";
+import Newsletter from "@/components/newsletter.astro";
+import PostPreview from "@/components/blog/post-preview.astro";
+import ReadingProgress from "@/components/blog/reading-progress.astro";
+import Separator from "@/components/ui/separator.tsx";
+
+import { sortByDate } from "@/utils";
 
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const allPosts = await getCollection("post");
+const recentPosts = sortByDate(allPosts).slice(0, 3);
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("post");
@@ -18,8 +28,35 @@ export const getStaticPaths = (async () => {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const {
+  data: { title, description, publishDate },
+} = entry;
+
+const articleDate = publishDate.toISOString();
 ---
 
-<PostLayout post={entry}>
-  <Content />
-</PostLayout>
+<BaseLayout meta={{ articleDate, description, title }}>
+  <article class="prose" style="--font-size: 1.125rem">
+    <Hero post={entry} />
+    <Content />
+  </article>
+  <Separator className="bg-gray-6" />
+  <aside class="flex flex-col gap-y-2">
+    <section class="mt-8 px-4 py-3">
+      <Newsletter />
+      <div aria-label="Recent blog posts" class="space-y-2 py-6 sm:space-y-1.5">
+        <ul>
+          {
+            recentPosts.map(post => (
+              <li>
+                <PostPreview post={post} />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+  </aside>
+  <ReadingProgress />
+</BaseLayout>
