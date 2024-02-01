@@ -1,69 +1,28 @@
-@import "./fonts.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/mauve-alpha.css";
+@import "@radix-ui/colors/ruby.css";
+@import "@radix-ui/colors/ruby-alpha.css";
+@import "@radix-ui/colors/black-alpha.css";
+
 @import "./rehype-pretty-code.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Geist Sans";
-  src: url("/fonts/geist-sans-variable.woff2") format("woff2");
-  font-display: swap;
-}
+:root {
+  --bg: var(--ruby-1);
 
-@font-face {
-  font-family: "Martian Mono";
-  src: url("/fonts/martian-mono-variable.woff2") format("woff2");
-  font-display: swap;
-}
+  /* Font stack */
+  --font-eb-garamond: "EB Garamond";
+  --font-newsreader: "Newsreader";
+  --font-satoshi: "Satoshi";
 
-@font-face {
-  font-family: "Newsreader";
-  src: url("/fonts/newsreader-subset.woff2") format("woff2");
-  font-display: swap;
-}
+  /* Defaults */
+  --font-size: 1rem; /* 16px */
+  --line-height: 1.225;
+  --ui-font-weight: 600;
 
-html {
-  @apply isolate touch-manipulation scroll-smooth hyphens-auto bg-[oklch(0%_0.1_10)] antialiased selection:bg-[#b3fc03]/30 selection:text-[#b3fc03]/80;
-}
-
-@layer base {
-  :root {
-    --bg-secondary: #f8f8f8;
-    --font-geist-sans: "Geist Sans";
-    --font-serif: "Newsreader";
-    --leading: 24px;
-    --text-secondary: #000;
-    --type-italic: 300 italic calc(1em + 2px) / normal var(--font-serif);
-  }
-
-  :where(em, i) {
-    font: var(--type-italic);
-  }
-}
-
-@layer utilities {
-  .wide-words {
-    word-spacing: 1.2px;
-  }
-}
-
-.prose blockquote {
-  @apply border-l-2 border-l-neutral-300/30;
-}
-
-.prose blockquote p {
-  @apply font-serif text-base tracking-[-0.01em] text-neutral-100/50;
-}
-
-.prose :where(h1, h2, h3, h4, h5, h6) a {
-  @apply font-serif no-underline;
-}
-
-.prose section[data-callout] p {
-  @apply text-emerald-950/75;
-}
-
-.prose section[data-callout] p a {
-  @apply text-emerald-950/75;
+  --type-ui: normal var(--ui-font-weight) calc(var(--font-size) * 0.875) / 1.2
+    var(--font-satoshi);
 }
