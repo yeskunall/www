@@ -1,13 +1,12 @@
 import { defineConfig } from "astro/config";
+import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-import { readFileSync } from "node:fs";
 import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
 import remarkUnwrapImages from "remark-unwrap-images";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
@@ -25,12 +24,12 @@ const contentSecurityPolicy = `
   font-src 'self';
   frame-ancestors 'self';
   frame-src 'self';
-  ${/* eslint-disable-next-line */ ""}
-  img-src blob: data: 'self' https://assets.literal.club https://blog.kimchiii.space https://res.cloudinary.com;
+  img-src blob: data: 'self' https://assets.literal.club https://res.cloudinary.com;
   manifest-src 'self';
   media-src 'self';
   object-src 'none';
-  sandbox allow-forms allow-popups allow-same-origin allow-scripts;
+  ${/* Disable these for now */ ""}
+  ${/* sandbox allow-forms allow-popups allow-same-origin allow-scripts; */ ""}
   script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com;
   script-src-elem 'self' 'unsafe-eval' 'unsafe-inline';
   style-src 'self' 'unsafe-inline';
@@ -80,23 +79,6 @@ const permissionPolicy = `
   xr-spatial-tracking=()
 `;
 
-function rawFonts(ext: Array<string>) {
-  return {
-    name: "vite-plugin-raw-fonts",
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    transform(_, id) {
-      if (ext.some(e => id.endsWith(e))) {
-        const buffer = readFileSync(id);
-        return {
-          code: `export default ${JSON.stringify(buffer)}`,
-          map: null,
-        };
-      }
-    },
-  };
-}
-
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel({
@@ -107,11 +89,14 @@ export default defineConfig({
     remotePatterns: [{ protocol: "https" }],
   },
   integrations: [
+    // I’m not using any icons on the site (yet)
+    icon({ include: {} }),
     mdx(),
     react(),
     sitemap(),
     tailwind({
       applyBaseStyles: false,
+      nesting: true,
     }),
   ],
   markdown: {
@@ -119,6 +104,14 @@ export default defineConfig({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       rehypeAccessibleEmojis,
+      rehypeHeadingIds,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+          properties: { ariaHidden: true, tabIndex: -1 },
+        },
+      ],
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       [
@@ -137,17 +130,7 @@ export default defineConfig({
           },
         },
       ],
-      rehypeHeadingIds,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "wrap",
-        },
-      ],
       [rehypePrettyCode, rehypePrettyCodeOptions],
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore: this definitely works
-      rehypeSlug,
     ],
     remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
     remarkRehype: { footnoteLabelProperties: { className: [""] } },
@@ -178,7 +161,4 @@ export default defineConfig({
     },
   },
   site: "https://kimchiii.space/",
-  vite: {
-    plugins: [rawFonts([".ttf"])],
-  },
 });
