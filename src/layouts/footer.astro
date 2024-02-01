@@ -1,0 +1,142 @@
+---
+import { format } from "date-fns";
+import { Icon } from "astro-icon/components";
+import prettyMs from "pretty-ms";
+
+type Commit = {
+  sha: string;
+  commit: {
+    author: {
+      date: string;
+    };
+  };
+};
+
+let commitSHA;
+// Default to being the last time the page is built on the server
+let lastUpdatedDate = new Date().toISOString();
+const response = await fetch(
+  "https://api.github.com/repos/yeskunall/www/commits",
+  {
+    cache: "force-cache",
+    headers: {
+      Accept: "application/vnd.github.v3+json",
+      "Cache-Control": "max-age=604800, must-revalidate",
+    },
+    method: "GET",
+  },
+);
+
+if (response.ok) {
+  const data: Commit[] = await response.json();
+
+  const [latestCommit] = data.slice(0, 1);
+  const {
+    commit: {
+      author: { date },
+    },
+    sha,
+  } = latestCommit;
+
+  commitSHA = sha.slice(0, 6);
+  lastUpdatedDate = date;
+} else {
+  console.warn(
+    "You probably hit a rate limit. Nothing to worry about. Try again later.",
+  );
+}
+---
+
+<footer
+  class="mb-8 mt-16 flex flex-col gap-y-5 rounded-lg text-xs"
+  data-animate
+  style="--stagger:12"
+>
+  {
+    /* <div class="flex flex-col">
+    <div>
+      <h2
+        class="font-serif text-xl italic tracking-tight text-gray-12 sm:text-2xl"
+      >
+        Where do you go from here?
+      </h2>
+    </div>
+    <div class="order-first sm:order-none sm:self-end">
+      <Icon
+        aria-hidden="true"
+        focusable="false"
+        class="size-20 animate-spin [animation-duration:15000ms] hover:[animation-play-state:paused] motion-reduce:animate-none sm:size-16"
+        name="green-disclaimer"
+      />
+    </div>
+    <ul
+      class="mt-4 grid max-w-xs grid-cols-2 place-items-start gap-1.5 sm:grid-cols-3"
+    >
+      {
+        SOCIALS.map(({ href, title }) => (
+          <li>
+            <a
+              class="inline-flex items-center gap-x-1.5 font-mono font-medium tracking-tighter text-gray-11 hover:text-gray-12"
+              href={href}
+              rel="nofollow noopener noreferrer"
+            >
+              {title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  */
+  }
+  <div>
+    <small class="flex items-center justify-between">
+      <span class="inline-flex items-center gap-x-1"
+        >&copy; <samp>{format(new Date(), "yyyy")}</samp>&nbsp;<Icon
+          aria-hidden="true"
+          focusable="false"
+          class="size-20 sm:size-28"
+          name="signature"
+        />
+      </span>
+      <samp class="tracking-tight"
+        >Updated {
+          prettyMs(Date.now() - new Date(lastUpdatedDate).getTime(), {
+            compact: true,
+          })
+        } ago (<a
+          class="underline underline-offset-2"
+          href="https://github.com/yeskunall/www/commit"
+          rel="nofollow noopener noreferrer">{commitSHA}</a
+        >)
+      </samp>
+    </small>
+  </div>
+</footer>
+
+<style>
+  @keyframes enter {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  [data-animate] {
+    --delay: 120ms;
+    --stagger: 0;
+    --start: 0ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      animation: enter 0.6s both;
+      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+    }
+  }
+</style>
