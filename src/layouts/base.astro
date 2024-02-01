@@ -1,7 +1,7 @@
 ---
 import BaseHead from "@/components/base-head.astro";
-import Header from "@/components/layout/header.astro";
-import Footer from "@/components/layout/footer.astro";
+import Footer from "@/layouts/footer.astro";
+import Header from "@/layouts/header.astro";
 
 import { siteConfig } from "@/site-config";
 
@@ -13,9 +13,9 @@ type Props = {
 
 const {
   meta: {
-    title,
+    title = siteConfig.title,
     description = siteConfig.description,
-    ogImage = "default-og.png",
+    ogImage = siteConfig.ogImage,
     articleDate,
   },
 } = Astro.props;
@@ -31,7 +31,7 @@ const {
     />
   </head>
   <body>
-    <main class="relative mx-auto max-w-[660px] p-8" vaul-drawer-wrapper>
+    <main class="relative mx-auto max-w-[660px] p-8">
       <Header />
       <slot />
       <Footer />
