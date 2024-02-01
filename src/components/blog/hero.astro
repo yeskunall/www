@@ -2,7 +2,6 @@
 import { format, getTime } from "date-fns";
 import prettyMs from "pretty-ms";
 
-import { cn } from "@/lib/utils";
 import { siteConfig } from "@/site-config";
 
 import type { CollectionEntry } from "astro:content";
@@ -18,9 +17,9 @@ const postDate = format(post.data.publishDate, "do MMMM',' yyyy");
 const { remarkPluginFrontmatter } = await post.render();
 ---
 
-<div class="text-gray-12 mt-8 flex flex-col">
+<div class="mt-8 flex flex-col text-gray-12">
   <div
-    class="text-gray-11 mb-1 flex select-none items-center justify-between font-sans text-xs font-medium"
+    class="mb-1 flex select-none items-center justify-between font-sans text-xs font-medium text-gray-11"
   >
     <time datetime={datetime} title={datetime}>
       {postDate}&nbsp; ({
@@ -32,12 +31,12 @@ const { remarkPluginFrontmatter } = await post.render();
     <span>{remarkPluginFrontmatter.readingTime}</span>
   </div>
   <h1
-    class="!sm:text-4xl not-prose !mt-2.5 !text-3xl font-medium tracking-tighter [font:var(--type-heading)] sm:mb-1"
+    class="not-prose mt-2.5 font-['EB_Garamond'] text-3xl font-semibold italic leading-tight tracking-tighter sm:mb-1 sm:text-4xl"
   >
     {post.data.title}
   </h1>
   <address
-    class="text-gray-11 mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs"
+    class="mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs text-gray-11"
   >
     <div class="space-x-3 font-sans font-medium">
       <span>{remarkPluginFrontmatter.words} words</span> by {siteConfig.author}
