@@ -11,7 +11,7 @@ const { title, description, ogImage, articleDate } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const pathname = Astro.url.pathname;
-const socialImageURL = new URL(ogImage!, Astro.url).href;
+const socialImageURL = new URL(ogImage!, Astro.url.origin);
 ---
 
 <meta charset="utf-8" />
@@ -56,13 +56,10 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
   crossorigin="anonymous"
 />
 
-{/* Mastodon verification */}
-<link rel="me" href="https://mastodon.social/@yeskunall" />
-
 <title>{title}</title>
 <meta name="title" content={title} />
-<meta name="description" content={description} />
 <meta name="author" content={siteConfig.author} />
+<meta name="description" content={description} />
 
 <meta property="og:type" content={articleDate ? "article" : "website"} />
 <meta property="og:title" content={title} />
@@ -71,12 +68,19 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
 <meta property="og:site_name" content={siteConfig.title} />
 <meta property="og:locale" content={siteConfig.ogLocale} />
 <meta property="og:image" content={socialImageURL} />
+<meta
+  property="og:image:alt"
+  content="This is the Open Graph image for the website"
+/>
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 {
   articleDate && (
     <>
       <meta property="article:author" content={siteConfig.author} />
+      {/* Enable this once a `lastUpdatedDate` property exists in the
+      frontmatter */}
+      {/* <meta property="article:modified_time" content={articleDate} /> */}
       <meta property="article:published_time" content={articleDate} />
     </>
   )
@@ -94,5 +98,9 @@ const socialImageURL = new URL(ogImage!, Astro.url).href;
   title={siteConfig.title}
   href="/rss.xml"
 />
+{
+  /* Mastodon verification — but this hasn’t worked since I first pushed the change */
+}
+<link rel="me" href="https://mastodon.social/@yeskunall" />
 
 <ViewTransitions fallback="animate" />
