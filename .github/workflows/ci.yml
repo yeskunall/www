@@ -31,7 +31,7 @@ jobs:
 
       - name: Run check
         run: pnpm run check
-  eslint:
+  lint:
     name: Run ESLint
     runs-on: ubuntu-latest
     steps:
