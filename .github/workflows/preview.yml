@@ -5,11 +5,16 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches-ignore:
+      - main
+  workflow_dispatch:
   workflow_run:
     workflows: ["CI"]
     types:
       - completed
-
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
