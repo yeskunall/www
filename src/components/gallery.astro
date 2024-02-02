@@ -5,27 +5,23 @@ import ScrollArea from "@/components/ui/scroll-area.tsx";
 
 import { cn } from "@/lib/utils";
 
-import type { Picture as PictureProps } from "@/data/constants";
-
-type Props = {
-  photos: PictureProps[];
-};
-
 const { photos } = Astro.props;
 ---
 
 <ScrollArea
   className={cn(
-    "before:absolute before:-left-2 before:top-0 before:h-full before:w-px before:bg-gray-950/90",
+    "before:absolute before:-left-2 before:top-0 before:h-full before:w-px before:bg-gray-50/90",
     "relative mx-auto sm:w-full",
-    "after:absolute after:-right-2 after:top-0 after:h-full after:w-px after:bg-gray-950/90",
+    "after:absolute after:-right-2 after:top-0 after:h-full after:w-px after:bg-gray-50/90",
   )}
   client:only="react"
 >
   <div class="flex h-full w-full snap-x snap-mandatory gap-x-2">
     {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       photos.map(({ alt, image }) => (
-        <div class="relative h-80 w-60 shrink-0 snap-center overflow-hidden rounded-md border border-gray-700">
+        <div class="relative h-80 w-60 shrink-0 snap-center overflow-hidden rounded-md border border-gray-100">
           <Picture
             alt={alt}
             formats={["avif", "webp"]}
