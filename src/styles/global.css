@@ -4,8 +4,6 @@
 @import "@radix-ui/colors/ruby-alpha.css";
 @import "@radix-ui/colors/black-alpha.css";
 
-@import "./rehype-pretty-code.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
