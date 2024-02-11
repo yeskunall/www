@@ -6,13 +6,11 @@ import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
-import rehypePrettyCode from "rehype-pretty-code";
 import remarkUnwrapImages from "remark-unwrap-images";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/static";
 
-import { rehypePrettyCodeOptions } from "./src/lib/rehype-plugins";
 import { remarkReadingTime } from "./src/lib/remark-plugins";
 
 // Although setting `default-src` would cover some of the following CSP headers,
@@ -130,7 +128,6 @@ export default defineConfig({
           },
         },
       ],
-      [rehypePrettyCode, rehypePrettyCodeOptions],
     ],
     remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
     remarkRehype: { footnoteLabelProperties: { className: [""] } },
