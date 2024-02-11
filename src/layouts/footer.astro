@@ -1,76 +1,16 @@
 ---
 import { format } from "date-fns";
 import { Icon } from "astro-icon/components";
-
-type Commit = {
-  sha: string;
-};
-
-let commitSHA;
-const response = await fetch(
-  "https://api.github.com/repos/yeskunall/www/commits",
-  {
-    cache: "force-cache",
-    headers: {
-      Accept: "application/vnd.github.v3+json",
-      "Cache-Control": "max-age=604800, must-revalidate",
-    },
-    method: "GET",
-  },
-);
-
-if (response.ok) {
-  const data: Commit[] = await response.json();
-
-  const [latestCommit] = data.slice(0, 1);
-  const { sha } = latestCommit;
-
-  commitSHA = sha.slice(0, 7);
-} else {
-  console.warn(
-    "You probably hit a rate limit. Nothing to worry about. Try again later.",
-  );
-}
 ---
 
 <footer
-  class="mb-8 mt-16 flex flex-col justify-start text-xs"
+  class="my-8 flex flex-col justify-start text-xs"
   data-animate
   style="--stagger:12"
 >
-  <div class="flex items-center justify-between">
-    <div
-      class="inline-flex items-center gap-x-1 font-sans font-medium tracking-tighter text-gray-10"
-    >
-      <Icon
-        aria-label="GitHub"
-        focusable="false"
-        class="size-3 fill-gray-11"
-        name="github"
-      /><a
-        class="group underline decoration-gray-7 underline-offset-2"
-        href={`https://github.com/yeskunall/www/commit/${commitSHA}`}
-        rel="nofollow noopener noreferrer"
-        >yeskunall/www#<span
-          class="font-mono text-gray-9 transition-colors group-hover:text-gray-11"
-          >{commitSHA}</span
-        ></a
-      >
-    </div>
-    <div
-      class="inline-flex items-center gap-x-1 font-sans font-medium tracking-tight"
-    >
-      <Icon
-        aria-hidden="true"
-        focusable="false"
-        class="size-4 fill-gray-11"
-        name="pin"
-      /><span class="text-gray-10">Made in Ottawa, CA</span>
-    </div>
-  </div>
-  <div class="inline-flex items-center gap-x-1">
+  <div class="inline-flex items-center gap-x-1 text-gray-a12">
     &copy;&nbsp;
-    <span class="font-mono tracking-tighter text-gray-10"
+    <span class="font-mono font-medium tracking-tighter"
       >{format(new Date(), "yyyy")}</span
     >
     &nbsp;
