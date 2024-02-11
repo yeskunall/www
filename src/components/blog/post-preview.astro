@@ -1,48 +1,46 @@
 ---
-import { Balancer } from "react-wrap-balancer";
-import { getFormattedDate } from "@/utils";
+import { format } from "date-fns";
+
+import { cn } from "@/lib/utils";
 
 import type { CollectionEntry } from "astro:content";
-import type { IElement } from "@/data/shared";
 
-interface Props extends IElement {
+type Props = {
+  class?: string;
   post: CollectionEntry<"post">;
-  style: string;
-  withDesc?: boolean;
-}
+  stagger?: number;
+};
 
-const { post, as: Element = "div", style, withDesc = false } = Astro.props;
-const date = new Date(post.data.publishDate);
-const datetime = date.toISOString();
-const postDate = getFormattedDate(date, {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-});
+const { class: className, post, stagger } = Astro.props;
+const datetime = post.data.publishDate.toISOString();
+const postDate = format(post.data.publishDate, "do MMM',' yyyy");
 ---
 
-<div class="group my-1.5 w-full cursor-pointer" data-animate style={style}>
-  <a href={`/writing/${post.slug}/`} class="text-base" rel="prefetch">
+<div
+  class={cn(
+    "group cursor-pointer py-1.5 transition-colors hover:border-ruby-3 hover:bg-ruby-2",
+    className,
+  )}
+  data-animate
+>
+  <a
+    class="flex items-center justify-between transition-colors group-hover:text-ruby-11"
+    href={`/writing/${post.slug}/`}
+    data-astro-prefetch
+  >
+    <h3 class="[font:var(--type-ui)]">
+      {post.data.title}
+    </h3>
     <time
+      class="tabular-nums select-none font-mono text-xs tracking-[-0.075em] [font-variant-numeric:tabular-nums]"
       datetime={datetime}
-      class="mb-1.5 select-none self-start font-serif text-neutral-50/50 transition-colors group-hover:text-neutral-50/70 sm:mb-3 sm:text-right sm:text-sm"
     >
       {postDate}
     </time>
-    <Element
-      class="-mt-0.5 break-words font-sans text-neutral-50/60 transition-colors group-hover:text-neutral-50/70"
-    >
-      <Balancer>{post.data.title}</Balancer>
-    </Element>
-    {
-      withDesc && (
-        <span class="line-clamp-3 block italic">{post.data.description}</span>
-      )
-    }
   </a>
 </div>
 
-<style>
+<style define:vars={{ stagger }}>
   @keyframes enter {
     0% {
       opacity: 0;

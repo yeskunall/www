@@ -1,24 +1,21 @@
 ---
-import { ViewTransitions } from "astro:transitions";
-
 import BaseHead from "@/components/base-head.astro";
-import Header from "@/components/layout/header.astro";
-import Footer from "@/components/layout/footer.astro";
-import SkipLink from "@/components/SkipLink.astro";
+import Footer from "@/layouts/footer.astro";
+import Header from "@/layouts/header.astro";
 
 import { siteConfig } from "@/site-config";
 
-import type { SiteMeta } from "@/data/site-meta";
+import type { SiteMeta } from "@/site-config";
 
-interface Props {
+type Props = {
   meta: SiteMeta;
-}
+};
 
 const {
   meta: {
-    title,
+    title = siteConfig.title,
     description = siteConfig.description,
-    ogImage = "default-og.png",
+    ogImage = siteConfig.ogImage,
     articleDate,
   },
 } = Astro.props;
@@ -32,13 +29,9 @@ const {
       ogImage={ogImage}
       articleDate={articleDate}
     />
-    <ViewTransitions fallback="animate" />
   </head>
-  <body
-    class="container mx-auto p-8 [background-size:auto,_auto,_21px_21px,_21px_21px]"
-  >
-    <SkipLink />
-    <main class="md:max-w-[420px]">
+  <body>
+    <main class="relative mx-auto max-w-[660px] p-8">
       <Header />
       <slot />
       <Footer />
