@@ -12,10 +12,10 @@
       "@/site-config": ["src/site.config.ts"],
       "@/stores/*": ["src/stores/*"],
       "@/styles/*": ["src/styles/*"],
-      "@/utils": ["src/utils/index.ts"],
+      "@/utils": ["src/utils/index.ts"]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "react",
+    "jsxImportSource": "react"
   },
-  "exclude": [".vscode", "dist", "node_modules"],
+  "exclude": [".vscode", "dist", "node_modules"]
 }
