@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
@@ -87,8 +86,6 @@ export default defineConfig({
     remotePatterns: [{ protocol: "https" }],
   },
   integrations: [
-    // I’m not using any icons on the site (yet)
-    icon({ include: {} }),
     mdx(),
     react(),
     sitemap(),
@@ -107,7 +104,7 @@ export default defineConfig({
         rehypeAutolinkHeadings,
         {
           behavior: "wrap",
-          properties: { ariaHidden: true, tabIndex: -1 },
+          properties: { ariaHidden: true },
         },
       ],
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
