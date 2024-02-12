@@ -7,20 +7,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --bg: var(--ruby-1);
-
-  /* Font stack */
-  --font-eb-garamond: "EB Garamond";
-  --font-newsreader: "Newsreader";
-  --font-satoshi: "Satoshi";
-
-  /* Defaults */
-  --font-size: 1rem; /* 16px */
-  --line-height: 1.225;
-  --ui-font-weight: 600;
-
-  --type-ui: normal var(--ui-font-weight) calc(var(--font-size) * 0.875) / 1.2
-    var(--font-satoshi);
-}

@@ -34,8 +34,9 @@ module.exports = {
             "--tw-prose-links": "var(--mauve-11)",
             ":where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'], [class~='not-prose'] *))":
               {
+                "--font-weight": "600",
                 "--type-heading":
-                  "italic 600 21px / 1.2 var(--font-eb-garamond)",
+                  "italic var(--font-weight) 21px / 1.2 var(--font-eb-garamond)",
                 font: "var(--type-heading)",
                 letterSpacing: "-0.05em",
                 "> a": {
@@ -101,9 +102,25 @@ module.exports = {
     require("@tailwindcss/typography"),
     plugin(function addBaseStyles({ addBase }) {
       addBase({
+        ":root": {
+          "--bg": "var(--ruby-1)",
+          // Font stack
+          "--font-eb-garamond": "EB Garamond",
+          "--font-mono": `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`,
+          "--font-newsreader": "Newsreader",
+          "--font-satoshi": "Satoshi",
+          // Defaults
+          "--font-size": "1rem", // 16px
+          "--font-weight": "400", // normal
+          "--line-height": "1.225",
+          "--ui-font-weight": "600",
+          "--type-ui":
+            "normal var(--ui-font-weight) calc(var(--font-size) * 0.875) / 1.2 var(--font-satoshi)",
+        },
         ":where(em, i):not(:where([class~='prose'], [class~='prose'] *))": {
+          "--font-weight": "390",
           "--type-italic":
-            "normal italic 390 calc(var(--font-size) + 2px) / 1.225 var(--font-newsreader)",
+            "italic var(--font-weight) calc(var(--font-size) + 2px) / 1.225 var(--font-newsreader)",
           font: "var(--type-italic)",
         },
         ":where(h1, h2, h3, h4, h5, h6)": {
@@ -114,20 +131,26 @@ module.exports = {
           letterSpacing: "-0.05em",
         },
         "b, strong": {
-          fontWeight: "400",
+          fontWeight: "var(--font-weight)",
         },
         body: {
           color: "var(--mauve-11)",
           fontSynthesis: "none",
           textWrap: "pretty",
         },
+        "code, kbd, pre, samp": {
+          "--type-mono":
+            "normal var(--font-weight) calc(var(--font-size) + 2px) / 1 var(--font-mono)",
+          font: "var(--type-mono)",
+        },
         html: {
           "@apply selection:bg-ruby-3 selection:text-ruby-11": {},
           "-webkit-font-smoothing": "antialiased",
           "-moz-osx-font-smoothing": "grayscale",
           backgroundColor: "var(--bg)",
-          fontSize: "16px",
+          fontSize: "16px", // 1rem
           scrollBehavior: "smooth",
+          tabSize: "2",
           touchAction: "manipulation",
         },
       });
@@ -179,10 +202,10 @@ module.exports = {
     plugin(function wideWrapperPlugin({ addComponents }) {
       addComponents({
         ".wide-wrapper": {
+          "--wrap-wide": "100vw",
           maxWidth: "min(100vw, var(--wrap-wide))",
           width: "min(100vw, var(--wrap-wide))",
           marginLeft: "calc((min(100vw, var(--wrap-wide)) - 100%) / -2)",
-          "--wrap-wide": "100vw",
         },
       });
     }),
