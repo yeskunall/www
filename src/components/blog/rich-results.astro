@@ -6,8 +6,6 @@ import type { CollectionEntry } from "astro:content";
 type Props = Omit<CollectionEntry<"post">["data"], "pinned" | "tags">;
 const { description, publishDate, title } = Astro.props;
 
-console.log({ publishDate });
-
 const schema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
