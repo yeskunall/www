@@ -1,16 +1,16 @@
 type SiteConfig = {
   author: string;
-  title: string;
   description: string;
   lang: string;
   ogImage: string;
   ogLocale: string;
+  title: string;
+  url: string;
 };
 
 export type SiteMeta = {
-  articleDate?: string;
   description?: string;
-  ogImage?: string;
+  publishDate?: string;
   title?: string;
 };
 
@@ -22,4 +22,5 @@ export const siteConfig: SiteConfig = {
   ogImage: "default-og.png",
   ogLocale: "en_CA",
   title: "Kunall Banerjee — I create",
+  url: "https://kimchiii.space",
 };

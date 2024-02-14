@@ -11,9 +11,12 @@ interface Props {
 }
 
 const { post } = Astro.props;
+const {
+  data: { pinned, publishDate },
+} = post;
 
-const datetime = post.data.publishDate.toISOString();
-const postDate = format(post.data.publishDate, "do MMMM',' yyyy");
+const datetime = publishDate.toISOString();
+const postDate = format(publishDate, "do MMMM',' yyyy");
 const { remarkPluginFrontmatter } = await post.render();
 ---
 

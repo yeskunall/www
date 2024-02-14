@@ -15,8 +15,7 @@ const {
   meta: {
     title = siteConfig.title,
     description = siteConfig.description,
-    ogImage = siteConfig.ogImage,
-    articleDate,
+    publishDate,
   },
 } = Astro.props;
 ---
@@ -26,8 +25,7 @@ const {
     <BaseHead
       title={title}
       description={description}
-      ogImage={ogImage}
-      articleDate={articleDate}
+      publishDate={publishDate}
     />
   </head>
   <body>

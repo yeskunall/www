@@ -1,0 +1,29 @@
+---
+import { siteConfig } from "@/site-config";
+
+import type { CollectionEntry } from "astro:content";
+
+type Props = Omit<CollectionEntry<"post">["data"], "pinned" | "tags">;
+const { description, publishDate, title } = Astro.props;
+
+console.log({ publishDate });
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  author: {
+    "@type": "Person",
+    name: "Kunall Banerjee",
+    url: siteConfig.url,
+  },
+  datePublished: new Date(publishDate).toISOString(),
+  description: description,
+  headline: title,
+  // Enable this once a `lastUpdatedDate` property exists in the frontmatter
+  // ...(lastUpdatedDate && {
+  //   dateModified: lastUpdatedDate.toISOString(),
+  // }),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
