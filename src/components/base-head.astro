@@ -32,31 +32,21 @@ const socialImageURL = new URL(ogImage!, Astro.url.origin);
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
-{/* Preload local fonts */}
-{
-  pathname.startsWith("/writing") && (
-    <link
-      href="/fonts/eb-garamond-subset-italic.woff2"
-      rel="preload"
-      as="font"
-      crossorigin="anonymous"
-    />
-  )
-}
+{/** Preload local fonts */}
 <link
-  href="/fonts/newsreader.woff2"
+  href="/fonts/libre-caslon-condensed.woff2"
   rel="preload"
   as="font"
   crossorigin="anonymous"
 />
 <link
-  href="/fonts/newsreader-italic.woff2"
+  href="/fonts/libre-caslon-condensed-italic.woff2"
   rel="preload"
   as="font"
   crossorigin="anonymous"
 />
 <link
-  href="/fonts/satoshi.woff2"
+  href="/fonts/sohne-subset.woff2"
   rel="preload"
   as="font"
   crossorigin="anonymous"
