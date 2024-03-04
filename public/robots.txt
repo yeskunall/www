@@ -48,6 +48,7 @@ User-agent: Mediapartners-Google
 User-agent: Mediapartners-Google*
 User-agent: MSNBot-Media
 User-agent: Omgilibot
+User-agent: PerplexityBot
 User-agent: Pinterestbot
 User-agent: Storebot-Google
 User-agent: Twitterbot
