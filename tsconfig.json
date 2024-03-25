@@ -3,14 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/content/*": ["src/content/*"],
-      "@/data/*": ["data/*"],
-      "@/layouts/*": ["src/layouts/*"],
-      "@/lib/*": ["src/lib/*"],
-      "@/site-config": ["data/site-config.ts"],
-      "@/styles/*": ["src/styles/*"],
-      "@/utils/*": ["utils/*"]
+      "~/*": ["src/*"],
+      "~/site-config": ["data/site-config.ts"],
+      "~/data/*": ["data/*"],
+      "~/lib/*": ["lib/*"],
+      "~/utils/*": ["utils/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
