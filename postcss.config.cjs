@@ -1,10 +1,12 @@
 module.exports = {
-  plugins: {
-    "tailwindcss/nesting": {},
-    tailwindcss: {},
-    autoprefixer: {},
+  plugins: [
+    require("postcss-import"),
+    require("tailwindcss/nesting"),
+    require("tailwindcss"),
+    require("autoprefixer"),
     ...(process.env.NODE_ENV === "production"
-      ? { cssnano: { preset: "advanced" } }
-      : {}),
-  },
+      ? // eslint-disable-next-line @typescript-eslint/no-var-requires
+        [require("cssnano")({ preset: "advanced" })]
+      : []),
+  ],
 };
