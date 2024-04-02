@@ -4,7 +4,7 @@ import react from "@astrojs/react";
 import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
-import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+import remarkAdmonitions from "remark-github-beta-blockquote-admonitions";
 import remarkUnwrapImages from "remark-unwrap-images";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
@@ -125,9 +125,29 @@ export default defineConfig({
           },
         },
       ],
+    remarkPlugins: [
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+      // @ts-ignore
+      [
+        remarkAdmonitions,
+        {
+          classNameMaps: {
+            block: (title: string) =>
+              `admonition admonition--${title.toLowerCase()}`,
+            title: (title: string) =>
+              `admonition-title admonition-title--${title.toLowerCase()}`,
+          },
+        },
+      ],
+      remarkDefinitionList,
+      remarkUnwrapImages,
     ],
-    remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
-    remarkRehype: { footnoteLabelProperties: { className: [""] } },
+    remarkRehype: {
+      footnoteLabelProperties: { className: [""] },
+      handlers: {
+        ...defListHastHandlers,
+      },
+    },
     syntaxHighlight: false,
   },
   output: "static",

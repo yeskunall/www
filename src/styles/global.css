@@ -7,3 +7,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+  .prose {
+    .admonition {
+      @apply border-l-2 border-solid border-accent-9 p-4;
+
+      p + p {
+        @apply my-0;
+      }
+    }
+
+    .admonition-title {
+      @apply mb-1 mt-0;
+    }
+  }
+}
