@@ -26,10 +26,7 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        # I’m on Node.js 20 locally, but I’d like to match this with Astro,
-        # which currently still uses v18
-        # https://github.com/withastro/astro/blob/main/.nvmrc
-        node-version: 18
+        node-version: 20
         cache: pnpm
 
     - name: Install dependencies
