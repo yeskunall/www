@@ -1,0 +1,177 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import { ViewTransitions } from "astro:transitions";
+
+import RichResults from "~/components/blog/rich-results.astro";
+import { siteConfig } from "~/site-config";
+import "~/styles/global.css";
+
+interface Props {
+  post: CollectionEntry<"post"> | undefined;
+}
+
+const { post } = Astro.props;
+
+const data = post?.data;
+const slug = Astro.url.pathname;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(siteConfig.ogImage, Astro.url.origin);
+---
+
+<meta charset="utf-8" />
+<meta
+  content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+  name="viewport"
+/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+{
+  /** https://www.deviantart.com/team/journal/UPDATE-All-Deviations-Are-Opted-Out-of-AI-Datasets-934500371 */
+}
+<meta content="noai, noimageai" name="robots" />
+
+<link href="/favicon/favicon.ico" rel="icon" sizes="any" />
+<link href="/favicon/apple-touch-icon.png" rel="apple-touch-icon" />
+<link href={canonicalURL} rel="canonical" />
+<link href="/sitemap-index.xml" rel="sitemap" />
+
+{/** Preload local fonts */}
+<link
+  as="font"
+  crossorigin="anonymous"
+  href="/fonts/kode-mono-400.woff2"
+  rel="preload"
+  type="font/woff2"
+/>
+<link
+  as="font"
+  crossorigin="anonymous"
+  href="/fonts/kode-mono-500.woff2"
+  rel="preload"
+  type="font/woff2"
+/>
+<link
+  as="font"
+  crossorigin="anonymous"
+  href="/fonts/kode-mono-600.woff2"
+  rel="preload"
+  type="font/woff2"
+/>
+{
+  slug.startsWith("/writing") && (
+    <>
+      <link
+        as="font"
+        crossorigin="anonymous"
+        href="/fonts/libre-caslon-condensed.woff2"
+        rel="preload"
+        type="font/woff2"
+      />
+      <link
+        as="font"
+        crossorigin="anonymous"
+        href="/fonts/libre-caslon-condensed-italic.woff2"
+        rel="preload"
+        type="font/woff2"
+      />
+    </>
+  )
+}
+<link
+  as="font"
+  crossorigin="anonymous"
+  href="/fonts/medieval-sharp-400.woff2"
+  rel="preload"
+  type="font/woff2"
+/>
+
+<title>{siteConfig.title}</title>
+
+{/** Basic metadata */}
+<meta content={siteConfig.author} name="author" />
+<meta content={siteConfig.description} name="description" />
+<meta content={siteConfig.title} name="title" />
+
+{/** Open Graph required metadata */}
+<meta content={socialImageURL} property="og:image" />
+{
+  (data?.title && <meta content={data.title} property="og:title" />) ?? (
+    <meta content={siteConfig.title} property="og:title" />
+  )
+}
+<meta content={data?.publishDate ? "article" : "website"} property="og:type" />
+<meta content={canonicalURL} property="og:url" />
+
+{/** Open Graph optional metadata */}
+{
+  (data?.description && (
+    <meta content={data.description} property="og:description" />
+  )) ?? <meta content={siteConfig.description} property="og:description" />
+}
+<meta content="en_CA" property="og:locale" />
+
+{/** Open Graph article metadata */}
+{(<meta content={siteConfig.author} property="article:author" />)}
+{
+  data?.lastUpdatedDate && (
+    <meta
+      content={data.lastUpdatedDate.toISOString()}
+      property="article:modified_time"
+    />
+  )
+}
+{
+  data?.publishDate && (
+    <meta
+      content={data.publishDate.toISOString()}
+      property="article:published_time"
+    />
+  )
+}
+{
+  data?.tags
+    ? data.tags.map((tag: string) => (
+        <meta content={tag} property="article:tag" />
+      ))
+    : null
+}
+
+{/** Open Graph image metadata */}
+<meta
+  content="This is the Open Graph image for the website"
+  property="og:image:alt"
+/>
+<meta content="630" property="og:image:height" />
+<meta content="1200" property="og:image:width" />
+<meta content={socialImageURL} property="og:image:url" />
+<meta content={socialImageURL} property="og:image:secure_url" />
+
+{/** Twitter Open Graph metadata */}
+<meta content="summary_large_image" property="twitter:card" />
+<meta content="@yeskunall" property="twitter:creator" />
+{
+  (data?.description && (
+    <meta content={data.description} property="twitter:description" />
+  )) ?? <meta content={siteConfig.description} property="twitter:description" />
+}
+<meta content={socialImageURL} property="twitter:image" />
+{/** FIXME(yeskunall): use the OG image alt */}
+<meta content={socialImageURL} property="twitter:imageAlt" />
+<meta content="@yeskunall" property="twitter:site" />
+{
+  (data?.title && <meta content={data.title} property="twitter:title" />) ?? (
+    <meta content={siteConfig.title} property="twitter:title" />
+  )
+}
+<meta content={canonicalURL} property="twitter:url" />
+
+<link
+  href="/rss.xml"
+  rel="alternate"
+  title={siteConfig.title}
+  type="application/rss+xml"
+/>
+
+{data && <RichResults frontmatter={data} />}
+<ViewTransitions fallback="animate" />
