@@ -4,24 +4,8 @@
   font-family: "Kode Mono";
   font-display: swap;
   font-style: normal;
-  font-weight: "400";
-  src: url("/fonts/kode-mono-400.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Kode Mono";
-  font-display: swap;
-  font-style: normal;
-  font-weight: "500";
-  src: url("/fonts/kode-mono-500.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Kode Mono";
-  font-display: swap;
-  font-style: normal;
-  font-weight: "600";
-  src: url("/fonts/kode-mono-600.woff2") format("woff2");
+  font-weight: "400 700";
+  src: url("/fonts/kode-mono.woff2") format("woff2");
 }
 
 @font-face {
