@@ -37,7 +37,7 @@
 
   /* Defaults */
   --font-size: 16px; /* 1 rem */
-  --font-weight: 400; /* normal */
+  --font-weight: 500; /* medium */
 
   /* https://www.joshwcomeau.com/shadow-palette/ */
   --shadow-color: 80deg 11% 69%;
