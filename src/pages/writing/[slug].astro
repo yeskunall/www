@@ -3,7 +3,6 @@ import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
 import { getCollection } from "astro:content";
 
-import Figure from "~/components/blog/figure.astro";
 import Hero from "~/components/blog/hero.astro";
 import PostPreview from "~/components/blog/post-preview.astro";
 import BaseLayout from "~/layouts/base.astro";
@@ -30,7 +29,7 @@ const { Content } = await post.render();
 <BaseLayout post={post}>
   <article class="prose prose-sm prose-slate prose-li:my-0">
     <Hero post={post} />
-    <Content components={{ img: Figure }} />
+    <Content />
     <div class="my-8 border-b border-gray-6"></div>
   </article>
   <aside class="flex flex-col gap-y-2">
