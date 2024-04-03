@@ -1,34 +1,17 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "always"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
     "strings": true
   },
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 120,
   "emmet.includeLanguages": {
     "astro": "html"
   },
-  "files.associations": {
-    "*.css": "tailwindcss",
-    "*.mdx": "markdown"
-  },
-  "[markdown]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.markdownlint": true
-    },
-    "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 80
-  },
-  "[mdx]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.markdownlint": true
-    },
-    "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 80
-  },
-  "prettier.documentSelectors": ["**/*.astro"],
   "eslint.validate": [
     "astro",
     "javascript",
@@ -36,6 +19,23 @@
     "typescript",
     "typescriptreact"
   ],
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.mdx": "markdown"
+  },
+  "[markdown][mdx]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.markdownlint": "always"
+    }
+  },
+  "prettier.documentSelectors": ["**/*.astro"],
+  "tailwindCSS.experimental.classRegex": [
+    // Enable Tailwind CSS code completion for the following functions
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.tsdk": "node_modules/.pnpm/typescript@5.3.2/node_modules/typescript/lib"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.tsdk": "node_modules/.pnpm/typescript@5.4.3/node_modules/typescript/lib"
 }

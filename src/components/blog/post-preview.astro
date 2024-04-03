@@ -1,48 +1,45 @@
 ---
-import { Balancer } from "react-wrap-balancer";
-import { getFormattedDate } from "@/utils";
-
 import type { CollectionEntry } from "astro:content";
-import type { IElement } from "@/data/shared";
 
-interface Props extends IElement {
+import { format } from "date-fns";
+
+import { cn } from "~/lib/utils";
+
+interface Props {
+  class?: string;
   post: CollectionEntry<"post">;
-  style: string;
-  withDesc?: boolean;
+  stagger?: number;
 }
 
-const { post, as: Element = "div", style, withDesc = false } = Astro.props;
-const date = new Date(post.data.publishDate);
-const datetime = date.toISOString();
-const postDate = getFormattedDate(date, {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-});
+const { class: className, post, stagger } = Astro.props;
+const datetime = post.data.publishDate.toISOString();
+const postDate = format(post.data.publishDate, "d/MM/yy");
 ---
 
-<div class="group my-1.5 w-full cursor-pointer" data-animate style={style}>
-  <a href={`/writing/${post.slug}/`} class="text-base" rel="prefetch">
-    <time
-      datetime={datetime}
-      class="mb-1.5 select-none self-start font-serif text-neutral-50/50 transition-colors group-hover:text-neutral-50/70 sm:mb-3 sm:text-right sm:text-sm"
-    >
-      {postDate}
-    </time>
-    <Element
-      class="-mt-0.5 break-words font-sans text-neutral-50/60 transition-colors group-hover:text-neutral-50/70"
-    >
-      <Balancer>{post.data.title}</Balancer>
-    </Element>
-    {
-      withDesc && (
-        <span class="line-clamp-3 block italic">{post.data.description}</span>
-      )
-    }
-  </a>
-</div>
+<a
+  class={cn(
+    "grid group [grid-template-columns:auto_1fr_auto] focus-visible:outline focus-visible:outline-accent-8 focus-visible:outline-offset-[-1px] focus-visible:outline-2 gap-1 items-center justify-between py-1",
+    className,
+  )}
+  data-animate
+  data-astro-prefetch
+  href={`/writing/${post.slug}/`}
+>
+  <h3
+    class="font-sans text-sm font-semibold text-gray-11 group-hover:text-accent-11 group-focus:text-accent-11"
+  >
+    {post.data.title}
+  </h3>
+  <div class="my-0 border-b border-dotted border-gray-6"></div>
+  <time
+    class="select-none font-mono text-xs tracking-[-0.075em] [font-variant-numeric:tabular-nums]"
+    datetime={datetime}
+  >
+    {postDate}
+  </time>
+</a>
 
-<style>
+<style define:vars={{ stagger }}>
   @keyframes enter {
     0% {
       opacity: 0;

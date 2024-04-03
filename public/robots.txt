@@ -1,4 +1,71 @@
-User-agent: *
+#    .__________________________.
+#    | .___________________. |==|
+#    | | ................. | |  |
+#    | | ::[ Dear robot ]: | |  |
+#    | | ::::[ be nice ]:: | |  |
+#    | | ::::::::::::::::: | |  |
+#    | | ::::::::::::::::: | |  |
+#    | | ::::::::::::::::: | |  |
+#    | | ::::::::::::::::: | | ,|
+#    | !___________________! |(c|
+#    !_______________________!__!
+#   /                            \
+#  /  [][][][][][][][][][][][][]  \
+# /  [][][][][][][][][][][][][][]  \
+#(  [][][][][____________][][][][]  )
+# \ ------------------------------ /
+#  \______________________________/
+
+# This list is gathered from a handful of resources:
+# https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
+# https://netfuture.ch/2023/07/blocking-ai-crawlers-robots-txt-chatgpt/
+# Plus individual sites:
+#
+# https://www.cloudflare.com/robots.txt
+# https://www.youtube.com/robots.txt
+
+User-agent: Googlebot
+User-agent: Google-InspectionTool
 Allow: /
 
+User-agent: AdsBot-Google
+User-agent: anthropic-ai
+User-agent: Baiduspider
+User-agent: Bingbot
+User-agent: Bytespider
+User-agent: CCBot
+User-agent: ChatGPT-User
+User-agent: cohere-ai
+User-agent: Google-Extended
+User-agent: Googlebot-Image
+User-agent: Googlebot-News
+User-agent: Googlebot-Video
+User-agent: GoogleOther
+User-agent: GPTBot
+User-agent: FacebookBot
+User-agent: facebookexternalhit
+User-agent: Mediapartners-Google
+User-agent: Mediapartners-Google*
+User-agent: MSNBot-Media
+User-agent: Omgilibot
+User-agent: PerplexityBot
+User-agent: Pinterestbot
+User-agent: Storebot-Google
+User-agent: Twitterbot
+Disallow: /
+
 Sitemap: https://kimchiii.space/sitemap-index.xml
+
+#              ________
+#   __,_,     |        |
+#  [_|_/      |   OK   |
+#   //        |________|
+# _//    __  /
+#(_|)   |@@|
+# \ \__ \--/ __
+#  \o__|----|  |   __
+#      \ }{ /\ )_ / _\
+#      /\__/\ \__O (__
+#     (--/\--)    \__/
+#     _)(  )(_
+#    `---''---`

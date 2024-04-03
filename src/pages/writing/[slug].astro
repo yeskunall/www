@@ -1,11 +1,17 @@
 ---
-import { getCollection } from "astro:content";
-
-import PostLayout from "@/layouts/blog-post.astro";
-
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
+import { getCollection } from "astro:content";
+
+import Hero from "~/components/blog/hero.astro";
+import PostPreview from "~/components/blog/post-preview.astro";
+import BaseLayout from "~/layouts/base.astro";
+import { sortByDate } from "~/lib/post";
+
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const allPosts = await getCollection("post");
+const recentPosts = sortByDate(allPosts).slice(0, 3);
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("post");
@@ -16,10 +22,27 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { entry: post } = Astro.props;
+const { Content } = await post.render();
 ---
 
-<PostLayout post={entry}>
-  <Content />
-</PostLayout>
+<BaseLayout post={post}>
+  <article class="prose prose-sm prose-slate prose-li:my-0">
+    <Hero post={post} />
+    <Content />
+    <div class="my-8 border-b border-gray-6"></div>
+  </article>
+  <aside class="flex flex-col gap-y-2">
+    <div aria-label="Recent blog posts" class="space-y-2 py-6 sm:space-y-1.5">
+      <ul>
+        {
+          recentPosts.map(post => (
+            <li>
+              <PostPreview post={post} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </aside>
+</BaseLayout>

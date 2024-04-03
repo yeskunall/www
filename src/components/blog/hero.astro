@@ -1,40 +1,48 @@
 ---
-import { Balancer } from "react-wrap-balancer";
-
-import { getFormattedDate } from "@/utils";
-
 import type { CollectionEntry } from "astro:content";
+
+import { format, getTime } from "date-fns";
+import prettyMs from "pretty-ms";
+
+import { siteConfig } from "~/site-config";
 
 interface Props {
   post: CollectionEntry<"post">;
 }
 
 const { post } = Astro.props;
+const {
+  data: { publishDate },
+} = post;
 
-const datetime = post?.data.publishDate.toISOString();
-const postDate = getFormattedDate(post?.data.publishDate as Date, {
-  month: "long",
-});
+const datetime = publishDate.toISOString();
+const postDate = format(publishDate, "do MMMM',' yyyy");
+const { remarkPluginFrontmatter } = await post.render();
 ---
 
-<div class="mt-8 flex flex-col text-neutral-50/90">
-  <Balancer>
-    <h1 class="font-serif text-3xl font-medium tracking-tight sm:mb-1">
-      {post.data.title}
-    </h1>
-  </Balancer>
-  {
-    post && (
-      <span class="mt-1 inline-block text-sm">
-        <>
-          <time class="text-neutral-50/70" datetime={datetime} title={datetime}>
-            {postDate}
-          </time>
-        </>
-      </span>
-    )
-  }
-  <p class="prose prose-base mt-8 font-serif text-base text-neutral-50/75">
-    {post?.data.description}
-  </p>
+<div class="not-prose mt-8 flex flex-col">
+  <div
+    class="mb-1 flex select-none items-center justify-between font-sans text-xs font-semibold tracking-tighter text-gray-10"
+  >
+    <time class="cursor-pointer" datetime={datetime} title={datetime}>
+      {postDate}&nbsp; ({
+        prettyMs(getTime(new Date()) - getTime(post.data.publishDate), {
+          compact: true,
+        })
+      } ago)
+    </time>
+    <span>{remarkPluginFrontmatter.readingTime}</span>
+  </div>
+  <h1
+    class="mt-2.5 font-display text-3xl leading-tight tracking-tighter text-gray-12 sm:mb-1 sm:text-4xl"
+  >
+    {post.data.title}
+  </h1>
+  <address
+    class="mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs not-italic text-gray-10"
+  >
+    <div class="space-x-3 font-sans font-medium">
+      <span>{remarkPluginFrontmatter.words} words</span> by {siteConfig.author}
+    </div>
+  </address>
 </div>

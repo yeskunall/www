@@ -1,0 +1,33 @@
+/* https://web.dev/articles/optimize-webfont-loading */
+
+@font-face {
+  font-family: "Kode Mono";
+  font-display: swap;
+  font-style: normal;
+  font-weight: "400 700";
+  src: url("/fonts/kode-mono.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Libre Caslon Condensed";
+  font-display: swap;
+  font-style: normal;
+  font-weight: "400 700";
+  src: url("/fonts/libre-caslon-condensed.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Libre Caslon Condensed";
+  font-display: swap;
+  font-style: italic;
+  font-weight: "400 700";
+  src: url("/fonts/libre-caslon-condensed-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Medieval Sharp";
+  font-display: swap;
+  font-style: normal;
+  font-weight: "400";
+  src: url("/fonts/medieval-sharp-400.woff2") format("woff2");
+}

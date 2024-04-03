@@ -1,17 +1,23 @@
-import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
-import prefetch from "@astrojs/prefetch";
-import react from "@astrojs/react";
-import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeExternalLinks from "rehype-external-links";
+import type { Properties } from "hast";
+
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/static";
-import { rehypePrettyCodeOptions } from "./src/lib/rehype-plugins";
+import icon from "astro-icon";
+import { defineConfig } from "astro/config";
+import { toString } from "mdast-util-to-string";
+import getReadingTime from "reading-time";
+import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeExternalLinks from "rehype-external-links";
+import {
+  defListHastHandlers,
+  remarkDefinitionList,
+} from "remark-definition-list";
+import remarkAdmonitions from "remark-github-beta-blockquote-admonitions";
+import remarkUnwrapImages from "remark-unwrap-images";
+import { visit } from "unist-util-visit";
 
 // Although setting `default-src` would cover some of the following CSP headers,
 // I’ve set them explicitly _because I can_. Bite me.
@@ -20,10 +26,9 @@ const contentSecurityPolicy = `
   connect-src *;
   default-src blob: data: 'self';
   font-src 'self';
-  frame-ancestors 'none';
-  frame-src 'none';
-  ${/* eslint-disable-next-line */ ""}
-  img-src blob: data: 'self' https://assets.literal.club https://blog.kimchiii.space https://res.cloudinary.com;
+  frame-ancestors 'self';
+  frame-src 'self';
+  img-src blob: data: 'self' https://assets.literal.club;
   manifest-src 'self';
   media-src 'self';
   object-src 'none';
@@ -76,61 +81,100 @@ const permissionPolicy = `
   web-share=(),
   xr-spatial-tracking=()
 `;
+
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel({
     imageService: true,
     webAnalytics: { enabled: true },
   }),
+  experimental: {
+    directRenderScript: true,
+  },
   image: {
     remotePatterns: [{ protocol: "https" }],
   },
   integrations: [
-    mdx(),
-    prefetch(),
-    react(),
+    icon(),
     sitemap(),
     tailwind({
       applyBaseStyles: false,
+      nesting: true,
     }),
   ],
   markdown: {
     rehypePlugins: [
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      // @ts-expect-error
       rehypeAccessibleEmojis,
-      [
-        rehypeExternalLinks,
-        {
-          target: "_blank",
-          rel(element: Element) {
-            const allowList = ["/", "#", "mailto:"];
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore: this definitely works
-            const href = element.properties.href;
-            if (allowList.some(start => href.startsWith(start))) {
-              return [];
-            }
-            return "nofollow noopener noreferrer";
-          },
-        },
-      ],
       rehypeHeadingIds,
       [
         rehypeAutolinkHeadings,
         {
           behavior: "wrap",
-          properties: {
-            className: ["anchor"],
+          properties: { ariaHidden: true },
+        },
+      ],
+      [
+        rehypeExternalLinks,
+        {
+          rel({ properties }: { properties: Properties }) {
+            const allowList = ["/", "#", "mailto:"];
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            const href = properties.href as string;
+
+            if (allowList.some(start => href.startsWith(start))) return [];
+
+            return "nofollow noopener noreferrer";
+          },
+          target: "_blank",
+        },
+      ],
+      // Remove `tabindex` from `<pre />` elements
+      () => tree => {
+        visit(tree, "element", node => {
+          if (node.tagName === "pre" && node.properties.tabIndex === 0)
+            delete node.properties.tabIndex;
+        });
+      },
+      // Add reading time to frontmatter
+      () => (tree, vfile) => {
+        const data = vfile.data as {
+          astro: { frontmatter: Record<string, unknown> };
+        };
+        const readingTime = getReadingTime(toString(tree));
+
+        data.astro.frontmatter.readingTime = readingTime.text;
+        data.astro.frontmatter.words = readingTime.words;
+      },
+    ],
+    remarkPlugins: [
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+      // @ts-ignore
+      [
+        remarkAdmonitions,
+        {
+          classNameMaps: {
+            block: (title: string) =>
+              `admonition admonition--${title.toLowerCase()}`,
+            title: (title: string) =>
+              `admonition-title admonition-title--${title.toLowerCase()}`,
           },
         },
       ],
-      [rehypePrettyCode, rehypePrettyCodeOptions],
-      rehypeSlug,
+      remarkDefinitionList,
+      remarkUnwrapImages,
     ],
+    remarkRehype: {
+      footnoteLabelProperties: { className: [""] },
+      handlers: {
+        ...defListHastHandlers,
+      },
+    },
     syntaxHighlight: false,
   },
   output: "static",
+  prefetch: true,
   // These headers are duped in `vercel.json`, from where they are _actually_
   // applied in production.
   // NOTE(yeskunall): if I ever switch hosting providers (Cloudflare Pages),
@@ -154,9 +198,4 @@ export default defineConfig({
     },
   },
   site: "https://kimchiii.space/",
-  vite: {
-    optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
-    },
-  },
 });

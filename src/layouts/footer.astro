@@ -1,0 +1,37 @@
+<footer
+  class="wide-wrapper mt-8 flex flex-col py-8 [--wrap-wide:90vw] sm:[--wrap-wide:55vw] md:[--wrap-wide:85vw]"
+  data-animate
+  style="--stagger:12"
+>
+  <div class="mb-5 mt-1 border-b border-gray-6"></div>
+  <div class="inline-flex items-center gap-x-1 text-sm text-gray-11">
+    ©&nbsp;2024 Kunall Banerjee
+  </div>
+
+  <style>
+    @keyframes enter {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    [data-animate] {
+      --delay: 120ms;
+      --stagger: 0;
+      --start: 0ms;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      [data-animate] {
+        animation: enter 0.6s both;
+        animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+      }
+    }
+  </style>
+</footer>

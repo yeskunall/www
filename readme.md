@@ -1,12 +1,16 @@
-<img width="1440" alt="website-screenshot@2x" src="https://github.com/yeskunall/www/assets/14703164/5805226a-94fa-4086-aa52-b0614de7648c">
+[![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
+[![CI](https://github.com/yeskunall/www/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/yeskunall/www/actions/workflows/ci.yml)
 
-
-## Stack
+#### Stack
 
 - **Framework**: [Astro](https://astro.build/)
-- **UI Components**: [React](https://react.dev/)
-- **Primitives**: [Radix UI](https://www.radix-ui.com/primitives/)
-- **Content**: [MDX](https://https://mdxjs.com/)
+- **Colors**: [Radix UI](https://www.radix-ui.com/colors/)
+- **Content**: Markdown
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Deployment**: [Vercel](https://vercel.com/)
 - **Analytics**: [Vercel Analytics](https://vercel.com/analytics)
+
+#### Check out the code
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/yeskunall/www/tree/latest/)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/yeskunall/www/tree/latest/)

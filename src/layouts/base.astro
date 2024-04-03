@@ -1,47 +1,26 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import type { CollectionEntry } from "astro:content";
 
-import BaseHead from "@/components/base-head.astro";
-import Header from "@/components/layout/header.astro";
-import Footer from "@/components/layout/footer.astro";
-import SkipLink from "@/components/SkipLink.astro";
-
-import { siteConfig } from "@/site-config";
-
-import type { SiteMeta } from "@/data/site-meta";
+import Footer from "~/layouts/footer.astro";
+import Header from "~/layouts/header.astro";
+import Helmet from "~/layouts/helmet.astro";
 
 interface Props {
-  meta: SiteMeta;
+  post?: CollectionEntry<"post">;
 }
 
-const {
-  meta: {
-    title,
-    description = siteConfig.description,
-    ogImage = "default-og.png",
-    articleDate,
-  },
-} = Astro.props;
+const { post } = Astro.props;
 ---
 
-<html lang={siteConfig.lang}>
+<html lang="en-CA">
   <head>
-    <BaseHead
-      title={title}
-      description={description}
-      ogImage={ogImage}
-      articleDate={articleDate}
-    />
-    <ViewTransitions fallback="animate" />
+    <Helmet post={post} />
   </head>
-  <body
-    class="container mx-auto p-8 [background-size:auto,_auto,_21px_21px,_21px_21px]"
-  >
-    <SkipLink />
-    <main class="md:max-w-[420px]">
-      <Header />
+  <body>
+    <Header />
+    <main class="relative mx-auto max-w-prose p-8 py-16">
       <slot />
-      <Footer />
     </main>
+    <Footer />
   </body>
 </html>

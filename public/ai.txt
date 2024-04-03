@@ -1,0 +1,7 @@
+# Spawning AI
+# Prevent datasets from using the following file types
+# https://spawning.substack.com/p/aitxt-a-new-way-for-websites-to-set
+
+User-agent: *
+Disallow: /
+Disallow: *

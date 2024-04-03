@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+
+import Section from "~/components/base/section.astro";
+import PostPreview from "~/components/blog/post-preview.astro";
+import { sortByDate } from "~/lib/post";
+
+const allPosts = sortByDate(await getCollection("post"));
+---
+
+<Section heading="Log" stagger={8}>
+  <ul>
+    {
+      allPosts.map((post, index) => {
+        return (
+          <li>
+            <PostPreview data-animate post={post} stagger={index * 2} />
+          </li>
+        );
+      })
+    }
+  </ul>
+</Section>

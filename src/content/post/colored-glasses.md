@@ -2,7 +2,6 @@
 title: "Take off your colored glasses"
 publishDate: "2023-08-03T12:24:48.294Z"
 description: "Rid yourself of all preconceived notions"
-featured: true
 tags: ["thoughts"]
 ---
 
