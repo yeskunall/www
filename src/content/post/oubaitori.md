@@ -2,7 +2,6 @@
 title: "桜梅桃李"
 publishDate: "30 December 2020"
 description: "Just be, as you are"
-featured: true
 tags: ["thoughts"]
 ---
 
@@ -43,6 +42,9 @@ to the other trees in the forest. The other group was asked to surround their
 tree, but instead were instructed to bad-mouth it, cuss at it, and were told to
 specifically compare it to the flourishing trees in the forest, the complete
 opposite of the other group.
+
+https://piped.video/watch?v=Yx6UgfQreYY
+https://skeptics.stackexchange.com/questions/23231/do-trees-die-of-cursing-in-solomon-islands
 
 At first, there was no visible difference between the two trees. But over the
 next week, the researchers noticed that the leaves of the tree that was being

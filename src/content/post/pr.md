@@ -11,8 +11,6 @@ worth the wait, though?"
 tags: ["thoughts"]
 ---
 
-import Admonition from "../../components/admonition.astro";
-
 I moved to Canada to pursue engineering in 2014. At the time of writing this, it
 is 30 July, 2021. So, ~2500 days. Does it take this long for everybody? No.
 Could I have gotten it sooner? Yes. I was eligible in mid-2020, but I did not
@@ -21,10 +19,10 @@ apply till early 2021.
 In hindsight, this was one of the easiest things to obtain, however. Was it
 worth the wait, though?
 
-<Admonition title="Disclaimer">
-  **Do not rely on this information when applying yourself**. Processing times
+<!-- prettier-ignore -->
+> [!WARNING]
+> **Do not rely on this information when applying yourself**. Processing times
   change **all the time**.
-</Admonition>
 
 ## A clean criminial record isn’t the only thing needed for admissibility
 
@@ -89,11 +87,11 @@ At the time of writing this, average wait times are sitting at **180 days** for
 new, and existing applications alike. Because of the pandemic, the grace periods
 have also been extended to **90 days** for most situations.
 
-<Admonition title="Thought I should mention">
-  Processing time is the time elapsed between the day Immigration, Refugees and
-  Citizenship Canada (IRCC) receives your application and the day a final
-  decision is made on your application.
-</Admonition>
+<!-- prettier-ignore -->
+> [!NOTE]
+> Processing time is the time elapsed between the day Immigration,
+> Refugees and Citizenship Canada (IRCC) receives your application and the day a
+> final decision is made on your application.
 
 In my case, it took only **2 days** to be invited to apply for permanent
 residency. This number largely varies for each individual. From there, it took
