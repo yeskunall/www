@@ -1,16 +1,13 @@
 ---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+
 import { getCollection } from "astro:content";
 
-import BaseLayout from "@/layouts/base.astro";
-import Hero from "@/components/blog/hero.astro";
-import Newsletter from "@/components/newsletter.astro";
-import PostPreview from "@/components/blog/post-preview.astro";
-import ReadingProgress from "@/components/blog/reading-progress.astro";
-import Separator from "@/components/ui/separator.tsx";
-
-import { sortByDate } from "@/utils";
-
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import Figure from "~/components/blog/figure.astro";
+import Hero from "~/components/blog/hero.astro";
+import PostPreview from "~/components/blog/post-preview.astro";
+import BaseLayout from "~/layouts/base.astro";
+import { sortByDate } from "~/lib/post";
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
@@ -26,37 +23,27 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
-
-const {
-  data: { title, description, publishDate },
-} = entry;
-
-const articleDate = publishDate.toISOString();
+const { entry: post } = Astro.props;
+const { Content } = await post.render();
 ---
 
-<BaseLayout meta={{ articleDate, description, title }}>
-  <article class="prose" style="--font-size: 1.125rem">
-    <Hero post={entry} />
-    <Content />
+<BaseLayout post={post}>
+  <article class="prose prose-sm prose-slate prose-li:my-0">
+    <Hero post={post} />
+    <Content components={{ img: Figure }} />
+    <div class="my-8 border-b border-gray-6"></div>
   </article>
-  <Separator className="bg-gray-6" />
   <aside class="flex flex-col gap-y-2">
-    <section class="mt-8 px-4 py-3">
-      <Newsletter />
-      <div aria-label="Recent blog posts" class="space-y-2 py-6 sm:space-y-1.5">
-        <ul>
-          {
-            recentPosts.map(post => (
-              <li>
-                <PostPreview post={post} />
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </section>
+    <div aria-label="Recent blog posts" class="space-y-2 py-6 sm:space-y-1.5">
+      <ul>
+        {
+          recentPosts.map(post => (
+            <li>
+              <PostPreview post={post} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </aside>
-  <ReadingProgress />
 </BaseLayout>

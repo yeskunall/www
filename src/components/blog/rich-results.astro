@@ -1,27 +1,37 @@
 ---
-import { siteConfig } from "@/site-config";
-
 import type { CollectionEntry } from "astro:content";
+import type { BlogPosting } from "schema-dts";
 
-type Props = Omit<CollectionEntry<"post">["data"], "pinned" | "tags">;
-const { description, publishDate, title } = Astro.props;
+import { siteConfig } from "~/site-config";
 
-const schema = {
-  "@context": "https://schema.org",
+interface Props {
+  frontmatter: CollectionEntry<"post">["data"];
+}
+
+const {
+  frontmatter: { description, lastUpdatedDate, publishDate, title },
+} = Astro.props;
+
+// @ts-expect-error: nothing is undefined, TS strictest is the reason for this error
+const schema: BlogPosting = {
   "@type": "BlogPosting",
   author: {
     "@type": "Person",
     name: "Kunall Banerjee",
+    // FIXME(yeskunall): I think this should be the slug instead
     url: siteConfig.url,
   },
   datePublished: new Date(publishDate).toISOString(),
-  description: description,
+  description,
   headline: title,
-  // Enable this once a `lastUpdatedDate` property exists in the frontmatter
-  // ...(lastUpdatedDate && {
-  //   dateModified: lastUpdatedDate.toISOString(),
-  // }),
+  ...(lastUpdatedDate && {
+    dateModified: new Date(lastUpdatedDate).toISOString(),
+  }),
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<script
+  is:inline
+  set:html={JSON.stringify({ "@context": "https://schema.org", ...schema })}
+  type="application/ld+json"
+/>

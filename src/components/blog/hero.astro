@@ -1,10 +1,10 @@
 ---
+import type { CollectionEntry } from "astro:content";
+
 import { format, getTime } from "date-fns";
 import prettyMs from "pretty-ms";
 
-import { siteConfig } from "@/site-config";
-
-import type { CollectionEntry } from "astro:content";
+import { siteConfig } from "~/site-config";
 
 interface Props {
   post: CollectionEntry<"post">;
@@ -12,7 +12,7 @@ interface Props {
 
 const { post } = Astro.props;
 const {
-  data: { pinned, publishDate },
+  data: { publishDate },
 } = post;
 
 const datetime = publishDate.toISOString();
@@ -20,11 +20,11 @@ const postDate = format(publishDate, "do MMMM',' yyyy");
 const { remarkPluginFrontmatter } = await post.render();
 ---
 
-<div class="mt-8 flex flex-col text-gray-12">
+<div class="not-prose mt-8 flex flex-col">
   <div
-    class="mb-1 flex select-none items-center justify-between font-sans text-xs font-medium text-gray-11"
+    class="mb-1 flex select-none items-center justify-between font-sans text-xs font-semibold tracking-tighter text-gray-10"
   >
-    <time datetime={datetime} title={datetime}>
+    <time class="cursor-pointer" datetime={datetime} title={datetime}>
       {postDate}&nbsp; ({
         prettyMs(getTime(new Date()) - getTime(post.data.publishDate), {
           compact: true,
@@ -34,12 +34,12 @@ const { remarkPluginFrontmatter } = await post.render();
     <span>{remarkPluginFrontmatter.readingTime}</span>
   </div>
   <h1
-    class="not-prose mt-2.5 font-['EB_Garamond'] text-3xl font-semibold italic leading-tight tracking-tighter sm:mb-1 sm:text-4xl"
+    class="mt-2.5 font-display text-3xl leading-tight tracking-tighter text-gray-12 sm:mb-1 sm:text-4xl"
   >
     {post.data.title}
   </h1>
   <address
-    class="mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs text-gray-11"
+    class="mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs not-italic text-gray-10"
   >
     <div class="space-x-3 font-sans font-medium">
       <span>{remarkPluginFrontmatter.words} words</span> by {siteConfig.author}

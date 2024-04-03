@@ -1,44 +1,43 @@
 ---
-import { format } from "date-fns";
-
-import { cn } from "@/lib/utils";
-
 import type { CollectionEntry } from "astro:content";
 
-type Props = {
+import { format } from "date-fns";
+
+import { cn } from "~/lib/utils";
+
+interface Props {
   class?: string;
   post: CollectionEntry<"post">;
   stagger?: number;
-};
+}
 
 const { class: className, post, stagger } = Astro.props;
 const datetime = post.data.publishDate.toISOString();
-const postDate = format(post.data.publishDate, "do MMM',' yyyy");
+const postDate = format(post.data.publishDate, "d/MM/yy");
 ---
 
-<div
+<a
   class={cn(
-    "group cursor-pointer py-1.5 transition-colors hover:border-ruby-3 hover:bg-ruby-2",
+    "grid group [grid-template-columns:auto_1fr_auto] gap-1 items-center justify-between py-1",
     className,
   )}
   data-animate
+  data-astro-prefetch
+  href={`/writing/${post.slug}/`}
 >
-  <a
-    class="flex items-center justify-between transition-colors group-hover:text-ruby-11"
-    href={`/writing/${post.slug}/`}
-    data-astro-prefetch
+  <h3
+    class="font-sans text-sm font-normal text-gray-11 group-hover:text-accent-11 group-focus:text-accent-11"
   >
-    <h3 class="[font:var(--type-ui)]">
-      {post.data.title}
-    </h3>
-    <time
-      class="tabular-nums select-none font-mono text-xs tracking-[-0.075em] [font-variant-numeric:tabular-nums]"
-      datetime={datetime}
-    >
-      {postDate}
-    </time>
-  </a>
-</div>
+    {post.data.title}
+  </h3>
+  <div class="my-0 border-b border-dotted border-gray-6"></div>
+  <time
+    class="select-none font-mono text-xs tracking-[-0.075em] [font-variant-numeric:tabular-nums]"
+    datetime={datetime}
+  >
+    {postDate}
+  </time>
+</a>
 
 <style define:vars={{ stagger }}>
   @keyframes enter {
