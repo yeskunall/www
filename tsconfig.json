@@ -8,9 +8,7 @@
       "~/data/*": ["data/*"],
       "~/lib/*": ["lib/*"],
       "~/utils/*": ["utils/*"]
-    },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    }
   },
   "exclude": [".vscode", "dist", "node_modules"]
 }
