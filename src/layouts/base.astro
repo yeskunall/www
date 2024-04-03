@@ -1,36 +1,24 @@
 ---
-import BaseHead from "@/components/base-head.astro";
-import Footer from "@/layouts/footer.astro";
-import Header from "@/layouts/header.astro";
+import type { CollectionEntry } from "astro:content";
 
-import { siteConfig } from "@/site-config";
+import Footer from "~/layouts/footer.astro";
+import Header from "~/layouts/header.astro";
+import Helmet from "~/layouts/helmet.astro";
 
-import type { SiteMeta } from "@/site-config";
+interface Props {
+  post?: CollectionEntry<"post">;
+}
 
-type Props = {
-  meta: SiteMeta;
-};
-
-const {
-  meta: {
-    title = siteConfig.title,
-    description = siteConfig.description,
-    publishDate,
-  },
-} = Astro.props;
+const { post } = Astro.props;
 ---
 
-<html lang={siteConfig.lang}>
+<html lang="en-CA">
   <head>
-    <BaseHead
-      title={title}
-      description={description}
-      publishDate={publishDate}
-    />
+    <Helmet post={post} />
   </head>
   <body>
     <Header />
-    <main class="relative mx-auto max-w-[660px] p-8">
+    <main class="relative mx-auto max-w-prose p-8 py-16">
       <slot />
     </main>
     <Footer />
