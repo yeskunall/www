@@ -1,7 +1,6 @@
 /** @type {import("@types/eslint").Linter.Config} */
 module.exports = {
   env: {
-    "astro/astro": true,
     node: true,
   },
   extends: [
@@ -27,10 +26,24 @@ module.exports = {
         parser: "@typescript-eslint/parser",
       },
     },
+    {
+      extends: [
+        "plugin:@typescript-eslint/strict-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+      ],
+      files: ["*.ts", "*.tsx"],
+      parserOptions: {
+        project: "./tsconfig.json",
+      },
+      rules: {
+        "deprecation/deprecation": "error",
+      },
+    },
   ],
   parser: "@typescript-eslint/parser",
   plugins: [
     "@typescript-eslint",
+    "deprecation",
     "perfectionist",
     "prettier",
     "typescript-sort-keys",
