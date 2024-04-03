@@ -1,51 +1,41 @@
 ---
-import { format } from "date-fns";
-import { Icon } from "astro-icon/components";
+import Separator from "~/components/ui/separator.tsx";
 ---
 
 <footer
-  class="my-8 flex flex-col justify-start text-xs"
+  class="wide-wrapper mt-8 flex flex-col py-8 [--wrap-wide:90vw] sm:[--wrap-wide:55vw] md:[--wrap-wide:85vw]"
   data-animate
   style="--stagger:12"
 >
-  <div class="inline-flex items-center gap-x-1 text-gray-a12">
-    &copy;&nbsp;
-    <span class="font-mono font-medium tracking-tighter"
-      >{format(new Date(), "yyyy")}</span
-    >
-    &nbsp;
-    <Icon
-      aria-hidden="true"
-      focusable="false"
-      class="size-20 sm:size-28"
-      name="signature"
-    />
+  <Separator className="bg-gray-6" />
+  <div class="inline-flex items-center gap-x-1 text-sm text-gray-11">
+    ©&nbsp;2024 Kunall Banerjee
   </div>
-</footer>
 
-<style>
-  @keyframes enter {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
+  <style>
+    @keyframes enter {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
     }
 
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  [data-animate] {
-    --delay: 120ms;
-    --stagger: 0;
-    --start: 0ms;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
     [data-animate] {
-      animation: enter 0.6s both;
-      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+      --delay: 120ms;
+      --stagger: 0;
+      --start: 0ms;
     }
-  }
-</style>
+
+    @media (prefers-reduced-motion: no-preference) {
+      [data-animate] {
+        animation: enter 0.6s both;
+        animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+      }
+    }
+  </style>
+</footer>
