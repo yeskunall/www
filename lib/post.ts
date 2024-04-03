@@ -17,15 +17,23 @@ export function getUniqueTags(posts: CollectionEntry<"post">[] = []) {
   return Array.from(uniqueTags);
 }
 
-export function getUniqueTagsWithCount(posts: CollectionEntry<"post">[] = []): {
-  [key: string]: number;
-} {
+export function getUniqueTagsWithCount(
+  posts: CollectionEntry<"post">[] = [],
+): Record<string, number> {
   return posts.reduce((prev, post) => {
-    const runningTags: { [key: string]: number } = { ...prev };
+    const runningTags: Record<string, number> = { ...prev };
+
     post.data.tags.forEach(tag => {
-      runningTags[tag] = (runningTags[tag] || 0) + 1;
+      runningTags[tag] = (runningTags[tag] ?? 0) + 1;
     });
 
     return runningTags;
   }, {});
+}
+
+export function removeDupsAndLowerCase(tags: string[]) {
+  if (!tags.length) return tags;
+
+  const distinctItems = new Set(tags.map(tag => tag.toLowerCase()));
+  return Array.from(distinctItems);
 }
