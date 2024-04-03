@@ -1,53 +1,99 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
-import plugin from "tailwindcss/plugin";
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 
 import type { Config } from "tailwindcss";
 
+import { fontFamily } from "tailwindcss/defaultTheme";
+import plugin from "tailwindcss/plugin";
+
 module.exports = {
   content: ["./src/**/*.{astro,html,md,mdx,ts,tsx}"],
+  // https://tailwindcss.com/docs/configuration#core-plugins
   corePlugins: {
+    animation: false,
     aspectRatio: false,
+    breakAfter: false,
+    breakBefore: false,
+    breakInside: false,
     container: false,
     fontVariantNumeric: false,
     lineClamp: false,
+    scrollMargin: false,
+    scrollPadding: false,
     touchAction: false,
   },
+  plugins: [
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/typography"),
+    plugin(function wideWrapperPlugin({ addComponents }) {
+      addComponents({
+        ".wide-wrapper": {
+          "--wrap-wide": "100vw",
+          marginLeft: "calc((min(100vw, var(--wrap-wide)) - 100%) / -2)",
+          maxWidth: "min(100vw, var(--wrap-wide))",
+          width: "min(100vw, var(--wrap-wide))",
+        },
+      });
+    }),
+  ],
   theme: {
     extend: {
       colors: {
-        gray: generateScale("mauve"),
-        ruby: generateScale("ruby"),
+        accent: generateScale("red"),
+        gray: generateScale("sand"),
       },
       fontFamily: {
-        sans: ["var(--font-satoshi)", ...fontFamily.sans],
-        serif: ["var(--font-newsreader)", ...fontFamily.serif],
+        display: ["var(--font-medieval-sharp)"],
+        mono: ["var(--font-kode-mono)", ...fontFamily.mono],
+        sans: ["var(--font-kode-mono)", ...fontFamily.sans],
+        serif: ["var(--font-libre-caslon)", ...fontFamily.serif],
+      },
+      // https://carbondesignsystem.com/guidelines/motion/overview/
+      transitionDuration: {
+        "fast-01": "70ms",
+        "fast-02": "110ms",
+        "moderate-01": "150ms",
+        "moderate-02": "240ms",
+        "slow-01": "400ms",
+        "slow-02": "700ms",
+      },
+      // https://carbondesignsystem.com/guidelines/motion/overview/
+      transitionTimingFunction: {
+        "expressive-entrance": "cubic-bezier(0, 0, 0.3, 1)",
+        "expressive-exit": "cubic-bezier(0.4, 0.14, 1, 1)",
+        "expressive-standard": "cubic-bezier(0.4, 0.14, 0.3, 1)",
+        "productive-entrance": "cubic-bezier(0, 0, 0.38, 0.9)",
+        "productive-exit": "cubic-bezier(0.2, 0, 1, 0.9)",
+        "productive-standard": "cubic-bezier(0.2, 0, 0.38, 0.9)",
       },
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore: remove once Tailwind exposes the type
+      // @ts-expect-error: remove once Tailwind exposes the type
       typography: theme => ({
         DEFAULT: {
           css: {
-            "--tw-prose-body": "var(--mauve-11)",
-            "--tw-prose-bold": "var(--mauve-11)",
-            "--tw-prose-code": "var(--mauve-11)",
-            "--tw-prose-headings": "var(--mauve-11)",
-            "--tw-prose-links": "var(--mauve-11)",
+            "--tw-prose-body": "var(--olive-11)",
+            "--tw-prose-bold": "var(--olive-11)",
+            "--tw-prose-code": "var(--olive-11)",
+            "--tw-prose-headings": "var(--olive-11)",
+            "--tw-prose-links": "var(--olive-11)",
             ":where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'], [class~='not-prose'] *))":
               {
-                "--font-weight": "600",
-                "--type-heading":
-                  "italic var(--font-weight) 21px / 1.2 var(--font-eb-garamond)",
-                font: "var(--type-heading)",
-                letterSpacing: "-0.05em",
                 "> a": {
                   textDecoration: "none",
                 },
               },
             blockquote: {
-              borderLeftWidth: "0",
-              paddingRight: theme("spacing.5"),
-              position: "relative",
-              quotes: "none",
+              "& > p": {
+                "--font-size": "24px",
+                "--line-height": "110%",
+                "& > a": {
+                  textDecoration: "none",
+                },
+                color: "var(--lime-12)",
+                font: "normal 420 var(--font-size) / var(--line-height) var(--font-libre-caslon)",
+                letterSpacing: "-0.05em",
+              },
               "&::before": {
                 backgroundImage:
                   "linear-gradient(30deg,#191919,#3f3f3f,#e1e1e1)",
@@ -59,20 +105,10 @@ module.exports = {
                 top: "0px",
                 width: "1px",
               },
-              "& > p": {
-                font: "var(--type-ui)",
-                color: "var(--mauve-a11)",
-                "& > a": {
-                  textDecoration: "none",
-                },
-              },
-            },
-            li: {
-              lineHeight: "1.225",
-            },
-            p: {
-              font: "normal 420 var(--font-size) / var(--line-height) var(--font-newsreader)",
-              letterSpacing: "-0.05em",
+              borderLeftWidth: "0",
+              paddingRight: theme("spacing.5"),
+              position: "relative",
+              quotes: "none",
             },
             "p:has(img)": {
               "@apply wide-wrapper": {},
@@ -96,120 +132,6 @@ module.exports = {
       }),
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/typography"),
-    plugin(function addBaseStyles({ addBase }) {
-      addBase({
-        ":root": {
-          "--bg": "var(--ruby-1)",
-          // Font stack
-          "--font-eb-garamond": "EB Garamond",
-          "--font-mono": `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`,
-          "--font-newsreader": "Newsreader",
-          "--font-satoshi": "Satoshi",
-          // Defaults
-          "--font-size": "1rem", // 16px
-          "--font-weight": "400", // normal
-          "--line-height": "1.225",
-          "--ui-font-weight": "600",
-          "--type-ui":
-            "normal var(--ui-font-weight) calc(var(--font-size) * 0.875) / 1.2 var(--font-satoshi)",
-        },
-        ":where(em, i):not(:where([class~='prose'], [class~='prose'] *))": {
-          "--font-weight": "390",
-          "--type-italic":
-            "italic var(--font-weight) calc(var(--font-size) + 2px) / 1.225 var(--font-newsreader)",
-          font: "var(--type-italic)",
-        },
-        ":where(h1, h2, h3, h4, h5, h6)": {
-          textWrap: "balance",
-        },
-        ":where(p):not(:where([class~='not-prose'], [class~='not-prose'] *))": {
-          font: "normal 420 calc(var(--font-size) + 2px) / var(--line-height) var(--font-newsreader)",
-          letterSpacing: "-0.05em",
-        },
-        "b, strong": {
-          fontWeight: "var(--font-weight)",
-        },
-        body: {
-          color: "var(--mauve-11)",
-          fontSynthesis: "none",
-          textWrap: "pretty",
-        },
-        "code, kbd, pre, samp": {
-          "--type-mono":
-            "normal var(--font-weight) calc(var(--font-size) + 2px) / 1 var(--font-mono)",
-          font: "var(--type-mono)",
-        },
-        html: {
-          "@apply selection:bg-ruby-3 selection:text-ruby-11": {},
-          "-webkit-font-smoothing": "antialiased",
-          "-moz-osx-font-smoothing": "grayscale",
-          backgroundColor: "var(--bg)",
-          fontSize: "16px", // 1rem
-          scrollBehavior: "smooth",
-          tabSize: "2",
-          touchAction: "manipulation",
-        },
-      });
-    }),
-    plugin(function addFontEBGaramond({ addBase }) {
-      addBase({
-        "@font-face": {
-          fontFamily: "EB Garamond",
-          src: `url("/fonts/eb-garamond-subset-italic.woff2") format("woff2")`,
-          fontDisplay: "swap",
-          fontStyle: "italic",
-          fontWeight: "600",
-        },
-      });
-    }),
-    plugin(function addFontNewsreader({ addBase }) {
-      addBase({
-        "@font-face": {
-          fontFamily: "Newsreader",
-          src: `url("/fonts/newsreader.woff2") format("woff2")`,
-          fontDisplay: "swap",
-          fontStyle: "normal",
-          fontWeight: "200 800",
-        },
-      });
-    }),
-    plugin(function addFontNewsreaderItalic({ addBase }) {
-      addBase({
-        "@font-face": {
-          fontFamily: "Newsreader",
-          src: `url("/fonts/newsreader-italic.woff2") format("woff2")`,
-          fontDisplay: "swap",
-          fontStyle: "italic",
-          fontWeight: "200 800",
-        },
-      });
-    }),
-    plugin(function addFontSatoshi({ addBase }) {
-      addBase({
-        "@font-face": {
-          fontFamily: "Satoshi",
-          src: `url("/fonts/satoshi.woff2") format("woff2")`,
-          fontDisplay: "swap",
-          fontStyle: "normal",
-          fontWeight: "300 900",
-        },
-      });
-    }),
-    plugin(function wideWrapperPlugin({ addComponents }) {
-      addComponents({
-        ".wide-wrapper": {
-          "--wrap-wide": "100vw",
-          maxWidth: "min(100vw, var(--wrap-wide))",
-          width: "min(100vw, var(--wrap-wide))",
-          marginLeft: "calc((min(100vw, var(--wrap-wide)) - 100%) / -2)",
-        },
-      });
-    }),
-  ],
 } satisfies Config;
 
 function generateScale(name: string) {
@@ -222,5 +144,5 @@ function generateScale(name: string) {
     ];
   }).flat();
 
-  return Object.fromEntries(scale);
+  return Object.fromEntries(scale) as Record<string, string>;
 }
