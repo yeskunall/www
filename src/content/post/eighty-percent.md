@@ -19,7 +19,9 @@ how do I know I’m 80% full_, you ask? Over the last couple of months, I’ve
 learned that the key here is to stop eating once you start _feeling_ full.
 
 > The one whose concern is with that which enters the belly will discover that
-> his value is found in that which goes out of it — Imam Al-Ghazali
+> his value is found in that which goes out of it
+>
+> — Imam Al-Ghazali
 
 Another confession: I still _live to eat_, but I also don’t complain if some
 days I feel hungry long after a meal, or if the food I ate is dissatisfactory.

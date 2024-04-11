@@ -20,7 +20,7 @@ In hindsight, this was one of the easiest things to obtain, however. Was it
 worth the wait, though?
 
 <!-- prettier-ignore -->
-> [!WARNING]
+> [!CAUTION]
 > **Do not rely on this information when applying yourself**. Processing times
   change **all the time**.
 
@@ -108,7 +108,9 @@ processes, and stores my information. So I looked this up too.
 > Canada and abroad, with the vast majority (approximately 90%) occurring at
 > Visa Application Centres (VACs). VACs are commercial service suppliers,
 > managed by private companies, contracted by IRCC to deliver biometric
-> enrolment overseas. —
+> enrolment overseas.
+>
+> —
 > [IRCC (Canada.ca)](https://www.canada.ca/en/immigration-refugees-citizenship/corporate/contact-ircc/offices/find-visa-application-centre.html)
 
 **_Pause_**. _Private_ companies? My biometrics—which can be used to identify me
@@ -121,7 +123,9 @@ could you possibly ask me to trust private companies, especially in
 > collection service locations, such as VACs, ASCs and Service Canada locations,
 > do not keep your information. Your information is deleted from the collection
 > system once it’s sent to the Canadian Immigration Biometric Identification
-> System. —
+> System.
+>
+> —
 > [Biometrics and privacy (Canada.ca)](https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics/protecting-appplicants-privacy.html)
 
 _Somewhat_ reassuring, I guess? At a surface level. In reality, that statement
