@@ -7,7 +7,6 @@
 
 @layer {
   p {
-    /* @apply text-sm; */
     font-feature-settings: "calt", "case", "kern", "frac", "kern", "ss02";
     letter-spacing: 0;
   }
@@ -15,16 +14,40 @@
 
 @layer components {
   .prose {
-    .admonition {
-      @apply border-l-2 border-solid border-accent-9 p-4;
+    div.admonition {
+      @apply border-l-[1px] border-solid p-2.5 py-0 font-sans;
 
       p + p {
-        @apply my-0;
+        @apply m-0;
+
+        strong {
+          background-color: inherit;
+          color: inherit;
+        }
       }
     }
 
     .admonition-title {
-      @apply mb-1 mt-0;
+      @apply m-0 mb-0.5 hidden;
+    }
+
+    .admonition--caution {
+      /* background-color: var(--red-3); */
+      border-color: var(--red-11);
+      color: var(--red-11);
+    }
+
+    .admonition--note,
+    .admonition--tip {
+      /* background-color: var(--blue-3); */
+      border-color: var(--blue-11);
+      color: var(--blue-11);
+    }
+
+    .admonition--warning {
+      /* background-color: var(--amber-3); */
+      border-color: var(--amber-11);
+      color: var(--amber-11);
     }
   }
 }
