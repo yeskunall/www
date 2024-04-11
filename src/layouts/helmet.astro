@@ -14,7 +14,6 @@ interface Props {
 const { post } = Astro.props;
 
 const data = post?.data;
-const slug = Astro.url.pathname;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(siteConfig.ogImage, Astro.url.origin);
@@ -44,30 +43,10 @@ const socialImageURL = new URL(siteConfig.ogImage, Astro.url.origin);
   rel="preload"
   type="font/woff2"
 />
-{
-  slug.startsWith("/writing") && (
-    <>
-      <link
-        as="font"
-        crossorigin="anonymous"
-        href="/fonts/libre-caslon-condensed.woff2"
-        rel="preload"
-        type="font/woff2"
-      />
-      <link
-        as="font"
-        crossorigin="anonymous"
-        href="/fonts/libre-caslon-condensed-italic.woff2"
-        rel="preload"
-        type="font/woff2"
-      />
-    </>
-  )
-}
 <link
   as="font"
   crossorigin="anonymous"
-  href="/fonts/medieval-sharp-400.woff2"
+  href="/fonts/sons.woff2"
   rel="preload"
   type="font/woff2"
 />

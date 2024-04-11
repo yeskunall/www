@@ -44,10 +44,8 @@ module.exports = {
         gray: generateScale("sand"),
       },
       fontFamily: {
-        display: ["var(--font-medieval-sharp)"],
         mono: ["var(--font-kode-mono)", ...fontFamily.mono],
-        sans: ["var(--font-kode-mono)", ...fontFamily.sans],
-        serif: ["var(--font-libre-caslon)", ...fontFamily.serif],
+        sans: ["var(--font-sohne)", ...fontFamily.sans],
       },
       // https://carbondesignsystem.com/guidelines/motion/overview/
       transitionDuration: {
@@ -72,44 +70,17 @@ module.exports = {
       typography: theme => ({
         DEFAULT: {
           css: {
-            "--tw-prose-body": "var(--olive-11)",
-            "--tw-prose-bold": "var(--olive-11)",
-            "--tw-prose-code": "var(--olive-11)",
-            "--tw-prose-headings": "var(--olive-11)",
-            "--tw-prose-links": "var(--olive-11)",
+            "--tw-prose-body": "var(--sand-11)",
+            "--tw-prose-bold": "var(--sand-12)",
+            "--tw-prose-code": "var(--sand-11)",
+            "--tw-prose-headings": "var(--sand-12)",
+            "--tw-prose-links": "var(--sand-12)",
             ":where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'], [class~='not-prose'] *))":
               {
                 "> a": {
                   textDecoration: "none",
                 },
               },
-            blockquote: {
-              "& > p": {
-                "--font-size": "24px",
-                "--line-height": "110%",
-                "& > a": {
-                  textDecoration: "none",
-                },
-                color: "var(--lime-12)",
-                font: "normal 420 var(--font-size) / var(--line-height) var(--font-libre-caslon)",
-                letterSpacing: "-0.05em",
-              },
-              "&::before": {
-                backgroundImage:
-                  "linear-gradient(30deg,#191919,#3f3f3f,#e1e1e1)",
-                boxShadow: "1px 10px 5px 0 #e1e1e1",
-                content: "''",
-                height: "calc(100% + 1px)",
-                left: "0px",
-                position: "absolute",
-                top: "0px",
-                width: "1px",
-              },
-              borderLeftWidth: "0",
-              paddingRight: theme("spacing.5"),
-              position: "relative",
-              quotes: "none",
-            },
             "p:has(img)": {
               "@apply wide-wrapper": {},
               "@media (min-width: 640px)": {
