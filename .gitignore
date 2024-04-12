@@ -1,11 +1,7 @@
 .astro
-.vercel/
+.env*
+.vercel
 **/node_modules/
-pnpm-debug.log*
-
-.env
-.env.local
-.env.production
 
 # Don’t push draft posts accidentally
 src/content/**/_*
