@@ -35,18 +35,11 @@ const socialImageURL = new URL(siteConfig.ogImage, Astro.url.origin);
 <link href={canonicalURL} rel="canonical" />
 <link href="/sitemap-index.xml" rel="sitemap" />
 
-{/** Preload local fonts */}
+{/** Preload font stack */}
 <link
   as="font"
   crossorigin="anonymous"
-  href="/fonts/kode-mono.woff2"
-  rel="preload"
-  type="font/woff2"
-/>
-<link
-  as="font"
-  crossorigin="anonymous"
-  href="/fonts/sons.woff2"
+  href="/fonts/sohne.woff2"
   rel="preload"
   type="font/woff2"
 />
