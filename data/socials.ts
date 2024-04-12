@@ -33,7 +33,7 @@ export const SOCIALS = [
     title: "Rep.ly",
   },
   {
-    href: "https://bsky.app/profile/yeskunall",
+    href: "https://bsky.app/profile/yeskunall.bsky.social",
     title: "Bluesky",
   },
   {
