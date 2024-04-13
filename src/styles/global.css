@@ -6,9 +6,8 @@
 @tailwind utilities;
 
 @layer {
-  p {
+  * {
     font-feature-settings: "calt", "case", "kern", "frac", "kern", "ss02";
-    letter-spacing: 0;
   }
 }
 
@@ -133,7 +132,13 @@ blockquote,
   border-left-width: 1px;
   padding-left: 1rem;
   border-color: var(--sand-6);
+  color: var(--sand-12);
+  font-style: normal;
   quotes: none;
+
+  cite a {
+    text-decoration-line: none;
+  }
 }
 
 /* code,

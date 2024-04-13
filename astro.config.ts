@@ -1,4 +1,4 @@
-import type { Properties } from "hast";
+import type { Element, Properties } from "hast";
 
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import sitemap from "@astrojs/sitemap";
@@ -17,7 +17,7 @@ import {
 } from "remark-definition-list";
 import remarkAdmonitions from "remark-github-beta-blockquote-admonitions";
 import remarkUnwrapImages from "remark-unwrap-images";
-import { visit } from "unist-util-visit";
+import { SKIP, visit } from "unist-util-visit";
 
 // Although setting `default-src` would cover some of the following CSP headers,
 // I’ve set them explicitly _because I can_. Bite me.
@@ -121,22 +121,7 @@ export default defineConfig({
         rehypeAutolinkHeadings,
         {
           behavior: "wrap",
-          properties: { ariaHidden: true },
-        },
-      ],
-      [
-        rehypeExternalLinks,
-        {
-          rel({ properties }: { properties: Properties }) {
-            const allowList = ["/", "#", "mailto:"];
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            const href = properties.href as string;
-
-            if (allowList.some(start => href.startsWith(start))) return [];
-
-            return "nofollow noopener noreferrer";
-          },
-          target: "_blank",
+          properties: { ariaHidden: "true" },
         },
       ],
       // Remove `tabindex` from `<pre />` elements
@@ -156,6 +141,50 @@ export default defineConfig({
         data.astro.frontmatter.readingTime = readingTime.text;
         data.astro.frontmatter.words = readingTime.words;
       },
+      // Better `<blockquote />`s
+      () => tree => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+        // @ts-ignore: `visit` does not need to return anything explicitly unless using `EXIT`
+        // or `SKIP`
+        visit(tree, "element", node => {
+          if (node.tagName !== "blockquote") return SKIP;
+
+          const paragraphs = node.children.filter(
+            child => child.type === "element" && child.tagName === "p",
+          );
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const [paragraph, ..._] = paragraphs.toReversed();
+          const [citation] = (paragraph as Element).children;
+
+          if (!citation || !((citation as Element).tagName === "a"))
+            return SKIP;
+
+          (paragraph as Element).children = [
+            {
+              children: [citation],
+              properties: {},
+              tagName: "cite",
+              type: "element",
+            },
+          ];
+        });
+      },
+      // Run this in the end so that the previous plugin can modify the citations (if any) in blockquotes
+      [
+        rehypeExternalLinks,
+        {
+          rel({ properties }: { properties: Properties }) {
+            const allowList = ["/", "#", "mailto:"];
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            const href = properties.href as string;
+
+            if (allowList.some(start => href.startsWith(start))) return [];
+
+            return "nofollow noopener noreferrer";
+          },
+          target: "_blank",
+        },
+      ],
     ],
     remarkPlugins: [
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
