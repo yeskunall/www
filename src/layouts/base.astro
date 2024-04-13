@@ -2,7 +2,6 @@
 import type { CollectionEntry } from "astro:content";
 
 import Footer from "~/layouts/footer.astro";
-import Header from "~/layouts/header.astro";
 import Helmet from "~/layouts/helmet.astro";
 
 interface Props {
@@ -17,7 +16,6 @@ const { post } = Astro.props;
     <Helmet post={post} />
   </head>
   <body>
-    <Header />
     <main class="relative mx-auto max-w-prose p-8 py-16">
       <slot />
     </main>
