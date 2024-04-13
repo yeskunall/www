@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
+import { Picture } from "astro:assets";
 import { format, getTime } from "date-fns";
 import prettyMs from "pretty-ms";
 
@@ -12,7 +13,7 @@ interface Props {
 
 const { post } = Astro.props;
 const {
-  data: { publishDate },
+  data: { coverImage, publishDate },
 } = post;
 
 const datetime = publishDate.toISOString();
@@ -20,9 +21,9 @@ const postDate = format(publishDate, "do MMMM',' yyyy");
 const { remarkPluginFrontmatter } = await post.render();
 ---
 
-<div class="not-prose mt-8 flex flex-col">
+<div class="not-prose flex flex-col font-sans text-gray-10">
   <div
-    class="mb-1 flex select-none items-center justify-between font-sans text-xs font-semibold tracking-tighter text-gray-10"
+    class="mb-1 flex select-none items-center justify-between text-xs font-semibold"
   >
     <time class="cursor-pointer" datetime={datetime} title={datetime}>
       {postDate}&nbsp; ({
@@ -34,15 +35,30 @@ const { remarkPluginFrontmatter } = await post.render();
     <span>{remarkPluginFrontmatter.readingTime}</span>
   </div>
   <h1
-    class="mt-2.5 font-display text-3xl leading-tight tracking-tighter text-gray-12 sm:mb-1 sm:text-4xl"
+    class="mt-2.5 text-3xl leading-tight tracking-tighter text-gray-12 sm:mb-1 sm:text-4xl"
   >
     {post.data.title}
   </h1>
   <address
-    class="mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs not-italic text-gray-10"
+    class="mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs font-semibold not-italic"
   >
-    <div class="space-x-3 font-sans font-medium">
-      <span>{remarkPluginFrontmatter.words} words</span> by {siteConfig.author}
-    </div>
+    {remarkPluginFrontmatter.words} words by {siteConfig.author}
   </address>
+  {
+    coverImage && (
+      <div class="aspect-h-9 aspect-w-16 mb-6">
+        <Picture
+          alt={coverImage.alt}
+          class="select-none rounded-sm object-cover"
+          fetchpriority="high"
+          formats={["avif", "webp"]}
+          loading="eager"
+          quality="high"
+          sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${coverImage.src.width}px`}
+          src={coverImage.src}
+          widths={[640, 750, 828, 1080, 1200, 1366, 1440]}
+        />
+      </div>
+    )
+  }
 </div>
