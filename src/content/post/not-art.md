@@ -37,4 +37,4 @@ Aviation Administration (_FAA_) mention their work as “_art_.”
 > The only excuse for making a useless thing is that one admires it intensely.
 > All art is quite useless.
 >
-> — The Picture of Dorian Gray (_Preface_), Oscar Wilde
+> The Picture of Dorian Gray (_Preface_), Oscar Wilde

@@ -23,8 +23,9 @@ the same time: apricot (杏 commonly 李), peach (桃 commonly モモ), and plum
 ).
 
 > In these spring days, when tranquil light encompasses the four directions, why
-> do the blossoms scatter with such uneasy hearts? — “waka” Hisakata No, Ki no
-> Tomonori
+> do the blossoms scatter with such uneasy hearts?
+>
+> “waka” Hisakata No, Ki no Tomonori
 
 _Oubaitori_ is made up from the kanji for these four trees. It’s a Japanese
 idiom that tries to reinforce the incomparable notion of non-comparison into our

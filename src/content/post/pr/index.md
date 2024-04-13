@@ -2,17 +2,21 @@
 title: "I’m a permanent resident of Canada"
 publishDate: "30 June 2021"
 description: "I moved to Canada to pursue engineering in 2014. At the time of writing this, it
-is 30 July, 2021. So, ~2500 days. Does it take this long for everybody? No.
+is 30 June, 2021. So, ~2500 days. Does it take this long for everybody? No.
 Could I have gotten it sooner? Yes. I was eligible in mid-2020, but I did not
 apply till early 2021.
 
 In hindsight, this was one of the easiest things to obtain, however. Was it
 worth the wait, though?"
-tags: ["thoughts"]
+tags: ["updates"]
+coverImage: {
+  alt: "A person holding up a maple leaf, with a blurred background of a tree nearby, and hills in the distance",
+  src: "./index.jpg"
+}
 ---
 
 I moved to Canada to pursue engineering in 2014. At the time of writing this, it
-is 30 July, 2021. So, ~2500 days. Does it take this long for everybody? No.
+is 30 June, 2021. So, ~2500 days. Does it take this long for everybody? No.
 Could I have gotten it sooner? Yes. I was eligible in mid-2020, but I did not
 apply till early 2021.
 
@@ -20,9 +24,9 @@ In hindsight, this was one of the easiest things to obtain, however. Was it
 worth the wait, though?
 
 <!-- prettier-ignore -->
-> [!CAUTION]
-> **Do not rely on this information when applying yourself**. Processing times
-  change **all the time**.
+> [!TIP]
+> Do not rely on this information when applying yourself. Processing times
+  change all the time
 
 ## A clean criminial record isn’t the only thing needed for admissibility
 
@@ -43,7 +47,6 @@ to determine if your medical condition holds grounds for inadmissibility. The
 > not include medical visits and transportation, diagnostic tests, specialized
 > home care visits, rehabilitation, or permanent residential care.
 >
-> —
 > [What Is the Monthly Cost of Insulin in Canada?](https://www.olympiabenefits.com/blog/what-is-the-monthly-cost-of-insulin-in-canada)
 
 Not only that, if you’re found inadmissible on medical grounds—usually during
@@ -66,8 +69,6 @@ Rights and Freedoms. I can also live anywhere in Canada.
 
 > I really like Vancouver. It rains there **_50%_** of the time. I like the
 > rain. Maybe I’ll move there next.
-
----
 
 ## The cost to become a PR
 
@@ -110,7 +111,6 @@ processes, and stores my information. So I looked this up too.
 > managed by private companies, contracted by IRCC to deliver biometric
 > enrolment overseas.
 >
-> —
 > [IRCC (Canada.ca)](https://www.canada.ca/en/immigration-refugees-citizenship/corporate/contact-ircc/offices/find-visa-application-centre.html)
 
 **_Pause_**. _Private_ companies? My biometrics—which can be used to identify me
@@ -125,7 +125,6 @@ could you possibly ask me to trust private companies, especially in
 > system once it’s sent to the Canadian Immigration Biometric Identification
 > System.
 >
-> —
 > [Biometrics and privacy (Canada.ca)](https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics/protecting-appplicants-privacy.html)
 
 _Somewhat_ reassuring, I guess? At a surface level. In reality, that statement
