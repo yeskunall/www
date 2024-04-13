@@ -1,37 +1,76 @@
+---
+import { Icon } from "astro-icon/components";
+
+import { SOCIALS } from "~/data/socials";
+---
+
 <footer
-  class="wide-wrapper mt-8 flex flex-col py-8 [--wrap-wide:90vw] sm:[--wrap-wide:55vw] md:[--wrap-wide:85vw]"
+  class="wide-wrapper mt-8 flex flex-col p-8 [--wrap-wide:65ch]"
   data-animate
   style="--stagger:12"
 >
-  <div class="mb-5 mt-1 border-b border-gray-6"></div>
-  <div class="inline-flex items-center gap-x-1 text-sm text-gray-11">
+  <div aria-hidden="true" class="flex h-1.5 flex-none select-none gap-[0.5px]">
+    <span class="w-6 bg-accent-12"></span>
+    <span class="w-6 bg-accent-11"></span>
+    <span class="w-6 bg-accent-10"></span>
+    <span class="w-6 bg-accent-9"></span>
+    <span class="w-6 bg-accent-8"></span>
+    <span class="w-6 bg-accent-7"></span>
+    <span class="w-6 bg-accent-6"></span>
+    <span class="w-6 bg-accent-5"></span>
+    <span class="w-6 bg-accent-4"></span>
+    <span class="w-6 bg-accent-3"></span>
+    <span class="w-6 bg-accent-2"></span>
+    <span class="w-6 bg-accent-1"></span>
+  </div>
+  <div class="text-xs sm:pt-4 sm:text-sm">
+    <ul class="my-8 flex flex-wrap gap-3">
+      {
+        SOCIALS.map(({ href, title }) => (
+          <li>
+            <a
+              class="group inline-flex items-center space-x-1"
+              href={href}
+              rel="nofollow noopener noreferrer"
+            >
+              <Icon name="radix-icons:border-solid" />
+              <span class="text-gray-12 transition-colors ease-productive-standard sm:text-gray-11 sm:group-hover:text-gray-12">
+                {title}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="inline-flex select-all items-center gap-x-1 text-sm text-gray-11">
     ©&nbsp;2024 Kunall Banerjee
   </div>
-
-  <style>
-    @keyframes enter {
-      0% {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    [data-animate] {
-      --delay: 120ms;
-      --stagger: 0;
-      --start: 0ms;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      [data-animate] {
-        animation: enter 0.6s both;
-        animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
-      }
-    }
-  </style>
 </footer>
+
+<style>
+  @keyframes enter {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  [data-animate] {
+    --delay: 120ms;
+    --stagger: 0;
+    --start: 0ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      animation: enter 0.6s both;
+      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
+    }
+  }
+</style>
