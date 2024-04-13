@@ -85,6 +85,15 @@ const permissionPolicy = `
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel({
+    devImageService: "sharp",
+    imagesConfig: {
+      domains: [],
+      formats: ["image/avif", "image/webp"],
+      // 1 year, not the default of 31 days on Vercel Edge network
+      // https://vercel.com/docs/edge-network/caching#static-files-caching
+      minimumCacheTTL: 31_536_000,
+      sizes: [640, 750, 828, 1080, 1200, 1366, 1440],
+    },
     imageService: true,
     webAnalytics: { enabled: true },
   }),
