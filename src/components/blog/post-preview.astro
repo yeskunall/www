@@ -6,62 +6,53 @@ import { format } from "date-fns";
 import { cn } from "~/lib/utils";
 
 interface Props {
-  class?: string;
   post: CollectionEntry<"post">;
-  stagger?: number;
 }
 
-const { class: className, post, stagger } = Astro.props;
+const { post } = Astro.props;
+
 const datetime = post.data.publishDate.toISOString();
-const postDate = format(post.data.publishDate, "d/MM/yy");
+const { Content } = await post.render();
+
+const postDate = format(post.data.publishDate, "yyyy-MM-dd");
 ---
 
-<a
-  class={cn(
-    "grid group [grid-template-columns:auto_1fr_auto] focus-visible:outline focus-visible:outline-accent-8 focus-visible:outline-offset-[-1px] focus-visible:outline-2 gap-1 items-center justify-between py-1",
-    className,
-  )}
-  data-animate
-  data-astro-prefetch
-  href={`/writing/${post.slug}/`}
->
-  <h3
-    class="font-sans text-sm font-semibold text-gray-11 group-hover:text-accent-11 group-focus:text-accent-11"
+<>
+  <dt
+    class={cn(
+      "py-2 pr-8 [&:not(:first-of-type)]:border-t [&:not(:first-of-type)]:border-dashed [&:not(:first-of-type)]:border-gray-7",
+      post.data.tags.includes("update") ? "py-8" : "",
+    )}
   >
-    {post.data.title}
-  </h3>
-  <div class="my-0 border-b border-dotted border-gray-6"></div>
-  <time
-    class="select-none font-mono text-xs tracking-[-0.075em] [font-variant-numeric:tabular-nums]"
-    datetime={datetime}
+    <time
+      class="block select-none text-xs tracking-[-0.075em] [font-variant-numeric:tabular-nums]"
+      datetime={datetime}
+      title={datetime}
+    >
+      {postDate}
+    </time>
+  </dt>
+  <dd
+    class={cn(
+      "col-start-2 py-2 [&:not(:first-of-type)]:border-t [&:not(:first-of-type)]:border-dashed [&:not(:first-of-type)]:border-gray-7",
+      post.data.tags.includes("update") ? "py-8" : "",
+    )}
   >
-    {postDate}
-  </time>
-</a>
-
-<style define:vars={{ stagger }}>
-  @keyframes enter {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  [data-animate] {
-    --delay: 120ms;
-    --stagger: 0;
-    --start: 0ms;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    [data-animate] {
-      animation: enter 0.6s both;
-      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
-    }
-  }
-</style>
+    <a
+      class="duration-medium-02 text-gray-12 no-underline transition-colors ease-productive-standard sm:text-gray-11 sm:hover:text-gray-12"
+      href={`/writing/${post.slug}/`}
+    >
+      <article
+        class={cn(
+          "line-clamp-3 text-sm",
+          post.data.tags.includes("update") ? "line-clamp-[12]" : "",
+        )}
+      >
+        <h2 class="-mt-0.5 mb-1 text-sm">
+          {post.data.title}
+        </h2>
+        {post.body.length < 500 && <Content />}
+      </article>
+    </a>
+  </dd>
+</>
