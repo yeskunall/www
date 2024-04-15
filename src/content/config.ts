@@ -23,6 +23,18 @@ const post = defineCollection({
   type: "content",
 });
 
+const socials = defineCollection({
+  schema: z.array(
+    z.object({
+      href: z.string().url(),
+      title: z.string(),
+    }),
+  ),
+  type: "data",
+});
+
+
 export const collections = {
   post,
+  socials,
 };

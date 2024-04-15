@@ -1,32 +1,33 @@
 ---
 import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
 
-import { SOCIALS } from "~/data/socials";
+const socials = (await getCollection("socials")).flatMap(({ data }) => data);
 ---
 
 <footer
   class="wide-wrapper mt-8 flex flex-col p-8 [--wrap-wide:65ch]"
   data-animate
-  style="--stagger:12"
+  style="--stagger:15"
 >
-  <div aria-hidden="true" class="flex h-1.5 flex-none select-none gap-[0.5px]">
-    <span class="w-6 bg-accent-12"></span>
-    <span class="w-6 bg-accent-11"></span>
-    <span class="w-6 bg-accent-10"></span>
-    <span class="w-6 bg-accent-9"></span>
-    <span class="w-6 bg-accent-8"></span>
-    <span class="w-6 bg-accent-7"></span>
-    <span class="w-6 bg-accent-6"></span>
-    <span class="w-6 bg-accent-5"></span>
-    <span class="w-6 bg-accent-4"></span>
-    <span class="w-6 bg-accent-3"></span>
-    <span class="w-6 bg-accent-2"></span>
-    <span class="w-6 bg-accent-1"></span>
+  <div aria-hidden="true" class="flex h-1 flex-none select-none gap-[0.5px]">
+    <span class="w-6 bg-gray-12"></span>
+    <span class="w-6 bg-gray-11"></span>
+    <span class="w-6 bg-gray-10"></span>
+    <span class="w-6 bg-gray-9"></span>
+    <span class="w-6 bg-gray-8"></span>
+    <span class="w-6 bg-gray-7"></span>
+    <span class="w-6 bg-gray-6"></span>
+    <span class="w-6 bg-gray-5"></span>
+    <span class="w-6 bg-gray-4"></span>
+    <span class="w-6 bg-gray-3"></span>
+    <span class="w-6 bg-gray-2"></span>
+    <span class="w-6 bg-gray-1"></span>
   </div>
   <div class="text-xs sm:pt-4 sm:text-sm">
     <ul class="my-8 flex flex-wrap gap-3">
       {
-        SOCIALS.map(({ href, title }) => (
+        socials.map(({ href, title }) => (
           <li>
             <a
               class="group inline-flex items-center space-x-1"
