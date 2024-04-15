@@ -141,16 +141,6 @@ blockquote,
   }
 }
 
-/* code,
-kbd,
-pre,
-samp {
-  --type-mono: normal var(--font-weight) calc(var(--font-size) + 2px) / 1
-    var(--font-kode-mono);
-
-  font: var(--type-mono);
-} */
-
 mark {
   background-color: var(--accent-4);
   color: var(--accent-12);

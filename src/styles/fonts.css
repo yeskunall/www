@@ -1,14 +1,6 @@
 /* https://web.dev/articles/optimize-webfont-loading */
 
 @font-face {
-  font-family: "Kode Mono";
-  font-display: swap;
-  font-style: normal;
-  font-weight: "400 700";
-  src: url("/fonts/kode-mono.woff2") format("woff2");
-}
-
-@font-face {
   font-family: "Sohne";
   font-display: swap;
   font-style: normal;
