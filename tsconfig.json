@@ -4,10 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"],
-      "~/data/*": ["data/*"],
-      "~/lib/*": ["lib/*"],
-      "~/utils/*": ["utils/*"]
+      "~/lib/*": ["lib/*"]
     }
   },
-  "exclude": [".vscode", "dist", "node_modules"]
+  "exclude": [".vercel", ".vscode", "node_modules"]
 }
