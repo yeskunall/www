@@ -4,7 +4,6 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"],
-      "~/site-config": ["data/site-config.ts"],
       "~/data/*": ["data/*"],
       "~/lib/*": ["lib/*"],
       "~/utils/*": ["utils/*"]
