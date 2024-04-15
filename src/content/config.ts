@@ -33,8 +33,20 @@ const socials = defineCollection({
   type: "data",
 });
 
+const work = defineCollection({
+  schema: z.array(
+    z.object({
+      href: z.string().url(),
+      project: z.string(),
+      role: z.string(),
+      year: z.number(),
+    }),
+  ),
+  type: "data",
+});
 
 export const collections = {
   post,
   socials,
+  work,
 };

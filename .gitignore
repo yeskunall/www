@@ -5,3 +5,4 @@
 
 # Don’t push draft posts accidentally
 src/content/**/_*
+src/content/work/*
