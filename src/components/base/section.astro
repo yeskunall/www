@@ -1,12 +1,12 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-import Heading from "~/components/base/heading.astro";
 import { cn } from "~/lib/utils";
 
 interface Props extends HTMLAttributes<"section"> {
-  // Ideally a section should always have a heading, but there are some exceptions
-  // See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section#using_a_section_without_a_heading
+  // Ideally a section should always have a heading, but there are some exceptions.
+  // Currently unused
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section#using_a_section_without_a_heading
   heading?: string;
   stagger?: number;
 }
@@ -21,14 +21,6 @@ const { class: className, heading, stagger = 1.5, ...rest } = Astro.props;
   style={`--stagger:${stagger}`}
   {...rest}
 >
-  {
-    heading && (
-      <Heading class="my-3">
-        {heading}&nbsp;
-        <div class="mb-5 mt-1 border-b border-gray-6" />
-      </Heading>
-    )
-  }
   <slot />
 </section>
 
