@@ -7,6 +7,9 @@ description:
 tags: ["thoughts"]
 ---
 
+A series of Japanese folklore that have helped me embrace the notion of
+imperfection & transience.
+
 ### Ashikaga Yoshimasa
 
 In the late 15th century, during the _Muromachi_ period, there was a powerful

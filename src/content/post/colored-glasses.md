@@ -6,7 +6,7 @@ tags: ["thoughts"]
 ---
 
 I just finished part one of
-[_Don’t Worry Because 90% of Your Worries Won’t Come True_](https://literal.club/book/shunmyo-masuno-dont-worry-because-90percent-of-your-worries-wont-come-true-idmmd)
+[Don’t Worry Because 90% of Your Worries Won’t Come True](https://literal.club/book/shunmyo-masuno-dont-worry-because-90percent-of-your-worries-wont-come-true-idmmd)
 earlier today, but I just had to talk a little bit about one of the _zengo_ (Zen
 saying). It goes something like this: _Don’t wear colored glasses_.
 
