@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+
+import Section from "~/components/base/section.astro";
+
+const work = (await getCollection("work"))
+  .flatMap(({ data }) => data)
+  .sort((a, b) => a.year - b.year)
+  .reverse();
+---
+
+<Section stagger={8}>
+  <div
+    class="mb-1.5 grid select-none grid-cols-2 place-items-center content-start text-sm text-gray-12 sm:mb-3 sm:grid-cols-3"
+  >
+    <div class="place-self-start"><p>Work</p></div>
+    <div class="hidden place-self-start sm:block"><p>Role</p></div>
+    <div class="place-self-end"><p>Year</p></div>
+  </div>
+  <ul class="grid grid-cols-2 sm:grid-cols-3 sm:gap-y-1.5">
+    {
+      work.map(({ href, project, role, year }) => {
+        return (
+          <li class="duration-medium-02 col-span-full text-sm text-gray-11 transition-colors ease-productive-standard last:border-none hover:border-gray-7 hover:text-gray-12 sm:mb-0.5 sm:border-b sm:border-gray-6 sm:py-1">
+            <a
+              class="grid cursor-ne-resize grid-cols-2 sm:grid-cols-3"
+              href={href}
+              rel="nofollow noopener noreferrer"
+              target="_blank"
+            >
+              <div class="place-self-stretch text-gray-12 sm:text-inherit">
+                <p>{project}</p>
+              </div>
+              <div class="hidden place-self-stretch sm:block">
+                <p>{role}</p>
+              </div>
+              <div class="select-none justify-self-end tracking-[-0.075em] [font-variant-numeric:tabular-nums]">
+                <p>{year}</p>
+              </div>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+  <hr
+    class="my-8 w-full border-b border-dashed border-gray-7 border-opacity-10 sm:my-12"
+  />
+</Section>
