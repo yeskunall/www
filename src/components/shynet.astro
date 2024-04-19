@@ -1,0 +1,19 @@
+<!-- @ts-nocheck -->
+<noscript>
+  <img
+    alt=""
+    src="https://stats.kimchiii.space/ingress/76b6940c-09be-48f3-8f0d-21a83c890e68/pixel.gif"
+  />
+</noscript>
+<script
+  is:inline
+  src="https://stats.kimchiii.space/ingress/76b6940c-09be-48f3-8f0d-21a83c890e68/script.js"
+></script>
+
+<script>
+  declare global {
+    var Shynet: { newPageLoad: () => unknown };
+  }
+  // eslint-disable-next-line no-undef
+  document.addEventListener("astro:after-swap", () => Shynet.newPageLoad());
+</script>

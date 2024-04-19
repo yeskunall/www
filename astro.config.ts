@@ -28,13 +28,13 @@ const contentSecurityPolicy = `
   font-src 'self';
   frame-ancestors 'self';
   frame-src 'self';
-  img-src blob: data: 'self' https://assets.literal.club;
+  img-src blob: data: 'self' https://assets.literal.club https://stats.kimchiii.space;
   manifest-src 'self';
   media-src 'self';
   object-src 'none';
   sandbox allow-forms allow-popups allow-same-origin allow-scripts;
   script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com;
-  script-src-elem 'self' 'unsafe-eval' 'unsafe-inline';
+  script-src-elem 'self' 'unsafe-eval' 'unsafe-inline' https://stats.kimchiii.space;
   style-src 'self' 'unsafe-inline';
   style-src-attr 'self' 'unsafe-inline';
   style-src-elem 'self' 'unsafe-inline';
