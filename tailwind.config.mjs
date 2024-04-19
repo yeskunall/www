@@ -1,13 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-
-import type { Config } from "tailwindcss";
-
 import { fontFamily } from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
 
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
   content: ["./src/**/*.{astro,html,md,mdx,ts,tsx}"],
   // https://tailwindcss.com/docs/configuration#core-plugins
   corePlugins: {
@@ -18,7 +13,6 @@ module.exports = {
     breakInside: false,
     container: false,
     fontVariantNumeric: false,
-    lineClamp: false,
     scrollMargin: false,
     scrollPadding: false,
     touchAction: false,
@@ -44,7 +38,6 @@ module.exports = {
         gray: generateScale("sand"),
       },
       fontFamily: {
-        mono: ["var(--font-kode-mono)", ...fontFamily.mono],
         sans: ["var(--font-sohne)", ...fontFamily.sans],
       },
       // https://carbondesignsystem.com/guidelines/motion/overview/
@@ -86,10 +79,6 @@ module.exports = {
               "@media (min-width: 640px)": {
                 "--wrap-wide": "65vw",
               },
-              "> em": {
-                "@apply mx-3 block text-center font-sans text-[16px] font-medium not-italic sm:mx-0":
-                  {},
-              },
               "> img": {
                 "@apply sm:rounded-md": {},
                 aspectRatio: "16 / 9",
@@ -103,9 +92,10 @@ module.exports = {
       }),
     },
   },
-} satisfies Config;
+  // }
+};
 
-function generateScale(name: string) {
+function generateScale(name) {
   const scale = Array.from({ length: 12 }, (_, i) => {
     const id = i + 1;
 
@@ -115,5 +105,5 @@ function generateScale(name: string) {
     ];
   }).flat();
 
-  return Object.fromEntries(scale) as Record<string, string>;
+  return Object.fromEntries(scale);
 }
