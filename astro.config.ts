@@ -209,7 +209,10 @@ export default defineConfig({
         ...defListHastHandlers,
       },
     },
-    syntaxHighlight: false,
+    shikiConfig: {
+      theme: "css-variables",
+      wrap: true,
+    },
   },
   output: "static",
   prefetch: true,
