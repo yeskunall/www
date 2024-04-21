@@ -19,7 +19,7 @@
       p + p {
         @apply m-0;
 
-        strong {
+        * {
           background-color: inherit;
           color: inherit;
         }
@@ -69,6 +69,15 @@
       background-color: var(--amber-4);
       color: var(--amber-12);
     }
+  }
+
+  .prose :where(code),
+  .prose :where(kbd) {
+    @apply rounded-sm bg-gray-2 text-gray-12;
+  }
+
+  .prose :where(pre) {
+    @apply rounded !bg-gray-2 text-sm;
   }
 }
 
@@ -141,7 +150,11 @@ blockquote,
   }
 }
 
+blockquote p + p {
+  @apply mt-2;
+}
+
 mark {
-  background-color: var(--accent-4);
-  color: var(--accent-12);
+  background-color: var(--sand-4);
+  color: var(--sand-12);
 }
