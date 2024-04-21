@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 
 const socials = (await getCollection("socials")).flatMap(({ data }) => data);
@@ -31,10 +30,10 @@ const socials = (await getCollection("socials")).flatMap(({ data }) => data);
           <li>
             <a
               class="group inline-flex items-center space-x-1"
-              href={href}
+              href={`${href}?ref=${import.meta.env.SITE}`}
               rel="nofollow noopener noreferrer"
             >
-              <Icon name="radix-icons:border-solid" />
+              {""}—
               <span class="text-gray-12 transition-colors ease-productive-standard sm:text-gray-11 sm:group-hover:text-gray-12">
                 {title}
               </span>
