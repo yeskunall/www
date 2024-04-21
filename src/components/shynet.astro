@@ -1,4 +1,3 @@
-<!-- @ts-nocheck -->
 <noscript>
   <img
     alt=""
@@ -14,6 +13,7 @@
   declare global {
     var Shynet: { newPageLoad: () => unknown };
   }
+
   // eslint-disable-next-line no-undef
   document.addEventListener("astro:after-swap", () => Shynet.newPageLoad());
 </script>
