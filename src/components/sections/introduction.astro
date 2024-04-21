@@ -2,85 +2,40 @@
 import { Icon } from "astro-icon/components";
 
 import Section from "~/components/base/section.astro";
-import Button from "~/components/ui/button.astro";
-import { SOCIALS } from "~/data/socials";
 ---
 
-<Section class="pt-12 sm:pt-24" stagger={3}>
+<Section class="pt-12 text-sm sm:pt-24 sm:text-base" stagger={3}>
   <h1
-    class="relative mt-3 font-sans text-2xl tracking-tight text-gray-11 sm:text-3xl sm:tracking-tighter"
+    class="relative mt-3 font-sans text-2xl tracking-[-0.005em] text-gray-11 sm:text-3xl"
   >
-    Building modest<br class="block sm:hidden" />
-    <span class="font-display italic text-gray-12">software</span> &amp;
-    <span class="font-display italic text-gray-12">websites</span> on the internet
-    from <span class="font-display text-gray-12">YOW</span> &amp;
-    <span class="font-display text-gray-12">BOM</span> and sometimes <span
-      class="font-display text-gray-12">YYZ</span
-    > &amp; <span class="font-display text-gray-12">YVR</span>
+    Building modest
+    <span class="text-gray-12">software</span> &amp;
+    <span class="text-gray-12">websites</span> on the internet from <span
+      class="text-gray-12">YOW</span
+    > &amp;
+    <span class="text-gray-12">BOM</span> and sometimes <span
+      class="text-gray-12">YYZ</span
+    > &amp; <span class="text-gray-12">YVR</span>
   </h1>
   <p class="mb-3 mt-6">
-    I’m a designer &amp; developer who likes to create delightful
-    <strong>experiences</strong>, <strong>interfaces</strong>, &amp; <strong
-      >products</strong
-    >. Heavily inspired by the <strong>minimalist movement</strong> and
+    I’m a designer &amp; developer heavily inspired by the <strong
+      >minimalist movement</strong
+    > and
     <strong>Japanese</strong>
-    philosophy, my work can be characterized as austere, modest, and simple. <strong
+    philosophy. My work can be characterized as austere, modest, and simple. <strong
       >Obsessed</strong
     > with details. <strong>Minimalist</strong>, in all aspects of life. <strong
       >Outspoken</strong
     >, yet I’m mindful of the effect it has on others.
   </p>
-  <p class="mb-3 mt-6 flex flex-col justify-center gap-x-1 text-gray-12">
-    Experimenting on cool stuff @ <span
-      class="ml-1 inline-flex items-center text-accent-9"
+  <div class="mb-3 flex flex-col justify-center gap-x-1">
+    <p>
+      Crafting delightful <strong>experiences</strong>, <strong
+        >interfaces</strong
+      >, &amp; <strong>products</strong> at
+    </p>
+    <span class="ml-1 inline-flex items-center text-accent-9"
       ><Icon class="h-20 w-40 text-black" name="trigram-text" /></span
-    >
-  </p>
-  <div class="py-2 text-xs sm:pt-4 sm:text-sm">
-    <h2
-      class="my-3 font-sans text-sm font-medium tracking-tight text-gray-12 sm:tracking-tighter"
-    >
-      Find me online
-      <div class="mb-5 mt-1 border-b border-gray-6"></div>
-    </h2>
-    <ul class="flex flex-wrap gap-3">
-      {
-        SOCIALS.map(({ href, title }) => (
-          <li>
-            <a
-              class="inline-flex items-center space-x-1"
-              href={href}
-              rel="nofollow noopener noreferrer"
-            >
-              <>
-                <Icon name="radix-icons:border-solid" />
-                <span>{title}</span>
-              </>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-  <div class="flex items-center gap-x-3 pt-2">
-    <Button id="email" title="Click to copy my contact info to your clipboard"
-      ><Icon name="line-md:email-twotone-alt" /> Let’s collaborate</Button
-    >
-    <Button
-      disabled
-      id="dontate"
-      title="I’ll open this up soon. Thanks for your interest!"
-      ><Icon name="line-md:buy-me-a-coffee-filled" /> Buy me a coffee</Button
     >
   </div>
 </Section>
-
-<script>
-  const $email = document.querySelector("button#email") as HTMLButtonElement;
-
-  $email.addEventListener("click", async event => {
-    event.preventDefault();
-
-    await navigator.clipboard.writeText("hey@kimchiii.space");
-  });
-</script>
