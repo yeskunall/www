@@ -21,7 +21,7 @@ const postDate = format(post.data.publishDate, "yyyy-MM-dd");
   <dt
     class={cn(
       "py-2 pr-8 [&:not(:first-of-type)]:border-t [&:not(:first-of-type)]:border-dashed [&:not(:first-of-type)]:border-gray-7",
-      post.data.tags.includes("update") ? "py-8" : "",
+      post.data.tags.includes("update") ? "py-4" : "",
     )}
   >
     <time
@@ -34,8 +34,8 @@ const postDate = format(post.data.publishDate, "yyyy-MM-dd");
   </dt>
   <dd
     class={cn(
-      "col-start-2 py-2 [&:not(:first-of-type)]:border-t [&:not(:first-of-type)]:border-dashed [&:not(:first-of-type)]:border-gray-7",
-      post.data.tags.includes("update") ? "py-8" : "",
+      "reveal col-start-2 py-2 [&:not(:first-of-type)]:border-t [&:not(:first-of-type)]:border-dashed [&:not(:first-of-type)]:border-gray-7",
+      post.data.tags.includes("update") ? "py-4" : "",
     )}
   >
     <a
@@ -44,11 +44,11 @@ const postDate = format(post.data.publishDate, "yyyy-MM-dd");
     >
       <article
         class={cn(
-          "line-clamp-3 text-sm",
+          "line-clamp-3 prose prose-sm",
           post.data.tags.includes("update") ? "line-clamp-[12]" : "",
         )}
       >
-        <h2 class="-mt-0.5 mb-1 text-sm">
+        <h2 class="not-prose -mt-0.5 mb-1 text-sm">
           {post.data.title}
         </h2>
         {post.body.length < 500 && <Content />}
@@ -56,3 +56,23 @@ const postDate = format(post.data.publishDate, "yyyy-MM-dd");
     </a>
   </dd>
 </>
+
+<style>
+  @keyframes reveal {
+    from {
+      filter: blur(2px);
+      scale: 0.99;
+    }
+    to {
+      filter: blur(0);
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  .reveal {
+    animation: reveal linear both;
+    animation-range: entry cover 20%;
+    animation-timeline: view();
+  }
+</style>
