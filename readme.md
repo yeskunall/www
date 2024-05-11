@@ -1,6 +1,9 @@
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 ![Vercel](https://img.shields.io/github/deployments/yeskunall/www/production?logo=vercel&logoColor=white&label=Vercel)
 [![CI](https://github.com/yeskunall/www/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/yeskunall/www/actions/workflows/ci.yml)
+![Repo license](https://img.shields.io/github/license/yeskunall/www)
+![Language count](https://img.shields.io/github/languages/count/yeskunall/www)
+![Repo size](https://img.shields.io/github/repo-size/yeskunall/www)
 
 #### Stack
 
@@ -58,4 +61,4 @@ others from doing anything the license permits. **While the content I write is
 posted on the Internet, it is _not_ public domain**. Therefore, you **must**
 comply with the terms of the license.
 
-##### The plan is to replace Astro’s [Content Collections](https://docs.astro.build/en/guides/content-collections/) with Keystatic’s [Reader API](https://keystatic.com/docs/reader-api), so the former license will not apply in the long run when you are cloning / forking / this repository.
+###### The plan is to replace Astro’s [Content Collections](https://docs.astro.build/en/guides/content-collections/) with Keystatic’s [Reader API](https://keystatic.com/docs/reader-api), so the former license will not apply in the long run when you are cloning / forking / this repository.
