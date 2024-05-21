@@ -7,7 +7,7 @@
 
 @layer {
   * {
-    font-feature-settings: "calt", "case", "kern", "frac", "kern", "ss02";
+    font-feature-settings: "calt", "case", "frac", "kern", "ss02";
   }
 }
 
@@ -127,7 +127,7 @@ body {
 }
 
 :where(h1, h2, h3, h4, h5, h6) {
-  font-feature-settings: "kern", "frac", "kern", "ss02";
+  font-feature-settings: "frac", "kern", "ss02";
   text-wrap: pretty;
 }
 
