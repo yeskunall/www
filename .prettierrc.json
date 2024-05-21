@@ -11,7 +11,11 @@
     }
   ],
   "proseWrap": "always",
-  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "plugins": [
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-toml"
+  ],
   "singleQuote": false,
   "trailingComma": "all"
 }
