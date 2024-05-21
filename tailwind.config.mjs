@@ -92,7 +92,6 @@ export default {
       }),
     },
   },
-  // }
 };
 
 function generateScale(name) {
