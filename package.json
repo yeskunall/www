@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "start": "astro dev",
     "sync": "astro sync",
-    "upgrade-deps": "bunx npm-check-updates@latest --format group --interactive"
+    "upgrade-deps": "bunx npm-check-updates@latest --format group --interactive",
+    "codegen": "graphql-codegen"
   },
   "dependencies": {
     "@astrojs/vercel": "7.6.0",
@@ -25,6 +26,10 @@
     "@astrojs/rss": "4.0.6",
     "@astrojs/sitemap": "3.1.4",
     "@astrojs/tailwind": "5.1.0",
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/introspection": "4.0.3",
+    "@graphql-codegen/typescript": "4.0.7",
+    "@graphql-codegen/typescript-operations": "4.2.1",
     "@radix-ui/colors": "3.0.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.13",
