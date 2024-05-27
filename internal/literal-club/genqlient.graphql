@@ -1,0 +1,18 @@
+query booksByReadingStateAndProfile($ProfileId: String!) {
+  booksByReadingStateAndProfile(
+    limit: 3
+    offset: 0
+    readingStatus: IS_READING
+    profileId: $ProfileId
+  ) {
+    id
+    slug
+    title
+    description
+    cover
+    authors {
+      id
+      name
+    }
+  }
+}
