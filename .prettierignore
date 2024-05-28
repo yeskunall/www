@@ -1,3 +1,5 @@
-.astro/
-pnpm-lock.yaml
-.vercel/
+.astro
+bun.lockb
+
+internal
+src/generated/types/*
