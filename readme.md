@@ -4,6 +4,7 @@
 ![Repo license](https://img.shields.io/github/license/yeskunall/www)
 ![Language count](https://img.shields.io/github/languages/count/yeskunall/www)
 ![Repo size](https://img.shields.io/github/repo-size/yeskunall/www)
+![Security headers](https://img.shields.io/badge/securityheaders.com-A-%2300A000)
 
 #### Stack
 
@@ -22,8 +23,9 @@
 
 #### Locally
 
-This application runs on Node LTS, which is currently `v20.12.2`. This matches
-the configuration set on Vercel.
+This application runs on Node LTS, which is currently `v20.12.2`. There are some
+features (for example, `.toSliced`) this project uses that are only available on
+Node.js LTS and above. This matches the configuration set on Vercel.
 
 ```sh
 bun dev --host
@@ -43,22 +45,23 @@ bun run build
 bunx vc build
 ```
 
+<!-- prettier-ignore -->
+> [!CAUTION]
+> If you don’t build with `vc`, you will have to manually copy over the security headers (CSP) defined in `astro.config.ts` into `.vercel/output/config.json`
+
 #### Deploying
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fyeskunall%2Fwww)
 
-###### The goal is to ultimately deploy the site to Cloudflare Pages using [`@astrojs/cloudflare`](https://docs.astro.build/en/guides/integrations-guide/cloudflare).
+###### The goal is to ultimately deploy the site to Cloudflare Pages using [`@astrojs/cloudflare`](https://docs.astro.build/en/guides/integrations-guide/cloudflare)
 
 #### License
 
-Content is licensed under
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The source code
-is available under the [MIT](./license.md) license. As for the written content,
-if you **must** adapt, or share my content, please give appropriate credit and
+The source code is available under the [MIT](./license.md) license. Content is
+licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+If you **must** adapt, or share my content, please give appropriate credit and
 ensure you distribute your adapted content under the same license. You also
 **cannot** apply legal terms or technological measures that legally restrict
 others from doing anything the license permits. **While the content I write is
 posted on the Internet, it is _not_ public domain**. Therefore, you **must**
 comply with the terms of the license.
-
-###### The plan is to replace Astro’s [Content Collections](https://docs.astro.build/en/guides/content-collections/) with Keystatic’s [Reader API](https://keystatic.com/docs/reader-api), so the former license will not apply in the long run when you are cloning / forking / this repository.
