@@ -102,8 +102,7 @@ html {
   background-color: var(--color-background);
   font-feature-settings: normal;
   font-variation-settings: normal;
-  font-size: var(--font-size);
-  font-weight: var(--font-weight);
+  font-size: var(--font-size-base);
   tab-size: 2;
   touch-action: manipulation;
 }
@@ -143,6 +142,12 @@ blockquote p + p {
   @apply mt-2;
 }
 
+code,
+del,
+kbd,
+pre {
+  font-weight: var(--font-mono-weight);
+}
 mark {
   background-color: var(--mauve-4);
   color: var(--mauve-12);

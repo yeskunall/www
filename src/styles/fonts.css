@@ -31,8 +31,87 @@
   font-weight: 400;
   src: url("/fonts/sohne-italic.woff2") format("woff2");
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --font-mono-weight: 400;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --font-mono-weight: 450;
+  }
+}
+
+/* This article is a decent read: https://medium.com/airbnb-engineering/rethinking-text-resizing-on-web-1047b12d2881 */
+/* Apple’s Dynamic Type requires this font family to be used */
+/* Only target iOS/iPadOS */
+@supports (font: -apple-system-body) and (-webkit-touch-callout: default) {
+  :root {
+    font: -apple-system-body;
+  }
+}
+
+/* Everywhere else */
 :root {
   --font-mono: "Commit Mono";
   --font-sohne: "Sohne";
 }
 
+/* https://www.fluid-type-scale.com/ */
+/* For browsers that support clamp and container queries */
+@supports (font-size: clamp(1rem, 1cqi, 1rem)) {
+  :root {
+    --font-size-xs: clamp(0.38rem, 0.34cqi + 0.31rem, 0.64rem);
+    --font-size-sm: clamp(0.62rem, 0.24cqi + 0.57rem, 0.8rem);
+    --font-size-base: clamp(1rem, 0cqi + 1rem, 1rem);
+    --font-size-lg: clamp(1.62rem, -0.48cqi + 1.71rem, 1.25rem);
+    --font-size-xl: clamp(2.62rem, -1.39cqi + 2.9rem, 1.56rem);
+    --font-size-2xl: clamp(4.24rem, -3cqi + 4.84rem, 1.95rem);
+    --font-size-3xl: clamp(6.85rem, -5.81cqi + 8.01rem, 2.44rem);
+    --font-size-4xl: clamp(11.09rem, -10.58cqi + 13.2rem, 3.05rem);
+    --font-size-5xl: clamp(17.94rem, -18.59cqi + 21.66rem, 3.81rem);
+    --font-size-6xl: clamp(29.03rem, -31.92cqi + 35.41rem, 4.77rem);
+    --font-size-7xl: clamp(46.97rem, -53.96cqi + 57.76rem, 5.96rem);
+    --font-size-8xl: clamp(76rem, -90.2cqi + 94.04rem, 7.45rem);
+    --font-size-9xl: clamp(122.97rem, -149.54cqi + 152.87rem, 9.31rem);
+  }
+}
+
+/* For browsers that don't support clamp or container queries */
+@supports not (font-size: clamp(1rem, 1cqi, 1rem)) {
+  :root {
+    --font-size-xs: 0.38rem;
+    --font-size-sm: 0.62rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.62rem;
+    --font-size-xl: 2.62rem;
+    --font-size-2xl: 4.24rem;
+    --font-size-3xl: 6.85rem;
+    --font-size-4xl: 11.09rem;
+    --font-size-5xl: 17.94rem;
+    --font-size-6xl: 29.03rem;
+    --font-size-7xl: 46.97rem;
+    --font-size-8xl: 76rem;
+    --font-size-9xl: 122.97rem;
+  }
+
+  @media screen and (min-width: 1536px) {
+    :root {
+      --font-size-xs: 0.64rem;
+      --font-size-sm: 0.8rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.25rem;
+      --font-size-xl: 1.56rem;
+      --font-size-2xl: 1.95rem;
+      --font-size-3xl: 2.44rem;
+      --font-size-4xl: 3.05rem;
+      --font-size-5xl: 3.81rem;
+      --font-size-6xl: 4.77rem;
+      --font-size-7xl: 5.96rem;
+      --font-size-8xl: 7.45rem;
+      --font-size-9xl: 9.31rem;
+    }
+  }
+}

@@ -41,6 +41,10 @@ export default {
         mono: ["var(--font-mono)", ...fontFamily.mono],
         sans: ["var(--font-sohne)", ...fontFamily.sans],
       },
+      fontSize: {
+        xxs: "0.8571428571rem",
+        xxxs: "0.7142857143rem",
+      },
       // https://carbondesignsystem.com/guidelines/motion/overview/
       transitionDuration: {
         "fast-01": "70ms",
