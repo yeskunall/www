@@ -1,6 +1,22 @@
 /* https://web.dev/articles/optimize-webfont-loading */
 
 @font-face {
+  font-family: "Commit Mono";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 200 700;
+  src: url("/fonts/font-mono.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Commit Mono";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 200 700;
+  src: url("/fonts/font-mono.woff2") format("woff2");
+}
+
+@font-face {
   font-family: "Sohne";
   font-display: swap;
   font-style: normal;
@@ -15,3 +31,8 @@
   font-weight: 400;
   src: url("/fonts/sohne-italic.woff2") format("woff2");
 }
+:root {
+  --font-mono: "Commit Mono";
+  --font-sohne: "Sohne";
+}
+

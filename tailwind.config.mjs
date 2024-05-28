@@ -38,6 +38,7 @@ export default {
         gray: generateScale("sand"),
       },
       fontFamily: {
+        mono: ["var(--font-mono)", ...fontFamily.mono],
         sans: ["var(--font-sohne)", ...fontFamily.sans],
       },
       // https://carbondesignsystem.com/guidelines/motion/overview/
