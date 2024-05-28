@@ -12,7 +12,6 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:typescript-sort-keys/recommended",
   ],
-  ignorePatterns: ["dist", "node_modules"],
   overrides: [
     {
       extends: [

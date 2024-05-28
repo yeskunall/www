@@ -1,4 +1,3 @@
-**/node_modules/**
-.astro/
-.github/
-.vercel/
+.astro
+.github
+.vercel
