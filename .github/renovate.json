@@ -1,0 +1,26 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "assignees": ["yeskunall"],
+  "extends": [
+    "config:recommended",
+    ":disableDependencyDashboard",
+    ":gitSignOff"
+  ],
+  "gitAuthor": "Renovate <renovate@kimchiii.space>",
+  "packageRules": [
+    {
+      "groupName": "@astrojs/* packages",
+      "matchPackagePatterns": ["^@astrojs"],
+      "rangeStrategy": "bump",
+      "schedule": ["0 0 * * 0"]
+    },
+    {
+      "groupName": "all dependencies",
+      "groupSlug": "all",
+      "matchPackagePatterns": ["*"],
+      "rangeStrategy": "bump",
+      "schedule": ["0 0 * * 0"]
+    }
+  ],
+  "reviewers": ["yeskunall"]
+}
