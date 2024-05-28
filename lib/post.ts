@@ -31,9 +31,26 @@ export function getUniqueTagsWithCount(
   }, {});
 }
 
+export function groupPostsByYear(posts: CollectionEntry<"post">[]) {
+  return posts.reduce<Record<string, CollectionEntry<"post">[]>>(
+    (acc, post) => {
+      const year = new Date(post.data.publishDate).getFullYear();
+
+      if (!acc[year]) {
+        acc[year] = [];
+      }
+      acc[year]?.push(post);
+
+      return acc;
+    },
+    {},
+  );
+}
+
 export function removeDupsAndLowerCase(tags: string[]) {
   if (!tags.length) return tags;
 
   const distinctItems = new Set(tags.map(tag => tag.toLowerCase()));
+
   return Array.from(distinctItems);
 }
