@@ -34,8 +34,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        accent: generateScale("red"),
-        gray: generateScale("sand"),
+        accent: generateScale("coke-red"),
+        gray: generateScale("mauve"),
       },
       fontFamily: {
         mono: ["var(--font-mono)", ...fontFamily.mono],
@@ -64,11 +64,11 @@ export default {
       typography: theme => ({
         DEFAULT: {
           css: {
-            "--tw-prose-body": "var(--sand-11)",
-            "--tw-prose-bold": "var(--sand-12)",
-            "--tw-prose-code": "var(--sand-11)",
-            "--tw-prose-headings": "var(--sand-12)",
-            "--tw-prose-links": "var(--sand-12)",
+            "--tw-prose-body": "var(--mauve-11)",
+            "--tw-prose-bold": "var(--mauve-12)",
+            "--tw-prose-code": "var(--mauve-11)",
+            "--tw-prose-headings": "var(--mauve-12)",
+            "--tw-prose-links": "var(--mauve-12)",
             ":where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'], [class~='not-prose'] *))":
               {
                 "> a": {
@@ -105,5 +105,16 @@ function generateScale(name) {
     ];
   }).flat();
 
-  return Object.fromEntries(scale);
+  const contrast = ["contrast", `var(--${name}-contrast)`];
+  const indicator = ["indicator", `var(--${name}-indicator)`];
+  const surface = ["surface", `var(--${name}-surface)`];
+  const track = ["track", `var(--${name}-track)`];
+
+  return Object.fromEntries([
+    [...contrast],
+    [...indicator],
+    [...surface],
+    [...track],
+    ...scale,
+  ]);
 }
