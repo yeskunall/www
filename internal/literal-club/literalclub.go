@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"net/http"
 	"os"
-	"path/filepath"
 
 	"github.com/Khan/genqlient/graphql"
+	"github.com/yeskunall/www/internal/utils"
 )
 
 type authedTransport struct {
@@ -36,29 +36,7 @@ func GetBooks() error {
 		return error
 	}
 
-	error = writeData("index.json", data)
-	if error != nil {
-		return error
-	}
-
-	return nil
-}
-
-func writeData(path string, data []byte) error {
-	directory, error := filepath.Abs("../src")
-	if error != nil {
-		return error
-	}
-
-	file, error := os.Create(filepath.Join(directory, "content", "books", path))
-
-	if error != nil {
-		return error
-	}
-
-	defer file.Close()
-
-	_, error = file.Write(data)
+	error = utils.WriteData("books", data)
 	if error != nil {
 		return error
 	}
