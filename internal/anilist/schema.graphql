@@ -1,0 +1,53 @@
+type MediaListCollection {
+  lists: [MediaListGroup]
+}
+
+type MediaListGroup {
+  entries: [MediaList]
+}
+
+type Query {
+  MediaListCollection(
+    userId: Int!
+    userName: String!
+    status_in: [MediaListStatus]!
+    type: MediaType!
+  ): MediaListCollection!
+}
+
+enum MediaListStatus {
+  COMPLETED
+  CURRENT
+  DROPPED
+  PAUSED
+  PLANNING
+  REPEATING
+}
+
+enum MediaType {
+  ANIME
+  MANGA
+}
+
+type MediaList {
+  id: ID!
+  mediaId: Int!
+  media: Media!
+}
+
+type Media {
+  title: Title!
+}
+
+type Title {
+  english: String!
+}
+
+scalar ANIME
+scalar COMPLETED
+scalar CURRENT
+scalar DROPPED
+scalar MANGA
+scalar PAUSED
+scalar PLANNING
+scalar REPEATING

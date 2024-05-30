@@ -1,0 +1,19 @@
+query getUserMediaListCollection($UserId: Int!, $UserName: String!, $Status: MediaListStatus, $Type: MediaType!) {
+  MediaListCollection(userId: $UserId, userName: $UserName, status_in: [$Status], type: $Type) {
+    lists {
+      entries {
+        ...mediaListEntry
+      }
+    }
+  }
+}
+
+fragment mediaListEntry on MediaList {
+  id
+  mediaId
+  media {
+    title {
+      english
+    }
+  }
+}
