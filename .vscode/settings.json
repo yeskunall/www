@@ -1,4 +1,26 @@
 {
+  "cSpell.enabledFileTypes": {
+    "astro": true,
+    "css": true,
+    "dockerfile": true,
+    "git-commit": true,
+    "git-rebase": true,
+    "github-actions-workflow": true,
+    "go": true,
+    "graphql": true,
+    "html": true,
+    "javascript": true,
+    "javascriptreact": true,
+    "json": true,
+    "jsonc": true,
+    "markdown": true,
+    "mdx": true,
+    "plaintext": true,
+    "text": true,
+    "typescript": true,
+    "typescriptreact": true,
+    "yaml": true
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },
