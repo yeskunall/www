@@ -6,7 +6,7 @@
     "build": "astro check && astro build",
     "dev": "astro dev",
     "format": "prettier --cache --write .",
-    "lint:eslint": "eslint .",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext astro,js,jsx,mjs,ts,tsx .",
     "preview": "astro preview",
     "start": "astro dev",
     "sync": "astro sync",
@@ -19,6 +19,16 @@
     "astro": "4.8.6",
     "date-fns": "3.6.0"
   },
+  "eslintIgnore": [
+    ".astro",
+    ".github",
+    ".vercel",
+    "**/node_modules/",
+    "/internal/",
+    "/playwright/.cache/",
+    "/playwright-report/",
+    "src/generated/"
+  ],
   "devDependencies": {
     "@astrojs/check": "0.7.0",
     "@astrojs/markdown-remark": "5.1.0",
