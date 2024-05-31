@@ -7,7 +7,10 @@ const config = {
     },
   },
   overwrite: true,
-  schema: "internal/literal-club/schema.graphql",
+  schema: [
+    "internal/anilist/schema.graphql",
+    "internal/literal-club/schema.graphql",
+  ],
 } satisfies CodegenConfig;
 
 export default config;

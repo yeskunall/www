@@ -27,7 +27,10 @@ func GetCurrentlyWatching() error {
 		return error
 	}
 
-	data, error := json.Marshal(response.MediaListCollection.GetLists())
+	lists := response.MediaListCollection.GetLists()
+	// NOTE(yeskunall): is this the Go way to get the head of a list?
+	entries := lists[0].GetEntries()
+	data, error := json.Marshal(entries)
 	if error != nil {
 		return error
 	}
