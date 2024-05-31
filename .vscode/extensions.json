@@ -5,6 +5,11 @@
     "dbaeumer.vscode-eslint",
     "EditorConfig.EditorConfig",
     "esbenp.prettier-vscode",
-    "mgmcdermott.vscode-language-babel"
+    "golang.go",
+    "GraphQL.vscode-graphql",
+    "GraphQL.vscode-graphql-syntax",
+    "mgmcdermott.vscode-language-babel",
+    "tamasfe.even-better-toml",
+    "unifiedjs.vscode-mdx"
   ]
 }
