@@ -2,7 +2,7 @@ name: CI
 
 concurrency:
   group:
-    ${{ github.workflow }}-${{ github.event_name == "pull_request_target" &&
+    ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' &&
     github.head_ref || github.ref }}
   cancel-in-progress: true
 
