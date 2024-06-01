@@ -9,7 +9,6 @@ module.exports = {
     "plugin:astro/jsx-a11y-recommended",
     "plugin:astro/recommended",
     "plugin:perfectionist/recommended-alphabetical",
-    "plugin:prettier/recommended",
     "plugin:typescript-sort-keys/recommended",
   ],
   overrides: [
@@ -44,7 +43,6 @@ module.exports = {
     "@typescript-eslint",
     "deprecation",
     "perfectionist",
-    "prettier",
     "typescript-sort-keys",
   ],
   root: true,
@@ -72,7 +70,6 @@ module.exports = {
     "max-len": ["off", { code: 80, ignoreComments: true }],
     "no-console": "warn",
     "no-multiple-empty-lines": ["warn", { max: 1, maxEOF: 0 }],
-    "prettier/prettier": ["warn", { singleQuote: false }],
     "typescript-sort-keys/interface": "warn",
     "typescript-sort-keys/string-enum": "warn",
   },
