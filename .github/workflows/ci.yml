@@ -18,7 +18,7 @@ on:
 
 jobs:
   lint-then-format:
-    name: Check for lint issues
+    name: Lint and format code
     runs-on: ubuntu-latest
 
     steps:
