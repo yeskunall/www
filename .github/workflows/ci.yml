@@ -2,11 +2,12 @@ name: CI
 
 concurrency:
   group:
-    ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' &&
+    ${{ github.workflow }}-${{ github.event_name == "pull_request_target" &&
     github.head_ref || github.ref }}
   cancel-in-progress: true
 
 env:
+  ASTRO_TELEMETRY_DISABLED: 1
   NODE_OPTIONS: "--max_old_space_size=4096"
 
 on:
@@ -14,67 +15,21 @@ on:
     branches:
       - main
     types: [opened, synchronize]
-  push:
-    branches:
-      - main
 
 jobs:
-  astro-check:
-    name: Check for type issues
-    runs-on: ubuntu-latest
-    env:
-      FORCE_COLOR: true
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install step
-        uses: ./.github/actions/install
-
-      - name: Run check
-        run: pnpm run check
-
-  lint:
+  lint-then-format:
     name: Check for lint issues
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install step
-        uses: ./.github/actions/install
+      - name: Setup
+        uses: ./.github/actions/setup
 
-      - name: Run check
-        run: pnpm run lint:eslint
+      - name: Run ESLint
+        run: bun run lint
 
-  format:
-    name: Format code using Prettier
-    runs-on: ubuntu-latest
-    # Do not run this in parallel to the other 2 jobs in this workflow
-    needs: ["astro-check", "lint"]
-    # Run this iff only the previous 2 jobs ran successfully
-    if: ${{ success() }}
-    permissions:
-      # Give the default `GITHUB_TOKEN` write permission to commit and push the
-      # added or changed files to the repository
-      contents: write
-    steps:
-      - name: Check out code using Git
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install step
-        uses: ./.github/actions/install
-
-      - name: Format code
-        run: pnpm run format
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "[ci] format"
-          branch: ${{ github.head_ref }}
-          commit_user_name: fredkbot
-          commit_user_email: fredk+bot@github.com
+      - name: Run Prettier
+        if: ${{ success() }}
+        run: bun run format

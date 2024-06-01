@@ -1,0 +1,29 @@
+name: Reusable setup
+description: Install Bun, Node.js, and finally dependencies
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+
+    - name: Setup Bun cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.bun/install/cache
+        key:
+          # prettier-ignore
+          ${{ runner.os }}-${{ matrix.bun }}-bun-${{ hashFiles('**/bun.lockb') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.bun }}-bun-
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      shell: bash
+      run: bun install --frozen-lockfile
