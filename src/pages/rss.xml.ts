@@ -2,14 +2,12 @@ import type { APIContext } from "astro";
 
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import MarkdownIt from "markdown-it";
+import { micromark } from "micromark";
+import { gfm, gfmHtml } from "micromark-extension-gfm";
 import sanitizeHtml from "sanitize-html";
 
+import { siteConfig } from "~/config/site-config";
 import { sortByDate } from "~/lib/post";
-import { siteConfig } from "~/site-config";
-
-// TODO(yeskunall): Replace with [`micromark`](https://github.com/micromark/micromark) maybe?
-const parser = new MarkdownIt();
 
 export const GET = async (context: APIContext) => {
   const posts = await getCollection("post");
@@ -18,7 +16,12 @@ export const GET = async (context: APIContext) => {
   return rss({
     description: siteConfig.description,
     items: allPostsByDate.map(post => ({
-      content: sanitizeHtml(parser.render(post.body)),
+      content: sanitizeHtml(
+        micromark(post.body, {
+          extensions: [gfm()],
+          htmlExtensions: [gfmHtml()],
+        }),
+      ),
       description: post.data.description,
       link: `writing/${post.slug}`,
       pubDate: post.data.publishDate,
