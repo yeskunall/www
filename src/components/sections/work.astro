@@ -21,7 +21,7 @@ const work = (await getCollection("work"))
     {
       work.map(({ href, project, role, year }) => {
         return (
-          <li class="duration-medium-02 col-span-full text-sm text-gray-11 transition-colors ease-productive-standard last:border-none hover:border-gray-7 hover:text-gray-12 sm:mb-0.5 sm:border-b sm:border-gray-6 sm:py-1">
+          <li class="col-span-full text-sm text-gray-11 transition-colors duration-moderate-02 ease-productive-standard last:border-none hover:border-gray-7 hover:text-gray-12 sm:mb-0.5 sm:border-b sm:border-gray-6 sm:py-1">
             <a
               class="grid cursor-ne-resize grid-cols-2 sm:grid-cols-3"
               href={href}
