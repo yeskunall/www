@@ -39,7 +39,7 @@ export default {
       },
       fontFamily: {
         mono: ["var(--font-mono)", ...fontFamily.mono],
-        sans: ["var(--font-sohne)", ...fontFamily.sans],
+        sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       fontSize: {
         xxs: "0.8571428571rem",
@@ -79,6 +79,10 @@ export default {
                   textDecoration: "none",
                 },
               },
+            a: {
+              "@apply tracking-tight text-gray-12 underline decoration-gray-6 decoration-wavy underline-offset-2 transition-colors duration-moderate-02 ease-productive-standard sm:text-gray-11 sm:hover:text-gray-12 sm:hover:decoration-gray-7":
+                {},
+            },
             "p:has(img)": {
               "@apply wide-wrapper": {},
               "@media (min-width: 640px)": {
