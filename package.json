@@ -15,9 +15,9 @@
     "codegen": "graphql-codegen"
   },
   "dependencies": {
-    "@astrojs/vercel": "7.6.0",
+    "@astrojs/vercel": "7.7.1",
     "@urql/core": "5.0.3",
-    "astro": "4.8.6",
+    "astro": "4.11.0",
     "date-fns": "3.6.0"
   },
   "eslintIgnore": [
@@ -33,9 +33,9 @@
   "devDependencies": {
     "@astrojs/check": "0.7.0",
     "@astrojs/markdown-remark": "5.1.0",
-    "@astrojs/mdx": "3.0.0",
+    "@astrojs/mdx": "3.1.1",
     "@astrojs/rss": "4.0.6",
-    "@astrojs/sitemap": "3.1.4",
+    "@astrojs/sitemap": "3.1.6",
     "@astrojs/tailwind": "5.1.0",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/introspection": "4.0.3",
