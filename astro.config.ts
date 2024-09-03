@@ -216,6 +216,9 @@ export default defineConfig({
   },
   output: "static",
   prefetch: true,
+  redirects: {
+    "/writing": "/",
+  },
   // These headers are duped in `vercel.json`, from where they are _actually_
   // applied in production.
   // NOTE(yeskunall): if I ever switch hosting providers (Cloudflare Pages),
