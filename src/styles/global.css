@@ -5,12 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer {
-  * {
-    font-feature-settings: "calt", "case", "frac", "kern", "ss02";
-  }
-}
-
 @layer components {
   .prose {
     div.admonition {
@@ -89,9 +83,14 @@
   scrollbar-width: thin;
 }
 
+:root {
+  --base-weight: 400;
+  --base-grade: 0;
+}
+
 *::selection {
-  background-color: var(--coke-red-9);
-  color: var(--coke-red-12);
+  background-color: var(--iris-a2);
+  color: var(--iris-8);
 }
 
 html {
@@ -100,37 +99,52 @@ html {
   -webkit-text-size-adjust: 100%;
 
   background-color: var(--color-background);
-  font-feature-settings: normal;
-  font-variation-settings: normal;
-  font-size: var(--font-size-base);
+  font-feature-settings: "cv01", "cv02", "cv05", "cv10", "kern", "ss03";
+  font-variation-settings:
+    "wght" var(--base-weight),
+    "GRAD" var(--base-grade);
   tab-size: 2;
   touch-action: manipulation;
+
+  @media (prefers-contrast: less) {
+    --base-weight: 200;
+  }
+
+  @media (prefers-contrast: more) {
+    --base-weight: 700;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --base-grade: -25;
+  }
 }
 
 body {
-  color: var(--mauve-11);
+  color: var(--slate-12);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   text-wrap: pretty;
 }
 
 :where(h1, h2, h3, h4, h5, h6) {
-  font-feature-settings: "frac", "kern", "ss02";
   text-wrap: pretty;
 }
 
 b,
 strong {
-  color: var(--mauve-12);
+  color: var(--slate-12);
+  font-variation-settings:
+    "wght" var(--font-sans-serif-weight),
+    "GRAD" var(--base-grade);
 }
 
 blockquote,
 .prose blockquote {
   border-left-width: 1px;
-  padding-left: 1rem;
-  border-color: var(--mauve-6);
-  color: var(--mauve-12);
+  border-color: var(--slate-6);
+  color: var(--slate-11);
   font-style: normal;
+  padding-left: 1rem;
   quotes: none;
 
   cite a {
@@ -148,7 +162,13 @@ kbd,
 pre {
   font-weight: var(--font-mono-weight);
 }
+
+em {
+  --type-italic: 400 italic calc(1em + 1px) / normal var(--font-serif);
+  font: var(--type-italic);
+}
+
 mark {
-  background-color: var(--mauve-4);
-  color: var(--mauve-12);
+  background-color: var(--slate-4);
+  color: var(--slate-12);
 }

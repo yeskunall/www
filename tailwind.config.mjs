@@ -34,16 +34,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        accent: generateScale("coke-red"),
-        gray: generateScale("mauve"),
+        accent: generateScale("iris"),
+        gray: generateScale("slate"),
       },
       fontFamily: {
         mono: ["var(--font-mono)", ...fontFamily.mono],
         sans: ["var(--font-sans)", ...fontFamily.sans],
-      },
-      fontSize: {
-        xxs: "0.8571428571rem",
-        xxxs: "0.7142857143rem",
+        serif: ["var(--font-serif)", ...fontFamily.serif],
       },
       // https://carbondesignsystem.com/guidelines/motion/overview/
       transitionDuration: {
@@ -68,19 +65,21 @@ export default {
       typography: theme => ({
         DEFAULT: {
           css: {
-            "--tw-prose-body": "var(--mauve-11)",
-            "--tw-prose-bold": "var(--mauve-12)",
-            "--tw-prose-code": "var(--mauve-11)",
-            "--tw-prose-headings": "var(--mauve-12)",
-            "--tw-prose-links": "var(--mauve-12)",
+            "--tw-prose-body": "var(--slate-12)",
+            "--tw-prose-bold": "var(--slate-12)",
+            "--tw-prose-code": "var(--slate-12)",
+            "--tw-prose-headings": "var(--slate-11)",
+            "--tw-prose-hr": "var(--slate-4)",
+            "--tw-prose-links": "var(--slate-12)",
             ":where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'], [class~='not-prose'] *))":
               {
                 "> a": {
+                  color: "var(--slate-11)",
                   textDecoration: "none",
                 },
               },
             a: {
-              "@apply tracking-tight text-gray-12 underline decoration-gray-6 decoration-wavy underline-offset-2 transition-colors duration-moderate-02 ease-productive-standard sm:text-gray-11 sm:hover:text-gray-12 sm:hover:decoration-gray-7":
+              "@apply text-gray-12 underline decoration-gray-6 underline-offset-2 transition-colors duration-moderate-02 ease-productive-standard sm:text-gray-11 sm:hover:text-gray-12 sm:hover:decoration-gray-7":
                 {},
             },
             "p:has(img)": {
