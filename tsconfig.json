@@ -3,8 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"],
-      "~/lib/*": ["lib/*"]
+      "~/*": ["src/*"]
     }
   },
   "exclude": [".vercel", ".vscode", "node_modules"]

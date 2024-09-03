@@ -2,8 +2,10 @@ astro
 astrojs
 bunx
 codegen
+idempotency
 keystatic
 mdast
 rehype
 Shynet
+tailwindcss
 yeskunall
