@@ -36,10 +36,8 @@ export function groupPostsByYear(posts: CollectionEntry<"post">[]) {
     (acc, post) => {
       const year = new Date(post.data.publishDate).getFullYear();
 
-      if (!acc[year]) {
-        acc[year] = [];
-      }
-      acc[year]?.push(post);
+      if (!acc[year]) acc[year] = [];
+      acc[year].push(post);
 
       return acc;
     },
