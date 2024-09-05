@@ -5,6 +5,7 @@ codegen
 idempotency
 keystatic
 mdast
+micromark
 rehype
 Shynet
 tailwindcss

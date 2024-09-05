@@ -217,6 +217,7 @@ export default defineConfig({
   output: "static",
   prefetch: true,
   redirects: {
+    "/rss.xml": "/feed",
     "/writing": "/",
   },
   // These headers are duped in `vercel.json`, from where they are _actually_

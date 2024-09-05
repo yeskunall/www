@@ -31,7 +31,6 @@ export const GET = async (context: APIContext) => {
     // so I should be able to catch that, which will implicitly correct this
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     site: context.site!.toString(),
-    stylesheet: "/rss/styles.xsl",
     title: siteConfig.title,
   });
 };
