@@ -1,5 +1,5 @@
 .astro
-bun.lockb
+pnpm-lock.yaml
 
 internal
 src/generated/types/*
