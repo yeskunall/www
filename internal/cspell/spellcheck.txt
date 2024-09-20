@@ -2,6 +2,7 @@ astro
 astrojs
 bunx
 codegen
+crossorigin
 idempotency
 keystatic
 mdast

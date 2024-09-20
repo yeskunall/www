@@ -19,18 +19,18 @@ import { SKIP, visit } from "unist-util-visit";
 // I’ve set them explicitly _because I can_. Bite me.
 const contentSecurityPolicy = `
   child-src 'none';
-  connect-src *;
+  connect-src 'self' https://imamu.kunall.dev;
   default-src blob: data: 'self';
   font-src 'self';
   frame-ancestors 'self';
   frame-src 'self';
-  img-src blob: data: 'self' https://assets.literal.club https://stats.kimchiii.space;
+  img-src blob: data: 'self';
   manifest-src 'self';
   media-src 'self';
   object-src 'none';
   sandbox allow-forms allow-popups allow-same-origin allow-scripts;
   script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com;
-  script-src-elem 'self' 'unsafe-eval' 'unsafe-inline' https://stats.kimchiii.space;
+  script-src-elem 'self' 'unsafe-eval' 'unsafe-inline' https://imamu.kunall.dev/script.js;
   style-src 'self' 'unsafe-inline';
   style-src-attr 'self' 'unsafe-inline';
   style-src-elem 'self' 'unsafe-inline';
