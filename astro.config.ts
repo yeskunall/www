@@ -1,6 +1,7 @@
 import type { Element, Properties } from "hast";
 
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/static";
@@ -11,11 +12,6 @@ import getReadingTime from "reading-time";
 import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
-import {
-  defListHastHandlers,
-  remarkDefinitionList,
-} from "remark-definition-list";
-import remarkAdmonitions from "remark-github-beta-blockquote-admonitions";
 import remarkUnwrapImages from "remark-unwrap-images";
 import { SKIP, visit } from "unist-util-visit";
 
@@ -105,6 +101,7 @@ export default defineConfig({
   },
   integrations: [
     icon(),
+    react(),
     sitemap(),
     tailwind({
       applyBaseStyles: false,
@@ -186,29 +183,7 @@ export default defineConfig({
         },
       ],
     ],
-    remarkPlugins: [
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
-      // @ts-ignore
-      [
-        remarkAdmonitions,
-        {
-          classNameMaps: {
-            block: (title: string) =>
-              `admonition admonition--${title.toLowerCase()}`,
-            title: (title: string) =>
-              `admonition-title admonition-title--${title.toLowerCase()}`,
-          },
-        },
-      ],
-      remarkDefinitionList,
-      remarkUnwrapImages,
-    ],
-    remarkRehype: {
-      footnoteLabelProperties: { className: [""] },
-      handlers: {
-        ...defListHastHandlers,
-      },
-    },
+    remarkPlugins: [remarkUnwrapImages],
     shikiConfig: {
       theme: "css-variables",
       wrap: true,
