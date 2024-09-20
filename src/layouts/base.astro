@@ -1,8 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
-import Shynet from "~/components/shynet.astro";
-import Footer from "~/layouts/footer.astro";
+import { ViewTransitions } from "astro:transitions";
+
+import Umami from "~/components/analytics/umami.astro";
 import Helmet from "~/layouts/helmet.astro";
 
 interface Props {
@@ -15,12 +16,12 @@ const { post } = Astro.props;
 <html lang="en-CA">
   <head>
     <Helmet post={post} />
+    <Umami />
+    <ViewTransitions />
   </head>
   <body>
-    <main class="mx-auto max-w-prose p-8 py-16">
+    <main class="mx-auto max-w-xl px-8 py-16">
       <slot />
     </main>
-    <Footer />
-    {import.meta.env.PROD && <Shynet />}
   </body>
 </html>

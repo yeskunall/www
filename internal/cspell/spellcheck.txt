@@ -9,4 +9,5 @@ micromark
 rehype
 Shynet
 tailwindcss
+umami
 yeskunall
