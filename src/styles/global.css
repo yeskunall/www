@@ -5,76 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .prose {
-    div.admonition {
-      @apply border-l-[1px] border-solid p-2.5 py-0 font-sans;
-
-      p + p {
-        @apply m-0;
-
-        * {
-          background-color: inherit;
-          color: inherit;
-        }
-      }
-    }
-
-    .admonition-title {
-      @apply m-0 mb-0.5 hidden;
-    }
-
-    .admonition--caution {
-      border-color: var(--red-11);
-      color: var(--red-11);
-    }
-
-    .admonition--caution p + p::selection {
-      background-color: var(--red-4);
-      color: var(--red-12);
-    }
-
-    .admonition--note {
-      border-color: var(--blue-11);
-      color: var(--blue-11);
-    }
-
-    .admonition--note p + p::selection {
-      background-color: var(--blue-4);
-      color: var(--blue-12);
-    }
-
-    .admonition--tip {
-      border-color: var(--green-11);
-      color: var(--green-11);
-    }
-
-    .admonition--tip p + p::selection {
-      background-color: var(--green-4);
-      color: var(--green-12);
-    }
-
-    .admonition--warning {
-      border-color: var(--amber-11);
-      color: var(--amber-11);
-    }
-
-    .admonition--warning p + p::selection {
-      background-color: var(--amber-4);
-      color: var(--amber-12);
-    }
-  }
-
-  .prose :where(code),
-  .prose :where(kbd) {
-    @apply rounded-sm bg-gray-2 text-gray-12;
-  }
-
-  .prose :where(pre) {
-    @apply rounded !bg-gray-2 text-sm;
-  }
-}
-
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
@@ -95,6 +25,7 @@
 
 html {
   -moz-osx-font-smoothing: grayscale;
+  -moz-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
 
