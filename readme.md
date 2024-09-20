@@ -13,36 +13,25 @@
 - **Content**: Markdown / MDX
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Deployment**: [Vercel](https://vercel.com/docs/deployments/overview)
-- **Analytics**: [Shynet](https://github.com/milesmcc/shynet) +
+- **Analytics**: [Umami](https://umami.is/) +
   [Vercel Analytics](https://vercel.com/analytics)
 
 #### Everything else
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/yeskunall/www/tree/latest/)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fyeskunall%2Fwww)
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/yeskunall/www/tree/latest/)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/yeskunall/www/tree/latest/)
 
 #### Locally
 
-This application runs on Node LTS, which is currently `v20.12.2`. There are some
-features (for example, `.toSliced`) this project uses that are only available on
-Node.js LTS and above. This matches the configuration set on Vercel.
-
 ```sh
-bun dev --host
+pnpm dev --host
 ```
 
-#### Building
-
-##### Using Astro
+#### Building (Using Vercel CLI)
 
 ```sh
-bun run build
-```
-
-##### Using Vercel CLI
-
-```sh
-bunx vc build
+vc build
 ```
 
 <!-- prettier-ignore -->
@@ -51,9 +40,9 @@ bunx vc build
 
 #### Deploying
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fyeskunall%2Fwww)
-
-###### The goal is to ultimately deploy the site to Cloudflare Pages using [`@astrojs/cloudflare`](https://docs.astro.build/en/guides/integrations-guide/cloudflare)
+```sh
+vc deploy --prebuilt
+```
 
 #### License
 
