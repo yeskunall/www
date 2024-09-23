@@ -2,15 +2,14 @@
   "recommendations": [
     "astro-build.astro-vscode",
     "bradlc.vscode-tailwindcss",
+    "DavidAnson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
     "EditorConfig.EditorConfig",
-    "esbenp.prettier-vscode",
     "golang.go",
     "GraphQL.vscode-graphql",
     "GraphQL.vscode-graphql-syntax",
     "mgmcdermott.vscode-language-babel",
     "streetsidesoftware.code-spell-checker",
-    "tamasfe.even-better-toml",
-    "unifiedjs.vscode-mdx"
+    "tamasfe.even-better-toml"
   ]
 }

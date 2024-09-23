@@ -9,6 +9,7 @@
     "build": "astro check && astro build",
     "codegen": "graphql-codegen",
     "dev": "astro dev",
+    "knip": "knip --no-exit-code && :",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --max-warnings 0 .",
     "lint:fix": "eslint . --fix",
     "preview": "astro preview",
@@ -33,7 +34,7 @@
   },
   "dependencies": {
     "@astrojs/vercel": "7.8.1",
-    "astro": "4.15.8",
+    "astro": "4.15.9",
     "date-fns": "4.1.0"
   },
   "devDependencies": {
@@ -55,7 +56,7 @@
     "@tailwindcss/typography": "0.5.15",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/hast": "3.0.4",
-    "@types/node": "22.5.5",
+    "@types/node": "22.6.0",
     "@types/react": "18.3.8",
     "@types/react-dom": "18.3.0",
     "@types/sanitize-html": "2.13.0",
@@ -67,7 +68,7 @@
     "cspell": "8.14.4",
     "cssnano": "7.0.6",
     "cssnano-preset-advanced": "7.0.6",
-    "eslint": "9.11.0",
+    "eslint": "9.11.1",
     "eslint-plugin-astro": "1.2.4",
     "eslint-plugin-format": "0.1.2",
     "eslint-plugin-jsx-a11y": "6.10.0",
@@ -77,8 +78,10 @@
     "eslint-plugin-security": "3.0.1",
     "eslint-plugin-tailwindcss": "3.17.4",
     "eslint-plugin-typescript-sort-keys": "3.2.0",
-    "knip": "5.30.4",
+    "knip": "5.30.5",
     "lint-staged": "15.2.10",
+    "markdownlint": "0.35.0",
+    "markdownlint-cli": "0.41.0",
     "mdast-util-to-string": "4.0.0",
     "micromark": "4.0.0",
     "micromark-extension-gfm": "3.0.0",
@@ -97,7 +100,7 @@
     "schema-dts": "1.1.2",
     "simple-git-hooks": "2.11.1",
     "tailwind-merge": "2.5.2",
-    "tailwindcss": "3.4.12",
+    "tailwindcss": "3.4.13",
     "typescript": "5.6.2",
     "unist-util-visit": "5.0.0",
     "vaul": "0.9.4"
@@ -106,6 +109,15 @@
     "pre-commit": "pnpm dlx lint-staged"
   },
   "lint-staged": {
-    "*": "eslint . --fix"
+    "*": [
+      "cspell --no-must-find-files \"src/content/post/**/*.md\"",
+      "pnpm run knip"
+    ],
+    "**/*.{cjs,js,jsx,json,mjs,ts,cts,mts,tsx,yml,yaml}": [
+      "eslint ."
+    ],
+    "**/*.md": [
+      "markdownlint"
+    ]
   }
 }

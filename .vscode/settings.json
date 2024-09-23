@@ -23,8 +23,9 @@
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "always"
+    "source.organizeImports": "never"
   },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[go]": {
     "editor.defaultFormatter": "golang.go"
   },
@@ -37,18 +38,21 @@
   "emmet.includeLanguages": {
     "astro": "html"
   },
+  "eslint.format.enable": true,
+  "eslint.useFlatConfig": true,
   "eslint.validate": [
     "astro",
     "html",
     "javascript",
     "javascriptreact",
     "json",
+    "jsonc",
     "markdown",
     "typescript",
     "typescriptreact",
+    "yml",
     "yaml"
   ],
-  "eslint.useFlatConfig": true,
   "files.associations": {
     "*.css": "tailwindcss",
     "*.mdx": "markdown"
@@ -66,10 +70,6 @@
     ],
     [
       "cva\\(([^)]*)\\)",
-      "[\"'`]([^\"'`]*).*?[\"'`]"
-    ],
-    [
-      "cx\\(([^)]*)\\)",
       "[\"'`]([^\"'`]*).*?[\"'`]"
     ]
   ]

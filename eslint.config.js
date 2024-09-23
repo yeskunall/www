@@ -26,6 +26,7 @@ export default config(
       "**/.*",
       "**/*.d.ts",
       ".astro",
+      ".editorconfig",
       ".github",
       ".vercel",
       "/internal/",
