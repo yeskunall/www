@@ -12,8 +12,9 @@
     "knip": "knip --no-exit-code && :",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --max-warnings 0 .",
     "lint:fix": "eslint . --fix",
+    "lint:md": "markdownlint \"src/content/post/**/*.md\" --dot --fix --ignore node_modules",
+    "lint:spell": "cspell lint --cache --cache-location ./node_modules/.cache/.cspellcache --gitignore --dot --no-progress --unique \"src/content/post/**/*.md\"",
     "preview": "astro preview",
-    "spellcheck": "cspell \"src/content/post/**/*.md\"",
     "start": "astro dev",
     "sync": "astro sync",
     "upgrade-deps": "pnpm dlx npm-check-updates@latest --format group --interactive"
@@ -45,6 +46,9 @@
     "@astrojs/rss": "4.0.7",
     "@astrojs/sitemap": "3.1.6",
     "@astrojs/tailwind": "5.1.1",
+    "@commitlint/cli": "19.5.0",
+    "@commitlint/config-conventional": "19.5.0",
+    "@commitlint/cz-commitlint": "19.5.0",
     "@eslint-react/eslint-plugin": "1.14.2",
     "@eslint/compat": "1.1.1",
     "@eslint/eslintrc": "3.1.0",
@@ -56,7 +60,7 @@
     "@tailwindcss/typography": "0.5.15",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/hast": "3.0.4",
-    "@types/node": "22.6.0",
+    "@types/node": "22.6.1",
     "@types/react": "18.3.8",
     "@types/react-dom": "18.3.0",
     "@types/sanitize-html": "2.13.0",
@@ -65,6 +69,7 @@
     "astro-icon": "1.1.1",
     "autoprefixer": "10.4.20",
     "clsx": "2.1.1",
+    "commitizen": "4.3.0",
     "cspell": "8.14.4",
     "cssnano": "7.0.6",
     "cssnano-preset-advanced": "7.0.6",
@@ -108,6 +113,16 @@
   "simple-git-hooks": {
     "pre-commit": "pnpm dlx lint-staged"
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
   "lint-staged": {
     "*": [
       "cspell --no-must-find-files \"src/content/post/**/*.md\"",
@@ -117,7 +132,7 @@
       "eslint ."
     ],
     "**/*.md": [
-      "markdownlint"
+      "markdownlint \"src/content/post/**/*.md\""
     ]
   }
 }

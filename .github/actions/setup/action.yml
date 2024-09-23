@@ -1,4 +1,4 @@
-name: Install Tools & Dependencies
+name: Install dependencies and tools
 description: Install PNPM, Node.js, and finally dependencies
 
 runs:
@@ -15,8 +15,8 @@ runs:
       run: |
         echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-    - name: Setup pnpm cache
-      uses: actions/cache@v3
+    - name: Setup PNPM cache
+      uses: actions/cache@v4
       with:
         path: ${{ env.STORE_PATH }}
         key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -32,3 +32,19 @@ runs:
     - name: Install dependencies
       run: pnpm install
       shell: bash
+
+    - name: Setup CSpell cache
+      uses: actions/cache@v4
+      with:
+        path: ${{ env.STORE_PATH }}
+        key: ${{ runner.os }}-cspell-store-${{ hashFiles('**/src/content/post/**/*.md') }}
+        restore-keys: |
+          ${{ runner.os }}-cspell-store-
+
+    - name: Setup ESLint cache
+      uses: actions/cache@v4
+      with:
+        path: ${{ env.STORE_PATH }}
+        key: ${{ runner.os }}-eslint-store-${{ hashFiles('**/pnpm-lock.yaml', '**/eslint.config.js') }}
+        restore-keys: |
+          ${{ runner.os }}-eslint-store-
