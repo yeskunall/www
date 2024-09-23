@@ -1,5 +1,4 @@
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
-![Vercel](https://img.shields.io/github/deployments/yeskunall/www/production?logo=vercel&logoColor=white&label=Vercel)
 [![CI](https://github.com/yeskunall/www/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/yeskunall/www/actions/workflows/ci.yml)
 ![Repo license](https://img.shields.io/github/license/yeskunall/www)
 ![Language count](https://img.shields.io/github/languages/count/yeskunall/www)
@@ -10,11 +9,11 @@
 
 - **Framework**: [Astro](https://astro.build/)
 - **Colors**: [Radix UI](https://www.radix-ui.com/colors/)
-- **Content**: Markdown / MDX
+- **Content**: Markdown
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Deployment**: [Vercel](https://vercel.com/docs/deployments/overview)
 - **Analytics**: [Umami](https://umami.is/) +
-  [Vercel Analytics](https://vercel.com/analytics)
+  [Vercel Analytics](https://vercel.com/docs/analytics)
 
 #### Everything else
 
@@ -46,11 +45,5 @@ vc deploy --prebuilt
 
 #### License
 
-The source code is available under the [MIT](./license.md) license. Content is
+[MIT](./license) © [Kunall Banerjee](https://kimchiii.space/). Content is
 licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-If you **must** adapt, or share my content, please give appropriate credit and
-ensure you distribute your adapted content under the same license. You also
-**cannot** apply legal terms or technological measures that legally restrict
-others from doing anything the license permits. **While the content I write is
-posted on the Internet, it is _not_ public domain**. Therefore, you **must**
-comply with the terms of the license.
