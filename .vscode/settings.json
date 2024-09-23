@@ -22,9 +22,9 @@
     "yaml"
   ],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always"
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "always"
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[go]": {
     "editor.defaultFormatter": "golang.go"
   },
@@ -39,11 +39,16 @@
   },
   "eslint.validate": [
     "astro",
+    "html",
     "javascript",
     "javascriptreact",
+    "json",
+    "markdown",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "yaml"
   ],
+  "eslint.useFlatConfig": true,
   "files.associations": {
     "*.css": "tailwindcss",
     "*.mdx": "markdown"
@@ -53,11 +58,19 @@
       "source.fixAll.markdownlint": "always"
     }
   },
-  "prettier.documentSelectors": ["**/*.astro"],
   "tailwindCSS.experimental.classRegex": [
     // Enable Tailwind CSS code completion for the following functions
-    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["cx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    [
+      "cn\\(([^)]*)\\)",
+      "[\"'`]([^\"'`]*).*?[\"'`]"
+    ],
+    [
+      "cva\\(([^)]*)\\)",
+      "[\"'`]([^\"'`]*).*?[\"'`]"
+    ],
+    [
+      "cx\\(([^)]*)\\)",
+      "[\"'`]([^\"'`]*).*?[\"'`]"
+    ]
   ]
 }
