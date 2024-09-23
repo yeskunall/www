@@ -1,5 +1,0 @@
-.astro
-pnpm-lock.yaml
-
-internal
-src/generated/types/*

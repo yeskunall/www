@@ -17,6 +17,20 @@
     "sync": "astro sync",
     "upgrade-deps": "pnpm dlx npm-check-updates@latest --format group --interactive"
   },
+  "knip": {
+    "ignore": [
+      "src/generated/types/types.ts"
+    ],
+    "ignoreDependencies": [
+      "@radix-ui/colors",
+      "@types/umami",
+      "autoprefixer",
+      "cssnano-preset-advanced",
+      "eslint-plugin-typescript-sort-keys",
+      "lint-staged",
+      "simple-git-hooks"
+    ]
+  },
   "dependencies": {
     "@astrojs/vercel": "7.8.1",
     "astro": "4.15.8",
@@ -70,10 +84,7 @@
     "micromark-extension-gfm": "3.0.0",
     "postcss": "8.4.47",
     "postcss-import": "16.1.0",
-    "prettier": "3.3.3",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.6.6",
-    "prettier-plugin-toml": "2.0.1",
     "pretty-ms": "9.1.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
