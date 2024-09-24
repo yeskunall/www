@@ -20,13 +20,13 @@ export default {
   plugins: [
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/typography"),
-    plugin(function wideWrapperPlugin({ addComponents }) {
+    plugin(({ addComponents }) => {
       addComponents({
         ".wide-wrapper": {
           "--wrap-wide": "100vw",
-          marginLeft: "calc((min(100vw, var(--wrap-wide)) - 100%) / -2)",
-          maxWidth: "min(100vw, var(--wrap-wide))",
-          width: "min(100vw, var(--wrap-wide))",
+          "marginLeft": "calc((min(100vw, var(--wrap-wide)) - 100%) / -2)",
+          "maxWidth": "min(100vw, var(--wrap-wide))",
+          "width": "min(100vw, var(--wrap-wide))",
         },
       });
     }),
@@ -60,17 +60,10 @@ export default {
         "productive-exit": "cubic-bezier(0.2, 0, 1, 0.9)",
         "productive-standard": "cubic-bezier(0.2, 0, 0.38, 0.9)",
       },
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error: remove once Tailwind exposes the type
       typography: theme => ({
         DEFAULT: {
           css: {
-            "--tw-prose-body": "var(--slate-12)",
-            "--tw-prose-bold": "var(--slate-12)",
-            "--tw-prose-code": "var(--slate-12)",
-            "--tw-prose-headings": "var(--slate-11)",
-            "--tw-prose-hr": "var(--slate-4)",
-            "--tw-prose-links": "var(--slate-12)",
             ":where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'], [class~='not-prose'] *))":
               {
                 "> a": {
@@ -78,21 +71,27 @@ export default {
                   textDecoration: "none",
                 },
               },
-            a: {
+            "--tw-prose-body": "var(--slate-12)",
+            "--tw-prose-bold": "var(--slate-12)",
+            "--tw-prose-code": "var(--slate-12)",
+            "--tw-prose-headings": "var(--slate-11)",
+            "--tw-prose-hr": "var(--slate-4)",
+            "--tw-prose-links": "var(--slate-12)",
+            "a": {
               "@apply text-gray-12 underline decoration-gray-6 underline-offset-2 transition-colors duration-moderate-02 ease-productive-standard sm:text-gray-11 sm:hover:text-gray-12 sm:hover:decoration-gray-7":
                 {},
             },
             "p:has(img)": {
+              "> img": {
+                "@apply sm:rounded-md": {},
+                "aspectRatio": "16 / 9",
+                "marginBottom": theme("spacing.3"),
+                "objectFit": "cover",
+                "width": "100%",
+              },
               "@apply wide-wrapper": {},
               "@media (min-width: 640px)": {
                 "--wrap-wide": "65vw",
-              },
-              "> img": {
-                "@apply sm:rounded-md": {},
-                aspectRatio: "16 / 9",
-                marginBottom: theme("spacing.3"),
-                objectFit: "cover",
-                width: "100%",
               },
             },
           },

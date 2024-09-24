@@ -22,6 +22,7 @@ EASA
 façade
 fetchcontent
 GCMS
+genqlient
 getentrybyslug
 Ghazali
 hachi
@@ -32,8 +33,8 @@ Historia
 Hōrai
 iconify
 idempotency
-initialize
 igreja
+initialize
 IRCC
 Japão
 jdbc

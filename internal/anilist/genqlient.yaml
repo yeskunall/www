@@ -7,5 +7,5 @@ bindings:
     type: int32
 schema: schema.graphql
 operations:
-- genqlient.graphql
+  - genqlient.graphql
 generated: generated.go
