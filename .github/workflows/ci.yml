@@ -39,7 +39,7 @@ jobs:
         run: pnpm run lint:spell
 
       - name: Run markdownlint
-        run: pnpm run lint:md lint:spell
+        run: pnpm run lint:md
 
       - name: Run eslint
         run: pnpm run lint
