@@ -34,8 +34,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        accent: generateScale("iris"),
-        gray: generateScale("slate"),
+        accent: generateScale("green"),
+        gray: generateScale("sage"),
       },
       fontFamily: {
         mono: ["var(--font-mono)", ...fontFamily.mono],
@@ -67,16 +67,16 @@ export default {
             ":where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'], [class~='not-prose'] *))":
               {
                 "> a": {
-                  color: "var(--slate-11)",
+                  color: "var(--sage-11)",
                   textDecoration: "none",
                 },
               },
-            "--tw-prose-body": "var(--slate-12)",
-            "--tw-prose-bold": "var(--slate-12)",
-            "--tw-prose-code": "var(--slate-12)",
-            "--tw-prose-headings": "var(--slate-11)",
-            "--tw-prose-hr": "var(--slate-4)",
-            "--tw-prose-links": "var(--slate-12)",
+            "--tw-prose-body": "var(--sage-12)",
+            "--tw-prose-bold": "var(--sage-12)",
+            "--tw-prose-code": "var(--sage-12)",
+            "--tw-prose-headings": "var(--sage-11)",
+            "--tw-prose-hr": "var(--sage-4)",
+            "--tw-prose-links": "var(--sage-12)",
             "a": {
               "@apply text-gray-12 underline decoration-gray-6 underline-offset-2 transition-colors duration-moderate-02 ease-productive-standard sm:text-gray-11 sm:hover:text-gray-12 sm:hover:decoration-gray-7":
                 {},

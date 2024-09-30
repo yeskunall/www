@@ -51,7 +51,7 @@ html {
 }
 
 body {
-  color: var(--slate-12);
+  color: theme("colors.gray.12");
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   text-wrap: pretty;
@@ -63,7 +63,7 @@ body {
 
 b,
 strong {
-  color: var(--slate-12);
+  color: theme("colors.gray.12");
   font-variation-settings:
     "wght" var(--font-sans-serif-weight),
     "GRAD" var(--base-grade);
@@ -72,8 +72,8 @@ strong {
 blockquote,
 .prose blockquote {
   border-left-width: 1px;
-  border-color: var(--slate-6);
-  color: var(--slate-11);
+  border-color: theme("colors.gray.6");
+  color: theme("colors.gray.11");
   font-style: normal;
   padding-left: 1rem;
   quotes: none;
@@ -100,6 +100,6 @@ em {
 }
 
 mark {
-  background-color: var(--slate-4);
-  color: var(--slate-12);
+  background-color: ("colors.gray.4");
+  color: theme("colors.gray.12");
 }
