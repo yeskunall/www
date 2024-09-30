@@ -1,0 +1,15 @@
+---
+import NavigationMenu from "~/components/navigation-menu.tsx";
+---
+
+<header class="fixed top-0 z-50 w-full max-w-full backdrop-blur-sm backdrop-opacity-75 [background:_linear-gradient(var(--sage-2),_80%,_transparent)]">
+  <div class="group/header flex max-w-xl items-center justify-between p-4 px-8 ">
+    <a class="flex w-full flex-col gap-px no-underline" href="/">
+      <h1 class="font-medium text-gray-12 transition-colors duration-moderate-02 ease-expressive-standard group-hover/header:text-gray-11">Kunall Banerjee</h1>
+      <p class="text-gray-11 transition-colors duration-moderate-02 ease-expressive-standard group-hover/header:text-accent-11"><em>Designer and engineer</em>.</p>
+    </a>
+    <div class="w-fit self-start">
+      <NavigationMenu client:idle />
+    </div>
+  </div>
+</header>
