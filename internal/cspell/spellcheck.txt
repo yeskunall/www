@@ -18,9 +18,11 @@ codegen
 commitlint
 crossorigin
 cssnano
+datetime
 EASA
 façade
 fetchcontent
+frontmatter
 GCMS
 genqlient
 getentrybyslug
@@ -31,6 +33,7 @@ hella
 hime
 Historia
 Hōrai
+HUMINT
 iconify
 idempotency
 igreja
@@ -59,6 +62,7 @@ noimageai
 noopener
 noreferrer
 nosniff
+OSINT
 proptypes
 Québécois
 rehype

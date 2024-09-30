@@ -17,5 +17,5 @@
     "node",
     "typescript"
   ],
-  "ignorePaths": ["node_modules"]
+  "ignorePaths": [".vscode", "node_modules", "pnpm-lock.yaml"]
 }
