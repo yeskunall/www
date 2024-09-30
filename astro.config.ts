@@ -1,3 +1,4 @@
+import type { RehypePlugin } from "@astrojs/markdown-remark";
 import type { Element, Properties } from "hast";
 
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
@@ -5,10 +6,8 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/static";
-import icon from "astro-icon";
 import { defineConfig } from "astro/config";
-import { toString } from "mdast-util-to-string";
-import getReadingTime from "reading-time";
+import icon from "astro-icon";
 import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
@@ -110,9 +109,7 @@ export default defineConfig({
   ],
   markdown: {
     rehypePlugins: [
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      rehypeAccessibleEmojis,
+      rehypeAccessibleEmojis as RehypePlugin,
       rehypeHeadingIds,
       [
         rehypeAutolinkHeadings,
@@ -122,39 +119,31 @@ export default defineConfig({
         },
       ],
       // Remove `tabindex` from `<pre />` elements
-      () => tree => {
-        visit(tree, "element", node => {
-          if (node.tagName === "pre" && node.properties.tabIndex === 0)
+      () => (tree) => {
+        visit(tree, "element", (node) => {
+          if (node.tagName === "pre" && node.properties.tabIndex === 0) {
             delete node.properties.tabIndex;
+          }
         });
       },
-      // Add reading time to frontmatter
-      () => (tree, vfile) => {
-        const data = vfile.data as {
-          astro: { frontmatter: Record<string, unknown> };
-        };
-        const readingTime = getReadingTime(toString(tree));
-
-        data.astro.frontmatter.readingTime = readingTime.text;
-        data.astro.frontmatter.words = readingTime.words;
-      },
       // Better `<blockquote />`s
-      () => tree => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
-        // @ts-ignore: `visit` does not need to return anything explicitly unless using `EXIT`
+      () => (tree) => {
+        // @ts-expect-error: `visit` does not need to return anything explicitly unless using `EXIT`
         // or `SKIP`
-        visit(tree, "element", node => {
-          if (node.tagName !== "blockquote") return SKIP;
+        visit(tree, "element", (node) => {
+          if (node.tagName !== "blockquote") {
+            return SKIP;
+          }
 
           const paragraphs = node.children.filter(
             child => child.type === "element" && child.tagName === "p",
           );
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const [paragraph, ..._] = paragraphs.toReversed();
           const [citation] = (paragraph as Element).children;
 
-          if (!citation || !((citation as Element).tagName === "a"))
+          if (!citation || !((citation as Element).tagName === "a")) {
             return SKIP;
+          }
 
           (paragraph as Element).children = [
             {
@@ -172,10 +161,12 @@ export default defineConfig({
         {
           rel({ properties }: { properties: Properties }) {
             const allowList = ["/", "#", "mailto:"];
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+
             const href = properties.href as string;
 
-            if (allowList.some(start => href.startsWith(start))) return [];
+            if (allowList.some(start => href.startsWith(start))) {
+              return [];
+            }
 
             return "nofollow noopener noreferrer";
           },
@@ -193,7 +184,12 @@ export default defineConfig({
   prefetch: true,
   redirects: {
     "/rss.xml": "/feed",
+    "/defaults": "/default-apps",
+    // TODO(yeskunall): remove this redirect once the pages are ready
+    "/about": "/", // This exists because I decided to show the URLs in the navigation, but the content is not yet ready
     "/writing": "/",
+    // TODO(yeskunall): remove this redirect once the pages are ready
+    "/uses": "/", // This exists because I decided to show the URLs in the navigation, but the content is not yet ready
   },
   // These headers are duped in `vercel.json`, from where they are _actually_
   // applied in production.
