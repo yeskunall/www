@@ -5,10 +5,8 @@ import { Picture } from "astro:assets";
 import { format, getTime } from "date-fns";
 import prettyMs from "pretty-ms";
 
-import { siteConfig } from "~/site-config";
-
 interface Props {
-  post: CollectionEntry<"post">;
+  post: CollectionEntry<"post">
 }
 
 const { post } = Astro.props;
@@ -18,32 +16,25 @@ const {
 
 const datetime = publishDate.toISOString();
 const postDate = format(publishDate, "do MMMM',' yyyy");
-const { remarkPluginFrontmatter } = await post.render();
 ---
 
-<div class="not-prose flex flex-col font-sans text-gray-10">
-  <div
-    class="mb-1 flex select-none items-center justify-between text-xs font-semibold"
-  >
-    <time class="cursor-pointer" datetime={datetime} title={datetime}>
-      {postDate}&nbsp; ({
-        prettyMs(getTime(new Date()) - getTime(post.data.publishDate), {
-          compact: true,
-        })
-      } ago)
-    </time>
-    <span>{remarkPluginFrontmatter.readingTime}</span>
+<div class="not-prose flex flex-col font-sans text-gray-11">
+  <div class="flex flex-col gap-2">
+    <div
+      class="flex select-none items-center text-xs font-medium"
+    >
+      <time class="cursor-pointer" datetime={datetime} title={datetime}>
+        {postDate}&nbsp; ({
+          prettyMs(getTime(new Date()) - getTime(post.data.publishDate), {
+            compact: true,
+          })
+        } ago)
+      </time>
+    </div>
+    <h1 class="text-left font-serif text-2xl font-medium tracking-tight text-gray-12 sm:mb-1 lg:text-3xl">
+      {post.data.title}
+    </h1>
   </div>
-  <h1
-    class="mt-2.5 text-3xl leading-tight tracking-tighter text-gray-12 sm:mb-1 sm:text-4xl"
-  >
-    {post.data.title}
-  </h1>
-  <address
-    class="mb-3 mt-1 flex select-none items-center justify-between space-x-1 text-xs font-semibold not-italic"
-  >
-    {remarkPluginFrontmatter.words} words by {siteConfig.author}
-  </address>
   {
     coverImage && (
       <div class="aspect-h-9 aspect-w-16 mb-6">
