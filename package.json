@@ -3,7 +3,7 @@
   "private": true,
   "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b",
   "engines": {
-    "node": ">=20.3.0"
+    "node": ">=20.17.0"
   },
   "scripts": {
     "build": "astro check && astro build",
@@ -12,8 +12,8 @@
     "knip": "knip --no-exit-code && :",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --max-warnings 0 .",
     "lint:fix": "eslint . --fix",
-    "lint:md": "markdownlint \"src/content/post/**/*.md\" --dot --fix --ignore node_modules",
-    "lint:spell": "cspell lint --cache --cache-location ./node_modules/.cache/.cspellcache --gitignore --dot --no-progress --unique \"src/content/post/**/*.md\"",
+    "lint:md": "markdownlint \"**/*.md\" --dot --fix --ignore node_modules",
+    "lint:spell": "cspell lint --cache --cache-location ./node_modules/.cache/.cspellcache --gitignore --dot --no-must-find-files --no-progress --unique \"**/*.md\" && :",
     "preview": "astro preview",
     "start": "astro dev",
     "sync": "astro sync",
@@ -24,6 +24,7 @@
       "src/generated/types/types.ts"
     ],
     "ignoreDependencies": [
+      "@commitlint/config-conventional",
       "@radix-ui/colors",
       "@types/umami",
       "autoprefixer",
@@ -39,29 +40,32 @@
     "date-fns": "4.1.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "3.7.1",
+    "@antfu/eslint-config": "3.7.3",
     "@astrojs/check": "0.9.3",
     "@astrojs/markdown-remark": "5.2.0",
     "@astrojs/react": "3.6.2",
     "@astrojs/rss": "4.0.7",
     "@astrojs/sitemap": "3.1.6",
     "@astrojs/tailwind": "5.1.1",
-    "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
     "@commitlint/cz-commitlint": "19.5.0",
-    "@eslint-react/eslint-plugin": "1.14.2",
+    "@eslint-react/eslint-plugin": "1.14.3",
     "@eslint/compat": "1.1.1",
     "@eslint/eslintrc": "3.1.0",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/typescript": "4.0.9",
+    "@phosphor-icons/react": "2.1.7",
     "@radix-ui/colors": "3.0.0",
     "@radix-ui/react-popover": "1.1.1",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.15",
     "@total-typescript/ts-reset": "0.6.1",
+    "@types/eslint-plugin-security": "3.0.0",
+    "@types/eslint-plugin-tailwindcss": "3.17.0",
+    "@types/eslint__eslintrc": "2.1.2",
     "@types/hast": "3.0.4",
-    "@types/node": "22.6.1",
-    "@types/react": "18.3.8",
+    "@types/node": "22.7.4",
+    "@types/react": "18.3.10",
     "@types/react-dom": "18.3.0",
     "@types/sanitize-html": "2.13.0",
     "@types/umami": "2.10.0",
@@ -69,7 +73,7 @@
     "astro-icon": "1.1.1",
     "autoprefixer": "10.4.20",
     "clsx": "2.1.1",
-    "commitizen": "4.3.0",
+    "commitizen": "4.3.1",
     "cspell": "8.14.4",
     "cssnano": "7.0.6",
     "cssnano-preset-advanced": "7.0.6",
@@ -77,26 +81,23 @@
     "eslint-plugin-astro": "1.2.4",
     "eslint-plugin-format": "0.1.2",
     "eslint-plugin-jsx-a11y": "6.10.0",
-    "eslint-plugin-react-hooks": "4.6.2",
+    "eslint-plugin-react-hooks": "5.1.0-beta-26f2496093-20240514",
     "eslint-plugin-react-refresh": "0.4.12",
     "eslint-plugin-regexp": "2.6.0",
     "eslint-plugin-security": "3.0.1",
     "eslint-plugin-tailwindcss": "3.17.4",
     "eslint-plugin-typescript-sort-keys": "3.2.0",
-    "knip": "5.30.5",
+    "knip": "5.30.6",
     "lint-staged": "15.2.10",
     "markdownlint": "0.35.0",
-    "markdownlint-cli": "0.41.0",
-    "mdast-util-to-string": "4.0.0",
+    "markdownlint-cli": "0.42.0",
     "micromark": "4.0.0",
     "micromark-extension-gfm": "3.0.0",
     "postcss": "8.4.47",
     "postcss-import": "16.1.0",
-    "prettier-plugin-astro": "0.14.1",
     "pretty-ms": "9.1.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "reading-time": "1.5.0",
     "rehype-accessible-emojis": "0.3.2",
     "rehype-autolink-headings": "7.1.0",
     "rehype-external-links": "3.0.0",
@@ -106,9 +107,9 @@
     "simple-git-hooks": "2.11.1",
     "tailwind-merge": "2.5.2",
     "tailwindcss": "3.4.13",
+    "tailwindcss-animate": "1.0.7",
     "typescript": "5.6.2",
-    "unist-util-visit": "5.0.0",
-    "vaul": "0.9.4"
+    "unist-util-visit": "5.0.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm dlx lint-staged"
@@ -125,14 +126,14 @@
   },
   "lint-staged": {
     "*": [
-      "cspell --no-must-find-files \"src/content/post/**/*.md\"",
       "pnpm run knip"
     ],
-    "**/*.{cjs,js,jsx,json,mjs,ts,cts,mts,tsx,yml,yaml}": [
+    "**/*.{astro,cjs,js,jsx,json,mjs,ts,cts,mts,tsx,yml,yaml}": [
       "eslint ."
     ],
     "**/*.md": [
-      "markdownlint \"src/content/post/**/*.md\""
+      "pnpm run lint:md",
+      "pnpm run lint:spell"
     ]
   }
 }
