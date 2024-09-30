@@ -3,25 +3,26 @@ import type { CollectionEntry } from "astro:content";
 
 import { ViewTransitions } from "astro:transitions";
 
-import RichResults from "~/components/blog/rich-results.astro";
-import { siteConfig } from "~/config/site-config";
+import RichResults from "~/components/_fragments/blog/rich-results.astro";
+import { siteConfig } from "~/config/site-config.ts";
 import "~/styles/global.css";
 
 interface Props {
-  post: CollectionEntry<"post"> | undefined;
+  post: CollectionEntry<"post"> | undefined
 }
 
 const { post } = Astro.props;
 
 const data = post?.data;
+const pathname = Astro.url.pathname;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(pathname, Astro.site);
 const socialImageURL = new URL(siteConfig.ogImage, Astro.url.origin);
 ---
 
 <meta charset="utf-8" />
 <meta
-  content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+  content="initial-scale=1.0, height=device-height, width=device-width, shrink-to-fit=no, viewport-fit=cover"
   name="viewport"
 />
 <meta content="IE=edge" http-equiv="X-UA-Compatible" />
@@ -38,13 +39,13 @@ const socialImageURL = new URL(siteConfig.ogImage, Astro.url.origin);
 {/** Preload font stack */}
 {
   pathname.startsWith("/writing") && (
-<link
-  as="font"
-  crossorigin="anonymous"
-  href="/fonts/font-mono.woff2"
-  rel="preload"
-  type="font/woff2"
-/>
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="/fonts/font-mono.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
   )
 }
 <link
@@ -142,6 +143,12 @@ const socialImageURL = new URL(siteConfig.ogImage, Astro.url.origin);
 }
 <meta content={canonicalURL} property="twitter:url" />
 
+<link
+  href="/feed"
+  rel="alternate"
+  title={siteConfig.title}
+  type="application/feed+json"
+/>
 <link
   href="/rss.xml"
   rel="alternate"
