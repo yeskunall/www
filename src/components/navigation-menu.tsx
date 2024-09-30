@@ -1,7 +1,7 @@
 import { ArrowSquareIn, CaretDown } from "@phosphor-icons/react";
-import { PopoverArrow } from "@radix-ui/react-popover";
 import {
   Popover,
+  PopoverArrow,
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover.tsx";
