@@ -12,7 +12,7 @@ import (
 func main() {
 	error := dotenv.Load()
 	if error != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatal("Error loading .env file", error)
 	}
 
 	error = anilist.GetCurrentlyWatching()
