@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+
+const anime = (await getCollection("anime")).flatMap(({ data }) => data).map(({ media, mediaId }) => ({ slug: mediaId, title: media.title.english }));
+const books = (await getCollection("books")).flatMap(({ data }) => data).map(({ slug, title }) => ({ slug, title }));
+---
+
+<section class="flex flex-col gap-8">
+  <div class="flex flex-col gap-2">
+    <h2 class="font-medium text-gray-12">Currently</h2>
+    <ul class="list-inside list-disc">
+      <li>Reading {books.map(({ slug, title }, index) => <><a href={`https://literal.club/yeskunall/book/${slug}`}>{title}</a>{index < books.length - 1 ? ", " : ""}</>)}</li>
+      <li>Watching {anime.map(({ slug, title }, index) => <><a href={`https://anilist.co/anime/${slug}`}>{title}</a>{index < anime.length - 1 ? ", " : ""}</>)}</li>
+    </ul>
+  </div>
+</section>
