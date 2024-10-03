@@ -2,10 +2,10 @@
 import type { CollectionEntry } from "astro:content";
 import type { BlogPosting } from "schema-dts";
 
-import { siteConfig } from "~/site-config";
+import { siteConfig } from "~/config/site-config";
 
 interface Props {
-  frontmatter: CollectionEntry<"post">["data"];
+  frontmatter: CollectionEntry<"post">["data"]
 }
 
 const {
@@ -15,15 +15,15 @@ const {
 // @ts-expect-error: nothing is undefined, TS strictest is the reason for this error
 const schema: BlogPosting = {
   "@type": "BlogPosting",
-  author: {
+  "author": {
     "@type": "Person",
-    name: "Kunall Banerjee",
+    "name": "Kunall Banerjee",
     // FIXME(yeskunall): I think this should be the slug instead
-    url: siteConfig.url,
+    "url": siteConfig.url,
   },
-  datePublished: new Date(publishDate).toISOString(),
+  "datePublished": new Date(publishDate).toISOString(),
   description,
-  headline: title,
+  "headline": title,
   ...(lastUpdatedDate && {
     dateModified: new Date(lastUpdatedDate).toISOString(),
   }),

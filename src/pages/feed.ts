@@ -9,7 +9,7 @@ import sanitizeHtml from "sanitize-html";
 import { siteConfig } from "~/config/site-config";
 import { sortByDate } from "~/lib/post";
 
-export const GET = async (context: APIContext) => {
+export async function GET(context: APIContext) {
   const posts = await getCollection("post");
   const allPostsByDate = sortByDate(posts);
 
@@ -29,8 +29,7 @@ export const GET = async (context: APIContext) => {
     })),
     // This should be OK because Astro warns you if you don’t define `site`,
     // so I should be able to catch that, which will implicitly correct this
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     site: context.site!.toString(),
     title: siteConfig.title,
   });
-};
+}

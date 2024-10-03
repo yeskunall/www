@@ -1,47 +1,12 @@
-<footer
-  class="wide-wrapper mt-8 flex flex-col p-8 [--wrap-wide:65ch]"
-  data-animate
-  style="--stagger:5"
->
-  <div aria-hidden="true" class="flex h-1 flex-none select-none gap-[0.5px]">
-    <span class="w-6 bg-accent-12"></span>
-    <span class="w-6 bg-accent-11"></span>
-    <span class="w-6 bg-accent-10"></span>
-    <span class="w-6 bg-accent-9"></span>
-    <span class="w-6 bg-accent-8"></span>
-    <span class="w-6 bg-accent-7"></span>
-    <span class="w-6 bg-accent-6"></span>
-    <span class="w-6 bg-accent-5"></span>
-    <span class="w-6 bg-accent-4"></span>
-    <span class="w-6 bg-accent-3"></span>
-    <span class="w-6 bg-accent-2"></span>
-    <span class="w-6 bg-accent-1"></span>
-  </div>
+<footer>
+  <figure class="flex flex-col gap-2">
+    <blockquote>
+      <p>
+        “Voici mon secret. Il est très simple: on ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux.”
+      </p>
+    </blockquote>
+    <figcaption class="text-gray-11">
+      <small>The last sentence in <cite><a href="https://en.wikipedia.org/wiki/The_Little_Prince">Le Petit Prince</a> by <strong>Antoine de Saint-Exupéry</strong> (Chapter 21, Le Renard)</cite></small>
+    </figcaption>
+  </figure>
 </footer>
-
-<style>
-  @keyframes enter {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  [data-animate] {
-    --delay: 120ms;
-    --stagger: 0;
-    --start: 0ms;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    [data-animate] {
-      animation: enter 0.6s both;
-      animation-delay: calc(var(--delay) * var(--stagger) + var(--start));
-    }
-  }
-</style>

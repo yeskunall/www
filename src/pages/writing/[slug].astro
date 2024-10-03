@@ -3,10 +3,8 @@ import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
 import { getCollection } from "astro:content";
 
-import Hero from "~/components/blog/hero.astro";
+import Hero from "~/components/_fragments/blog/hero.astro";
 import BaseLayout from "~/layouts/base.astro";
-
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("post");
@@ -17,12 +15,16 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
 const { entry: post } = Astro.props;
 const { Content } = await post.render();
 ---
 
 <BaseLayout post={post}>
-  <article class="prose prose-sm pt-12 prose-li:my-0 sm:pt-24">
+  <article
+    class="prose prose-base max-w-prose prose-headings:text-left prose-headings:font-serif prose-li:my-0"
+  >
     <Hero post={post} />
     <Content />
   </article>

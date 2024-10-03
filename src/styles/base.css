@@ -1,0 +1,70 @@
+@layer base {
+  .font-thin {
+    font-variation-settings: "wght" 100;
+  }
+
+  .font-extralight {
+    font-variation-settings: "wght" 200;
+  }
+
+  .font-light {
+    font-variation-settings: "wght" 300;
+  }
+
+  .font-normal {
+    font-variation-settings: "wght" 400;
+  }
+
+  .font-medium {
+    font-variation-settings: "wght" 500;
+  }
+
+  .font-semibold {
+    font-variation-settings: "wght" 600;
+  }
+
+  .font-bold {
+    font-variation-settings: "wght" 700;
+  }
+
+  .font-extrabold {
+    font-variation-settings: "wght" 800;
+  }
+
+  .font-black {
+    font-variation-settings: "wght" 900;
+  }
+
+  /* https://web.dev/articles/adapting-typography-to-user-preferences-with-css */
+  :root {
+    --base-font-size: calc(14rem / 16);
+    --base-weight: 420;
+    --base-grade: 0;
+
+    font-variation-settings:
+      "wght" var(--base-weight),
+      "GRAD" var(--base-grade);
+  }
+
+  @media (prefers-contrast: more) {
+    body {
+      --base-weight: 600;
+    }
+  }
+
+  @media (prefers-contrast: less) {
+    body {
+      --base-weight: 300;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      --base-grade: -25;
+    }
+  }
+
+  a {
+    @apply underline underline-offset-2 decoration-gray-6 decoration-dashed duration-fast-02 ease-productive-standard hover:text-accent-11 font-medium;
+  }
+}

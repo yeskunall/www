@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+
+import { format } from "date-fns";
+
+import Layout from "~/layouts/base.astro";
+
+const items = (await getCollection("defaults")).find(
+  ({ id }) => id === "index",
+)!;
+
+const sortedItems = items.data.toSorted((a, b) => a.name.localeCompare(b.name));
+---
+
+<Layout>
+  <section>
+    <div class="flex flex-col gap-2">
+      <h1 class="text-gray-12">Defaults</h1>
+      <p class="text-gray-11">
+        <em><a href="https://listen.hemisphericviews.com/097">Hemispheric Views 097</a
+          ></em
+        >
+      </p>
+      <small>
+        This list was last updated in {
+          format("2024-09-30T13:07:27.227Z", "MMM, yyyy")
+        }.
+      </small>
+    </div>
+    <div class="my-4 h-px w-full bg-gray-3"></div>
+    <div class="flex flex-col gap-4">
+      <ul
+        class="grid grid-cols-2 place-items-center sm:grid-cols-2 [&>*:first-child()]:order-last [&>*:nth-child(even)]:border-b [&>*:nth-child(even)]:border-l [&>*:nth-child(odd)]:border-b"
+      >
+  {
+    sortedItems.map(({ name, url }) => {
+      return (
+        <li class="flex size-full flex-col items-center gap-y-2 border-gray-4 p-8">
+          <div>
+            <a class="flex items-center justify-center gap-2" href={url}>
+              <span class="inline-block text-center">{name}</span>
+            </a>
+          </div>
+        </li>
+      );
+    })
+  }
+</ul>
+    </div>
+  </section>
+</Layout>

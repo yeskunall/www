@@ -1,3 +1,4 @@
+@import "./base.css";
 @import "./colors.css";
 @import "./fonts.css";
 
@@ -9,18 +10,14 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   scroll-behavior: smooth;
+  scrollbar-color: theme("colors.gray.6") transparent;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
 }
 
-:root {
-  --base-weight: 400;
-  --base-grade: 0;
-}
-
 *::selection {
-  background-color: var(--iris-a2);
-  color: var(--iris-8);
+  background-color: theme("colors.accent.a2");
+  color: theme("colors.accent.8");
 }
 
 html {
@@ -30,28 +27,16 @@ html {
   -webkit-text-size-adjust: 100%;
 
   background-color: var(--color-background);
-  font-feature-settings: "cv01", "cv02", "cv05", "cv10", "kern", "ss03";
+  font-size: var(--base-font-size);
   font-variation-settings:
     "wght" var(--base-weight),
     "GRAD" var(--base-grade);
   tab-size: 2;
   touch-action: manipulation;
-
-  @media (prefers-contrast: less) {
-    --base-weight: 200;
-  }
-
-  @media (prefers-contrast: more) {
-    --base-weight: 700;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    --base-grade: -25;
-  }
 }
 
 body {
-  color: var(--slate-12);
+  color: theme("colors.gray.12");
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   text-wrap: pretty;
@@ -63,17 +48,17 @@ body {
 
 b,
 strong {
-  color: var(--slate-12);
+  color: theme("colors.gray.12");
   font-variation-settings:
-    "wght" var(--font-sans-serif-weight),
+    "wght" 600,
     "GRAD" var(--base-grade);
 }
 
 blockquote,
 .prose blockquote {
   border-left-width: 1px;
-  border-color: var(--slate-6);
-  color: var(--slate-11);
+  border-color: theme("colors.gray.6");
+  color: theme("colors.gray.11");
   font-style: normal;
   padding-left: 1rem;
   quotes: none;
@@ -81,10 +66,14 @@ blockquote,
   cite a {
     text-decoration-line: none;
   }
-}
 
-blockquote p + p {
-  @apply mt-2;
+  p {
+    letter-spacing: -0.025em;
+  }
+
+  p + p {
+    margin-top: 0.5rem;
+  }
 }
 
 code,
@@ -95,11 +84,12 @@ pre {
 }
 
 em {
-  --type-italic: 400 italic calc(1em + 1px) / normal var(--font-serif);
+  --type-italic: 400 italic calc(14rem / 16 + 1.75px) / normal var(--font-serif);
   font: var(--type-italic);
+  letter-spacing: -0.025em;
 }
 
 mark {
-  background-color: var(--slate-4);
-  color: var(--slate-12);
+  background-color: ("colors.gray.4");
+  color: theme("colors.gray.12");
 }

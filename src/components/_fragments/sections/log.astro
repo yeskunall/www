@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+
+import { format } from "date-fns";
+
+import { sortByDate } from "~/lib/post";
+
+const allPosts = sortByDate(await getCollection("post"));
+---
+
+<section>
+  <ul class="flex flex-col gap-2">
+    {
+      allPosts.map((post) => {
+        const datetime = post.data.publishDate.toISOString();
+        const postDate = format(post.data.publishDate, "yy-MM-dd");
+
+        return (
+          <li>
+            <a
+              class="duration-medium-02 text-gray-12 no-underline transition-colors ease-productive-standard sm:text-gray-11 sm:hover:text-gray-12"
+              href={`/writing/${post.slug}/`}
+            >
+              <article class="flex items-center justify-between gap-2 py-px">
+                <h2 class="truncate font-medium">
+                  {post.data.title}
+                </h2>
+                <div class="h-px grow bg-gray-3"></div>
+                <div class="flex items-center gap-px">
+                  <time
+                    class="block select-none text-xs font-medium tracking-[-0.075em] max-sm:text-gray-11"
+                    datetime={datetime}
+                    title={datetime}
+                  >
+                  {postDate}
+                </time>
+                </div>
+              </article>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>
+
+<style>
+  ul > li:first-of-type > a > article > h2 {
+    @apply font-serif;
+  }
+</style>

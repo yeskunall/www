@@ -15,35 +15,6 @@
 - **Analytics**: [Umami](https://umami.is/) +
   [Vercel Analytics](https://vercel.com/docs/analytics)
 
-#### Everything else
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fyeskunall%2Fwww)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/yeskunall/www/tree/latest/)
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/yeskunall/www/tree/latest/)
-
-#### Locally
-
-```sh
-pnpm dev --host
-```
-
-#### Building (Using Vercel CLI)
-
-```sh
-vc build
-```
-
-<!-- prettier-ignore -->
-> [!CAUTION]
-> If you don’t build with `vc`, you will have to manually copy over the security headers (CSP) defined in `astro.config.ts` into `.vercel/output/config.json`
-
-#### Deploying
-
-```sh
-vc deploy --prebuilt
-```
-
 #### License
 
-[MIT](./license) © [Kunall Banerjee](https://kimchiii.space/). Content is
-licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+[MIT](./license) © [Kunall Banerjee](https://kimchiii.space/). Content is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
