@@ -10,7 +10,7 @@ runs:
         run_install: false
         version: 8
 
-    - name: Get pnpm store directory
+    - name: Get PNPM store directory
       shell: bash
       run: |
         echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
@@ -32,14 +32,6 @@ runs:
     - name: Install dependencies
       run: pnpm install
       shell: bash
-
-    - name: Setup CSpell cache
-      uses: actions/cache@v4
-      with:
-        path: ${{ env.STORE_PATH }}
-        key: ${{ runner.os }}-cspell-store-${{ hashFiles('**/src/content/post/**/*.md') }}
-        restore-keys: |
-          ${{ runner.os }}-cspell-store-
 
     - name: Setup ESLint cache
       uses: actions/cache@v4

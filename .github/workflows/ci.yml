@@ -42,4 +42,4 @@ jobs:
         run: pnpm run lint:md
 
       - name: Run eslint
-        run: pnpm run lint
+        run: pnpm run lint:ci
