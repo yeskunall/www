@@ -11,7 +11,7 @@
     "dev": "astro dev",
     "knip": "knip --no-exit-code && :",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --max-warnings 0 .",
-    "lint:ci": "astro sync && astro check && eslint --cache --cache-location ./node_modules/.cache/.eslintcache --cache-strategy content .",
+    "lint:ci": "astro sync && astro check && eslint .",
     "lint:fix": "eslint --fix .",
     "lint:md": "markdownlint \"**/*.md\" --dot --fix --ignore node_modules",
     "lint:spell": "cspell lint --cache --cache-location ./node_modules/.cache/.cspellcache --gitignore --dot --no-must-find-files --no-progress --unique \"**/*.md\" && :",
