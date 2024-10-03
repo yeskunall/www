@@ -1,34 +1,27 @@
-name: Install dependencies and tools
-description: Install PNPM, Node.js, and finally dependencies
-
 runs:
   using: composite
   steps:
-    - name: Setup PNPM
-      uses: pnpm/action-setup@v2
+    - uses: pnpm/action-setup@v4
       with:
         run_install: false
-        version: 8
 
-    - name: Get PNPM store directory
+    - name: Set store path
       shell: bash
       run: |
-        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+        echo "STORE_PATH=$(pnpm store path | tr -d '\n')" >> $GITHUB_ENV
 
-    - name: Setup PNPM cache
-      uses: actions/cache@v4
+    - uses: actions/cache@v4
       with:
         path: ${{ env.STORE_PATH }}
         key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - uses: actions/setup-node@v4
       with:
         node-version: 20
         cache: pnpm
 
-    - name: Install dependencies
+    - name: Set store path
       run: pnpm install
       shell: bash
