@@ -6,12 +6,13 @@
     "node": ">=20.17.0"
   },
   "scripts": {
-    "build": "astro check && astro build",
+    "build": "astro sync && astro check && astro build",
     "codegen": "graphql-codegen",
     "dev": "astro dev",
     "knip": "knip --no-exit-code && :",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --max-warnings 0 .",
-    "lint:fix": "eslint . --fix",
+    "lint:ci": "astro sync && astro check && eslint --cache --cache-location ./node_modules/.cache/.eslintcache --cache-strategy content .",
+    "lint:fix": "eslint --fix .",
     "lint:md": "markdownlint \"**/*.md\" --dot --fix --ignore node_modules",
     "lint:spell": "cspell lint --cache --cache-location ./node_modules/.cache/.cspellcache --gitignore --dot --no-must-find-files --no-progress --unique \"**/*.md\" && :",
     "preview": "astro preview",
@@ -128,7 +129,7 @@
     "*": [
       "pnpm run knip"
     ],
-    "**/*.{astro,cjs,js,jsx,json,mjs,ts,cts,mts,tsx,yml,yaml}": [
+    "**/*.{astro,cjs,js,jsx,json,mjs,ts,cts,mts,tsx,yml}": [
       "eslint ."
     ],
     "**/*.md": [
