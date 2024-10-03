@@ -20,7 +20,7 @@ export default config(
     },
     formatters: {
       css: true,
-      markdown: "prettier",
+      markdown: "dprint",
     },
     ignores: [
       "**/.*",
