@@ -102,7 +102,7 @@
     "rehype-accessible-emojis": "0.3.2",
     "rehype-autolink-headings": "7.1.0",
     "rehype-external-links": "3.0.0",
-    "remark-unwrap-images": "4.0.0",
+    "remark-unwrap-images": "5.0.0",
     "sanitize-html": "2.13.0",
     "schema-dts": "1.1.2",
     "simple-git-hooks": "2.11.1",
