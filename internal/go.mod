@@ -1,6 +1,6 @@
 module github.com/yeskunall/www/internal
 
-go 1.22.3
+go 1.23.2
 
 require (
 	github.com/Khan/genqlient v0.7.0
